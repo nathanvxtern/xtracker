@@ -97,12 +97,14 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm mb-4">
-                            <div class="card" style="width: 18rem;">
-                                <div class="card-body">
-                                    <h5 class="card-title">Project Number</h5>
-                                    <p class="card-text">Project Title</p>
-                                    <a href="#" class="btn btn-primary">Tasks</a>
-                                </div>
+                            <div class="card" style="width: 12rem;">
+                                <?php foreach ( $titles as $title ) : ?>
+                                    <div class="card-body">
+                                            <h5 class="card-title">Project Number</h5>
+                                            <p class="card-text"><?= $title; ?></p>            
+                                            <a href="#" class="btn btn-primary">Tasks</a>
+                                    </div>
+                                <?php endforeach ?>
                             </div>
                         </div>
                     </div>

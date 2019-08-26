@@ -36,13 +36,13 @@ class ProjectCore
             $projectId
         ];
 
-        $sql = "SELECT public.projmaster.esthours
+        $sql = "SELECT public.projmaster.title
             FROM public.projmaster 
             WHERE public.projmaster.projrowid = ?
         ";
 
         try {
-            $title = DB::select( $sql, $params );
+            $title = \DB::select( $sql, $params );
         } catch ( QueryException $e ) {
             return null;
         }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Core\ProjectCore;
 
 class ProjectCoreController extends Controller
 {
@@ -45,7 +46,7 @@ class ProjectCoreController extends Controller
         $randomProjectNames = [];
 
         /* Populating the array of project names. */
-        foreach ( $randomNumberArray as $nunber ) {
+        foreach ( $randomNumberArray as $number ) {
 
             /* 
              * Creating an instance of ProjectCore in order to access
@@ -58,7 +59,7 @@ class ProjectCoreController extends Controller
              * there is a project (with a title) associated with the
              * id number specified in this iteration of the foreach loop.
              */
-            $potentialTitle = $project.getProjectTitle( $number );
+            $potentialTitle = $project->getProjectTitle( $number );
 
             /*
              * Checking that there is a project associated with the

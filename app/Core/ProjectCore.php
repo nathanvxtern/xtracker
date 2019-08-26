@@ -1,4 +1,10 @@
 <?php
+/**
+ * Maintains basic information about each project, and provides clients
+ * with the ability to interact with the projects (viewing a list of
+ * tasks associated with the project, adding a project, deleting a project,
+ * viewing the list of projects, ect.)
+ */
 
 namespace App\Core;
 
@@ -10,20 +16,33 @@ use \Illuminate\Database\QueryException;
 class ProjectCore
 {
 
-    public static function getTitle( $id )
+    /**
+     * The purpose of this function is to return the associated project's
+     * title.
+     * @param projectId the id associated with the project
+     * @return title the title of the project associated with the id
+     */
+    public static function getProjectTitle( $projectId )
     {
 
+        /* Setting title to null. */
+        $title = null;
+
+        /*
+         * At the time of authorship, an array titled "params" was used
+         * to hold the single parameter "projectId."
+         */
         $params = [
-            $id
+            $projectId
         ];
-        
-        $sql = "SELECT title
-            FROM projmaster 
-            WHERE projrowid = ?
+
+        $sql = "SELECT public.projmaster.esthours
+            FROM public.projmaster 
+            WHERE public.projmaster.projrowid = ?
         ";
 
         try {
-            $title = \DB::select( $sql, $params );
+            $title = DB::select( $sql, $params );
         } catch ( QueryException $e ) {
             return null;
         }

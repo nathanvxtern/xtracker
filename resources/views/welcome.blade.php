@@ -97,7 +97,7 @@
                 <div class="container">
                     <div class="row">
                         @foreach ( $titles as $title )
-                            <div class="col">
+                            <div class="col m-b-md">
                                 <div class="card">
                                     <div class="card-header">{{ ( $title[ 0 ] )->title }}</div>
                                     <div class="list-group list-group-flush">

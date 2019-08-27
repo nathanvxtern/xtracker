@@ -91,7 +91,11 @@ class ProjectCoreController extends Controller
 
         }
 
-        dd( $randomProjectNames );
+        //dd( $randomProjectNames );
+
+        return view( 'welcome', [
+            'titles' => $randomProjectNames
+        ]);
 
         /* TEST ( databaseInterface ) end. */
 

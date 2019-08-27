@@ -96,17 +96,20 @@
 
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm mb-4">
-                            <div class="card" style="width: 12rem;">
-                                <?php foreach ( $titles as $title ) : ?>
-                                    <div class="card-body">
-                                            <h5 class="card-title">Project Number</h5>
-                                            <p class="card-text"><?= $title; ?></p>            
-                                            <a href="#" class="btn btn-primary">Tasks</a>
+                        @foreach ( $titles as $title )
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-header">{{ ( $title[ 0 ] )->title }}</div>
+                                    <div class="list-group list-group-flush">
+                                        <div class="list-group-item">Company</div>
+                                        <div class="list-group-item">Status</div>
                                     </div>
-                                <?php endforeach ?>
+                                    <div class="card-body">
+                                        <a href="#" class="btn btn-primary">Tasks</a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

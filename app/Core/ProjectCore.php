@@ -17,10 +17,12 @@ class ProjectCore
 {
 
     /**
-     * The purpose of this function is to return the associated project's
-     * title.
+     * The purpose of this function is to return title of the project
+     * associated with the projectId parameter. Returns null if there is
+     * no project title associated with the provided parameter.
      * @param projectId the id associated with the project
-     * @return title the title of the project associated with the id
+     * @return title the title of the project associated with the id (or
+     * null if there is no project associated with the parameter.)
      */
     public static function getProjectTitle( $projectId )
     {

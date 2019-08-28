@@ -99,13 +99,16 @@
                         @foreach ( $titles as $title )
                             <div class="col m-b-md">
                                 <div class="card">
-                                    <div class="card-header">{{ ( $title[ 0 ] )->title }}</div>
-                                    <div class="list-group list-group-flush">
-                                        <div class="list-group-item">Company</div>
-                                        <div class="list-group-item">Status</div>
+                                    <div class="card-header">
+                                        <a href="#" class="btn btn-primary">
+                                            {{ $title }}
+                                        </a>
                                     </div>
                                     <div class="card-body">
-                                        <a href="#" class="btn btn-primary">Tasks</a>
+                                        <div class="list-group list-group-flush">
+                                            <div class="list-group-item">Company</div>
+                                            <div class="list-group-item">Status</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

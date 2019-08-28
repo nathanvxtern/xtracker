@@ -17,6 +17,21 @@ class ProjectCore
 {
 
     /**
+     * The purpose of this function is to provide a complete list of
+     * the ID numbers of all of the projects that exist in the database.
+     * @return projectIdList array of the integer values of the project
+     * ID numbers.
+     */
+    public static function getProjectIdList()
+    {
+
+        $projectIdList = [];
+
+        
+
+    }
+
+    /**
      * The purpose of this function is to return title of the project
      * associated with the projectId parameter. Returns null if there is
      * no project title associated with the provided parameter.
@@ -27,13 +42,8 @@ class ProjectCore
     public static function getProjectTitle( $projectId )
     {
 
-        /* Setting title to null. */
         $title = null;
 
-        /*
-         * At the time of authorship, an array titled "params" was used
-         * to hold the single parameter "projectId."
-         */
         $params = [
             $projectId
         ];
@@ -51,54 +61,12 @@ class ProjectCore
 
         if ( is_null( $title ) ) {
             return null;
+        } else if ( !sizeof( $title ) ) {
+            return "";
         }
 
-        return $title;
+        return ( $title[ 0 ] )->title;
 
     }
-
-    // /* 
-    //  * Default value for list of Tasks is set to an empty collection (in addition
-    //  * to constructor setting the list of Tasks to an empty collection.) During
-    //  * initial class development, an empty array was chosen as the default collection.
-    //  */
-    // private $taskList = [
-        
-    // ];
-
-    // /* 
-    //  * Default name for the project is set to "defaultName." 
-    //  */
-    // private $projectName = "defaultName";
-
-    // /**
-    //  * Basic constructor for Project.
-    //  * @param projectName the name of the project
-    //  */
-    // public function __construct( $projectName )
-    // {
-
-    //     /* 
-    //      * At time of construction, the list of Tasks for the project is an empty
-    //      * collection. During initial class development, an empty array was used.
-    //      */
-    //     $this->taskList = [
-            
-    //     ];
-
-    //     $this->projectName = $projectName;
-
-    // }
-
-    // /**
-    //  * Basic getter for the name of the project.
-    //  * @return projectName the name of the project
-    //  */
-    // public function getProjectName()
-    // {
-
-    //     return $this->projectName;
-
-    // }
 
 }

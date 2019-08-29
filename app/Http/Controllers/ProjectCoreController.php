@@ -40,7 +40,7 @@ class ProjectCoreController extends Controller
         $NumberArray = $testNumberArray;
 
         $project = new ProjectCore;
-        $ProjectNames = [];
+        $ProjectTitles = [];
         foreach ( $NumberArray as $number ) {
 
             $potentialTitle = $project->getProjectTitle( $number );
@@ -52,19 +52,19 @@ class ProjectCoreController extends Controller
 
             if ( $projectExists ) {
                 $title = $potentialTitle;
-                array_push( $ProjectNames, $title );
+                array_push( $ProjectTitles, $title );
             }
         }
 
-        if ( sizeof( $ProjectNames ) ) {
+        if ( sizeof( $ProjectTitles ) ) {
 
             return view( 'welcome', [
-                'titles' => $ProjectNames
+                'titles' => $ProjectTitles
             ]);
-            
+
         } else {
 
-            dd( "There was a problem connecting to the database." );
+            dd( "No database connection" );
 
         }
 

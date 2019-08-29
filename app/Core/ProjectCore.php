@@ -26,7 +26,23 @@ class ProjectCore
             $minId = \DB::select( $minProjectIdSql );
             $maxId = \DB::select( $maxProjectIdSql );
 
-            
+            for ( $i = $minId; i <= $maxId; $i++ ) {
+
+                $projectId = null;
+
+                $projectIdSql = "SELECT IIF EXISTS (
+                    SELECT public.projmaster.projrowid
+                    FROM public.projmaster
+                    WHERE public.projmaster.projrowid = ?
+                ";
+
+                $projectId = \DB::select( projectIdSql, $i );
+
+                if ( !is_null( $projectId && !sizeof( $projectId ) ) ) {
+                    array_push( $projectIdList, $projectId );
+                }
+                
+            }
 
         } catch ( QueryException $e ) {
             return null;

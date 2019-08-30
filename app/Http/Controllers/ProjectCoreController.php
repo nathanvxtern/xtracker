@@ -16,12 +16,6 @@ class ProjectCoreController extends Controller
     public function index()
     {
 
-        /* Begin test. */
-        $project = new ProjectCore();
-        $projectIdRange = $project->getProjectIdRange();
-        dd( $projectIdRange );
-        /* End test. */
-
         $Number0 = rand( 10, 150 );
         $Number1 = rand( 10, 150 );
         $Number2 = rand( 10, 150 );
@@ -46,17 +40,13 @@ class ProjectCoreController extends Controller
         ];
         $NumberArray = $testNumberArray;
 
-        $project = new ProjectCore();
-
         $projectIdArray = [];
-        $projectIdArray = $project->getAllProjectIds();
-
-        dd( $projectIdArray );
+        $projectIdArray = ProjectCore::getAllProjectIds();
 
         $ProjectTitles = [];
         foreach ( $NumberArray as $number ) {
 
-            $potentialTitle = $project->getProjectTitle( $number );
+            $potentialTitle = ProjectCore::getProjectTitle( $number );
 
             $projectExists = true;
             if ( is_null( $potentialTitle ) ) {

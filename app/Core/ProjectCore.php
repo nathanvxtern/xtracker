@@ -14,7 +14,7 @@ class ProjectCore
         $maxProjectId = null;
 
         $minProjectIdSql = "SELECT MIN(public.projmaster.projrowid)
-            FROM public.projmaster 
+            FROM public.projmaster
         ";
         $maxProjectIdSql = "SELECT MAX(public.projmaster.projrowid)
             FROM public.projmaster
@@ -47,7 +47,7 @@ class ProjectCore
         $minProjectId = null;
         $maxProjectId = null;
 
-        $projectIdRange = getProjectIdRange();
+        $projectIdRange = ProjectCore::getProjectIdRange();
         $minProjectId = $projectIdRange[ 0 ];
         $maxProjectId = $projectIdRange[ 1 ];
 

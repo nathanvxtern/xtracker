@@ -18,8 +18,8 @@ class ProjectCoreTest extends TestCase {
         $smallestProjectIdNumber = $projectIdRange[ 0 ];
         $largetProjectIdNumber = $projectIdRange[ 1 ];
 
-        assertEquals( 7, $smallestProjectIdNumber );
-        assertEquals( 328, $largetProjectIdNumber );
+        $this->assertEquals( 7, $smallestProjectIdNumber );
+        $this->assertEquals( 328, $largetProjectIdNumber );
         
     }
 

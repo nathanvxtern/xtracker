@@ -16,37 +16,25 @@ class ProjectCoreController extends Controller
     public function index()
     {
 
-        $Number0 = rand( 10, 150 );
-        $Number1 = rand( 10, 150 );
-        $Number2 = rand( 10, 150 );
-        $Number3 = rand( 10, 150 );
-        $Number4 = rand( 10, 150 );
+        $randomProjectIdArray = [];
 
-        // $NumberArray = [
-        //     $Number0,
-        //     $Number1,
-        //     $Number2,
-        //     $Number3,
-        //     $Number4
-        // ];
+        $projectIdRange = ProjectCore::getProjectIdRange();
+        $smallId = $projectIdRange[ 0 ];
+        $largeId = $projectIdRange[ 1 ];
 
-        $testNumberArray = [
-            1000,
-            100000,
-            1,
-            10,
-            100,
-            10000
+        /* This array and its usage is for testing purposes only. */
+        $randomProjectIdArray = [
+            rand( $smallId, $largeId ),
+            rand( $smallId, $largeId ),
+            rand( $smallId, $largeId ),
+            rand( $smallId, $largeId ),
+            rand( $smallId, $largeId )
         ];
-        $NumberArray = $testNumberArray;
 
-        $projectIdArray = [];
-        $projectIdArray = ProjectCore::getAllProjectIds();
+        $projectTitles = [];
+        foreach ( $randomProjectIdArray as $projectId ) {
 
-        $ProjectTitles = [];
-        foreach ( $NumberArray as $number ) {
-
-            $potentialTitle = ProjectCore::getProjectTitle( $number );
+            $potentialTitle = ProjectCore::getProjectTitle( $projectId );
 
             $projectExists = true;
             if ( is_null( $potentialTitle ) ) {
@@ -55,14 +43,14 @@ class ProjectCoreController extends Controller
 
             if ( $projectExists ) {
                 $title = $potentialTitle;
-                array_push( $ProjectTitles, $title );
+                array_push( $projectTitles, $title );
             }
         }
 
-        if ( sizeof( $ProjectTitles ) ) {
+        if ( sizeof( $projectTitles ) ) {
 
             return view( 'welcome', [
-                'titles' => $ProjectTitles
+                'titles' => $projectTitles
             ]);
 
         } else {

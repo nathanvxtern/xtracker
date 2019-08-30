@@ -7,6 +7,7 @@ use App\Core\ProjectCore;
 
 class ProjectCoreController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -14,6 +15,12 @@ class ProjectCoreController extends Controller
      */
     public function index()
     {
+
+        /* Begin test. */
+        $project = new ProjectCore();
+        $projectIdRange = $project->getProjectIdRange();
+        dd( $projectIdRange );
+        /* End test. */
 
         $Number0 = rand( 10, 150 );
         $Number1 = rand( 10, 150 );
@@ -39,7 +46,13 @@ class ProjectCoreController extends Controller
         ];
         $NumberArray = $testNumberArray;
 
-        $project = new ProjectCore;
+        $project = new ProjectCore();
+
+        $projectIdArray = [];
+        $projectIdArray = $project->getAllProjectIds();
+
+        dd( $projectIdArray );
+
         $ProjectTitles = [];
         foreach ( $NumberArray as $number ) {
 
@@ -48,7 +61,7 @@ class ProjectCoreController extends Controller
             $projectExists = true;
             if ( is_null( $potentialTitle ) ) {
                 $projectExists = false;
-            }
+            } 
 
             if ( $projectExists ) {
                 $title = $potentialTitle;

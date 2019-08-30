@@ -7,10 +7,9 @@ use \Illuminate\Database\QueryException;
 class ProjectCore
 {
 
-    public static function getProjectIdList()
-    {
+    public static function getProjectIdRange() {
 
-        $projectIdList = [];
+        $projectIdRange = [];
         $minProjectId = null;
         $maxProjectId = null;
 
@@ -23,30 +22,62 @@ class ProjectCore
 
         try {
 
-            $minId = \DB::select( $minProjectIdSql );
-            $maxId = \DB::select( $maxProjectIdSql );
+            $minProjectId = \DB::select( $minProjectIdSql );
+            $minProjectId = ( $minProjectId[ 0 ] )->min;
 
-            for ( $i = $minId; i <= $maxId; $i++ ) {
-
-                $projectId = null;
-
-                $projectIdSql = "SELECT IIF EXISTS (
-                    SELECT public.projmaster.projrowid
-                    FROM public.projmaster
-                    WHERE public.projmaster.projrowid = ?
-                ";
-
-                $projectId = \DB::select( projectIdSql, $i );
-
-                if ( !is_null( $projectId && !sizeof( $projectId ) ) ) {
-                    array_push( $projectIdList, $projectId );
-                }
-                
-            }
+            $maxProjectId = \DB::select( $maxProjectIdSql );
+            $maxProjectId = ( $maxProjectId[ 0 ] )->max;
 
         } catch ( QueryException $e ) {
             return null;
         }
+
+        array_push( $projectIdRange, $minProjectId );
+        array_push( $projectIdRange, $maxProjectId );
+
+        return $projectIdRange;
+
+    }
+
+    public static function getAllProjectIds()
+    {
+
+        $projectIdList = [];
+        $projectIdRange = null;
+        $minProjectId = null;
+        $maxProjectId = null;
+
+        $projectIdRange = getProjectIdRange();
+        $minProjectId = $projectIdRange[ 0 ];
+        $maxProjectId = $projectIdRange[ 1 ];
+
+        try {
+
+            for ( $i = $minProjectId; $i <= $maxProjectId; $i++ ) {
+
+                $projectId = null;
+
+                $params = [
+                    $i
+                ];
+
+                $projectIdSql = "SELECT 1
+                    FROM public.projmaster
+                    WHERE public.projmaster.projrowid = ?
+                ";
+
+                $projectId = \DB::select( $projectIdSql, $params );
+
+                if ( sizeof( $projectId ) ) {
+                    array_push( $projectIdList, $projectId );
+                }
+
+            }
+        } catch ( QueryException $e ) {
+            return null;
+        }
+
+        return $projectIdList;
 
     }
     
@@ -70,9 +101,7 @@ class ProjectCore
             return null;
         }
 
-        if ( is_null( $title ) ) {
-            return null;
-        } else if ( !sizeof( $title ) ) {
+        if ( !sizeof( $title ) ) {
             return "";
         }
 

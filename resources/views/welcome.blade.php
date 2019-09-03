@@ -95,25 +95,30 @@
                 </div> -->
 
                 <div class="container">
-                    <div class="row">
-                        @foreach ( $titles as $title )
-                            <div class="col m-b-md">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <a href="#" class="btn btn-primary">
-                                            {{ $title }}
-                                        </a>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="list-group list-group-flush">
-                                            <div class="list-group-item">Company</div>
-                                            <div class="list-group-item">Status</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                            <th scope="col">Projects</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Client</th>
+                            <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ( $titles as $title )
+                                <tr>
+                                <th scope="row">Number</th>
+                                <td>
+                                    <a href="#" class="btn btn-primary">
+                                        {{ $title }}
+                                    </a>
+                                </td>
+                                <td>Client</td>
+                                <td>Status</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

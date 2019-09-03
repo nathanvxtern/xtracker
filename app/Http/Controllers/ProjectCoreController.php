@@ -16,13 +16,12 @@ class ProjectCoreController extends Controller
     public function index()
     {
 
-        $randomProjectIdArray = [];
-
         $projectIdRange = ProjectCore::getProjectIdRange();
         $smallId = $projectIdRange[ 0 ];
         $largeId = $projectIdRange[ 1 ];
 
-        /* This array and its usage is for testing purposes only. */
+        /* This array is for testing purposes only. */
+        $randomProjectIdArray = [];
         $randomProjectIdArray = [
             rand( $smallId, $largeId ),
             rand( $smallId, $largeId ),
@@ -32,6 +31,7 @@ class ProjectCoreController extends Controller
         ];
 
         $projectTitles = [];
+
         foreach ( $randomProjectIdArray as $projectId ) {
 
             $potentialTitle = ProjectCore::getProjectTitle( $projectId );

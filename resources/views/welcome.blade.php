@@ -94,32 +94,105 @@
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div> -->
 
-                <div class="container">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                            <th scope="col">Projects</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Client</th>
-                            <th scope="col">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ( $titles as $title )
+                <div class="container-fluid">
+
+                    <div class="table-responsive">
+
+                        <table class="table">
+                            <thead>
                                 <tr>
-                                <th scope="row">Number</th>
-                                <td>
-                                    <a href="#" class="btn btn-primary">
-                                        {{ $title }}
-                                    </a>
-                                </td>
-                                <td>Client</td>
-                                <td>Status</td>
+                                    <th scope="col">Projects</th>
+                                    <th scope="col">Tasks</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+
+                                    <td>
+                                        Company:
+                                    </td>
+
+
+
+                                <tr>
+
+                                <tr>
+                                    <td>
+
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Project</th>
+                                                    <th scope="col">Client</th>
+                                                    <th scope="col">Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ( $titles as $title )
+                                                    <tr>
+                                                        <th scope="row">
+                                                            <a href="#" class="btn btn-primary">
+                                                                {{ $title }}
+                                                            </a>
+                                                        </th>
+                                                        <td>Client</td>
+                                                        <td>Status</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+
+                                    </td>
+                                    <td>
+
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Task</th>
+                                                    <th scope="col">Est. Hours</th>
+                                                    <th scope="col">Used Hours</th>
+                                                    <th scope="col">Rate/Hour</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ( $titles as $title )
+                                                    <tr>
+                                                        <th scope="row">
+                                                            <a href="#" class="btn btn-primary">
+                                                                {{ $title }}
+                                                            </a>
+                                                        </th>
+                                                        <td>Est Hours</td>
+                                                        <td>Used Hours</td>
+                                                        <td>Rate/Hour</td>
+                                                        <td>
+                                                            <a href="#" class="btn btn-primary">
+                                                                Add Hours
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#" class="btn btn-primary">
+                                                                Edit Hours
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#" class="btn btn-primary">
+                                                                Delete Task
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+
+                                    <td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+
             </div>
         </div>
     </body>

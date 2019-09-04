@@ -17,60 +17,14 @@ class ProjectCoreController extends Controller
     public function index()
     {
 
-        /* Begin: small array of project ids for testing purposes. */
-        $projectIdArray = [];
-        // $projectIdRange = ProjectCore::getProjectIdRange();
-        // $smallId = $projectIdRange[ 0 ];
-        // $largeId = $projectIdRange[ 1 ];
-        // for ( $i = 0; $i < 20; $i++ ){
-        //     array_push( $projectIdArray, rand( $smallId, $largeId ) );
-        // }
-        for ( $i = 100; $i < 120; $i++ ){
-            array_push( $projectIdArray, $i );
-        }
-        /* End: small array of project ids for testing purposes. */
-
-        /*
-         * Complete list of project ids,
-         * but something is VERY SLOW. 
-         */
-        // $projectIdArray = [];
-        // $projectIdArray = ProjectCore::getAllProjectIds();
-
+        /* Getting all of the projects takes a long time. */
+        // $projects = ProjectCore::getAllProjects();
         $projects = ProjectCore::getAllProjectsTEST();
-
-        // $projectTitles = [];
-        // foreach ( $projectIdArray as $projectId ) {
-
-        //     $potentialTitle = ProjectCore::getProjectTitle( $projectId );
-
-        //     $projectExists = true;
-        //     if ( is_null( $potentialTitle ) ) {
-        //         $projectExists = false;
-        //     } 
-
-        //     if ( $projectExists ) {
-        //         $title = $potentialTitle;
-        //         array_push( $projectTitles, $title );
-        //     }
-        // }
 
         return view( 'welcome', [
             'projects' => $projects,
             'tasks' => []
         ]);
-
-        // if ( sizeof( $ ) ) {
-
-        //     return view( 'welcome', [
-        //         'titles' => $projectTitles
-        //     ]);
-
-        // } else {
-
-        //     dd( "No database connection" );
-
-        // }
 
     }
 

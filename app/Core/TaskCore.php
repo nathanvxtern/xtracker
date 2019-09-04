@@ -7,6 +7,22 @@ use \Illuminate\Database\QueryException;
 class TaskCore
 {
 
+    public static function getAllTasks( $projectId )
+    {
+        $tasks = [];
+
+        $taskIds = TaskCore::getAllTaskIds( $projectId );
+
+        foreach( $taskIds as $taskId ) {
+            $task = new TaskCore;
+            $task->id = $taskId;
+            $task->title = TaskCore::getTaskTitle( $taskId );
+            array_push( $tasks, $task );
+        }
+
+        return $tasks;
+    }
+
     public static function getAllTaskIds( $projectId )
     {
 

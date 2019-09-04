@@ -7,7 +7,43 @@ use \Illuminate\Database\QueryException;
 class ProjectCore
 {
 
-    public static function getProjectIdRange() {
+    public static function getAllProjects()
+    {
+        $projects = [];
+
+        $projectIds = ProjectCore::getAllProjectIds();
+
+        foreach( $projectIds as $projectId ) {
+            $project = new ProjectCore;
+            $project->id = $projectId;
+            $project->title = ProjectCore::getProjectTitle( $projectId );
+            array_push( $projects, $project );
+        }
+
+        return $projects;
+    }
+
+    public static function getAllProjectsTEST()
+    {
+        $projects = [];
+
+        $projectIds = [];
+        for ( $i = 100; $i < 110; $i++ ) {
+            array_push( $projectIds, $i );
+        }
+
+        foreach( $projectIds as $projectId ) {
+            $project = new ProjectCore;
+            $project->id = $projectId;
+            $project->title = ProjectCore::getProjectTitle( $projectId );
+            array_push( $projects, $project );
+        }
+
+        return $projects;
+    }
+
+    public static function getProjectIdRange()
+    {
 
         $projectIdRange = [];
         $minProjectId = null;
@@ -50,33 +86,10 @@ class ProjectCore
         $projectIdRange = ProjectCore::getProjectIdRange();
         $minProjectId = $projectIdRange[ 0 ];
         $maxProjectId = $projectIdRange[ 1 ];
-
-        try {
-
-            for ( $i = $minProjectId; $i <= $maxProjectId; $i++ ) {
-
-                $projectId = null;
-
-                $params = [
-                    $i
-                ];
-
-                $projectIdSql = "SELECT 1
-                    FROM public.projmaster
-                    WHERE public.projmaster.projrowid = ?
-                ";
-
-                $projectId = \DB::select( $projectIdSql, $params );
-
-                if ( sizeof( $projectId ) ) {
-                    array_push( $projectIdList, $projectId );
-                }
-
-            }
-        } catch ( QueryException $e ) {
-            return null;
+            
+        for ( $i = $minProjectId; $i <= $maxProjectId; $i++ ) {
+            array_push( $projectIdList, $i );
         }
-
         return $projectIdList;
 
     }

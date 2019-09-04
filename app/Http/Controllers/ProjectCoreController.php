@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Core\ProjectCore;
+use App\Core\TaskCore;
 
 class ProjectCoreController extends Controller
 {
@@ -16,48 +17,60 @@ class ProjectCoreController extends Controller
     public function index()
     {
 
-        $projectIdRange = ProjectCore::getProjectIdRange();
-        $smallId = $projectIdRange[ 0 ];
-        $largeId = $projectIdRange[ 1 ];
-
-        /* This array is for testing purposes only. */
-        $randomProjectIdArray = [];
-        $randomProjectIdArray = [
-            rand( $smallId, $largeId ),
-            rand( $smallId, $largeId ),
-            rand( $smallId, $largeId ),
-            rand( $smallId, $largeId ),
-            rand( $smallId, $largeId )
-        ];
-
-        $projectTitles = [];
-
-        foreach ( $randomProjectIdArray as $projectId ) {
-
-            $potentialTitle = ProjectCore::getProjectTitle( $projectId );
-
-            $projectExists = true;
-            if ( is_null( $potentialTitle ) ) {
-                $projectExists = false;
-            } 
-
-            if ( $projectExists ) {
-                $title = $potentialTitle;
-                array_push( $projectTitles, $title );
-            }
+        /* Begin: small array of project ids for testing purposes. */
+        $projectIdArray = [];
+        // $projectIdRange = ProjectCore::getProjectIdRange();
+        // $smallId = $projectIdRange[ 0 ];
+        // $largeId = $projectIdRange[ 1 ];
+        // for ( $i = 0; $i < 20; $i++ ){
+        //     array_push( $projectIdArray, rand( $smallId, $largeId ) );
+        // }
+        for ( $i = 100; $i < 120; $i++ ){
+            array_push( $projectIdArray, $i );
         }
+        /* End: small array of project ids for testing purposes. */
 
-        if ( sizeof( $projectTitles ) ) {
+        /*
+         * Complete list of project ids,
+         * but something is VERY SLOW. 
+         */
+        // $projectIdArray = [];
+        // $projectIdArray = ProjectCore::getAllProjectIds();
 
-            return view( 'welcome', [
-                'titles' => $projectTitles
-            ]);
+        $projects = ProjectCore::getAllProjectsTEST();
 
-        } else {
+        // $projectTitles = [];
+        // foreach ( $projectIdArray as $projectId ) {
 
-            dd( "No database connection" );
+        //     $potentialTitle = ProjectCore::getProjectTitle( $projectId );
 
-        }
+        //     $projectExists = true;
+        //     if ( is_null( $potentialTitle ) ) {
+        //         $projectExists = false;
+        //     } 
+
+        //     if ( $projectExists ) {
+        //         $title = $potentialTitle;
+        //         array_push( $projectTitles, $title );
+        //     }
+        // }
+
+        return view( 'welcome', [
+            'projects' => $projects,
+            'tasks' => []
+        ]);
+
+        // if ( sizeof( $ ) ) {
+
+        //     return view( 'welcome', [
+        //         'titles' => $projectTitles
+        //     ]);
+
+        // } else {
+
+        //     dd( "No database connection" );
+
+        // }
 
     }
 

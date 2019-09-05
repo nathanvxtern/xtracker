@@ -61,9 +61,9 @@ class TaskCore
             $taskId
         ];
 
-        $sql = "SELECT public.taskmaster.title
+        $sql = "SELECT title
             FROM public.taskmaster
-            WHERE public.taskmaster.taskrowid = ?
+            WHERE taskrowid = ?
         ";
 
         try {

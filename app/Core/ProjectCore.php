@@ -9,33 +9,20 @@ class ProjectCore
 
     public static function getAllProjects()
     {
-
-        $projects = [];
-
-        $projectIds = [];
-        for ( $i = 100; $i < 110; $i++ ) {
-            array_push( $projectIds, $i );
-        }
-
-        foreach( $projectIds as $projectId ) {
-            $project = new ProjectCore;
-            $project->id = $projectId;
-            $project->title = ProjectCore::getProjectTitle( $projectId );
-            array_push( $projects, $project );
-        }
-
-        return $projects;
-
-        /* Code above this line used for testing because code below this line is SLOW. */
-
         $projects = [];
 
         $projectIds = ProjectCore::getAllProjectIds();
+        $projectTitles = ProjectCore::getAllProjectTitles( $projectIds );
 
-        foreach( $projectIds as $projectId ) {
+        $minProjectId = ProjectCore::getMinProjectId();
+        $maxProjectId = ProjectCore::getMaxProjectId();
+        for ( $i = $minProjectId; $i <= $maxProjectId; $i++ ) {
+
+            $index = $i - $minProjectId;
+
             $project = new ProjectCore;
-            $project->id = $projectId;
-            $project->title = ProjectCore::getProjectTitle( $projectId );
+            $project->id = $projectIds[ $index ];
+            $project->title = $projectTitles[ $index ];
             array_push( $projects, $project );
         }
 
@@ -44,7 +31,6 @@ class ProjectCore
 
     public static function getProjectIdRange()
     {
-
         $projectIdRange = [];
         $minProjectId = null;
         $maxProjectId = null;
@@ -57,61 +43,66 @@ class ProjectCore
         ";
 
         try {
-
             $minProjectId = \DB::select( $minProjectIdSql );
-            $minProjectId = ( $minProjectId[ 0 ] )->min;
-
             $maxProjectId = \DB::select( $maxProjectIdSql );
-            $maxProjectId = ( $maxProjectId[ 0 ] )->max;
-
         } catch ( QueryException $e ) {
-            return null;
+            dd( $e );
         }
 
+        $minProjectId = ( $minProjectId[ 0 ] )->min;
+        $maxProjectId = ( $maxProjectId[ 0 ] )->max;
         array_push( $projectIdRange, $minProjectId );
         array_push( $projectIdRange, $maxProjectId );
-
         return $projectIdRange;
+    }
 
+    public static function getMinProjectId()
+    {
+        $projectIdRange = ProjectCore::getProjectIdRange();
+        $minProjectId = $projectIdRange[ 0 ];
+        return $minProjectId;
+    }
+
+    public static function getMaxProjectId()
+    {
+        $projectIdRange = ProjectCore::getProjectIdRange();
+        $maxProjectId = $projectIdRange[ 1 ];
+        return $maxProjectId;
     }
 
     public static function getAllProjectIds()
     {
-
         $projectIdList = [];
         $projectIdRange = null;
         $minProjectId = null;
         $maxProjectId = null;
 
-        $projectIdRange = ProjectCore::getProjectIdRange();
-        $minProjectId = $projectIdRange[ 0 ];
-        $maxProjectId = $projectIdRange[ 1 ];
+        $minProjectId = ProjectCore::getMinProjectId();
+        $maxProjectId = ProjectCore::getMaxProjectId();
             
         for ( $i = $minProjectId; $i <= $maxProjectId; $i++ ) {
             array_push( $projectIdList, $i );
         }
-        return $projectIdList;
 
+        return $projectIdList;
     }
     
     public static function getProjectTitle( $projectId )
     {
-
-        $title = null;
+        $title = [];
 
         $params = [
             $projectId
         ];
-
-        $sql = "SELECT public.projmaster.title
+        $sql = "SELECT title
             FROM public.projmaster 
-            WHERE public.projmaster.projrowid = ?
+            WHERE projrowid = ?
         ";
 
         try {
             $title = \DB::select( $sql, $params );
         } catch ( QueryException $e ) {
-            return null;
+            $title = [];
         }
 
         if ( !sizeof( $title ) ) {
@@ -120,6 +111,35 @@ class ProjectCore
 
         $title = ( $title[ 0 ] )->title;
         return $title;
+    }
+
+    public static function getAllProjectTitles( $projectIdArray )
+    {
+        $titles = [];
+
+        $params = $projectIdArray;
+        $in = join( ',', array_fill( 0, count( $projectIdArray ), '?' ) );
+        $sql = "SELECT title
+            FROM public.projmaster 
+            WHERE projrowid 
+            IN ( $in )
+        ";
+
+        try {
+            $titles = \DB::select( $sql, $params );
+        } catch ( QueryException $e ) {
+            dd( $e );
+        }
+
+        if ( !sizeof( $titles ) ) {
+            return [];
+        }
+
+        foreach( $titles as $titleIndex => $title ) {
+            $titles[ $titleIndex ] = $title->title;
+        }
+
+        return $titles;
     }
 
 }

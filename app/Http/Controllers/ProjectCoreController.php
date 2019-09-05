@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
 use App\Core\ProjectCore;
 use App\Core\TaskCore;
 
@@ -17,6 +18,8 @@ class ProjectCoreController extends Controller
     public function index()
     {
         $projects = ProjectCore::getAllProjects();
+
+        Session::flash( 'projects', $projects );
 
         return view( 'welcome', [
             'projects' => $projects,
@@ -51,9 +54,11 @@ class ProjectCoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show( Request $request, $id )
     {
-        $projects = ProjectCore::getAllProjects();
+        $projects = $request->session()->get( 'projects' );
+        Session::flash( 'projects', $projects );
+        
         $tasks = TaskCore::getAllTasks( $id );
 
         return view( 'welcome', [

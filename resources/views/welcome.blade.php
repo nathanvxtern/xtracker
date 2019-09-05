@@ -18,16 +18,20 @@
                     <tr>
 
                         <td>
-                            Customer:
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="customerFilter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Select Customer
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="customerFilter">
-                                    <a class="dropdown-item" href="#">A Customer</a>
-                                    <a class="dropdown-item" href="#">Another Customer</a>
-                                    <a class="dropdown-item" href="#">Yet Another Customer</a>
+                            <div>                
+                                Customer:
+                                <div class="d-inline dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="customerFilter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Select Customer
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="customerFilter">
+                                        <a class="dropdown-item" href="#">A Customer</a>
+                                        <a class="dropdown-item" href="#">Another Customer</a>
+                                        <a class="dropdown-item" href="#">Yet Another Customer</a>
+                                    </div>
                                 </div>
+                                <a href="#" class="d-inline btn btn-primary">Filter</a>
+                                <a href="#" class="d-inline btn btn-primary">Reset</a>
                             </div>
                             <div>
                                 Project Status:
@@ -44,49 +48,53 @@
                                     <label class="form-check-label" for="archivedFilter">Archived</label>
                                 </div>
                             </div>
-                            <a href="#" class="btn btn-primary">Filter</a>
-                            <a href="#" class="btn btn-primary">Reset</a>
                         </td>
 
                         <td>
-                            Project Customer:
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="projectCustomer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Current Customer
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="projectCustomer">
-                                    <a class="dropdown-item" href="#">A Customer</a>
-                                    <a class="dropdown-item" href="#">Another Customer</a>
-                                    <a class="dropdown-item" href="#">Yet Another Customer</a>
+                            <div>
+                                <div class="d-inline">
+                                    Customer:
+                                    <div class="d-inline dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="projectCustomer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Current Customer
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="projectCustomer">
+                                            <a class="dropdown-item" href="#">A Customer</a>
+                                            <a class="dropdown-item" href="#">Another Customer</a>
+                                            <a class="dropdown-item" href="#">Yet Another Customer</a>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            Project Status:
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="projectStatus" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Current Status
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="projectStatus">
-                                    <a class="dropdown-item" href="#">Open</a>
-                                    <a class="dropdown-item" href="#">Closed</a>
-                                    <a class="dropdown-item" href="#">Archived</a>
+                                <div class="d-inline">
+                                    Project Status:
+                                    <div class="d-inline dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="projectStatus" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Current Status
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="projectStatus">
+                                            <a class="dropdown-item" href="#">Open</a>
+                                            <a class="dropdown-item" href="#">Closed</a>
+                                            <a class="dropdown-item" href="#">Archived</a>
+                                        </div>
+                                    </div>
                                 </div>
+                                <a href="#" class="d-inline btn btn-primary">Update Project</a>
                             </div>
                             <div>
                                 Task Status:
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="taskStatus" id="openRadio" value="open">
-                                    <label class="form-check-label" for="openRadio">Open</label>
+                                <div class="form-group form-check-inline">
+                                    <input type="checkbox" class="form-check-input" id="openFilter">
+                                    <label class="form-check-label" for="openFilter">Open</label>
                                 </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="taskStatus" id="closedRadio" value="closed">
-                                    <label class="form-check-label" for="closedRadio">Closed</label>
+                                <div class="form-group form-check-inline">
+                                    <input type="checkbox" class="form-check-input" id="closedFilter">
+                                    <label class="form-check-label" for="closedFilter">Closed</label>
                                 </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="taskStatus" id="archivedRadio" value="archived">
-                                    <label class="form-check-label" for="archivedRadio">Archived</label>
+                                <div class="form-group form-check-inline">
+                                    <input type="checkbox" class="form-check-input" id="archivedFilter">
+                                    <label class="form-check-label" for="archivedFilter">Archived</label>
                                 </div>
                             </div>
-                            <a href="#" class="btn btn-primary">Update Project</a>
                         </td>
 
                     </tr>

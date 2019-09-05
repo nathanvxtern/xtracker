@@ -113,12 +113,12 @@ class ProjectCore
         return $title;
     }
 
-    public static function getAllProjectTitles( $projectIdArray )
+    public static function getAllProjectTitles( $projectIds )
     {
         $titles = [];
 
-        $params = $projectIdArray;
-        $in = join( ',', array_fill( 0, count( $projectIdArray ), '?' ) );
+        $params = $projectIds;
+        $in = join( ',', array_fill( 0, count( $params ), '?' ) );
         $sql = "SELECT title
             FROM public.projmaster 
             WHERE projrowid 

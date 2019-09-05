@@ -14,8 +14,11 @@
 /* Route to originally load the page. */
 Route::get('/', 'ProjectCoreController@index');
 
+/* Route to accomodate redirects within app. */
+Route::get('/projectCores', 'ProjectController@index');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource( 'projmaster', 'ProjectCoreController' );
+Route::resource( 'projectCores', 'ProjectCoreController' );

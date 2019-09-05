@@ -46,13 +46,38 @@ class TaskCore
                 array_push( $taskIdArray, $task->taskrowid );
                 
             }
-
         } catch ( QueryException $e ) {
             return null;
         }
 
         return $taskIdArray;
+    }
 
+    public static function getTaskTitle( $taskId )
+    {
+        $title = null;
+
+        $params = [
+            $taskId
+        ];
+
+        $sql = "SELECT public.taskmaster.title
+            FROM public.taskmaster
+            WHERE public.taskmaster.taskrowid = ?
+        ";
+
+        try {
+            $title = \DB::select( $sql, $params );
+        } catch ( QueryException $e ) {
+            return null;
+        }
+
+        if ( !sizeof( $title ) ) {
+            return "";
+        }
+
+        $title = ( $title[ 0 ] )->title;
+        return $title;
     }
 
 }

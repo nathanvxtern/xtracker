@@ -16,16 +16,12 @@ class ProjectCoreController extends Controller
      */
     public function index()
     {
-
-        /* Getting all of the projects takes a long time. */
-        // $projects = ProjectCore::getAllProjects();
-        $projects = ProjectCore::getAllProjectsTEST();
+        $projects = ProjectCore::getAllProjects();
 
         return view( 'welcome', [
             'projects' => $projects,
             'tasks' => []
         ]);
-
     }
 
     /**
@@ -57,7 +53,13 @@ class ProjectCoreController extends Controller
      */
     public function show($id)
     {
-        //
+        $projects = ProjectCore::getAllProjects();
+        $tasks = TaskCore::getAllTasks( $id );
+
+        return view( 'welcome', [
+            'projects' => $projects,
+            'tasks' => $tasks
+        ]);
     }
 
     /**

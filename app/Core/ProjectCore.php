@@ -9,9 +9,13 @@ class ProjectCore
 
     public static function getAllProjects()
     {
+
         $projects = [];
 
-        $projectIds = ProjectCore::getAllProjectIds();
+        $projectIds = [];
+        for ( $i = 100; $i < 110; $i++ ) {
+            array_push( $projectIds, $i );
+        }
 
         foreach( $projectIds as $projectId ) {
             $project = new ProjectCore;
@@ -21,16 +25,12 @@ class ProjectCore
         }
 
         return $projects;
-    }
 
-    public static function getAllProjectsTEST()
-    {
+        /* Code above this line used for testing because code below this line is SLOW. */
+
         $projects = [];
 
-        $projectIds = [];
-        for ( $i = 100; $i < 110; $i++ ) {
-            array_push( $projectIds, $i );
-        }
+        $projectIds = ProjectCore::getAllProjectIds();
 
         foreach( $projectIds as $projectId ) {
             $project = new ProjectCore;
@@ -118,8 +118,8 @@ class ProjectCore
             return "";
         }
 
-        return ( $title[ 0 ] )->title;
-
+        $title = ( $title[ 0 ] )->title;
+        return $title;
     }
 
 }

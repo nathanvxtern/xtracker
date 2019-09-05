@@ -107,7 +107,7 @@
                                         @foreach ( $projects as $project )
                                             <tr>
                                                 <th scope="row">
-                                                    <a href="#" class="btn btn-primary">
+                                                    <a href="/projectCores/{{ $project->id }}" class="btn btn-primary">
                                                         {{ $project->title }}
                                                     </a>
                                                 </th>
@@ -135,7 +135,7 @@
                                         <tr>
                                             <th scope="row">
                                                 <a href="#" class="btn btn-primary">
-                                                    Task Title
+                                                    {{ $task->title }}
                                                 </a>
                                             </th>
                                             <td>Est Hours</td>

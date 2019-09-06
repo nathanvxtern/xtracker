@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Session;
 use App\Core\ProjectCore;
 use App\Core\TaskCore;
+use App\Core\CustomerCore;
 
 class ProjectCoreController extends Controller
 {
@@ -23,6 +24,7 @@ class ProjectCoreController extends Controller
 
         return view( 'welcome', [
             'projects' => $projects,
+            'projectCustomer' => "No Project Selected",
             'tasks' => []
         ]);
     }
@@ -60,9 +62,11 @@ class ProjectCoreController extends Controller
         Session::flash( 'projects', $projects );
         
         $tasks = TaskCore::getProjectTasks( $id );
+        $projectCustomer = CustomerCore::getCustomerName( $id );
 
         return view( 'welcome', [
             'projects' => $projects,
+            'projectCustomer' => $projectCustomer,
             'tasks' => $tasks
         ]);
     }

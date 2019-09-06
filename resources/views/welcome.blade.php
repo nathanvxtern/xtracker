@@ -56,7 +56,7 @@
                                     Customer:
                                     <div class="d-inline dropdown">
                                         <button class="btn btn-secondary dropdown-toggle" type="button" id="projectCustomer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Current Customer
+                                            {{ $projectCustomer }}
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="projectCustomer">
                                             <a class="dropdown-item" href="#">A Customer</a>

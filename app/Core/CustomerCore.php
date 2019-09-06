@@ -32,6 +32,33 @@ class CustomerCore
         return $names;
     }
 
+    public static function getCustomerName( $projectId )
+    {
+        $name = null;
+
+        $custrowid = CustomerCore::getCustrowid( $projectId );
+        $params = [
+            $custrowid
+        ];
+        $sql = "SELECT name
+            FROM public.custmaster
+            WHERE custrowid = ?
+        ";
+
+        try {
+            $name = \DB::select( $sql, $params );
+        } catch ( QueryException $e ) {
+            return null;
+        }
+
+        if ( !sizeof( $name ) ) {
+            return "";
+        }
+
+        $name = ( $name[ 0 ] )->name;
+        return $name;
+    }
+
     public static function getCustrowidRange()
     {
         $custrowidRange = [];
@@ -121,6 +148,33 @@ class CustomerCore
         }
 
         return $custrowids;
+    }
+
+    public static function getCustrowid( $projectId )
+    {
+        $custrowid = null;
+
+        $params = [
+            $projectId
+        ];
+        $custrowidSql = "SELECT custrowid
+            FROM public.projmaster 
+            WHERE projrowid = ?
+        ";
+
+        try {
+            $custrowid = \DB::select( $custrowidSql, $params );
+        } catch ( QueryException $e ) {
+            dd( $e );
+        }
+
+        if ( !sizeof( $custrowid ) ) {
+            return null;
+        }
+
+        $custrowid = ( $custrowid[ 0 ] )->custrowid;
+
+        return $custrowid;
     }
 
 }

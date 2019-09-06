@@ -7,12 +7,17 @@ use \Illuminate\Database\QueryException;
 class TaskCore
 {
 
-    public static function getAllTasks( $projectId )
+    public static function getAllTasks( $projectIds )
+    {
+        
+    }
+
+    public static function getProjectTasks( $projectId )
     {
         $tasks = [];
 
         $taskIds = TaskCore::getAllTaskIds( $projectId );
-        $taskTitles = TaskCore::getAllTaskTitles( $taskIds );
+        $taskTitles = TaskCore::getTaskTitles( $taskIds );
 
         $taskIndex = 0;
         foreach( $taskIds as $taskId ) {
@@ -22,7 +27,7 @@ class TaskCore
             array_push( $tasks, $task );
             
             $taskIndex++;
-            
+
         }
 
         return $tasks;
@@ -83,7 +88,7 @@ class TaskCore
         return $title;
     }
 
-    public static function getAllTaskTitles( $taskIds )
+    public static function getTaskTitles( $taskIds )
     {
         $titles = [];
 

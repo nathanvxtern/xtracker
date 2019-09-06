@@ -107,7 +107,7 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">Project</th>
-                                            <th scope="col">Client</th>
+                                            <th scope="col">Customer</th>
                                             <th scope="col">Status</th>
                                         </tr>
                                     </thead>
@@ -119,7 +119,7 @@
                                                         {{ $project->title }}
                                                     </a>
                                                 </th>
-                                                <td>Client</td>
+                                                <td>{{ $project->customer }}</td>
                                                 <td>Status</td>
                                             </tr>
                                         @endforeach

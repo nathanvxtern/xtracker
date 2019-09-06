@@ -12,7 +12,8 @@ class ProjectCore
         $projects = [];
 
         $projectIds = ProjectCore::getAllProjectIds();
-        $projectTitles = ProjectCore::getAllProjectTitles( $projectIds );
+        $projectTitles = ProjectCore::getProjectTitles( $projectIds );
+        $projectCustomers = CustomerCore::getCustomerNames( $projectIds );
 
         $minProjectId = ProjectCore::getMinProjectId();
         $maxProjectId = ProjectCore::getMaxProjectId();
@@ -23,6 +24,7 @@ class ProjectCore
             $project = new ProjectCore;
             $project->id = $projectIds[ $index ];
             $project->title = $projectTitles[ $index ];
+            $project->customer = $projectCustomers[ $index ];
             array_push( $projects, $project );
         }
 
@@ -113,7 +115,7 @@ class ProjectCore
         return $title;
     }
 
-    public static function getAllProjectTitles( $projectIds )
+    public static function getProjectTitles( $projectIds )
     {
         $titles = [];
 

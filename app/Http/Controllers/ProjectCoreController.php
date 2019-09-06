@@ -59,7 +59,7 @@ class ProjectCoreController extends Controller
         $projects = $request->session()->get( 'projects' );
         Session::flash( 'projects', $projects );
         
-        $tasks = TaskCore::getAllTasks( $id );
+        $tasks = TaskCore::getProjectTasks( $id );
 
         return view( 'welcome', [
             'projects' => $projects,

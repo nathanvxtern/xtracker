@@ -69,7 +69,7 @@
                                     Project Status:
                                     <div class="d-inline dropdown">
                                         <button class="btn btn-secondary dropdown-toggle" type="button" id="projectStatus" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Current Status
+                                            {{ $projectStatus }}
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="projectStatus">
                                             <a class="dropdown-item" href="#">Open</a>
@@ -120,7 +120,7 @@
                                                     </a>
                                                 </th>
                                                 <td>{{ $project->customer }}</td>
-                                                <td>Status</td>
+                                                <td>{{ $project->status }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

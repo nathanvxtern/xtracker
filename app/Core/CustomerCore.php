@@ -26,6 +26,7 @@ class CustomerCore
         foreach( $custrowids as $custrowid ){
             $customer = $indexedCustomers[ $custrowid ];
             $name = $customer->name;
+            /* Test that this doesn't push them in the opposite order. */
             array_push( $names, $name );
         }
         
@@ -168,7 +169,7 @@ class CustomerCore
             dd( $e );
         }
 
-        if ( !sizeof( $custrowid ) ) {
+        if ( is_null( $custrowid ) ) {
             return null;
         }
 

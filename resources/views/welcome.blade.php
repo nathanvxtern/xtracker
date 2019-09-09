@@ -25,9 +25,9 @@
                                         Select Customer
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="customerFilter">
-                                        <a class="dropdown-item" href="#">A Customer</a>
-                                        <a class="dropdown-item" href="#">Another Customer</a>
-                                        <a class="dropdown-item" href="#">Yet Another Customer</a>
+                                        @foreach( $customers as $customer )
+                                        <a class="dropdown-item" href="#">{{ $customer->name }}</a>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <a href="#" class="d-inline btn btn-primary">Filter</a>

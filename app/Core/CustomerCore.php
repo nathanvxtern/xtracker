@@ -7,11 +7,10 @@ use \Illuminate\Database\QueryException;
 class CustomerCore
 {
 
-    public static function getCustomerNames( $projectIds )
+    public static function getCustomerNames( $projectIds, $customers )
     {
         $names = [];
-
-        $customers = CustomerCore::getCustomers();       
+             
         $indexedCustomers = [];
         $maxCustrowid = CustomerCore::getMaxCustrowid(); 
         for ( $i = 0; $i <= $maxCustrowid; $i++ ){
@@ -60,7 +59,7 @@ class CustomerCore
         return $name;
     }
 
-    public static function getCustrowidRange()
+    private static function getCustrowidRange()
     {
         $custrowidRange = [];
         $minCustrowid = null;
@@ -87,14 +86,14 @@ class CustomerCore
         return $custrowidRange;
     }
 
-    public static function getMinCustrowid()
+    private static function getMinCustrowid()
     {
         $custrowidRange = CustomerCore::getCustrowidRange();
         $minCustrowid = $custrowidRange[ 0 ];
         return $minCustrowid;
     }
 
-    public static function getMaxCustrowid()
+    private static function getMaxCustrowid()
     {
         $custrowidRange = CustomerCore::getCustrowidRange();
         $maxCustrowid = $custrowidRange[ 1 ];
@@ -122,7 +121,7 @@ class CustomerCore
         return $customers;
     }
 
-    public static function getCustrowids( $projectIds )
+    private static function getCustrowids( $projectIds )
     {
         $custrowids = [];
 
@@ -151,7 +150,7 @@ class CustomerCore
         return $custrowids;
     }
 
-    public static function getCustrowid( $projectId )
+    private static function getCustrowid( $projectId )
     {
         $custrowid = null;
 

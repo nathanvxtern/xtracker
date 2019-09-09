@@ -7,14 +7,15 @@ use \Illuminate\Database\QueryException;
 class ProjectCore
 {
 
-    public static function getAllProjects()
+    public static function getAllProjects( $customers )
     {
         $projects = [];
 
         $projectIds = ProjectCore::getAllProjectIds();
         $projectTitles = ProjectCore::getProjectTitles( $projectIds );
-        $projectCustomers = CustomerCore::getCustomerNames( $projectIds );
+        $projectCustomers = CustomerCore::getCustomerNames( $projectIds, $customers );
         $projectStatuses = StatusCore::getProjectStatuses( $projectIds );
+        $projectTasksByProjectId = TaskCore::getTasksByProjectId( $projectIds );
 
         $minProjectId = ProjectCore::getMinProjectId();
         $maxProjectId = ProjectCore::getMaxProjectId();
@@ -27,13 +28,14 @@ class ProjectCore
             $project->title = $projectTitles[ $index ];
             $project->customer = $projectCustomers[ $index ];
             $project->status = $projectStatuses[ $index ];
+            $project->tasks = $projectTasksByProjectId[ $index ];
             array_push( $projects, $project );
         }
 
         return $projects;
     }
 
-    public static function getProjectIdRange()
+    private static function getProjectIdRange()
     {
         $projectIdRange = [];
         $minProjectId = null;
@@ -60,7 +62,7 @@ class ProjectCore
         return $projectIdRange;
     }
 
-    public static function getMinProjectId()
+    private static function getMinProjectId()
     {
         $projectIdRange = ProjectCore::getProjectIdRange();
         $minProjectId = $projectIdRange[ 0 ];
@@ -74,7 +76,7 @@ class ProjectCore
         return $maxProjectId;
     }
 
-    public static function getAllProjectIds()
+    private static function getAllProjectIds()
     {
         $projectIdList = [];
         $projectIdRange = null;
@@ -117,7 +119,7 @@ class ProjectCore
         return $title;
     }
 
-    public static function getProjectTitles( $projectIds )
+    private static function getProjectTitles( $projectIds )
     {
         $titles = [];
 

@@ -7,9 +7,85 @@ use \Illuminate\Database\QueryException;
 class TaskCore
 {
 
-    public static function getAllTasks( $projectIds )
+    public static function getTasksByProjectId( $projectIds )
     {
-        
+        $tasksByProjectId = [];
+
+        $maxProjectId = ProjectCore::getMaxProjectId(); 
+        for ( $i = 0; $i <= $maxProjectId; $i++ ){
+            $emptyProject = [];
+            array_push( $tasksByProjectId, $emptyProject );
+        }
+
+        $tasks = TaskCore::getAllTasks();
+
+        foreach ( $tasks as  $task ) {
+            array_push( $tasksByProjectId[ $task->projrowid ], $task );
+        }
+
+        return $tasksByProjectId;
+    }
+
+    private static function getAllTasks() 
+    {
+        $tasks = [];
+
+        $sql = "SELECT projrowid, title
+            FROM public.taskmaster
+        ";
+
+        try {
+            $tasks = \DB::select( $sql );
+        } catch ( QueryException $e ) {
+            dd( $e );
+        }
+
+        if ( !sizeof( $tasks ) ) {
+            return [];
+        }
+
+        return $tasks;
+    }
+
+    private static function getTaskrowidRange()
+    {
+        $taskrowidRange = [];
+        $minTaskrowid = null;
+        $maxTaskrowid = null;
+
+        $minTaskrowidSql = "SELECT MIN(public.taskmaster.taskrowid)
+            FROM public.taskmaster
+        ";
+        $maxTaskrowidSql = "SELECT MAX(public.taskmaster.taskrowid)
+            FROM public.taskmaster
+        ";
+
+        try {
+            $minTaskrowid = \DB::select( $minTaskrowidSql );
+            $maxTaskrowid = \DB::select( $maxTaskrowidSql );
+        } catch ( QueryException $e ) {
+            dd( $e );
+        }
+
+        $minTaskrowid = ( $minTaskrowid[ 0 ] )->min;
+        $maxTaskrowid = ( $maxTaskrowid[ 0 ] )->max;
+        array_push( $taskrowidRange, $minTaskrowid );
+        array_push( $taskrowidRange, $maxTaskrowid );
+        return $taskrowidRange;
+    }
+
+    private static function getMinTaskrowid()
+    {
+        $taskrowidRange = TaskCore::getTaskrowidRange();
+        $minTaskrowid = $taskrowidRange[ 0 ];
+        return $minTaskrowid;
+    }
+
+    private static function getMaxTaskrowid()
+    {
+        $taskrowidRange = TaskCore::getTaskrowidRange();
+        $maxTaskrowid = $taskrowidRange[ 1 ];
+        return $maxTaskrowid;
     }
 
     public static function getProjectTasks( $projectId )
@@ -33,7 +109,7 @@ class TaskCore
         return $tasks;
     }
 
-    public static function getAllTaskIds( $projectId )
+    private static function getAllTaskIds( $projectId )
     {
         $taskIdArray = [];
 
@@ -61,6 +137,7 @@ class TaskCore
         return $taskIdArray;
     }
 
+    /*
     public static function getTaskTitle( $taskId )
     {
         $title = null;
@@ -87,8 +164,9 @@ class TaskCore
         $title = ( $title[ 0 ] )->title;
         return $title;
     }
+    */
 
-    public static function getTaskTitles( $taskIds )
+    private static function getTaskTitles( $taskIds )
     {
         $titles = [];
 

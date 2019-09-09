@@ -7,7 +7,33 @@ use \Illuminate\Database\QueryException;
 class StatusCore
 {
 
-    public static function getProjstatusrowid( $projectId )
+    public static function getProjectStatuses( $projectIds )
+    {
+        $projectStatuses = [];
+
+        $statuses = StatusCore::getStatuses();       
+        $indexedStatuses = [];
+        $maxProjstatusrowid = StatusCore::getMaxProjstatusrowid(); 
+        for ( $i = 0; $i <= $maxProjstatusrowid; $i++ ){
+            $emptyStatus = [];
+            $indexedStatuses[ $i ] = $emptyStatus;
+        }
+        foreach( $statuses as $status ){
+            $indexedStatuses[ $status->projstatusrowid ] = $status;
+        }
+
+        $projstatusrowids = StatusCore::getProjstatusrowids( $projectIds );
+        foreach( $projstatusrowids as $projstatusrowid ){
+            $status = $indexedStatuses[ $projstatusrowid ];
+            $projstatus = $status->projstatus;
+            /* Test that this doesn't push them in the opposite order. */
+            array_push( $projectStatuses, $projstatus );
+        }
+        
+        return $projectStatuses;
+    }
+
+    private static function getProjstatusrowid( $projectId )
     {
         $projstatusrowid = null;
 
@@ -61,33 +87,7 @@ class StatusCore
         return $status;
     }
 
-    public static function getProjectStatuses( $projectIds )
-    {
-        $projectStatuses = [];
-
-        $statuses = StatusCore::getStatuses();       
-        $indexedStatuses = [];
-        $maxProjstatusrowid = StatusCore::getMaxProjstatusrowid(); 
-        for ( $i = 0; $i <= $maxProjstatusrowid; $i++ ){
-            $emptyStatus = [];
-            $indexedStatuses[ $i ] = $emptyStatus;
-        }
-        foreach( $statuses as $status ){
-            $indexedStatuses[ $status->projstatusrowid ] = $status;
-        }
-
-        $projstatusrowids = StatusCore::getProjstatusrowids( $projectIds );
-        foreach( $projstatusrowids as $projstatusrowid ){
-            $status = $indexedStatuses[ $projstatusrowid ];
-            $projstatus = $status->projstatus;
-            /* Test that this doesn't push them in the opposite order. */
-            array_push( $projectStatuses, $projstatus );
-        }
-        
-        return $projectStatuses;
-    }
-
-    public static function getStatuses()
+    private static function getStatuses()
     {
         $statuses = [];
 
@@ -108,7 +108,7 @@ class StatusCore
         return $statuses;
     }
 
-    public static function getProjstatusrowidRange()
+    private static function getProjstatusrowidRange()
     {
         $projstatusrowidRange = [];
         $minProjstatusrowid = null;
@@ -135,21 +135,23 @@ class StatusCore
         return $projstatusrowidRange;
     }
 
-    public static function getMinProjstatusrowid()
+    /*
+    private static function getMinProjstatusrowid()
     {
         $projstatusrowidRange = StatusCore::getProjstatusrowidRange();
         $minProjstatusrowid = $projstatusrowidRange[ 0 ];
         return $minProjstatusrowid;
     }
+    */
 
-    public static function getMaxProjstatusrowid()
+    private static function getMaxProjstatusrowid()
     {
         $projstatusrowidRange = StatusCore::getProjstatusrowidRange();
         $maxProjstatusrowid = $projstatusrowidRange[ 1 ];
         return $maxProjstatusrowid;
     }
 
-    public static function getProjstatusrowids( $projectIds )
+    private static function getProjstatusrowids( $projectIds )
     {
         $projstatusrowids = [];
 

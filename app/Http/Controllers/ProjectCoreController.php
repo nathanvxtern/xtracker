@@ -19,12 +19,13 @@ class ProjectCoreController extends Controller
      */
     public function index()
     {
-        $projects = ProjectCore::getAllProjects();
-
+        $customers = CustomerCore::getCustomers();
+        $projects = ProjectCore::getAllProjects( $customers );
         Session::flash( 'projects', $projects );
 
         return view( 'welcome', [
             'projects' => $projects,
+            'customers' => $customers,
             'projectCustomer' => "No Project Selected",
             'projectStatus' => "No Project Selected",
             'tasks' => []
@@ -63,7 +64,8 @@ class ProjectCoreController extends Controller
         $projects = $request->session()->get( 'projects' );
         Session::flash( 'projects', $projects );
         
-        $tasks = TaskCore::getProjectTasks( $id );
+        $project = $projects[ $id ];
+        $tasks = $project->tasks;
         $projectCustomer = CustomerCore::getCustomerName( $id );
         $projectStatus = StatusCore::getStatus( $id );
 

@@ -11,8 +11,8 @@
         @foreach( $tasks as $task )
             <tr>
                 <th scope="row">
-                    <a href="#" class="btn btn-primary">
-                        {{ is_null( $project ) ? null : $task->title }}
+                    <a href="#" data-toggle="modal" data-target="#editTaskModal">
+                        {{ $task->title }}
                     </a>
                 </th>
                 <td>Est Hours</td>

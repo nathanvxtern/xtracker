@@ -10,7 +10,7 @@
         @foreach ( $projects as $project )
             <tr>
                 <th scope="row">
-                    <a href="/projectCores/{{ $project->id }}" class="btn btn-primary">
+                    <a href="/projectCores/{{ $project->id }}">
                         {{ $project->title }}
                     </a>
                 </th>

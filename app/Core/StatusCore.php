@@ -26,8 +26,7 @@ class StatusCore
         foreach( $projstatusrowids as $projstatusrowid ){
             $status = $indexedStatuses[ $projstatusrowid ];
             $projstatus = $status->projstatus;
-            /* Test that this doesn't push them in the opposite order. */
-            array_push( $projectStatuses, $projstatus );
+            $projectStatuses[] = $projstatus;
         }
         
         return $projectStatuses;
@@ -130,19 +129,17 @@ class StatusCore
 
         $minProjstatusrowid = ( $minProjstatusrowid[ 0 ] )->min;
         $maxProjstatusrowid = ( $maxProjstatusrowid[ 0 ] )->max;
-        array_push( $projstatusrowidRange, $minProjstatusrowid );
-        array_push( $projstatusrowidRange, $maxProjstatusrowid );
+        $projstatusrowidRange[] = $minProjstatusrowid;
+        $projstatusrowidRange[] = $maxProjstatusrowid;
         return $projstatusrowidRange;
     }
 
-    /*
     private static function getMinProjstatusrowid()
     {
         $projstatusrowidRange = StatusCore::getProjstatusrowidRange();
         $minProjstatusrowid = $projstatusrowidRange[ 0 ];
         return $minProjstatusrowid;
     }
-    */
 
     private static function getMaxProjstatusrowid()
     {

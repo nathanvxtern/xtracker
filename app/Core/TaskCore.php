@@ -14,13 +14,13 @@ class TaskCore
         $maxProjectId = ProjectCore::getMaxProjectId(); 
         for ( $i = 0; $i <= $maxProjectId; $i++ ){
             $emptyProject = [];
-            array_push( $tasksByProjectId, $emptyProject );
+            $tasksByProjectId[] = $emptyProject;
         }
 
         $tasks = TaskCore::getAllTasks();
 
         foreach ( $tasks as  $task ) {
-            array_push( $tasksByProjectId[ $task->projrowid ], $task );
+            $tasksByProjectId[ $task->projrowid ][] = $task;
         }
 
         return $tasksByProjectId;
@@ -69,8 +69,8 @@ class TaskCore
 
         $minTaskrowid = ( $minTaskrowid[ 0 ] )->min;
         $maxTaskrowid = ( $maxTaskrowid[ 0 ] )->max;
-        array_push( $taskrowidRange, $minTaskrowid );
-        array_push( $taskrowidRange, $maxTaskrowid );
+        $taskrowidRange[] = $minTaskrowid;
+        $taskrowidRange[] = $maxTaskrowid;
         return $taskrowidRange;
     }
 
@@ -100,7 +100,7 @@ class TaskCore
             $task = new TaskCore;
             $task->id = $taskId;
             $task->title = $taskTitles[ $taskIndex ];
-            array_push( $tasks, $task );
+            $tasks[] = $task;
             
             $taskIndex++;
 
@@ -127,7 +127,7 @@ class TaskCore
             
             foreach ( $tasks as $task ) {
                 $task = $task->taskrowid;
-                array_push( $taskIdArray, $task );
+                $taskIdArray[] = $task;
             }
             
         } catch ( QueryException $e ) {

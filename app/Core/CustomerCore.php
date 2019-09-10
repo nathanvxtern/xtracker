@@ -26,7 +26,7 @@ class CustomerCore
             $customer = $indexedCustomers[ $custrowid ];
             $name = $customer->name;
             /* Test that this doesn't push them in the opposite order. */
-            array_push( $names, $name );
+            $names[] = $name;
         }
         
         return $names;
@@ -81,8 +81,8 @@ class CustomerCore
 
         $minCustrowid = ( $minCustrowid[ 0 ] )->min;
         $maxCustrowid = ( $maxCustrowid[ 0 ] )->max;
-        array_push( $custrowidRange, $minCustrowid );
-        array_push( $custrowidRange, $maxCustrowid );
+        $custrowidRange[] = $minCustrowid;
+        $custrowidRange[] = $maxCustrowid;
         return $custrowidRange;
     }
 

@@ -1,3 +1,8 @@
+@include('modals.project')
+@include('modals.task')
+@include('modals.hours.add')
+@include('modals.hours.edit')
+
 @extends('layouts.app')
 
 @section('content')
@@ -43,10 +48,6 @@
                                     <input type="checkbox" class="form-check-input" id="closedFilter">
                                     <label class="form-check-label" for="closedFilter">Closed</label>
                                 </div>
-                                <div class="form-group form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="archivedFilter">
-                                    <label class="form-check-label" for="archivedFilter">Archived</label>
-                                </div>
                             </div>
                         </td>
 
@@ -56,12 +57,12 @@
                                     Customer:
                                     <div class="d-inline dropdown">
                                         <button class="btn btn-secondary dropdown-toggle" type="button" id="projectCustomer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            {{ $projectCustomer }}
+                                            {{ is_null( $project ) ? "No Project Selected" : $project->customer }}
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="projectCustomer">
-                                            <a class="dropdown-item" href="#">A Customer</a>
-                                            <a class="dropdown-item" href="#">Another Customer</a>
-                                            <a class="dropdown-item" href="#">Yet Another Customer</a>
+                                            @foreach( $customers as $customer )
+                                            <a class="dropdown-item" href="#">{{ $customer->name }}</a>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
@@ -69,12 +70,11 @@
                                     Project Status:
                                     <div class="d-inline dropdown">
                                         <button class="btn btn-secondary dropdown-toggle" type="button" id="projectStatus" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            {{ $projectStatus }}
+                                            {{ is_null( $project ) ? "No Project Selected" : $project->status }}
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="projectStatus">
                                             <a class="dropdown-item" href="#">Open</a>
                                             <a class="dropdown-item" href="#">Closed</a>
-                                            <a class="dropdown-item" href="#">Archived</a>
                                         </div>
                                     </div>
                                 </div>
@@ -100,84 +100,25 @@
                     </tr>
 
                     <tr>
-
                         <td>
-
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Project</th>
-                                            <th scope="col">Customer</th>
-                                            <th scope="col">Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ( $projects as $project )
-                                            <tr>
-                                                <th scope="row">
-                                                    <a href="/projectCores/{{ $project->id }}" class="btn btn-primary">
-                                                        {{ $project->title }}
-                                                    </a>
-                                                </th>
-                                                <td>{{ $project->customer }}</td>
-                                                <td>{{ $project->status }}</td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-
+                            @include( 'tables.projects', [ 'projects', $projects ] )
                         </td>
                         <td>
-
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Task</th>
-                                        <th scope="col">Est. Hours</th>
-                                        <th scope="col">Used Hours</th>
-                                        <th scope="col">Rate/Hour</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach( $tasks as $task )
-                                        <tr>
-                                            <th scope="row">
-                                                <a href="#" class="btn btn-primary">
-                                                    {{ $task->title }}
-                                                </a>
-                                            </th>
-                                            <td>Est Hours</td>
-                                            <td>Used Hours</td>
-                                            <td>Rate/Hour</td>
-                                            <td>
-                                                <a href="#" class="btn btn-primary">
-                                                    Add Hours
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a href="#" class="btn btn-primary">
-                                                    Edit Hours
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a href="#" class="btn btn-primary">
-                                                    Delete Task
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-
+                            @include( 'tables.tasks', [ 'tasks', $tasks ] )
                         <td>
-
                     </tr>
-
                     <tr>
-                        <td><a href="#" class="btn btn-primary">Add Project</a></td>
-                        <td><a href="#" class="btn btn-primary">Add Task</a></td>
+                        <td>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#projectModal">
+                            Add Project
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#taskModal">
+                            Add Task
+                            </button>
+                        </td>                    
                     </tr>
-
                 </tbody>
             </table>
         </div>

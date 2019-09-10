@@ -29,7 +29,7 @@ class ProjectCore
             $project->customer = $projectCustomers[ $index ];
             $project->status = $projectStatuses[ $index ];
             $project->tasks = $projectTasksByProjectId[ $index ];
-            array_push( $projects, $project );
+            $projects[] = $project;
         }
 
         return $projects;
@@ -57,8 +57,8 @@ class ProjectCore
 
         $minProjectId = ( $minProjectId[ 0 ] )->min;
         $maxProjectId = ( $maxProjectId[ 0 ] )->max;
-        array_push( $projectIdRange, $minProjectId );
-        array_push( $projectIdRange, $maxProjectId );
+        $projectIdRange[] = $minProjectId;
+        $projectIdRange[] = $maxProjectId;
         return $projectIdRange;
     }
 
@@ -87,7 +87,7 @@ class ProjectCore
         $maxProjectId = ProjectCore::getMaxProjectId();
             
         for ( $i = $minProjectId; $i <= $maxProjectId; $i++ ) {
-            array_push( $projectIdList, $i );
+            $projectIdList[] = $i;
         }
 
         return $projectIdList;

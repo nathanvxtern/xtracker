@@ -21,15 +21,14 @@ class ProjectCoreController extends Controller
     {
         $customers = CustomerCore::getCustomers();
         $projects = ProjectCore::getAllProjects( $customers );
+
         $data = [ $customers, $projects ];
-        dd( $data );
         Session::flash( 'data', $data );
 
         return view( 'welcome', [
             'projects' => $projects,
             'customers' => $customers,
-            'projectCustomer' => "No Project Selected",
-            'projectStatus' => "No Project Selected",
+            'project' => null,
             'tasks' => []
         ]);
     }
@@ -63,20 +62,16 @@ class ProjectCoreController extends Controller
      */
     public function show( Request $request, $id )
     {
-        $data = $request->session()->get( 'data' );
-        $customers = 
+        $data = $request->session()->get( 'data' );    
         Session::flash( 'data', $data );
-        
-        $project = $projects[ $id ];
-        $tasks = $project->tasks;
-        $projectCustomer = CustomerCore::getCustomerName( $id );
-        $projectStatus = StatusCore::getStatus( $id );
+
+        $project = $data[ 1 ][ $id ];
 
         return view( 'welcome', [
-            'projects' => $projects,
-            'projectCustomer' => $projectCustomer,
-            'projectStatus' => $projectStatus,
-            'tasks' => $tasks
+            'customers' => $data[ 0 ],
+            'projects' => $data[ 1 ],
+            'project' => $project,
+            'tasks' => $project->tasks
         ]);
     }
 

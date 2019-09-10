@@ -21,7 +21,9 @@ class ProjectCoreController extends Controller
     {
         $customers = CustomerCore::getCustomers();
         $projects = ProjectCore::getAllProjects( $customers );
-        Session::flash( 'projects', $projects );
+        $data = [ $customers, $projects ];
+        dd( $data );
+        Session::flash( 'data', $data );
 
         return view( 'welcome', [
             'projects' => $projects,
@@ -61,8 +63,9 @@ class ProjectCoreController extends Controller
      */
     public function show( Request $request, $id )
     {
-        $projects = $request->session()->get( 'projects' );
-        Session::flash( 'projects', $projects );
+        $data = $request->session()->get( 'data' );
+        $customers = 
+        Session::flash( 'data', $data );
         
         $project = $projects[ $id ];
         $tasks = $project->tasks;

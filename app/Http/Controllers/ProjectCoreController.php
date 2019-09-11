@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Session;
+use Illuminate\Http\Response;
+// use Session;
 use App\Core\ProjectCore;
 use App\Core\TaskCore;
 use App\Core\CustomerCore;
@@ -22,8 +23,8 @@ class ProjectCoreController extends Controller
         $customers = CustomerCore::getCustomers();
         $projects = ProjectCore::getAllProjects( $customers );
 
-        $data = [ $customers, $projects ];
-        Session::flash( 'data', $data );
+        // $data = [ $customers, $projects ];
+        // Session::flash( 'data', $data );
 
         return view( 'welcome', [
             'projects' => $projects,
@@ -60,19 +61,20 @@ class ProjectCoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show( Request $request, $id )
+    public function show( /* Request $request, */ $id )
     {
-        $data = $request->session()->get( 'data' );    
-        Session::flash( 'data', $data );
+        return response(null, Response::HTTP_OK);
+        // $data = $request->session()->get( 'data' );    
+        // Session::flash( 'data', $data );
 
-        $project = $data[ 1 ][ $id ];
+        // $project = $data[ 1 ][ $id ];
 
-        return view( 'welcome', [
-            'customers' => $data[ 0 ],
-            'projects' => $data[ 1 ],
-            'project' => $project,
-            'tasks' => $project->tasks
-        ]);
+        // return view( 'welcome', [
+        //     'customers' => $data[ 0 ],
+        //     'projects' => $data[ 1 ],
+        //     'project' => $project,
+        //     'tasks' => $project->tasks
+        // ]);
     }
 
     /**

@@ -96,7 +96,7 @@
                         @include( 'tables.projects', [ 'projects', $projects ] )
                     </td>
                     <td>
-                        <tasks></tasks>
+                        <tasks-component></tasks-component>
                         <!-- @include( 'tables.tasks', [ 'tasks', $tasks ] ) -->
                     <td>
                 </tr>

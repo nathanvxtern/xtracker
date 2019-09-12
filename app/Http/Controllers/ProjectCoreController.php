@@ -12,6 +12,18 @@ use App\Core\StatusCore;
 
 class ProjectCoreController extends Controller
 {
+    
+    /**
+     * List the tasks.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public static function tasks( Request $request, $id )
+    {
+        $tasks = TaskCore::getProjectTasks( $id );
+        return $this->return_success( $request, $tasks );
+    }
 
     /**
      * Display a listing of the resource.
@@ -23,14 +35,12 @@ class ProjectCoreController extends Controller
         $customers = CustomerCore::getCustomers();
         $projects = ProjectCore::getAllProjects( $customers );
 
-        // $data = [ $customers, $projects ];
-        // Session::flash( 'data', $data );
-
         return view( 'welcome', [
             'projects' => $projects,
             'customers' => $customers,
             'project' => null,
-            'tasks' => []
+            'tasks' => ( ( $projects[ 100 ] )->tasks ),
+            'projectId' => 101
         ]);
     }
 
@@ -61,20 +71,9 @@ class ProjectCoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show( /* Request $request, */ $id )
+    public static function show( $id )
     {
-        return response(null, Response::HTTP_OK);
-        // $data = $request->session()->get( 'data' );    
-        // Session::flash( 'data', $data );
-
-        // $project = $data[ 1 ][ $id ];
-
-        // return view( 'welcome', [
-        //     'customers' => $data[ 0 ],
-        //     'projects' => $data[ 1 ],
-        //     'project' => $project,
-        //     'tasks' => $project->tasks
-        // ]);
+        //
     }
 
     /**

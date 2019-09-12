@@ -15,10 +15,12 @@
 Route::get('/', 'ProjectCoreController@index');
 
 /* Route to accomodate redirects within app. */
-Route::get('/projectCores', 'ProjectController@index');
+Route::get('/projectCores', 'ProjectCoreController@index');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource( 'projectCores', 'ProjectCoreController' );
+
+Route::get('/{id}', 'ProjectCoreController@tasks');

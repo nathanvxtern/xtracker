@@ -1912,9 +1912,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
-  }
+  props: ['currentProjectTasks']
 });
 
 /***/ }),
@@ -37260,28 +37258,13 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("table", { staticClass: "table" }, [
-      _c("thead", [
-        _c("tr", [
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Task")]),
-          _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Est. Hours")]),
-          _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Used Hours")]),
-          _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Rate/Hour")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("tbody", [
-        _c("tr", [
+  return _c("table", { staticClass: "table" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "tbody",
+      _vm._l(_vm.currentProjectTasks, function(task) {
+        return _c("tr", { key: task.title }, [
           _c("th", { attrs: { scope: "row" } }, [
             _c(
               "a",
@@ -37292,7 +37275,13 @@ var staticRenderFns = [
                   "data-target": "#editTaskModal"
                 }
               },
-              [_vm._v("\n                    Task Title\n                ")]
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(task.title) +
+                    "\n                "
+                )
+              ]
             )
           ]),
           _vm._v(" "),
@@ -37302,42 +37291,79 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("td", [_vm._v("Rate/Hour")]),
           _vm._v(" "),
-          _c("td", [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary",
-                attrs: {
-                  type: "button",
-                  "data-toggle": "modal",
-                  "data-target": "#addHoursModal"
-                }
-              },
-              [_vm._v("\n                    Add Hours\n                ")]
-            )
-          ]),
+          _vm._m(1, true),
           _vm._v(" "),
-          _c("td", [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary",
-                attrs: {
-                  type: "button",
-                  "data-toggle": "modal",
-                  "data-target": "#editHoursModal"
-                }
-              },
-              [_vm._v("\n                    Edit Hours\n                ")]
-            )
-          ]),
+          _vm._m(2, true),
           _vm._v(" "),
-          _c("td", [
-            _c("a", { staticClass: "btn btn-primary", attrs: { href: "#" } }, [
-              _vm._v("\n                    Delete Task\n                ")
-            ])
-          ])
+          _vm._m(3, true)
         ])
+      }),
+      0
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Task")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Est. Hours")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Used Hours")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Rate/Hour")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          attrs: {
+            type: "button",
+            "data-toggle": "modal",
+            "data-target": "#addHoursModal"
+          }
+        },
+        [_vm._v("\n                    Add Hours\n                ")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          attrs: {
+            type: "button",
+            "data-toggle": "modal",
+            "data-target": "#editHoursModal"
+          }
+        },
+        [_vm._v("\n                    Edit Hours\n                ")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("a", { staticClass: "btn btn-primary", attrs: { href: "#" } }, [
+        _vm._v("\n                    Delete Task\n                ")
       ])
     ])
   }
@@ -49498,7 +49524,13 @@ module.exports = function(module) {
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+
+var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
+var HTTP = axios.create();
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -49517,7 +49549,27 @@ Vue.component('tasks-component', __webpack_require__(/*! ./components/TasksCompo
  */
 
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  data: function data() {
+    return {
+      currentProjectTasks: []
+    };
+  },
+  methods: {
+    getProjectTasks: function getProjectTasks(id) {
+      var self = this;
+      var current_path = "/" + id;
+      HTTP.get(current_path).then(function (response) {
+        console.log(response);
+
+        if (response.data.tasks) {
+          self.curretProjectTasks = response.data.tasks;
+        }
+      })["catch"](function (e) {
+        console.log(e);
+      });
+    }
+  }
 });
 
 /***/ }),

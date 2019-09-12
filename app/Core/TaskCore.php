@@ -7,6 +7,26 @@ use \Illuminate\Database\QueryException;
 class TaskCore
 {
 
+    public static function getProjectTasks( $projectId )
+    {
+        $tasks = [];
+
+        $taskIds = TaskCore::getAllTaskIds( $projectId );
+        $taskTitles = TaskCore::getTaskTitles( $taskIds );
+
+        $taskIndex = 0;
+        foreach( $taskIds as $taskId ) {
+            $task = new TaskCore;
+            $task->id = $taskId;
+            $task->title = $taskTitles[ $taskIndex ];
+            $tasks[] = $task;
+            
+            $taskIndex++;
+        }
+
+        return $tasks;
+    }
+
     public static function getTasksByProjectId( $projectIds )
     {
         $tasksByProjectId = [];
@@ -86,27 +106,6 @@ class TaskCore
         $taskrowidRange = TaskCore::getTaskrowidRange();
         $maxTaskrowid = $taskrowidRange[ 1 ];
         return $maxTaskrowid;
-    }
-
-    public static function getProjectTasks( $projectId )
-    {
-        $tasks = [];
-
-        $taskIds = TaskCore::getAllTaskIds( $projectId );
-        $taskTitles = TaskCore::getTaskTitles( $taskIds );
-
-        $taskIndex = 0;
-        foreach( $taskIds as $taskId ) {
-            $task = new TaskCore;
-            $task->id = $taskId;
-            $task->title = $taskTitles[ $taskIndex ];
-            $tasks[] = $task;
-            
-            $taskIndex++;
-
-        }
-
-        return $tasks;
     }
 
     private static function getAllTaskIds( $projectId )

@@ -5,8 +5,10 @@
  */
 
 require('./bootstrap');
-
+const $ = require('jquery');
 window.Vue = require('vue');
+const axios = require('axios');
+const HTTP = axios.create();
 
 /**
  * The following block of code may be used to automatically register your
@@ -29,4 +31,31 @@ Vue.component('tasks-component', require('./components/TasksComponent.vue').defa
 
 const app = new Vue({
     el: '#app',
+
+    data: () => ({
+        currentProjectTasks: [],
+    }),
+
+    methods: {
+        getProjectTasks: function( id ) {
+            let self = this;
+            
+            let current_path = "/" + id;
+
+            HTTP.get( current_path )
+
+                .then( response => {
+                    console.log( response );
+                    if( response.data.tasks ) {
+                        self.curretProjectTasks = response.data.tasks;
+                    }
+                })
+
+                .catch( e => {
+                    console.log( e );
+                    
+            });
+        },
+    }
 });
+

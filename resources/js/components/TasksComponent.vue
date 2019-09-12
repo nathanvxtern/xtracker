@@ -9,10 +9,10 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr v-for="task of currentProjectTasks" v-bind:key="task.title">
                 <th scope="row">
                     <a href="#" data-toggle="modal" data-target="#editTaskModal">
-                        Task Title
+                        {{ task.title }}
                     </a>
                 </th>
                 <td>Est Hours</td>
@@ -40,8 +40,6 @@
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
+        props:[ 'currentProjectTasks' ]
     }
 </script>

@@ -10,7 +10,7 @@
         @foreach ( $projects as $project )
             <tr>
                 <th scope="row">
-                    <a href="#">
+                    <a href="#" @click="getProjectTasks( '{{ $project->id }}' )">
                         {{ $project->title }}
                     </a>
                 </th>

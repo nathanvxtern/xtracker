@@ -15,6 +15,8 @@ $app = new Illuminate\Foundation\Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
 
+require_once __DIR__.'/../app/Helpers/constants.php';
+
 /*
 |--------------------------------------------------------------------------
 | Bind Important Interfaces

@@ -4,26 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-// use Session;
 use App\Core\ProjectCore;
 use App\Core\TaskCore;
 use App\Core\CustomerCore;
 use App\Core\StatusCore;
 
-class ProjectCoreController extends Controller
+class ProjectCoreController extends APIController
 {
-    
-    /**
-     * List the tasks.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public static function tasks( Request $request, $id )
-    {
-        $tasks = TaskCore::getProjectTasks( $id );
-        return $this->return_success( $request, $tasks );
-    }
 
     /**
      * Display a listing of the resource.
@@ -42,6 +29,18 @@ class ProjectCoreController extends Controller
             'tasks' => ( ( $projects[ 100 ] )->tasks ),
             'projectId' => 101
         ]);
+    }
+
+    /**
+     * List the tasks.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function tasks( Request $request, $id )
+    {
+        $tasks = TaskCore::getProjectTasks( $id );
+        return $this->return_success( $request, $tasks );
     }
 
     /**

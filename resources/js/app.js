@@ -3,6 +3,12 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+import Vue from 'vue'
+import BootstrapVue from 'bootstrap-vue'
+
+Vue.use(BootstrapVue)
 
 require('./bootstrap');
 const $ = require('jquery');
@@ -23,6 +29,7 @@ const HTTP = axios.create();
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('tasks-component', require('./components/TasksComponent.vue').default);
+Vue.component('tasks-header-component', require('./components/TasksHeaderComponent.vue').default);
 
 /**
  * the page. Then, you may begin adding components to this application
@@ -33,7 +40,11 @@ const app = new Vue({
     el: '#app',
 
     data: () => ({
-        currentProjectTasks: [],
+        customers: [],
+        currentprojecttasks: [],
+        currentproject: [],
+        currenttask: [],
+        currentcustomer: "No Project Selected",
     }),
 
     methods: {
@@ -46,14 +57,17 @@ const app = new Vue({
 
                 .then( response => {
                     console.log( response );
-                    if( response.data.tasks ) {
-                        self.curretProjectTasks = response.data.tasks;
+                    if( response.data.data ) {
+                        console.log( response.data.data );
+                        self.currentprojecttasks = response.data.data;
+                    } else {
+                        self.currentprojecttasks = [];
                     }
                 })
 
                 .catch( e => {
                     console.log( e );
-                    
+
             });
         },
     }

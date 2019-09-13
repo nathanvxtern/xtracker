@@ -9,8 +9,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="task of currentProjectTasks" v-bind:key="task.title">
-                <th scope="row">
+            <tr v-for="task of currentprojecttasks" v-bind:key="task.title">
+                <th scope="rows">
                     <a href="#" data-toggle="modal" data-target="#editTaskModal">
                         {{ task.title }}
                     </a>
@@ -40,6 +40,6 @@
 
 <script>
     export default {
-        props:[ 'currentProjectTasks' ]
+        props:[ 'currentprojecttasks' ]
     }
 </script>

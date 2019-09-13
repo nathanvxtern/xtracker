@@ -3,19 +3,17 @@
         <tr>
             <th scope="col">Project</th>
             <th scope="col">Customer</th>
-            <th scope="col">Status</th>
         </tr>
     </thead>
     <tbody>
         @foreach ( $projects as $project )
             <tr>
                 <th scope="row">
-                    <a href="#" @click="getProjectTasks( '{{ $project->id }}' )">
+                    <button type="button" class="btn btn-link font-weight-bold" @click="getProjectTasks( '{{ $project->id }}' )">
                         {{ $project->title }}
-                    </a>
+                    </button>
                 </th>
                 <td>{{ $project->customer }}</td>
-                <td>{{ $project->status }}</td>
             </tr>
         @endforeach
     </tbody>

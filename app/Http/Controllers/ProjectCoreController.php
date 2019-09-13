@@ -44,6 +44,18 @@ class ProjectCoreController extends APIController
     }
 
     /**
+     * List the tasks.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function customer( Request $request, $id )
+    {
+        $customer = CustomerCore::getCustomerName( $id );
+        return $this->return_success( $request, $customer );
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

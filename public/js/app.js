@@ -79127,7 +79127,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
   methods: {
     getProjectTasks: function getProjectTasks(id) {
       var self = this;
-      var current_path = "/" + id;
+      var current_path = "/tasks/" + id;
       HTTP.get(current_path).then(function (response) {
         console.log(response);
 
@@ -79136,6 +79136,22 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
           self.currentprojecttasks = response.data.data;
         } else {
           self.currentprojecttasks = [];
+        }
+      })["catch"](function (e) {
+        console.log(e);
+      });
+    },
+    getProjectCustomer: function getProjectCustomer(id) {
+      var self = this;
+      var current_path = "/customer/" + id;
+      HTTP.get(current_path).then(function (response) {
+        console.log(response);
+
+        if (response.data.data) {
+          console.log(response.data.data);
+          self.currentcustomer = response.data.data;
+        } else {
+          self.currentcustomer = [];
         }
       })["catch"](function (e) {
         console.log(e);

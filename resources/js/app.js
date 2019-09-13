@@ -51,7 +51,7 @@ const app = new Vue({
         getProjectTasks: function( id ) {
             let self = this;
             
-            let current_path = "/" + id;
+            let current_path = "/tasks/" + id;
 
             HTTP.get( current_path )
 
@@ -62,6 +62,28 @@ const app = new Vue({
                         self.currentprojecttasks = response.data.data;
                     } else {
                         self.currentprojecttasks = [];
+                    }
+                })
+
+                .catch( e => {
+                    console.log( e );
+
+            });
+        },
+        getProjectCustomer: function( id ) {
+            let self = this;
+            
+            let current_path = "/customer/" + id;
+
+            HTTP.get( current_path )
+
+                .then( response => {
+                    console.log( response );
+                    if( response.data.data ) {
+                        console.log( response.data.data );
+                        self.currentcustomer = response.data.data;
+                    } else {
+                        self.currentcustomer = [];
                     }
                 })
 

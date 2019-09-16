@@ -15,7 +15,6 @@ class ProjectCore
         $projectTitles = ProjectCore::getProjectTitles( $projectIds );
         $projectCustomers = CustomerCore::getCustomerNames( $projectIds, $customers );
         $projectStatuses = StatusCore::getProjectStatuses( $projectIds );
-        $projectTasksByProjectId = TaskCore::getTasksByProjectId( $projectIds );
 
         $minProjectId = ProjectCore::getMinProjectId();
         $maxProjectId = ProjectCore::getMaxProjectId();
@@ -28,7 +27,6 @@ class ProjectCore
             $project->title = $projectTitles[ $index ];
             $project->customer = $projectCustomers[ $index ];
             $project->status = $projectStatuses[ $index ];
-            $project->tasks = $projectTasksByProjectId[ $index ];
             $projects[] = $project;
         }
 

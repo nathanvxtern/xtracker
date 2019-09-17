@@ -12,44 +12,32 @@ use App\Core\StatusCore;
 class ProjectCoreController extends APIController
 {
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $customers = CustomerCore::getCustomers();
         $projects = ProjectCore::getAllProjects( $customers );
-
         return view( 'welcome', [
-            'projects' => $projects,
             'customers' => $customers,
+            'projects' => $projects
         ]);
     }
 
-    /**
-     * List the tasks.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function tasks( Request $request, $id )
+    public function projects( Request $request, $customers )
     {
-        $tasks = TaskCore::getProjectTasks( $id );
-        return $this->return_success( $request, $tasks );
+        $projects = ProjectCore::getAllProjects( $customers );
+        return $this->return_success( $request, $projects );
     }
 
-    /**
-     * List the tasks.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function customer( Request $request, $id )
     {
         $customer = CustomerCore::getCustomerName( $id );
         return $this->return_success( $request, $customer );
+    }
+
+    public function projecttasks( Request $request, $id )
+    {
+        $projecttasks = TaskCore::getProjectTasks( $id );
+        return $this->return_success( $request, $projecttasks );
     }
 
     /**

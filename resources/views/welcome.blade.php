@@ -13,8 +13,8 @@
             <div class="col">Tasks</div>
         </div>
         <div class="row">
-            <div class="col">    
-                <div>          
+            <div class="col">
+                <div>
                     Customer:
                     <div class="d-inline dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="customerFilter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -50,10 +50,10 @@
         </div>
         <div class="row">
             <div class="col overflow-auto mb-3" style="max-height: 500;">
-                @include( 'tables.projects', [ 'projects', $projects ] )
+                <projects-component :projects="{{ json_encode( $projects ) }}"> </projects-component>
             </div>
             <div class="col overflow-auto mb-3" style="max-height: 500;">
-                <tasks-component v-bind:currentprojecttasks="currentprojecttasks"></tasks-component>
+                <projecttasks-component v-bind:currentprojecttasks="currentprojecttasks"></projecttasks-component>
             </div>
         </div>
         <div class="row">

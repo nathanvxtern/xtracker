@@ -28,8 +28,9 @@ const HTTP = axios.create();
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('tasks-component', require('./components/TasksComponent.vue').default);
+Vue.component('projecttasks-component', require('./components/TasksComponent.vue').default);
 Vue.component('tasks-header-component', require('./components/TasksHeaderComponent.vue').default);
+Vue.component('projects-component', require('./components/ProjectsComponent.vue').default);
 
 /**
  * the page. Then, you may begin adding components to this application
@@ -41,6 +42,8 @@ const app = new Vue({
 
     data: () => ({
         customers: [],
+        projects: [],
+        filteredprojects: [],
         currentprojecttasks: [],
         currentproject: [],
         currenttask: [],
@@ -48,10 +51,11 @@ const app = new Vue({
     }),
 
     methods: {
-        getProjectTasks: function( id ) {
+        getProjectTasks: function( id )
+        {
             let self = this;
             
-            let current_path = "/tasks/" + id;
+            let current_path = "/projecttasks/" + id;
 
             HTTP.get( current_path )
 
@@ -70,7 +74,8 @@ const app = new Vue({
 
             });
         },
-        getProjectCustomer: function( id ) {
+        getProjectCustomer: function( id )
+        {
             let self = this;
             
             let current_path = "/customer/" + id;
@@ -84,6 +89,32 @@ const app = new Vue({
                         self.currentcustomer = response.data.data;
                     } else {
                         self.currentcustomer = [];
+                    }
+                })
+
+                .catch( e => {
+                    console.log( e );
+
+            });
+        },
+        getProjects: function()
+        {
+            let self = this;
+
+            let current_path = "/projects";
+
+            HTTP.get( current_path )
+
+                .then( response => {
+                    console.log( response );
+                    if( response.data.data.projects && response.data.data.customers ) {
+                        console.log( response.data.data.projects );
+                        console.log( response.data.data.customers );
+                        self.projects = response.data.data.projects;
+                        self.customers = response.data.data.customers;
+                    } else {
+                        self.projects = [];
+                        self.customers = [];
                     }
                 })
 

@@ -37,9 +37,3 @@
         </tbody>
     </table>
 </template>
-
-<script>
-    export default {
-        props:[ 'currentprojecttasks' ]
-    }
-</script>

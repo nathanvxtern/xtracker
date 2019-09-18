@@ -42,8 +42,8 @@
 <script>
     export default {
         props:[ 'customers', 
-        'currentproject',
-        'currentcustomer',
+            'currentproject',
+            'currentcustomer',
         ]
     }
 </script>

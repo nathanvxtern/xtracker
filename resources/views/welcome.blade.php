@@ -50,7 +50,7 @@
         </div>
         <div class="row">
             <div class="col overflow-auto mb-3" style="max-height: 500;">
-                <projects-component :projects="{{ json_encode( $projects ) }}"> </projects-component>
+                <projects-component v-bind:projects="{{ json_encode( $projects ) }}"></projects-component>
             </div>
             <div class="col overflow-auto mb-3" style="max-height: 500;">
                 <projecttasks-component v-bind:currentprojecttasks="currentprojecttasks"></projecttasks-component>

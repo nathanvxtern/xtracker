@@ -7,6 +7,11 @@ use \Illuminate\Database\QueryException;
 class ProjectCore
 {
 
+    public static function getProjectIdByName( $projectName )
+    {
+        return 100;
+    }
+
     public static function getAllProjects( $customers )
     {
         $projects = [];

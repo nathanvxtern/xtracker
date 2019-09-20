@@ -1883,7 +1883,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['projects']
+  props: ['projects'],
+  methods: {
+    getprojectcustomer: function getprojectcustomer(title) {
+      var self = this;
+      var current_path = "/customer/" + title;
+      HTTP.get(current_path).then(function (response) {
+        console.log(response);
+
+        if (response.data.data) {
+          console.log(response.data.data);
+          self.currentcustomer = response.data.data;
+        } else {
+          self.currentcustomer = [];
+        }
+      })["catch"](function (e) {
+        console.log(e);
+      });
+    },
+    gettasks: function gettasks(title) {
+      var self = this;
+      var current_path = "/projecttasks/" + title;
+      HTTP.get(current_path).then(function (response) {
+        console.log(response);
+
+        if (response.data.data) {
+          console.log(response.data.data);
+          self.tasks = response.data.data;
+        } else {
+          self.tasks = [];
+        }
+      })["catch"](function (e) {
+        console.log(e);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -66695,8 +66729,8 @@ var render = function() {
                 attrs: { type: "button" },
                 on: {
                   click: function($event) {
-                    _vm.tasks("{{ $project->id }}")
-                    _vm.getProjectCustomer("{{ $project->id }}")
+                    _vm.gettasks(data)
+                    _vm.getprojectcustomer(data)
                   }
                 }
               },
@@ -79208,38 +79242,6 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
     currentcustomer: "No Project Selected"
   },
   methods: {
-    getProjectTasks: function getProjectTasks(id) {
-      var self = this;
-      var current_path = "/projecttasks/" + id;
-      HTTP.get(current_path).then(function (response) {
-        console.log(response);
-
-        if (response.data.data) {
-          console.log(response.data.data);
-          self.tasks = response.data.data;
-        } else {
-          self.tasks = [];
-        }
-      })["catch"](function (e) {
-        console.log(e);
-      });
-    },
-    getProjectCustomer: function getProjectCustomer(id) {
-      var self = this;
-      var current_path = "/customer/" + id;
-      HTTP.get(current_path).then(function (response) {
-        console.log(response);
-
-        if (response.data.data) {
-          console.log(response.data.data);
-          self.currentcustomer = response.data.data;
-        } else {
-          self.currentcustomer = [];
-        }
-      })["catch"](function (e) {
-        console.log(e);
-      });
-    },
     getProjects: function getProjects() {
       var self = this;
       var current_path = "/projects";

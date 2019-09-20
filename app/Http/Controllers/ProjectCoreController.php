@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use App\Core\ProjectCore;
 use App\Core\TaskCore;
 use App\Core\CustomerCore;
-use App\Core\StatusCore;
 
 class ProjectCoreController extends APIController
 {
@@ -28,16 +26,15 @@ class ProjectCoreController extends APIController
         return $this->return_success( $request, $projects );
     }
 
-    public function customer( Request $request, $id )
+    public function customer( Request $request, $title )
     {
-        $customer = CustomerCore::getCustomerName( $id );
+        $customer = CustomerCore::getCustomerName( $title );
         return $this->return_success( $request, $customer );
     }
 
-    public function tasks( Request $request, $id )
+    public function gettasks( Request $request, $title )
     {
-        $tasks = TaskCore::getProjectTasks( $id );
-        var_dump( $request );
+        $tasks = TaskCore::getProjectTasks( $title );
         return $this->return_success( $request, $tasks );
     }
 

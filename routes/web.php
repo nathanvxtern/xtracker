@@ -23,6 +23,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource( 'projectCores', 'ProjectCoreController' );
 
-Route::get('/tasks/{id}', 'ProjectCoreController@tasks');
-Route::get('/customer/{id}', 'ProjectCoreController@customers');
+Route::get('/projecttasks/{title}', 'ProjectCoreController@gettasks');
+Route::get('/customer/{title}', 'ProjectCoreController@customer');
 Route::get('/projects', 'ProjectCoreController@projects');

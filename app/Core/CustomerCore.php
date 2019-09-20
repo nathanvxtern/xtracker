@@ -32,8 +32,10 @@ class CustomerCore
         return $names;
     }
 
-    public static function getCustomerName( $projectId )
+    public static function getCustomerName( $projectName )
     {
+        $projectId = ProjectCore::getProjectIdByName( $projectName ); 
+
         $name = null;
 
         $custrowid = CustomerCore::getCustrowid( $projectId );

@@ -6,9 +6,10 @@ use \Illuminate\Database\QueryException;
 
 class TaskCore
 {
-
-    public static function getProjectTasks( $projectId )
+    public static function getProjectTasks( $projectName )
     {
+        $projectId = ProjectCore::getProjectIdByName( $projectName );
+
         $tasks = [];
 
         $taskIds = TaskCore::getAllTaskIds( $projectId );

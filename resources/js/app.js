@@ -28,7 +28,7 @@ const HTTP = axios.create();
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('projecttasks-component', require('./components/TasksComponent.vue').default);
+Vue.component('project-component', require('./components/TasksComponent.vue').default);
 Vue.component('tasks-header-component', require('./components/TasksHeaderComponent.vue').default);
 Vue.component('projects-component', require('./components/ProjectsComponent.vue').default);
 
@@ -40,15 +40,15 @@ Vue.component('projects-component', require('./components/ProjectsComponent.vue'
 const app = new Vue({
     el: '#app',
 
-    data: () => ({
+    data: {
         customers: [],
         projects: [],
         filteredprojects: [],
-        currentprojecttasks: [],
+        tasks: [],
         currentproject: [],
         currenttask: [],
         currentcustomer: "No Project Selected",
-    }),
+    },
 
     methods: {
         getProjectTasks: function( id )
@@ -63,9 +63,9 @@ const app = new Vue({
                     console.log( response );
                     if( response.data.data ) {
                         console.log( response.data.data );
-                        self.currentprojecttasks = response.data.data;
+                        self.tasks = response.data.data;
                     } else {
-                        self.currentprojecttasks = [];
+                        self.tasks = [];
                     }
                 })
 

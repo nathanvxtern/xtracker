@@ -9,7 +9,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="task of currentprojecttasks" v-bind:key="task.title">
+            <tr v-for="task of tasks" v-bind:key="task.title">
                 <th scope="rows">
                     <a href="#" data-toggle="modal" data-target="#editTaskModal">
                         {{ task.title }}
@@ -37,3 +37,10 @@
         </tbody>
     </table>
 </template>
+
+<script>
+    export default {
+        props:[ 'tasks',
+        ],
+    }
+</script>

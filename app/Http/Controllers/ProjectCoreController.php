@@ -34,10 +34,11 @@ class ProjectCoreController extends APIController
         return $this->return_success( $request, $customer );
     }
 
-    public function projecttasks( Request $request, $id )
+    public function tasks( Request $request, $id )
     {
-        $projecttasks = TaskCore::getProjectTasks( $id );
-        return $this->return_success( $request, $projecttasks );
+        $tasks = TaskCore::getProjectTasks( $id );
+        var_dump( $request );
+        return $this->return_success( $request, $tasks );
     }
 
     /**

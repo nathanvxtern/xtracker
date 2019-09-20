@@ -1,7 +1,11 @@
 <template>
-        <b-table :items="projects" :fields="fields" caption-top>
+        <b-table :items="projects" caption-top>
             <template v-slot:table-caption>Projects</template>
-            <b-button @click="getProjectTasks">title</b-button>
+            <template v-slot:cell(title)="data">
+                <button type="button" class="btn btn-link" @click="tasks( '{{ $project->id }}' ); getProjectCustomer( '{{ $project->id }}' );">
+                    {{ data.value }}
+                </button>
+            </template>
         </b-table>
 </template>
 
@@ -9,11 +13,5 @@
     export default {
         props:[ 'projects',
         ],
-        data() {
-            return {
-                fields: ['id', 'title', 'customer'],
-                items: projects
-            }
-        }
     }
 </script>

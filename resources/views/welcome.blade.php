@@ -1,5 +1,3 @@
-// branchtest
-
 @include('modals.project')
 @include('modals.tasks.add')
 @include('modals.tasks.edit')
@@ -52,7 +50,8 @@
         </div>
         <div class="row">
             <div class="col overflow-auto mb-3" style="max-height: 500;">
-                @include( 'tables.projects', [ 'projects', $projects ] )
+                <projects-component :currentprojects="{{ json_encode( $projects ) }}"></projects-component>
+                <!-- @include( 'tables.projects', [ 'projects', $projects ] ) -->
             </div>
             <div class="col overflow-auto mb-3" style="max-height: 500;">
                 <tasks-component v-bind:currentprojecttasks="currentprojecttasks"></tasks-component>

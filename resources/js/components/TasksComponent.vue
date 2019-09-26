@@ -9,7 +9,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="task of currentprojecttasks" v-bind:key="task.title">
+            <tr v-for="task of currentprojecttasks" v-bind:key="task.title"
+                                                    v-bind:currentprojecttasks="currentprojecttasks">
                 <th scope="rows">
                     <a href="#" data-toggle="modal" data-target="#editTaskModal">
                         {{ task.title }}

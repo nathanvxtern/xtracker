@@ -48,7 +48,7 @@ const app = new Vue({
         currenttask: [],
         currentcustomer: "No Project Selected",
     }),
-    
+
     methods: {
         getProjectTasks: function( id ) {
             let self = this;
@@ -69,8 +69,9 @@ const app = new Vue({
 
                 .catch( e => {
                     console.log( e );
-
-            });
+                }
+                
+            );
         },
         getProjectCustomer: function( id ) {
             let self = this;

@@ -1911,6 +1911,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['currentprojecttasks']
 });
@@ -66691,39 +66692,46 @@ var render = function() {
     _c(
       "tbody",
       _vm._l(_vm.currentprojecttasks, function(task) {
-        return _c("tr", { key: task.title }, [
-          _c("th", { attrs: { scope: "rows" } }, [
-            _c(
-              "a",
-              {
-                attrs: {
-                  href: "#",
-                  "data-toggle": "modal",
-                  "data-target": "#editTaskModal"
-                }
-              },
-              [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(task.title) +
-                    "\n                "
-                )
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("td", [_vm._v("Est Hours")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("Used Hours")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("Rate/Hour")]),
-          _vm._v(" "),
-          _vm._m(1, true),
-          _vm._v(" "),
-          _vm._m(2, true),
-          _vm._v(" "),
-          _vm._m(3, true)
-        ])
+        return _c(
+          "tr",
+          {
+            key: task.title,
+            attrs: { currentprojecttasks: _vm.currentprojecttasks }
+          },
+          [
+            _c("th", { attrs: { scope: "rows" } }, [
+              _c(
+                "a",
+                {
+                  attrs: {
+                    href: "#",
+                    "data-toggle": "modal",
+                    "data-target": "#editTaskModal"
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(task.title) +
+                      "\n                "
+                  )
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("td", [_vm._v("Est Hours")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("Used Hours")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("Rate/Hour")]),
+            _vm._v(" "),
+            _vm._m(1, true),
+            _vm._v(" "),
+            _vm._m(2, true),
+            _vm._v(" "),
+            _vm._m(3, true)
+          ]
+        )
       }),
       0
     )
@@ -66989,8 +66997,8 @@ var render = function() {
                 attrs: { href: "#" },
                 on: {
                   click: function($event) {
-                    _vm.$emit("getProjectTasks", project.id)
-                    _vm.$emit("getProjectCustomer", project.id)
+                    this.$emit("getProjectTasks", project.id)
+                    this.$emit("getProjectCustomer", project.id)
                   }
                 }
               },

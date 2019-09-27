@@ -20,7 +20,9 @@ class ProjectCoreController extends APIController
     public function index()
     {
         $customers = CustomerCore::getCustomers();
-        $projects = ProjectCore::getAllProjects( $customers );
+        $minProjectId = ProjectCore::getMinProjectId();
+        $maxProjectId = ProjectCore::getMaxProjectId();
+        $projects = ProjectCore::getAllProjects( $customers, $minProjectId, $maxProjectId );
 
         return view( 'welcome', [
             'projects' => $projects,

@@ -7,18 +7,15 @@ use \Illuminate\Database\QueryException;
 class ProjectCore
 {
 
-    public static function getAllProjects( $customers )
+    public static function getAllProjects( $customers, $minProjectId, $maxProjectId )
     {
         $projects = [];
 
-        $projectIds = ProjectCore::getAllProjectIds();
+        $projectIds = ProjectCore::getAllProjectIds( $minProjectId, $maxProjectId );
         $projectTitles = ProjectCore::getProjectTitles( $projectIds );
         $projectCustomers = CustomerCore::getCustomerNames( $projectIds, $customers );
         $projectStatuses = StatusCore::getProjectStatuses( $projectIds );
-        $projectTasksByProjectId = TaskCore::getTasksByProjectId( $projectIds );
 
-        $minProjectId = ProjectCore::getMinProjectId();
-        $maxProjectId = ProjectCore::getMaxProjectId();
         for ( $i = $minProjectId; $i <= $maxProjectId; $i++ ) {
 
             $index = $i - $minProjectId;
@@ -28,63 +25,45 @@ class ProjectCore
             $project->title = $projectTitles[ $index ];
             $project->customer = $projectCustomers[ $index ];
             $project->status = $projectStatuses[ $index ];
-            $project->tasks = $projectTasksByProjectId[ $index ];
             $projects[] = $project;
         }
 
         return $projects;
     }
-
-    private static function getProjectIdRange()
+    
+    public static function getMinProjectId()
     {
-        $projectIdRange = [];
         $minProjectId = null;
-        $maxProjectId = null;
-
         $minProjectIdSql = "SELECT MIN(public.projmaster.projrowid)
             FROM public.projmaster
         ";
-        $maxProjectIdSql = "SELECT MAX(public.projmaster.projrowid)
-            FROM public.projmaster
-        ";
-
         try {
             $minProjectId = \DB::select( $minProjectIdSql );
-            $maxProjectId = \DB::select( $maxProjectIdSql );
         } catch ( QueryException $e ) {
             dd( $e );
         }
-
         $minProjectId = ( $minProjectId[ 0 ] )->min;
-        $maxProjectId = ( $maxProjectId[ 0 ] )->max;
-        $projectIdRange[] = $minProjectId;
-        $projectIdRange[] = $maxProjectId;
-        return $projectIdRange;
-    }
-
-    private static function getMinProjectId()
-    {
-        $projectIdRange = ProjectCore::getProjectIdRange();
-        $minProjectId = $projectIdRange[ 0 ];
         return $minProjectId;
     }
 
     public static function getMaxProjectId()
     {
-        $projectIdRange = ProjectCore::getProjectIdRange();
-        $maxProjectId = $projectIdRange[ 1 ];
+        $maxProjectId = null;
+        $maxProjectIdSql = "SELECT MAX(public.projmaster.projrowid)
+            FROM public.projmaster
+        ";
+        try {
+            $maxProjectId = \DB::select( $maxProjectIdSql );
+        } catch ( QueryException $e ) {
+            dd( $e );
+        }
+        $maxProjectId = ( $maxProjectId[ 0 ] )->max;
         return $maxProjectId;
     }
 
-    private static function getAllProjectIds()
+    private static function getAllProjectIds( $minProjectId, $maxProjectId )
     {
         $projectIdList = [];
-        $projectIdRange = null;
-        $minProjectId = null;
-        $maxProjectId = null;
-
-        $minProjectId = ProjectCore::getMinProjectId();
-        $maxProjectId = ProjectCore::getMaxProjectId();
             
         for ( $i = $minProjectId; $i <= $maxProjectId; $i++ ) {
             $projectIdList[] = $i;

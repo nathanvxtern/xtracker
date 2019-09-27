@@ -13,7 +13,7 @@
             <div class="col">Tasks</div>
         </div>
         <div class="row">
-            <div class="col">    
+            <div class="col">
                 <div>          
                     Customer:
                     <div class="d-inline dropdown">

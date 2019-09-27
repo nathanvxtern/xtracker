@@ -26,8 +26,6 @@ class ProjectCoreController extends APIController
             'projects' => $projects,
             'customers' => $customers,
             'project' => null,
-            'tasks' => ( ( $projects[ 100 ] )->tasks ),
-            'projectId' => 101
         ]);
     }
 

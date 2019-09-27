@@ -9,35 +9,29 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col">Projects</div>
-            <div class="col">Tasks</div>
-        </div>
-        <div class="row">
             <div class="col">
-                <div>          
-                    Customer:
-                    <div class="d-inline dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="customerFilter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Select Customer
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="customerFilter">
-                            @foreach( $customers as $customer )
-                            <a class="dropdown-item" href="#">{{ $customer->name }}</a>
-                            @endforeach
+                <div class="row">
+                    <div class="d-inline col">
+                        <select name="customerFilter" id="customer" class="form-control">
+                            <option value=""> Customer </option>
+                                @foreach ($customers as $customer)
+                                    <option value="{{ $customer->name }}">{{ $customer->name }}</option>
+                                @endforeach 
+                        </select>
+                    </div>
+                    <div class="d-inline col">
+                        <div class="form-group form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="openFilter">
+                            <label class="form-check-label" for="openFilter">Open</label>
+                        </div>
+                        <div class="form-group form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="closedFilter">
+                            <label class="form-check-label" for="closedFilter">Closed</label>
                         </div>
                     </div>
-                    <a href="#" class="d-inline btn btn-primary">Filter</a>
-                    <a href="#" class="d-inline btn btn-primary">Reset</a>
-                </div>
-                <div>
-                    Project Status:
-                    <div class="form-group form-check-inline">
-                        <input type="checkbox" class="form-check-input" id="openFilter">
-                        <label class="form-check-label" for="openFilter">Open</label>
-                    </div>
-                    <div class="form-group form-check-inline">
-                        <input type="checkbox" class="form-check-input" id="closedFilter">
-                        <label class="form-check-label" for="closedFilter">Closed</label>
+                    <div class="d-inline col">
+                        <a href="#" class="btn btn-primary">Filter</a>
+                        <a href="#" class="btn btn-primary">Reset</a>
                     </div>
                 </div>
             </div>
@@ -53,7 +47,7 @@
                 @include( 'tables.projects', [ 'projects', $projects ] )
             </div>
             <div class="col overflow-auto mb-3" style="max-height: 500;">
-                <tasks-component v-bind:currentprojecttasks="currentprojecttasks"></tasks-component>
+                <tasks-component v-bind:tasks="tasks"></tasks-component>
             </div>
         </div>
         <div class="row">

@@ -3,34 +3,39 @@
         <thead>
             <tr>    
                 <th scope="col">Task</th>
-                <th scope="col">Est. Hours</th>
-                <th scope="col">Used Hours</th>
-                <th scope="col">Rate/Hour</th>
+                <th scope="col" class="table-secondary">Hours:</th>
+                <th scope="col" class="table-secondary">Est.</th>
+                <th scope="col" class="table-secondary">Used</th>
+                <th scope="col" class="table-secondary">Rate</th>
+                <th class="table-secondary"></th>
+                <th class="table-secondary"></th>
+                <th class="border-0"></th>
             </tr>
         </thead>
         <tbody>
-            <tr v-for="task of currentprojecttasks" v-bind:key="task.title">
+            <tr v-for="task of tasks" v-bind:key="task.title">
                 <th scope="rows">
                     <a href="#" data-toggle="modal" data-target="#editTaskModal">
                         {{ task.title }}
                     </a>
                 </th>
-                <td>Est Hours</td>
-                <td>Used Hours</td>
-                <td>Rate/Hour</td>
-                <td>
+                <td class="table-secondary"></td>
+                <td class="table-secondary">Est.</td>
+                <td class="table-secondary">Used</td>
+                <td class="table-secondary">Rate</td>
+                <td class="table-secondary">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addHoursModal">
-                        Add Hours
+                        Add
                     </button>
                 </td>
-                <td>
+                <td class="table-secondary">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editHoursModal">
-                        Edit Hours
+                        Edit
                     </button>
                 </td>
-                <td>
+                <td class="border-0">
                     <a href="#" class="btn btn-primary">
-                        Delete Task
+                        Delete
                     </a>
                 </td>
             </tr>
@@ -40,6 +45,6 @@
 
 <script>
     export default {
-        props:[ 'currentprojecttasks' ]
+        props:[ 'tasks' ]
     }
 </script>

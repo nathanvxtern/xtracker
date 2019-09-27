@@ -41,10 +41,10 @@ const app = new Vue({
 
     data: () => ({
         customers: [],
-        currentprojecttasks: [],
+        tasks: [],
         currentproject: [],
         currenttask: [],
-        currentcustomer: "No Project Selected",
+        currentcustomer: "Customer",
     }),
 
     methods: {
@@ -59,9 +59,9 @@ const app = new Vue({
                     console.log( response );
                     if( response.data.data ) {
                         console.log( response.data.data );
-                        self.currentprojecttasks = response.data.data;
+                        self.tasks = response.data.data;
                     } else {
-                        self.currentprojecttasks = [];
+                        self.tasks = [];
                     }
                 })
 

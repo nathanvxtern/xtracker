@@ -1911,8 +1911,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['currentprojecttasks']
+  props: ['tasks']
 });
 
 /***/ }),
@@ -66653,7 +66658,7 @@ var render = function() {
     _vm._v(" "),
     _c(
       "tbody",
-      _vm._l(_vm.currentprojecttasks, function(task) {
+      _vm._l(_vm.tasks, function(task) {
         return _c("tr", { key: task.title }, [
           _c("th", { attrs: { scope: "rows" } }, [
             _c(
@@ -66675,11 +66680,13 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("td", [_vm._v("Est Hours")]),
+          _c("td", { staticClass: "table-secondary" }),
           _vm._v(" "),
-          _c("td", [_vm._v("Used Hours")]),
+          _c("td", { staticClass: "table-secondary" }, [_vm._v("Est.")]),
           _vm._v(" "),
-          _c("td", [_vm._v("Rate/Hour")]),
+          _c("td", { staticClass: "table-secondary" }, [_vm._v("Used")]),
+          _vm._v(" "),
+          _c("td", { staticClass: "table-secondary" }, [_vm._v("Rate")]),
           _vm._v(" "),
           _vm._m(1, true),
           _vm._v(" "),
@@ -66701,11 +66708,27 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Task")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Est. Hours")]),
+        _c("th", { staticClass: "table-secondary", attrs: { scope: "col" } }, [
+          _vm._v("Hours:")
+        ]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Used Hours")]),
+        _c("th", { staticClass: "table-secondary", attrs: { scope: "col" } }, [
+          _vm._v("Est.")
+        ]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Rate/Hour")])
+        _c("th", { staticClass: "table-secondary", attrs: { scope: "col" } }, [
+          _vm._v("Used")
+        ]),
+        _vm._v(" "),
+        _c("th", { staticClass: "table-secondary", attrs: { scope: "col" } }, [
+          _vm._v("Rate")
+        ]),
+        _vm._v(" "),
+        _c("th", { staticClass: "table-secondary" }),
+        _vm._v(" "),
+        _c("th", { staticClass: "table-secondary" }),
+        _vm._v(" "),
+        _c("th", { staticClass: "border-0" })
       ])
     ])
   },
@@ -66713,7 +66736,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", [
+    return _c("td", { staticClass: "table-secondary" }, [
       _c(
         "button",
         {
@@ -66724,7 +66747,7 @@ var staticRenderFns = [
             "data-target": "#addHoursModal"
           }
         },
-        [_vm._v("\n                    Add Hours\n                ")]
+        [_vm._v("\n                    Add\n                ")]
       )
     ])
   },
@@ -66732,7 +66755,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", [
+    return _c("td", { staticClass: "table-secondary" }, [
       _c(
         "button",
         {
@@ -66743,7 +66766,7 @@ var staticRenderFns = [
             "data-target": "#editHoursModal"
           }
         },
-        [_vm._v("\n                    Edit Hours\n                ")]
+        [_vm._v("\n                    Edit\n                ")]
       )
     ])
   },
@@ -66751,9 +66774,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", [
+    return _c("td", { staticClass: "border-0" }, [
       _c("a", { staticClass: "btn btn-primary", attrs: { href: "#" } }, [
-        _vm._v("\n                    Delete Task\n                ")
+        _vm._v("\n                    Delete\n                ")
       ])
     ])
   }
@@ -66780,16 +66803,15 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", [
+    _c("div", { staticClass: "row" }, [
       _c(
         "div",
-        { staticClass: "d-inline" },
+        { staticClass: "d-inline col" },
         [
-          _vm._v("\n            Customer:\n            "),
           _c(
             "b-dropdown",
             {
-              staticClass: "m-md-2",
+              staticClass: "d-inline m-md-2",
               attrs: {
                 id: "projectCustomerDropdown",
                 text: _vm.currentcustomer
@@ -66801,51 +66823,40 @@ var render = function() {
               ])
             }),
             1
-          )
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "d-inline dropdown" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-secondary dropdown-toggle",
+                attrs: {
+                  type: "button",
+                  id: "projectStatus",
+                  "data-toggle": "dropdown",
+                  "aria-haspopup": "true",
+                  "aria-expanded": "false"
+                }
+              },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.currentproject ? "Status" : "Current Status") +
+                    "\n                "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _vm._m(0)
+          ])
         ],
         1
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "d-inline" }, [
-        _vm._v("\n            Project Status:\n            "),
-        _c("div", { staticClass: "d-inline dropdown" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-secondary dropdown-toggle",
-              attrs: {
-                type: "button",
-                id: "projectStatus",
-                "data-toggle": "dropdown",
-                "aria-haspopup": "true",
-                "aria-expanded": "false"
-              }
-            },
-            [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(
-                    _vm.currentproject
-                      ? "No Project Selected"
-                      : "Current Status"
-                  ) +
-                  "\n                "
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _vm._m(0)
-        ])
-      ]),
-      _vm._v(" "),
-      _c(
-        "a",
-        { staticClass: "d-inline btn btn-primary", attrs: { href: "#" } },
-        [_vm._v("Update Project")]
-      )
+      _vm._m(1)
     ]),
     _vm._v(" "),
-    _vm._m(1)
+    _vm._m(2)
   ])
 }
 var staticRenderFns = [
@@ -66874,45 +66885,60 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _vm._v("\n        Task Status:\n        "),
-      _c("div", { staticClass: "form-group form-check-inline" }, [
-        _c("input", {
-          staticClass: "form-check-input",
-          attrs: { type: "checkbox", id: "openFilter" }
-        }),
+    return _c("div", { staticClass: "d-inline col" }, [
+      _c("button", { staticClass: "d-inline btn btn-primary" }, [
+        _vm._v("Update Project")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "d-inline col" }, [
+        _vm._v("\n            Task Status:\n            "),
+        _c("div", { staticClass: "form-group form-check-inline" }, [
+          _c("input", {
+            staticClass: "form-check-input",
+            attrs: { type: "checkbox", id: "openFilter" }
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            { staticClass: "form-check-label", attrs: { for: "openFilter" } },
+            [_vm._v("Open")]
+          )
+        ]),
         _vm._v(" "),
-        _c(
-          "label",
-          { staticClass: "form-check-label", attrs: { for: "openFilter" } },
-          [_vm._v("Open")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group form-check-inline" }, [
-        _c("input", {
-          staticClass: "form-check-input",
-          attrs: { type: "checkbox", id: "closedFilter" }
-        }),
+        _c("div", { staticClass: "form-group form-check-inline" }, [
+          _c("input", {
+            staticClass: "form-check-input",
+            attrs: { type: "checkbox", id: "closedFilter" }
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            { staticClass: "form-check-label", attrs: { for: "closedFilter" } },
+            [_vm._v("Closed")]
+          )
+        ]),
         _vm._v(" "),
-        _c(
-          "label",
-          { staticClass: "form-check-label", attrs: { for: "closedFilter" } },
-          [_vm._v("Closed")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group form-check-inline" }, [
-        _c("input", {
-          staticClass: "form-check-input",
-          attrs: { type: "checkbox", id: "archivedFilter" }
-        }),
-        _vm._v(" "),
-        _c(
-          "label",
-          { staticClass: "form-check-label", attrs: { for: "archivedFilter" } },
-          [_vm._v("Archived")]
-        )
+        _c("div", { staticClass: "form-group form-check-inline" }, [
+          _c("input", {
+            staticClass: "form-check-input",
+            attrs: { type: "checkbox", id: "archivedFilter" }
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            {
+              staticClass: "form-check-label",
+              attrs: { for: "archivedFilter" }
+            },
+            [_vm._v("Archived")]
+          )
+        ])
       ])
     ])
   }
@@ -79118,10 +79144,10 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
   data: function data() {
     return {
       customers: [],
-      currentprojecttasks: [],
+      tasks: [],
       currentproject: [],
       currenttask: [],
-      currentcustomer: "No Project Selected"
+      currentcustomer: "Customer"
     };
   },
   methods: {
@@ -79133,9 +79159,9 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
 
         if (response.data.data) {
           console.log(response.data.data);
-          self.currentprojecttasks = response.data.data;
+          self.tasks = response.data.data;
         } else {
-          self.currentprojecttasks = [];
+          self.tasks = [];
         }
       })["catch"](function (e) {
         console.log(e);

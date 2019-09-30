@@ -31,6 +31,8 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('tasks-component', require('./components/TasksComponent.vue').default);
 Vue.component('tasks-header-component', require('./components/TasksHeaderComponent.vue').default);
 
+Vue.component('filter-component', require('./components/FilterComponent.vue').default);
+
 /**
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
@@ -41,14 +43,16 @@ const app = new Vue({
 
     data: () => ({
         customers: [],
+        statuses: [],
+        project: [],
+        customer: "Customer",
+        status: "Status",
         tasks: [],
-        currentproject: [],
-        currenttask: [],
-        currentcustomer: "Customer",
+        ctofilter: "",
     }),
 
     methods: {
-        getProjectTasks: function( id ) {
+        getTasks: function( id ) {
             let self = this;
             
             let current_path = "/tasks/" + id;
@@ -70,7 +74,7 @@ const app = new Vue({
 
             });
         },
-        getProjectCustomer: function( id ) {
+        getCustomer: function( id ) {
             let self = this;
             
             let current_path = "/customer/" + id;
@@ -81,9 +85,53 @@ const app = new Vue({
                     console.log( response );
                     if( response.data.data ) {
                         console.log( response.data.data );
-                        self.currentcustomer = response.data.data;
+                        self.customer = response.data.data;
                     } else {
-                        self.currentcustomer = [];
+                        self.customer = [];
+                    }
+                })
+
+                .catch( e => {
+                    console.log( e );
+
+            });
+        },
+        getStatus: function( id ) {
+            let self = this;
+            
+            let current_path = "/status/" + id;
+
+            HTTP.get( current_path )
+
+                .then( response => {
+                    console.log( response );
+                    if( response.data.data ) {
+                        console.log( response.data.data );
+                        self.status = response.data.data;
+                    } else {
+                        self.status = [];
+                    }
+                })
+
+                .catch( e => {
+                    console.log( e );
+
+            });
+        },
+        cfilter: function( ctofilter ) {
+            let self = this;
+            
+            let current_path = "/cfilter/" + ctofilter;
+
+            HTTP.get( current_path )
+
+                .then( response => {
+                    console.log( response );
+                    if( response.data.data ) {
+                        console.log( response.data.data );
+                        self.ctofilter = response.data.data;
+                    } else {
+                        self.ctofilter = [];
                     }
                 })
 

@@ -86,7 +86,7 @@ class StatusCore
         return $status;
     }
 
-    private static function getStatuses()
+    public static function getStatuses()
     {
         $statuses = [];
 

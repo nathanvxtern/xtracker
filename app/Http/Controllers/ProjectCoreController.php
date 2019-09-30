@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use App\Core\ProjectCore;
 use App\Core\TaskCore;
 use App\Core\CustomerCore;
 use App\Core\StatusCore;
+
 
 class ProjectCoreController extends APIController
 {
@@ -23,16 +23,28 @@ class ProjectCoreController extends APIController
         $minProjectId = ProjectCore::getMinProjectId();
         $maxProjectId = ProjectCore::getMaxProjectId();
         $projects = ProjectCore::getAllProjects( $customers, $minProjectId, $maxProjectId );
+        $statuses= StatusCore::getStatuses();
 
         return view( 'welcome', [
-            'projects' => $projects,
             'customers' => $customers,
-            'project' => null,
+            'projects' => $projects,
+            'statuses' => $statuses,
+            'ctofilter' => "",
         ]);
     }
 
+    public function filter( Request $request )
+    {
+        dd( $request );
+    }
+
+    public function cfilter( Request $request, $ctofilter )
+    {
+        $customer = "testCustomer";
+        return $this->return_success( $request, $customer );
+    }
+
     /**
-     * List the tasks.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -44,7 +56,17 @@ class ProjectCoreController extends APIController
     }
 
     /**
-     * List the tasks.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function status( Request $request, $id )
+    {
+        $status = StatusCore::getStatus( $id );
+        return $this->return_success( $request, $status );
+    }
+
+    /**
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

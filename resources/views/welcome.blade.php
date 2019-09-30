@@ -12,10 +12,10 @@
             <div class="col">
                 <div class="row">
                     <div class="d-inline col">
-                        <select name="customerFilter" id="customer" class="form-control">
-                            <option value=""> Customer </option>
+                        <select name="ctofilter" id="ctofilter" class="form-control" @change="cfilter( 'test' );">
+                            <option value="">Customer</option>
                                 @foreach ($customers as $customer)
-                                    <option value="{{ $customer->name }}">{{ $customer->name }}</option>
+                                    <option value="{{ $customer->name }}" >{{ $customer->name }}</option>
                                 @endforeach 
                         </select>
                     </div>
@@ -30,15 +30,19 @@
                         </div>
                     </div>
                     <div class="d-inline col">
-                        <a href="#" class="btn btn-primary">Filter</a>
+                        <a href="/filter" class="btn btn-primary">Filter</a>
+                        <filter-component :ctofilter="{{ json_encode( $ctofilter ) }}" v-bind:ctofilter="ctofilter">
+                        <filter-component>
                         <a href="#" class="btn btn-primary">Reset</a>
                     </div>
                 </div>
             </div>
             <div class="col">
                 <tasks-header-component :customers="{{ json_encode( $customers ) }}"
-                                        v-bind:currentproject="currentproject"
-                                        v-bind:currentcustomer="currentcustomer">
+                                        :statuses="{{ json_encode( $statuses ) }}"
+                                        v-bind:project="project"
+                                        v-bind:customer="customer"
+                                        v-bind:status="status">
                 <tasks-header-component>
             </div>
         </div>

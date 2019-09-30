@@ -9,7 +9,9 @@
         @foreach ( $projects as $project )
             <tr>
                 <th scope="row">
-                    <button type="button" class="btn btn-link font-weight-bold" @click="getProjectTasks( '{{ $project->id }}' ); getProjectCustomer( '{{ $project->id }}' );">
+                    <button type="button" class="btn btn-link font-weight-bold" @click="getTasks( '{{ $project->id }}' ); 
+                                                                                        getCustomer( '{{ $project->id }}' ); 
+                                                                                        getStatus( '{{ $project->id }}' );">
                         {{ $project->title }}
                     </button>
                 </th>

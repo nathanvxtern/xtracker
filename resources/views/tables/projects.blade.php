@@ -6,16 +6,16 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ( $projects as $project )
+        @foreach ( $data[ 'results' ][ 'projects' ] as $project )
             <tr>
                 <th scope="row">
-                    <button type="button" class="btn btn-link font-weight-bold" @click="getTasks( '{{ $project->id }}' ); 
-                                                                                        getCustomer( '{{ $project->id }}' ); 
-                                                                                        getStatus( '{{ $project->id }}' );">
-                        {{ $project->title }}
+                    <button type="button" class="btn btn-link font-weight-bold" @click="getTasks( '{{ $project[ 'projrowid' ] }}' ); 
+                                                                                        getCustomer( '{{ $project[ 'projrowid' ] }}' ); 
+                                                                                        getStatus( '{{ $project[ 'projrowid' ] }}' );">
+                        {{ $project[ 'title' ] }}
                     </button>
                 </th>
-                <td>{{ $project->customer }}</td>
+                <td>{{ $project[ 'customer' ][ 'name' ] }}</td>
             </tr>
         @endforeach
     </tbody>

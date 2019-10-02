@@ -48,7 +48,7 @@ const app = new Vue({
         customer: "Customer",
         status: "Status",
         tasks: [],
-        ctofilter: "",
+        ctofilter: "Customer",
     }),
 
     methods: {
@@ -120,7 +120,8 @@ const app = new Vue({
         },
         cfilter: function( ctofilter ) {
             let self = this;
-            
+
+            console.log( ctofilter );
             let current_path = "/cfilter/" + ctofilter;
 
             HTTP.get( current_path )

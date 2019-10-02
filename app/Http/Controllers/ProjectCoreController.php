@@ -7,7 +7,7 @@ use App\Core\ProjectCore;
 use App\Core\TaskCore;
 use App\Core\CustomerCore;
 use App\Core\StatusCore;
-
+use DOMDocument;
 
 class ProjectCoreController extends APIController
 {
@@ -29,19 +29,35 @@ class ProjectCoreController extends APIController
             'customers' => $customers,
             'projects' => $projects,
             'statuses' => $statuses,
-            'ctofilter' => "",
+            'ctofilter' => "Customer",
         ]);
     }
 
-    public function filter( Request $request )
+    public function filter( Request $request, $customerName )
     {
-        dd( $request );
+        $customer = [];
+
+        if ( $customerName == "Customer" ){
+            return redirect( '/index' );
+        } else {
+            $customer = CustomerCore::getCustomer( $customerName );
+        }
+
+        $customers = CustomerCore::getCustomers();
+        $projects = ProjectCore::getFilteredProjects( $customer );
+        $statuses= StatusCore::getStatuses();
+        
+        return view( 'welcome', [
+            'customers' => $customers,
+            'projects' => $projects,
+            'statuses' => $statuses,
+            'ctofilter' => "Customer",
+        ]);
     }
 
     public function cfilter( Request $request, $ctofilter )
     {
-        $customer = "testCustomer";
-        return $this->return_success( $request, $customer );
+        return $this->return_success( $request, $ctofilter );
     }
 
     /**

@@ -66670,7 +66670,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("Dummy")])
+  return _c("div")
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -79163,7 +79163,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       customer: "Customer",
       status: "Status",
       tasks: [],
-      ctofilter: ""
+      ctofilter: "Customer"
     };
   },
   methods: {
@@ -79217,6 +79217,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
     },
     cfilter: function cfilter(ctofilter) {
       var self = this;
+      console.log(ctofilter);
       var current_path = "/cfilter/" + ctofilter;
       HTTP.get(current_path).then(function (response) {
         console.log(response);

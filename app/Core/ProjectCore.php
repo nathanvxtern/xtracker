@@ -7,6 +7,69 @@ use \Illuminate\Database\QueryException;
 class ProjectCore
 {
 
+    /*
+    *
+    * Data Transform Functions
+    *
+    */
+
+    public function transform_project_collection( $rs )
+    {
+        return array_map( [ $this, 'transform_project_rec' ], $rs );
+    }
+
+    public function transform_project_rec( $rec )
+    {
+        return [
+            'custrowid'=>$rec->custrowid,
+            'projrowid'=>$rec->projrowid,
+            'title'=>$rec->title,
+            'status'=>$rec->projstatusrowid,
+            'createdate'=>$rec->createdate,
+        ];
+    }
+
+    /*
+     *
+     * Data Handlers.
+     * 
+     */
+
+    public function list()
+    {
+        $params = [];
+
+        $sql = "SELECT P.custrowid, P.projrowid, P.title, P.projstatusrowid, P.createdate
+                FROM projmaster P";
+       
+        try {
+            $rs = \DB::select( $sql, $params );
+        } catch ( \Illuminate\Database\QueryException $e ) {
+            \Log::error( $e->getMessage() );
+            return [];
+        } 
+
+        $projects = $this->transform_project_collection( $rs );
+
+        $customer_core = new CustomerCore();
+        $customers = $customer_core->list();
+        foreach( $projects as &$project ) {
+            foreach( $customers as $customer ) {
+                if ( $customer[ 'custrowid' ] == $project[ 'custrowid' ] ) {
+                    $project[ 'customer' ] = $customer;
+                }
+            }
+        }
+
+        return $projects;
+    }
+
+    /*
+     *
+     * Methods built prior to restructuring project to match XTERN style.
+     * 
+     */
+    
     public static function getAllProjects( $customers, $minProjectId, $maxProjectId )
     {
         $projects = [];
@@ -29,6 +92,11 @@ class ProjectCore
         }
 
         return $projects;
+    }
+
+    public static function getFilteredProjects( $customers )
+    {
+
     }
     
     public static function getMinProjectId()

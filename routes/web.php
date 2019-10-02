@@ -11,18 +11,18 @@
 |
 */
 
-/* Route to originally load the page. */
-Route::get('/', 'ProjectCoreController@index');
+Route::get('/', 'ProjectController@list');
+Route::get('/index', 'ProjectController@index');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource( 'projectCores', 'ProjectCoreController' );
+Route::resource( 'projectCores', 'ProjectController' );
 
 Route::get('/tasks/{id}', 'ProjectCoreController@tasks');
 Route::get('/customer/{id}', 'ProjectCoreController@customer');
 Route::get('/status/{id}', 'ProjectCoreController@status');
 
-Route::get( '/filter', 'ProjectCoreController@filter' );
+Route::get( '/filter/{customer}', 'ProjectCoreController@filter' );
 Route::get( '/cfilter/{ctofilter}', 'ProjectCoreController@cfilter' );
 

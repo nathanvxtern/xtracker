@@ -7,6 +7,54 @@ use \Illuminate\Database\QueryException;
 class CustomerCore
 {
 
+    /*
+    *
+    * Data Transform Functions
+    *
+    */
+
+    public function transform_customer_collection( $rs )
+    {
+        return array_map( [ $this, 'transform_customer_rec' ], $rs );
+    }
+
+    public function transform_customer_rec( $rec )
+    {
+        return [
+            'custrowid'=>$rec->custrowid,
+            'name'=>$rec->name,
+        ];
+    }
+
+    /*
+     *
+     * Data Handlers.
+     * 
+     */
+
+    public function list()
+    {
+        $params = [];
+
+        $sql = "SELECT C.custrowid, C.name
+                FROM custmaster C";
+       
+        try {
+            $rs = \DB::select( $sql, $params );
+        } catch ( \Illuminate\Database\QueryException $e ) {
+            \Log::error( $e->getMessage() );
+            return [];
+        } 
+
+        return $this->transform_customer_collection( $rs );
+    }
+
+    /*
+     *
+     * Methods built prior to restructuring project to match XTERN style.
+     * 
+     */
+
     public static function getCustomerNames( $projectIds, $customers )
     {
         $names = [];
@@ -98,6 +146,32 @@ class CustomerCore
         $custrowidRange = CustomerCore::getCustrowidRange();
         $maxCustrowid = $custrowidRange[ 1 ];
         return $maxCustrowid;
+    }
+
+    public static function getCustomer( $customerName )
+    {
+        $params = [
+            $customerName
+        ];
+
+        $customer = [];
+
+        $sql = "SELECT custrowid, name
+            FROM public.custmaster
+            WHERE name = ?
+        ";
+
+        try {
+            $customer = \DB::select( $sql, $params );
+        } catch ( QueryException $e ) {
+            dd( $e );
+        }
+
+        if ( !sizeof( $customer ) ) {
+            return [];
+        }
+
+        return $customer;
     }
 
     public static function getCustomers()

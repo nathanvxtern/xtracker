@@ -21,7 +21,7 @@
                 @include( 'tables.projects' )
             </div>
             <div class="col overflow-auto mb-3" style="max-height: 500;">
-                Tasks
+                <tasks-component v-bind:tasks="tasks"></tasks-component>
             </div>
         </div>
         <div class="row">

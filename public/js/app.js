@@ -66723,11 +66723,15 @@ var render = function() {
           _vm._v(" "),
           _c("td", { staticClass: "table-secondary" }),
           _vm._v(" "),
-          _c("td", { staticClass: "table-secondary" }, [_vm._v("Est.")]),
+          _c("td", { staticClass: "table-secondary" }, [
+            _vm._v(_vm._s(task.esthours))
+          ]),
           _vm._v(" "),
           _c("td", { staticClass: "table-secondary" }, [_vm._v("Used")]),
           _vm._v(" "),
-          _c("td", { staticClass: "table-secondary" }, [_vm._v("Rate")]),
+          _c("td", { staticClass: "table-secondary" }, [
+            _vm._v(_vm._s(task.billingrate))
+          ]),
           _vm._v(" "),
           _vm._m(1, true),
           _vm._v(" "),
@@ -79167,15 +79171,15 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
     };
   },
   methods: {
-    getTasks: function getTasks(id) {
+    tasklist: function tasklist(projrowid) {
       var self = this;
-      var current_path = "/tasks/" + id;
+      var current_path = "/tasks/" + projrowid;
       HTTP.get(current_path).then(function (response) {
         console.log(response);
 
         if (response.data.data) {
-          console.log(response.data.data);
-          self.tasks = response.data.data;
+          console.log(response.data.data.data.results.tasks);
+          self.tasks = response.data.data.data.results.tasks;
         } else {
           self.tasks = [];
         }

@@ -9,9 +9,7 @@
         @foreach ( $data[ 'results' ][ 'projects' ] as $project )
             <tr>
                 <th scope="row">
-                    <button type="button" class="btn btn-link font-weight-bold" @click="getTasks( '{{ $project[ 'projrowid' ] }}' ); 
-                                                                                        getCustomer( '{{ $project[ 'projrowid' ] }}' ); 
-                                                                                        getStatus( '{{ $project[ 'projrowid' ] }}' );">
+                    <button type="button" class="btn btn-link font-weight-bold" @click="tasklist( '{{ $project[ 'projrowid' ] }}' );">
                         {{ $project[ 'title' ] }}
                     </button>
                 </th>

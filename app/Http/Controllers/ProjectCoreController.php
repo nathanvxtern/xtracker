@@ -59,15 +59,10 @@ class ProjectCoreController extends APIController
     {
         return $this->return_success( $request, $ctofilter );
     }
-
-    /**
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function tasks( Request $request, $id )
+    
+    public function tasks( Request $request, $projrowid )
     {
-        $tasks = TaskCore::getProjectTasks( $id );
+        $tasks = TaskCore::getProjectTasks( $projrowid );
         return $this->return_success( $request, $tasks );
     }
 

@@ -52,18 +52,18 @@ const app = new Vue({
     }),
 
     methods: {
-        getTasks: function( id ) {
+        tasklist: function( projrowid ) {
             let self = this;
             
-            let current_path = "/tasks/" + id;
+            let current_path = "/tasks/" + projrowid;
 
             HTTP.get( current_path )
 
                 .then( response => {
                     console.log( response );
                     if( response.data.data ) {
-                        console.log( response.data.data );
-                        self.tasks = response.data.data;
+                        console.log( response.data.data.data.results.tasks );
+                        self.tasks = response.data.data.data.results.tasks;
                     } else {
                         self.tasks = [];
                     }

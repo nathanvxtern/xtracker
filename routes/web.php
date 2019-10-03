@@ -17,11 +17,11 @@ Route::get('/index', 'ProjectController@index');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource( 'projectCores', 'ProjectController' );
-
 Route::get('/tasks/{projrowid}', 'TaskController@list');
-Route::get('/customer/{id}', 'ProjectCoreController@customer');
-Route::get('/status/{id}', 'ProjectCoreController@status');
+Route::get('/customer/{projrowid}', 'ProjectController@get');
+Route::get('/status/{projrowid}', 'ProjectController@get');
+
+Route::resource( 'projects', 'ProjectController' );
 
 Route::get( '/filter/{customer}', 'ProjectCoreController@filter' );
 Route::get( '/cfilter/{ctofilter}', 'ProjectCoreController@cfilter' );

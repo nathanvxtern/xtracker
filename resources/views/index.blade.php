@@ -10,10 +10,16 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                Filter
+                @include( 'partials.pfilter' )
+                <filter-component :ctofilter="customer" v-bind:ctofilter="ctofilter"><filter-component>
             </div>
             <div class="col">
-                Tasks Header
+                <tasks-header-component :customers="currentObject.customers"
+                                        :statuses="currentObject.statuses"
+                                        v-bind:project="project"
+                                        v-bind:customer="customer"
+                                        v-bind:status="status">
+                <tasks-header-component>
             </div>
         </div>
         <div class="row">
@@ -42,15 +48,7 @@
 @section('pagescripts')
 
     <script>
-
         var currentObjectPHP = {!! json_encode( $data[ 'results' ] ) !!};
-
-        {{--var myData = "{!!  json_encode($data) !!}";
-            window.onload = function () {
-                console.log(myData);
-            }
-        --}}
-
     </script>
 
 @endsection

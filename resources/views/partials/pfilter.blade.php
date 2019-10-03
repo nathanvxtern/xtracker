@@ -1,10 +1,8 @@
 <div class="row">
     <div class="d-inline col">
         <select v-model="ctofilter" name="ctofilter" id="ctofilter" class="form-control" v-on:change="cfilter( ctofilter );">
-            <option value="Customer">Customer</option>
-                @foreach ( $customers as $customer )
-                    <option value="{{ $customer->name }}">{{ $customer->name }}</option>
-                @endforeach 
+            <option selected>Customer</option>
+            <option v-for="customer in currentObject.customers" :key="customer.custrowid">@{{ customer.name }}</option>
         </select>
     </div>
     <div class="d-inline col">

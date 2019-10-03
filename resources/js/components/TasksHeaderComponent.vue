@@ -2,15 +2,15 @@
     <div>
         <div class="row">
             <div class="d-inline col">
-                <select name="customerUpdate" id="c" class="form-control">
-                    <option value="">{{customer}}</option>
-                        <option v-for="c of customers" v-bind:key="c.id">{{ c.name }}</option>
+                <select name="customerUpdate" id="customerUpdate" class="form-control">
+                    <option value="" selected>Customer</option>
+                    <option v-for="customer of customers" v-bind:key="customer.custrowid">{{ customer.name }}</option>
                 </select>
             </div>
             <div class="d-inline col">
-                <select name="statusUpdate" id="s" class="form-control">
-                    <option value="">{{status}}</option>
-                        <option v-for="s of statuses" v-bind:key="s.projstatusrowid">{{ s.projstatus }}</option>
+                <select name="statusUpdate" id="statusUpdate" class="form-control">
+                    <option value="" selected>Status</option>
+                    <option v-for="status of statuses" v-bind:key="status.projstatusrowid">{{ status.projstatus }}</option>
                 </select>
             </div>
             <div class="d-inline col">

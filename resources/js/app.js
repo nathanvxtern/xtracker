@@ -42,6 +42,7 @@ const app = new Vue({
     el: '#app',
 
     data: () => ({
+        currentObject: typeof currentObjectPHP !== 'undefined' ? currentObjectPHP : [],
         customers: [],
         statuses: [],
         project: [],
@@ -52,7 +53,11 @@ const app = new Vue({
     }),
 
     methods: {
-        tasklist: function( projrowid ) {
+        debug: function() {
+            let self = this;
+            console.log( self.currentObject );
+        },
+        gettasks: function( projrowid ) {
             let self = this;
             
             let current_path = "/tasks/" + projrowid;
@@ -61,7 +66,7 @@ const app = new Vue({
 
                 .then( response => {
                     console.log( response );
-                    if( response.data.data ) {
+                    if( response.data.data.data.results.tasks ) {
                         console.log( response.data.data.data.results.tasks );
                         self.tasks = response.data.data.data.results.tasks;
                     } else {
@@ -74,18 +79,18 @@ const app = new Vue({
 
             });
         },
-        getCustomer: function( id ) {
+        getprojectcustomer: function( projrowid ) {
             let self = this;
             
-            let current_path = "/customer/" + id;
+            let current_path = "/customer/" + projrowid;
 
             HTTP.get( current_path )
 
                 .then( response => {
                     console.log( response );
-                    if( response.data.data ) {
-                        console.log( response.data.data );
-                        self.customer = response.data.data;
+                    if( response.data.data.data.results.project.customer.name ) {
+                        console.log( response.data.data.data.results.project.customer.name );
+                        self.customer = response.data.data.data.results.project.customer.name;
                     } else {
                         self.customer = [];
                     }
@@ -96,18 +101,18 @@ const app = new Vue({
 
             });
         },
-        getStatus: function( id ) {
+        getprojectstatus: function( projrowid ) {
             let self = this;
             
-            let current_path = "/status/" + id;
+            let current_path = "/status/" + projrowid;
 
             HTTP.get( current_path )
 
                 .then( response => {
                     console.log( response );
-                    if( response.data.data ) {
-                        console.log( response.data.data );
-                        self.status = response.data.data;
+                    if( response.data.data.data.results.project.status ) {
+                        console.log( response.data.data.data.results.project.status );
+                        self.status = response.data.data.data.results.project.status;
                     } else {
                         self.status = [];
                     }

@@ -3,47 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Core\ProjectCore;
-use App\Core\CustomerCore;
-use App\Core\StatusCore;
 
-class ProjectController extends APIController
+class StatusController extends APIController
 {
 
-    public function list()
+    public function status( Request $request, $projstatusrowid )
     {
-        $project_core = new ProjectCore();
-        $customer_core = new CustomerCore();
         $status_core = new StatusCore();
 
         $rec = array();
 
-        $rec[ 'results' ][ 'projects' ] = [];
-        $rec[ 'results' ][ 'customers' ] = [];
-        $rec[ 'results' ][ 'statuses' ] = [];
+        $rec[ 'results' ][ 'status' ] = [];
 
-        $rec[ 'results' ][ 'projects' ] = $project_core->list();
-        $rec[ 'results' ][ 'customers' ] = $customer_core->list();
-        $rec[ 'results' ][ 'statuses' ] = $status_core->list();
-
-        $pagevars = array();
-        $pagevars[ 'data' ] = array();
-        $pagevars[ 'data' ] = $rec;
-
-        // dd( $pagevars );
-
-        return view( 'index', $pagevars );
-    }
-
-    public function get( Request $request, $projrowid )
-    {
-        $project_core = new ProjectCore();
-
-        $rec = array();
-
-        $rec[ 'results' ][ 'project' ] = [];
-
-        $rec[ 'results' ][ 'project' ] = $project_core->get( $projrowid );        
+        $rec[ 'results' ][ 'status' ] = $status_core->get( $projstatusrowid );
 
         $pagevars = array();
         $pagevars[ 'data' ] = array();
@@ -51,7 +23,7 @@ class ProjectController extends APIController
 
         return $this->return_success( $request, $pagevars );
     }
-
+    
     /**
      * Display a listing of the resource.
      *

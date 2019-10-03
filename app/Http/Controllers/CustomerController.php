@@ -3,47 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Core\ProjectCore;
-use App\Core\CustomerCore;
-use App\Core\StatusCore;
 
-class ProjectController extends APIController
+class CustomerController extends APIController
 {
 
-    public function list()
+    public function customer( Request $request, $custrowid )
     {
-        $project_core = new ProjectCore();
         $customer_core = new CustomerCore();
-        $status_core = new StatusCore();
 
         $rec = array();
 
-        $rec[ 'results' ][ 'projects' ] = [];
-        $rec[ 'results' ][ 'customers' ] = [];
-        $rec[ 'results' ][ 'statuses' ] = [];
+        $rec[ 'results' ][ 'customer' ] = [];
 
-        $rec[ 'results' ][ 'projects' ] = $project_core->list();
-        $rec[ 'results' ][ 'customers' ] = $customer_core->list();
-        $rec[ 'results' ][ 'statuses' ] = $status_core->list();
-
-        $pagevars = array();
-        $pagevars[ 'data' ] = array();
-        $pagevars[ 'data' ] = $rec;
-
-        // dd( $pagevars );
-
-        return view( 'index', $pagevars );
-    }
-
-    public function get( Request $request, $projrowid )
-    {
-        $project_core = new ProjectCore();
-
-        $rec = array();
-
-        $rec[ 'results' ][ 'project' ] = [];
-
-        $rec[ 'results' ][ 'project' ] = $project_core->get( $projrowid );        
+        $rec[ 'results' ][ 'customer' ] = $customer_core->get( $custrowid );
 
         $pagevars = array();
         $pagevars[ 'data' ] = array();

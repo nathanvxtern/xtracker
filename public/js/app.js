@@ -66854,15 +66854,17 @@ var render = function() {
           "select",
           {
             staticClass: "form-control",
-            attrs: { name: "customerUpdate", id: "c" }
+            attrs: { name: "customerUpdate", id: "customerUpdate" }
           },
           [
-            _c("option", { attrs: { value: "" } }, [
-              _vm._v(_vm._s(_vm.customer))
+            _c("option", { attrs: { value: "", selected: "" } }, [
+              _vm._v("Customer")
             ]),
             _vm._v(" "),
-            _vm._l(_vm.customers, function(c) {
-              return _c("option", { key: c.id }, [_vm._v(_vm._s(c.name))])
+            _vm._l(_vm.customers, function(customer) {
+              return _c("option", { key: customer.custrowid }, [
+                _vm._v(_vm._s(customer.name))
+              ])
             })
           ],
           2
@@ -66874,16 +66876,16 @@ var render = function() {
           "select",
           {
             staticClass: "form-control",
-            attrs: { name: "statusUpdate", id: "s" }
+            attrs: { name: "statusUpdate", id: "statusUpdate" }
           },
           [
-            _c("option", { attrs: { value: "" } }, [
-              _vm._v(_vm._s(_vm.status))
+            _c("option", { attrs: { value: "", selected: "" } }, [
+              _vm._v("Status")
             ]),
             _vm._v(" "),
-            _vm._l(_vm.statuses, function(s) {
-              return _c("option", { key: s.projstatusrowid }, [
-                _vm._v(_vm._s(s.projstatus))
+            _vm._l(_vm.statuses, function(status) {
+              return _c("option", { key: status.projstatusrowid }, [
+                _vm._v(_vm._s(status.projstatus))
               ])
             })
           ],
@@ -79161,6 +79163,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
   el: '#app',
   data: function data() {
     return {
+      currentObject: typeof currentObjectPHP !== 'undefined' ? currentObjectPHP : [],
       customers: [],
       statuses: [],
       project: [],
@@ -79171,13 +79174,17 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
     };
   },
   methods: {
-    tasklist: function tasklist(projrowid) {
+    debug: function debug() {
+      var self = this;
+      console.log(self.currentObject);
+    },
+    gettasks: function gettasks(projrowid) {
       var self = this;
       var current_path = "/tasks/" + projrowid;
       HTTP.get(current_path).then(function (response) {
         console.log(response);
 
-        if (response.data.data) {
+        if (response.data.data.data.results.tasks) {
           console.log(response.data.data.data.results.tasks);
           self.tasks = response.data.data.data.results.tasks;
         } else {
@@ -79187,15 +79194,15 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
         console.log(e);
       });
     },
-    getCustomer: function getCustomer(id) {
+    getprojectcustomer: function getprojectcustomer(projrowid) {
       var self = this;
-      var current_path = "/customer/" + id;
+      var current_path = "/customer/" + projrowid;
       HTTP.get(current_path).then(function (response) {
         console.log(response);
 
-        if (response.data.data) {
-          console.log(response.data.data);
-          self.customer = response.data.data;
+        if (response.data.data.data.results.project.customer.name) {
+          console.log(response.data.data.data.results.project.customer.name);
+          self.customer = response.data.data.data.results.project.customer.name;
         } else {
           self.customer = [];
         }
@@ -79203,15 +79210,15 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
         console.log(e);
       });
     },
-    getStatus: function getStatus(id) {
+    getprojectstatus: function getprojectstatus(projrowid) {
       var self = this;
-      var current_path = "/status/" + id;
+      var current_path = "/status/" + projrowid;
       HTTP.get(current_path).then(function (response) {
         console.log(response);
 
-        if (response.data.data) {
-          console.log(response.data.data);
-          self.status = response.data.data;
+        if (response.data.data.data.results.project.status) {
+          console.log(response.data.data.data.results.project.status);
+          self.status = response.data.data.data.results.project.status;
         } else {
           self.status = [];
         }

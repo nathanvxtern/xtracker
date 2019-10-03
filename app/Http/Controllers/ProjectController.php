@@ -46,6 +46,26 @@ class ProjectController extends APIController
             dump( $request->segment( 4 ) );
             $pclosedtofilter = $request->segment( 4 );
         }
+        foreach ( $pagevars[ 'data' ][ 'results' ][ 'projects' ] as $projectKey => &$project ) {
+            if ( !is_null( $ctofilter ) ) {
+                if ( $project[ 'customer' ][ 'name' ] != $ctofilter ) {
+                    unset( $pagevars[ 'data' ][ 'results' ][ 'projects' ][ $projectKey ] );
+                    continue;
+                }
+            }
+            if ( $popentofilter && !$pclosedtofilter ) {
+                if ( $project[ 'status' ] != "Open" ) {
+                    unset( $pagevars[ 'data' ][ 'results' ][ 'projects' ][ $projectKey ] );
+                    continue;
+                }
+            }
+            if ( $pclosedtofilter && !$popentofilter ) {
+                if ( $project[ 'status' ] != "Closed" ) {
+                    unset( $pagevars[ 'data' ][ 'results' ][ 'projects' ][ $projectKey ] );
+                    continue;
+                }
+            }
+        }
 
         // dd( $pagevars );
 

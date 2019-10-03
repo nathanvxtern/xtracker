@@ -12,6 +12,7 @@ class ProjectController extends APIController
 
     public function list( Request $request )
     {
+
         $project_core = new ProjectCore();
         $customer_core = new CustomerCore();
         $status_core = new StatusCore();
@@ -29,6 +30,22 @@ class ProjectController extends APIController
         $pagevars = array();
         $pagevars[ 'data' ] = array();
         $pagevars[ 'data' ] = $rec;
+
+        $ctofilter = null;
+        $popentofilter = null;
+        $pclosedtofilter = null;        
+        if ( !is_null( $request->segment( 2 ) ) ) {
+            dump( $request->segment( 2 ) );
+            $ctofilter = $request->segment( 2 );
+        }
+        if ( !is_null( $request->segment( 3 ) ) ) {
+            dump( $request->segment( 3 ) );
+            $popentofilter = $request->segment( 3 );
+        }
+        if ( !is_null( $request->segment( 4 ) ) ) {
+            dump( $request->segment( 4 ) );
+            $pclosedtofilter = $request->segment( 4 );
+        }
 
         // dd( $pagevars );
 

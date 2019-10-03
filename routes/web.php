@@ -23,5 +23,5 @@ Route::get('/status/{projrowid}', 'ProjectController@get');
 
 Route::resource( 'projects', 'ProjectController' );
 
-Route::get( '/filter/{customer}/{popentofilter}/{pclosedtofilter}', 'ProjectController@filter' );
+Route::get( '/filter/{customer}/{popentofilter}/{pclosedtofilter}', 'ProjectController@list' );
 

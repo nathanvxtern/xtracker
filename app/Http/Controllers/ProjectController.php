@@ -33,7 +33,17 @@ class ProjectController extends APIController
 
         $ctofilter = null;
         $popentofilter = null;
-        $pclosedtofilter = null;        
+        $pclosedtofilter = null;
+        $popenid = null;
+        $pclosedid = null;
+        foreach ( $pagevars[ 'data' ][ 'results' ][ 'statuses' ] as $status ) {
+            if ( $status[ 'projstatus' ] == "Closed" ) {
+                $pclosedid = $status[ 'projstatusrowid' ];
+            }
+            if ( $status[ 'projstatus' ] == "Open" ) {
+                $popenid = $status[ 'projstatusrowid' ];
+            }
+        }
         if ( !is_null( $request->segment( 2 ) ) ) {
             dump( $request->segment( 2 ) );
             $ctofilter = $request->segment( 2 );
@@ -47,20 +57,20 @@ class ProjectController extends APIController
             $pclosedtofilter = $request->segment( 4 );
         }
         foreach ( $pagevars[ 'data' ][ 'results' ][ 'projects' ] as $projectKey => &$project ) {
-            if ( !is_null( $ctofilter ) ) {
+            if ( !is_null( $ctofilter ) && $ctofilter != "Customer" ) {
                 if ( $project[ 'customer' ][ 'name' ] != $ctofilter ) {
                     unset( $pagevars[ 'data' ][ 'results' ][ 'projects' ][ $projectKey ] );
                     continue;
                 }
             }
-            if ( $popentofilter && !$pclosedtofilter ) {
-                if ( $project[ 'status' ] != "Open" ) {
+            if ( ( $popentofilter == "true" ) && ( $pclosedtofilter == "false" ) ) {
+                if ( $project[ 'status' ] != $popenid ) {
                     unset( $pagevars[ 'data' ][ 'results' ][ 'projects' ][ $projectKey ] );
                     continue;
                 }
             }
-            if ( $pclosedtofilter && !$popentofilter ) {
-                if ( $project[ 'status' ] != "Closed" ) {
+            if ( ( $pclosedtofilter == "true" ) && ( $popentofilter == "false" ) ) {
+                if ( $project[ 'status' ] != $pclosedid ) {
                     unset( $pagevars[ 'data' ][ 'results' ][ 'projects' ][ $projectKey ] );
                     continue;
                 }

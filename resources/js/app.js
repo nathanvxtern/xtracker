@@ -50,6 +50,8 @@ const app = new Vue({
         status: "Status",
         tasks: [],
         ctofilter: "Customer",
+        popentofilter: false,
+        pclosedtofilter: false,
     }),
 
     methods: {
@@ -125,26 +127,20 @@ const app = new Vue({
         },
         cfilter: function( ctofilter ) {
             let self = this;
-
             console.log( ctofilter );
-            let current_path = "/cfilter/" + ctofilter;
-
-            HTTP.get( current_path )
-
-                .then( response => {
-                    console.log( response );
-                    if( response.data.data ) {
-                        console.log( response.data.data );
-                        self.ctofilter = response.data.data;
-                    } else {
-                        self.ctofilter = [];
-                    }
-                })
-
-                .catch( e => {
-                    console.log( e );
-
-            });
+            self.ctofilter = ctofilter;
+        },
+        popenfilter: function( popentofilter ) {
+            let self = this;
+            console.log( self.popentofilter );
+            self.popentofilter = ( !popentofilter );
+            console.log( self.popentofilter );
+        },
+        pclosedfilter: function( pclosedtofilter ) {
+            let self = this;
+            console.log( self.pclosedtofilter );
+            self.pclosedtofilter = ( !pclosedtofilter );
+            console.log( self.pclosedtofilter );
         },
     }
 });

@@ -7,12 +7,12 @@
     </div>
     <div class="d-inline col">
         <div class="form-group form-check-inline">
-            <input type="checkbox" class="form-check-input" id="openFilter">
-            <label class="form-check-label" for="openFilter">Open</label>
+            <input type="checkbox" class="form-check-input" id="popentofilter" v-on:change="popenfilter( popentofilter );">
+            <label class="form-check-label" for="popentofilter">Open</label>
         </div>
         <div class="form-group form-check-inline">
-            <input type="checkbox" class="form-check-input" id="closedFilter">
-            <label class="form-check-label" for="closedFilter">Closed</label>
+            <input type="checkbox" class="form-check-input" id="pclosedtofilter" v-on:change="pclosedfilter( pclosedtofilter );">
+            <label class="form-check-label" for="pclosedtofilter">Closed</label>
         </div>
     </div>
     <div class="d-inline col">

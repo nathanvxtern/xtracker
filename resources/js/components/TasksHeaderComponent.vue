@@ -3,14 +3,14 @@
         <div class="row">
             <div class="d-inline col">
                 <select name="customerUpdate" id="customerUpdate" class="form-control">
-                    <option value="" selected>Customer</option>
-                    <option v-for="customer of customers" v-bind:key="customer.custrowid">{{ customer.name }}</option>
+                    <option value="customer" selected>{{ customer }}</option>
+                    <option v-for="customer of customers" :key="customer.custrowid">{{ customer.name }}</option>
                 </select>
             </div>
             <div class="d-inline col">
                 <select name="statusUpdate" id="statusUpdate" class="form-control">
-                    <option value="" selected>Status</option>
-                    <option v-for="status of statuses" v-bind:key="status.projstatusrowid">{{ status.projstatus }}</option>
+                    <option value="status" selected>{{ status }}</option>
+                    <option v-for="status of statuses" :key="status.projstatusrowid">{{ status.projstatus }}</option>
                 </select>
             </div>
             <div class="d-inline col">

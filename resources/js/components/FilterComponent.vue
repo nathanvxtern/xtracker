@@ -4,7 +4,10 @@
 
 <script>
     export default {
-        props:[ 'ctofilter',
+        props:[ 
+            'ctofilter',
+            'popentofilter',
+            'pclosedtofilter',
         ]
     }
 </script>

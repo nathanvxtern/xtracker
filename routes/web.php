@@ -24,5 +24,4 @@ Route::get('/status/{projrowid}', 'ProjectController@get');
 Route::resource( 'projects', 'ProjectController' );
 
 Route::get( '/filter/{customer}', 'ProjectCoreController@filter' );
-Route::get( '/cfilter/{ctofilter}', 'ProjectCoreController@cfilter' );
 

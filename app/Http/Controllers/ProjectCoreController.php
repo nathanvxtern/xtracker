@@ -54,11 +54,6 @@ class ProjectCoreController extends APIController
             'ctofilter' => "Customer",
         ]);
     }
-
-    public function cfilter( Request $request, $ctofilter )
-    {
-        return $this->return_success( $request, $ctofilter );
-    }
     
     public function tasks( Request $request, $projrowid )
     {

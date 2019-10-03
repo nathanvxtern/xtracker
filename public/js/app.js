@@ -1876,7 +1876,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['ctofilter']
+  props: ['ctofilter', 'popentofilter', 'pclosedtofilter']
 });
 
 /***/ }),
@@ -66857,8 +66857,8 @@ var render = function() {
             attrs: { name: "customerUpdate", id: "customerUpdate" }
           },
           [
-            _c("option", { attrs: { value: "", selected: "" } }, [
-              _vm._v("Customer")
+            _c("option", { attrs: { value: "customer", selected: "" } }, [
+              _vm._v(_vm._s(_vm.customer))
             ]),
             _vm._v(" "),
             _vm._l(_vm.customers, function(customer) {
@@ -66879,8 +66879,8 @@ var render = function() {
             attrs: { name: "statusUpdate", id: "statusUpdate" }
           },
           [
-            _c("option", { attrs: { value: "", selected: "" } }, [
-              _vm._v("Status")
+            _c("option", { attrs: { value: "status", selected: "" } }, [
+              _vm._v(_vm._s(_vm.status))
             ]),
             _vm._v(" "),
             _vm._l(_vm.statuses, function(status) {
@@ -79170,7 +79170,9 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       customer: "Customer",
       status: "Status",
       tasks: [],
-      ctofilter: "Customer"
+      ctofilter: "Customer",
+      popentofilter: false,
+      pclosedtofilter: false
     };
   },
   methods: {
@@ -79229,19 +79231,19 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
     cfilter: function cfilter(ctofilter) {
       var self = this;
       console.log(ctofilter);
-      var current_path = "/cfilter/" + ctofilter;
-      HTTP.get(current_path).then(function (response) {
-        console.log(response);
-
-        if (response.data.data) {
-          console.log(response.data.data);
-          self.ctofilter = response.data.data;
-        } else {
-          self.ctofilter = [];
-        }
-      })["catch"](function (e) {
-        console.log(e);
-      });
+      self.ctofilter = ctofilter;
+    },
+    popenfilter: function popenfilter(popentofilter) {
+      var self = this;
+      console.log(self.popentofilter);
+      self.popentofilter = !popentofilter;
+      console.log(self.popentofilter);
+    },
+    pclosedfilter: function pclosedfilter(pclosedtofilter) {
+      var self = this;
+      console.log(self.pclosedtofilter);
+      self.pclosedtofilter = !pclosedtofilter;
+      console.log(self.pclosedtofilter);
     }
   }
 });

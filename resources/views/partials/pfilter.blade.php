@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="d-inline col">
-        <a href="/filter/Customer" class="btn btn-primary">Filter</a>
-        <a href="#" class="btn btn-primary">Reset</a>
+        <a :href="'/filter/'+ctofilter+'/'+popentofilter+'/'+pclosedtofilter" class="btn btn-primary">Filter</a>
+        <a href="/" class="btn btn-primary">Reset</a>
     </div>
 </div>

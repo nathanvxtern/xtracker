@@ -10,7 +10,7 @@ use App\Core\StatusCore;
 class ProjectController extends APIController
 {
 
-    public function list()
+    public function list( Request $request )
     {
         $project_core = new ProjectCore();
         $customer_core = new CustomerCore();

@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col">
                 @include( 'partials.pfilter' )
-                <filter-component :ctofilter="ctofilter" :popentofilter="popentofilter" :pclosedtofilter="pclosedtofilter"><filter-component>
+                <pfilter-component :ctofilter="ctofilter" :popentofilter="popentofilter" :pclosedtofilter="pclosedtofilter"><pfilter-component>
             </div>
             <div class="col">
                 <tasks-header-component :customers="currentObject.customers"

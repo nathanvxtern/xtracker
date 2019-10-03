@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col">
                 @include( 'partials.pfilter' )
-                <filter-component :ctofilter="{{ json_encode( $ctofilter ) }}" v-bind:ctofilter="ctofilter"><filter-component>
+                <pfilter-component :ctofilter="{{ json_encode( $ctofilter ) }}" v-bind:ctofilter="ctofilter"><pfilter-component>
             </div>
             <div class="col">
                 <tasks-header-component :customers="{{ json_encode( $customers ) }}"

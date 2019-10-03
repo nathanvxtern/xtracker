@@ -31,7 +31,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('tasks-component', require('./components/TasksComponent.vue').default);
 Vue.component('tasks-header-component', require('./components/TasksHeaderComponent.vue').default);
 
-Vue.component('filter-component', require('./components/FilterComponent.vue').default);
+Vue.component('pfilter-component', require('./components/PFilterComponent.vue').default);
 
 /**
  * the page. Then, you may begin adding components to this application
@@ -129,6 +129,7 @@ const app = new Vue({
             let self = this;
             console.log( ctofilter );
             self.ctofilter = ctofilter;
+            
         },
         popenfilter: function( popentofilter ) {
             let self = this;

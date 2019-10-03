@@ -47,7 +47,7 @@ const app = new Vue({
         statuses: [],
         project: [],
         customer: "Customer",
-        projstatus: "Status",
+        status: "Status",
         tasks: [],
         ctofilter: "Customer",
         popentofilter: false,
@@ -106,17 +106,17 @@ const app = new Vue({
         getprojectstatus: function( projrowid ) {
             let self = this;
             
-            let current_path = "/projstatus/" + projrowid;
+            let current_path = "/status/" + projrowid;
 
             HTTP.get( current_path )
 
                 .then( response => {
                     console.log( response );
-                    if( response.data.data.data.results.project.projstatus ) {
-                        console.log( response.data.data.data.results.project.projstatus );
-                        self.projstatus = response.data.data.data.results.project.projstatus;
+                    if( response.data.data.data.results.project.status ) {
+                        console.log( response.data.data.data.results.project.status );
+                        self.status = response.data.data.data.results.project.status;
                     } else {
-                        self.projstatus = [];
+                        self.status = [];
                     }
                 })
 

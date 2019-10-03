@@ -9,8 +9,8 @@
             </div>
             <div class="d-inline col">
                 <select name="statusUpdate" id="statusUpdate" class="form-control">
-                    <option value="status" selected>{{ projstatus }}</option>
-                    <option v-for="status of statuses" :key="status.projstatusrowid">{{ projstatus.projstatus }}</option>
+                    <option value="status" selected>{{ status }}</option>
+                    <option v-for="status of statuses" :key="status.projstatusrowid">{{ status.projstatus }}</option>
                 </select>
             </div>
             <div class="d-inline col">

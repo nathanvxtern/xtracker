@@ -79168,6 +79168,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       statuses: [],
       projrowid: [],
       tasks: [],
+      hours: [],
       customer: "Customer",
       status: "Status",
       ctofilter: "Customer",
@@ -79191,6 +79192,22 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
           self.tasks = response.data.data.data.results.tasks;
         } else {
           self.tasks = [];
+        }
+      })["catch"](function (e) {
+        console.log(e);
+      });
+    },
+    gethours: function gethours(taskrowid) {
+      var self = this;
+      var current_path = "/hours/" + taskrowid;
+      HTTP.get(current_path).then(function (response) {
+        console.log(response);
+
+        if (response.data.data.data.results.hours) {
+          console.log(response.data.data.data.results.hours);
+          self.hours = response.data.data.data.results.hours;
+        } else {
+          self.hours = [];
         }
       })["catch"](function (e) {
         console.log(e);

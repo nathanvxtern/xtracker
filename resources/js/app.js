@@ -47,6 +47,7 @@ const app = new Vue({
         statuses: [],
         projrowid: [],
         tasks: [],
+        hours: [],
         customer: "Customer",
         status: "Status",
         ctofilter: "Customer",
@@ -75,6 +76,29 @@ const app = new Vue({
                         self.tasks = response.data.data.data.results.tasks;
                     } else {
                         self.tasks = [];
+                    }
+                })
+
+                .catch( e => {
+                    console.log( e );
+
+            });
+        },
+        gethours: function( taskrowid )
+        {
+            let self = this;
+            
+            let current_path = "/hours/" + taskrowid;
+
+            HTTP.get( current_path )
+
+                .then( response => {
+                    console.log( response );
+                    if( response.data.data.data.results.hours ) {
+                        console.log( response.data.data.data.results.hours );
+                        self.hours = response.data.data.data.results.hours;
+                    } else {
+                        self.hours = [];
                     }
                 })
 

@@ -18,6 +18,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/tasks/{projrowid}', 'TaskController@list');
+Route::get('/hours/{taskrowid}', 'HourController@list');
 Route::get('/customer/{projrowid}', 'ProjectController@get');
 Route::get('/status/{projrowid}', 'ProjectController@get');
 

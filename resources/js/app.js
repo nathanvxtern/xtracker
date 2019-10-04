@@ -45,21 +45,23 @@ const app = new Vue({
         currentObject: typeof currentObjectPHP !== 'undefined' ? currentObjectPHP : [],
         customers: [],
         statuses: [],
-        project: [],
+        projrowid: [],
+        tasks: [],
         customer: "Customer",
         status: "Status",
-        tasks: [],
         ctofilter: "Customer",
         popentofilter: false,
         pclosedtofilter: false,
     }),
 
     methods: {
-        debug: function() {
+        debug: function()
+        {
             let self = this;
             console.log( self.currentObject );
         },
-        gettasks: function( projrowid ) {
+        gettasks: function( projrowid )
+        {
             let self = this;
             
             let current_path = "/tasks/" + projrowid;
@@ -81,7 +83,8 @@ const app = new Vue({
 
             });
         },
-        getprojectcustomer: function( projrowid ) {
+        getprojectcustomer: function( projrowid )
+        {
             let self = this;
             
             let current_path = "/customer/" + projrowid;
@@ -103,7 +106,8 @@ const app = new Vue({
 
             });
         },
-        getprojectstatus: function( projrowid ) {
+        getprojectstatus: function( projrowid )
+        {
             let self = this;
             
             let current_path = "/status/" + projrowid;
@@ -125,23 +129,25 @@ const app = new Vue({
 
             });
         },
-        cfilter: function( ctofilter ) {
+        setprojrowid: function( projrowid )
+        {
             let self = this;
-            console.log( ctofilter );
+            self.projrowid = projrowid;
+        },
+        cfilter: function( ctofilter )
+        {
+            let self = this;
             self.ctofilter = ctofilter;
-            
         },
-        popenfilter: function( popentofilter ) {
+        popenfilter: function( popentofilter )
+        {
             let self = this;
-            console.log( self.popentofilter );
             self.popentofilter = ( !popentofilter );
-            console.log( self.popentofilter );
         },
-        pclosedfilter: function( pclosedtofilter ) {
+        pclosedfilter: function( pclosedtofilter )
+        {
             let self = this;
-            console.log( self.pclosedtofilter );
             self.pclosedtofilter = ( !pclosedtofilter );
-            console.log( self.pclosedtofilter );
         },
     }
 });

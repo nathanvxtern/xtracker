@@ -16,7 +16,7 @@
             <div class="col">
                 <tasks-header-component :customers="currentObject.customers"
                                         :statuses="currentObject.statuses"
-                                        v-bind:project="project"
+                                        v-bind:projrowid="projrowid"
                                         v-bind:customer="customer"
                                         v-bind:status="status">
                 <tasks-header-component>

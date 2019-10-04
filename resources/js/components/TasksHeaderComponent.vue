@@ -39,11 +39,11 @@
 
 <script>
     export default {
-        props:[ 'customers', 
-            'project',
+        props:[ 'customers',
+            'statuses',
+            'projrowid',
             'customer',
             'status',
-            'statuses',
         ]
     }
 </script>

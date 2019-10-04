@@ -11,7 +11,8 @@
                 <th scope="row">
                     <button type="button" class="btn btn-link font-weight-bold" @click="gettasks( '{{ $project[ 'projrowid' ] }}' );
                                                                                         getprojectcustomer( '{{ $project[ 'projrowid' ] }}' );
-                                                                                        getprojectstatus( '{{ $project[ 'projrowid' ] }}' );">
+                                                                                        getprojectstatus( '{{ $project[ 'projrowid' ] }}' );
+                                                                                        setprojrowid( '{{ $project[ 'projrowid' ] }}' );">
                         {{ $project[ 'title' ] }}
                     </button>
                 </th>

@@ -1990,7 +1990,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['customers', 'project', 'customer', 'status', 'statuses']
+  props: ['customers', 'statuses', 'projrowid', 'customer', 'status']
 });
 
 /***/ }),
@@ -79166,10 +79166,10 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       currentObject: typeof currentObjectPHP !== 'undefined' ? currentObjectPHP : [],
       customers: [],
       statuses: [],
-      project: [],
+      projrowid: [],
+      tasks: [],
       customer: "Customer",
       status: "Status",
-      tasks: [],
       ctofilter: "Customer",
       popentofilter: false,
       pclosedtofilter: false
@@ -79228,22 +79228,21 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
         console.log(e);
       });
     },
+    setprojrowid: function setprojrowid(projrowid) {
+      var self = this;
+      self.projrowid = projrowid;
+    },
     cfilter: function cfilter(ctofilter) {
       var self = this;
-      console.log(ctofilter);
       self.ctofilter = ctofilter;
     },
     popenfilter: function popenfilter(popentofilter) {
       var self = this;
-      console.log(self.popentofilter);
       self.popentofilter = !popentofilter;
-      console.log(self.popentofilter);
     },
     pclosedfilter: function pclosedfilter(pclosedtofilter) {
       var self = this;
-      console.log(self.pclosedtofilter);
       self.pclosedtofilter = !pclosedtofilter;
-      console.log(self.pclosedtofilter);
     }
   }
 });

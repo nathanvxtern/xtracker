@@ -21,8 +21,9 @@ Route::get('/tasks/{projrowid}', 'TaskController@list');
 Route::get('/hours/{taskrowid}', 'HourController@list');
 Route::get('/customer/{projrowid}', 'ProjectController@get');
 Route::get('/status/{projrowid}', 'ProjectController@get');
+Route::post('/projects', 'ProjectController@createnew');
 
-Route::resource( 'projects', 'ProjectController' );
+// Route::resource( 'projects', 'ProjectController' );
 
 Route::get( '/filter/{customer}/{popentofilter}/{pclosedtofilter}', 'ProjectController@list' );
 

@@ -103,4 +103,31 @@ class ProjectCore
         return $project;
     }
 
+    public function create($custrowid=null,$title=null)
+    {
+        $params = [
+            $custrowid,
+            $title,
+        ];
+        $sql = "INSERT INTO projmaster(custrowid,title)
+                VALUES(?,?)";
+        try {
+            \DB::insert($sql, $params);
+        } catch (\Illuminate\Database\QueryException $e) {
+            \Log::info($e->getMessage());
+            return false;
+        }
+        $sql = "SELECT IDENT_CURRENT('projmaster') as id;";
+        try {
+            $res = \DB::select($sql);
+        } catch (\Illuminate\Database\QueryException $e) {
+            \Log::info($e->getMessage());
+            return false;
+        }
+        if(!empty($res)){
+            return $res[0]->id;
+        } else{
+            return false;
+        }
+    }
 }

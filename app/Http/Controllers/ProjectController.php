@@ -45,15 +45,12 @@ class ProjectController extends APIController
             }
         }
         if ( !is_null( $request->segment( 2 ) ) ) {
-            dump( $request->segment( 2 ) );
             $ctofilter = $request->segment( 2 );
         }
         if ( !is_null( $request->segment( 3 ) ) ) {
-            dump( $request->segment( 3 ) );
             $popentofilter = $request->segment( 3 );
         }
         if ( !is_null( $request->segment( 4 ) ) ) {
-            dump( $request->segment( 4 ) );
             $pclosedtofilter = $request->segment( 4 );
         }
         foreach ( $pagevars[ 'data' ][ 'results' ][ 'projects' ] as $projectKey => &$project ) {
@@ -90,13 +87,34 @@ class ProjectController extends APIController
 
         $rec[ 'results' ][ 'project' ] = [];
 
-        $rec[ 'results' ][ 'project' ] = $project_core->get( $projrowid );        
+        $rec[ 'results' ][ 'project' ] = $project_core->get( $projrowid );
 
         $pagevars = array();
         $pagevars[ 'data' ] = array();
         $pagevars[ 'data' ] = $rec;
 
         return $this->return_success( $request, $pagevars );
+    }
+
+    public function createnew(Request $request){
+
+        $title = $request->input('title',null);
+        $custrowid = $request->input('custrowid',null);
+
+        $project_core = new ProjectCore();
+        $project_id = $project_core->create($custrowid,$title);
+
+        $varsToDump = [];
+        array_push( $varsToDump, "something" );
+        array_push( $varsToDump, "something else" );
+        array_push( $varsToDump, $project_id );
+        dump( $varsToDump );
+
+        if(!empty($project_id)) {
+            return redirect("/index");
+        } else {
+            return redirect ("/index");
+        }
     }
 
     /**

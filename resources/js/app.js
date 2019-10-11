@@ -173,6 +173,22 @@ const app = new Vue({
             let self = this;
             self.pclosedtofilter = ( !pclosedtofilter );
         },
+        createproject: function( title, custrowid )
+        {
+            let current_path = "/projects/create/" + title + "/" + custrowid;
+
+            HTTP.get( current_path )
+
+                .then( response => {
+                    console.log( response );
+                    console.log( "response above should contain newly added id" );
+                })
+
+                .catch( e => {
+                    console.log( e );
+
+            });
+        },
     }
 });
 

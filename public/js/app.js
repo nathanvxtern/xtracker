@@ -79260,6 +79260,15 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
     pclosedfilter: function pclosedfilter(pclosedtofilter) {
       var self = this;
       self.pclosedtofilter = !pclosedtofilter;
+    },
+    createproject: function createproject(title, custrowid) {
+      var current_path = "/projects/create/" + title + "/" + custrowid;
+      HTTP.get(current_path).then(function (response) {
+        console.log(response);
+        console.log("response above should contain newly added id");
+      })["catch"](function (e) {
+        console.log(e);
+      });
     }
   }
 });

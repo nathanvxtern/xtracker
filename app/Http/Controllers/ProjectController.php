@@ -110,11 +110,7 @@ class ProjectController extends APIController
         array_push( $varsToDump, $project_id );
         dump( $varsToDump );
 
-        if(!empty($project_id)) {
-            return redirect("/index");
-        } else {
-            return redirect ("/index");
-        }
+        return redirect("/");
     }
 
     /**

@@ -105,12 +105,16 @@ class ProjectCore
 
     public function create($custrowid=null,$title=null)
     {
+        $open = 10;
+        $projstatusrowid = $open;
+
         $params = [
             $custrowid,
             $title,
+            $projstatusrowid,
         ];
-        $sql = "INSERT INTO projmaster(custrowid,title)
-                VALUES(?,?)";
+        $sql = "INSERT INTO projmaster(custrowid,title,projstatusrowid)
+                VALUES(?,?,?)";
         try {
             \DB::insert($sql, $params);
         } catch (\Illuminate\Database\QueryException $e) {

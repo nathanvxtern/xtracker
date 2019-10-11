@@ -79265,7 +79265,16 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       var current_path = "/projects/create/" + title + "/" + custrowid;
       HTTP.get(current_path).then(function (response) {
         console.log(response);
-        console.log("response above should contain newly added id");
+        console.log("response should contain newly added id");
+      })["catch"](function (e) {
+        console.log(e);
+      });
+    },
+    createtask: function createtask(billingrate, projstatusrowid, projtyperowid, projrowid, title) {
+      var current_path = "/tasks/create/" + billingrate + "/" + projstatusrowid + "/" + projtyperowid + "/" + projrowid + "/" + title;
+      HTTP.get(current_path).then(function (response) {
+        console.log(response);
+        console.log("response should contain newly added id");
       })["catch"](function (e) {
         console.log(e);
       });

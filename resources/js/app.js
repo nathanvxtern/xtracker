@@ -181,7 +181,23 @@ const app = new Vue({
 
                 .then( response => {
                     console.log( response );
-                    console.log( "response above should contain newly added id" );
+                    console.log( "response should contain newly added id" );
+                })
+
+                .catch( e => {
+                    console.log( e );
+
+            });
+        },
+        createtask: function(billingrate,projstatusrowid,projtyperowid,projrowid,title)
+        {
+            let current_path = "/tasks/create/" + billingrate + "/" + projstatusrowid + "/" + projtyperowid + "/" + projrowid + "/" + title;
+
+            HTTP.get( current_path )
+
+                .then( response => {
+                    console.log( response );
+                    console.log( "response should contain newly added id" );
                 })
 
                 .catch( e => {

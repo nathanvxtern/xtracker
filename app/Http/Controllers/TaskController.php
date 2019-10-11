@@ -25,6 +25,27 @@ class TaskController extends APIController
         return $this->return_success( $request, $pagevars );
     }
 
+    public function createnew(Request $request)
+    {
+
+        $title = $request->input('title',null);
+        $projrowid = $request->input('projrowid',null);
+        $billingrate = $request->input('billingrate',null);
+        $projstatusrowid = $request->input('projstatusrowid',null);
+        $projtyperowid = $request->input('projtyperowid',null);
+
+        $task_core = new TaskCore();
+        $task_id = $task_core->create($billingrate,$projstatusrowid,$projtyperowid,$projrowid,$title);
+
+        $varsToDump = [];
+        array_push( $varsToDump, "something" );
+        array_push( $varsToDump, "something else" );
+        array_push( $varsToDump, $task_id );
+        dump( $varsToDump );
+
+        return redirect("/");
+    }
+
     /**
      * Display a listing of the resource.
      *

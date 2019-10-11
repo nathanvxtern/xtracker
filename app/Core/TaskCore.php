@@ -59,5 +59,36 @@ class TaskCore
 
         return $this->transform_task_collection( $rs );
     }
-    
+
+    public function create($billingrate=null,$projstatusrowid=null,$projtyperowid=null,$projrowid=null,$title=null)
+    {
+
+        $params = [
+            $billingrate,
+            $projstatusrowid,
+            $projtyperowid,
+            $projrowid,
+            $title
+        ];
+        $sql = "INSERT INTO taskmaster(billingrate,projstatusrowid,projtyperowid,projrowid,title)
+                VALUES(?,?,?,?,?)";
+        try {
+            \DB::insert($sql, $params);
+        } catch (\Illuminate\Database\QueryException $e) {
+            \Log::info($e->getMessage());
+            return false;
+        }
+        $sql = "SELECT IDENT_CURRENT('taskmaster') as id;";
+        try {
+            $res = \DB::select($sql);
+        } catch (\Illuminate\Database\QueryException $e) {
+            \Log::info($e->getMessage());
+            return false;
+        }
+        if(!empty($res)){
+            return $res[0]->id;
+        } else{
+            return false;
+        }
+    }
 }

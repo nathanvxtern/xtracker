@@ -111,6 +111,7 @@ class ProjectCore
         ];
         $sql = "INSERT INTO projmaster(custrowid,title)
                 VALUES(?,?)";
+                /* branchtest */
         try {
             \DB::insert($sql, $params);
         } catch (\Illuminate\Database\QueryException $e) {

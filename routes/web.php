@@ -23,6 +23,7 @@ Route::get('/customer/{projrowid}', 'ProjectController@get');
 Route::get('/status/{projrowid}', 'ProjectController@get');
 Route::post('/projects', 'ProjectController@createnew');
 Route::post('/tasks', 'TaskController@createnew');
+Route::post('/hours', 'HourController@createnew');
 
 // Route::resource( 'projects', 'ProjectController' );
 

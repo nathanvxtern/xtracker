@@ -78,4 +78,38 @@ class HourCore
         return $this->transform_hour_collection( $rs );
     }
 
+    public function create($taskrowid=null,$numhours=null,$custrowid=null,$notes=null,$invoiceno=null,$dateentered=null,$user_id=null)
+    {
+
+        $params = [
+            $custrowid,
+            $taskrowid,
+            $notes,
+            $invoiceno,
+            $numhours,
+            $dateentered,
+            $user_id
+        ];
+        $sql = "INSERT INTO projhours(custrowid,taskrowid,notes,invoiceno,numhours,dateentered,user_id)
+                VALUES(?,?,?,?,?,?,?)";
+        try {
+            \DB::insert($sql, $params);
+        } catch (\Illuminate\Database\QueryException $e) {
+            \Log::info($e->getMessage());
+            return false;
+        }
+        $sql = "SELECT IDENT_CURRENT('projhours') as id;";
+        try {
+            $res = \DB::select($sql);
+        } catch (\Illuminate\Database\QueryException $e) {
+            \Log::info($e->getMessage());
+            return false;
+        }
+        if(!empty($res)){
+            return $res[0]->id;
+        } else{
+            return false;
+        }
+    }
+
 }

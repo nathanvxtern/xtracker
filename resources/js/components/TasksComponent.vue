@@ -21,7 +21,7 @@
                 </th>
                 <td class="table-secondary"></td>
                 <td class="table-secondary">{{ task.esthours }}</td>
-                <td class="table-secondary">Used</td>
+                <td class="table-secondary">{{ task.usedhrs }}</td>
                 <td class="table-secondary">{{ task.billingrate }}</td>
                 <td class="table-secondary">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addHoursModal">

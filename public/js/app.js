@@ -66727,7 +66727,9 @@ var render = function() {
             _vm._v(_vm._s(task.esthours))
           ]),
           _vm._v(" "),
-          _c("td", { staticClass: "table-secondary" }, [_vm._v("Used")]),
+          _c("td", { staticClass: "table-secondary" }, [
+            _vm._v(_vm._s(task.usedhrs))
+          ]),
           _vm._v(" "),
           _c("td", { staticClass: "table-secondary" }, [
             _vm._v(_vm._s(task.billingrate))

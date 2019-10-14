@@ -25,6 +25,24 @@ class HourController extends APIController
         return $this->return_success( $request, $pagevars );
     }
 
+    public function createnew(Request $request)
+    {
+
+        $taskrowid = $request->input('taskrowid',null);
+        $numhours = $request->input('numhours',null);
+
+        $hour_core = new HourCore();
+        $hour_id = $hour_core->create($taskrowid,$numhours);
+
+        $varsToDump = [];
+        array_push( $varsToDump, "something" );
+        array_push( $varsToDump, "something else" );
+        array_push( $varsToDump, $hour_id );
+        dump( $varsToDump );
+
+        return redirect("/");
+    }
+
     /**
      * Display a listing of the resource.
      *

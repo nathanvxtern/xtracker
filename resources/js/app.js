@@ -133,7 +133,7 @@ const app = new Vue({
         getprojectstatus: function( projrowid )
         {
             let self = this;
-            
+
             let current_path = "/status/" + projrowid;
 
             HTTP.get( current_path )

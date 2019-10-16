@@ -47,6 +47,8 @@ const app = new Vue({
         statuses: [],
         projrowid: [],
         tasks: [],
+        projstatusrowid: 0,
+        projtyperowid: 0,
         hours: [],
         customer: "Customer",
         status: "Status",
@@ -205,6 +207,11 @@ const app = new Vue({
 
             });
         },
+        populatetaskmodal: function(projstatusrowid,projtyperowid)
+        {
+            let self = this;
+            self.projstatusrowid = projstatusrowid;
+            self.projtyperowid = projtyperowid;
+        }
     }
 });
-

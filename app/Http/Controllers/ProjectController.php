@@ -74,7 +74,7 @@ class ProjectController extends APIController
             }
         }
 
-        // dd( $pagevars );
+        // dump( $pagevars );
 
         return view( 'index', $pagevars );
     }
@@ -103,12 +103,6 @@ class ProjectController extends APIController
 
         $project_core = new ProjectCore();
         $project_id = $project_core->create($custrowid,$title);
-
-        $varsToDump = [];
-        array_push( $varsToDump, "something" );
-        array_push( $varsToDump, "something else" );
-        array_push( $varsToDump, $project_id );
-        dump( $varsToDump );
 
         return redirect("/");
     }

@@ -27,7 +27,7 @@
                 @include( 'tables.projects' )
             </div>
             <div class="col overflow-auto mb-3" style="max-height: 500;">
-                <tasks-component v-bind:tasks="tasks"></tasks-component>
+                <tasks-component v-bind:tasks="tasks" :projstatusrowid="projstatusrowid" :projtyperowid="projtyperowid"></tasks-component>
             </div>
         </div>
         <div class="row">
@@ -37,10 +37,10 @@
                 </button>
             </div>
             <div class="col">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal"l>
                 Add Task
                 </button>
-            </div>                    
+            </div>
         </div>
     </div>
 @endsection

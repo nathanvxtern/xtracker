@@ -1935,8 +1935,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['tasks']
+  props: ['tasks', 'projstatusrowid', 'projtyperowid']
 });
 
 /***/ }),
@@ -66721,6 +66723,10 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
+          _c("td", { staticClass: "table-primary" }, [
+            _vm._v(_vm._s(task.taskrowid))
+          ]),
+          _vm._v(" "),
           _c("td", { staticClass: "table-secondary" }),
           _vm._v(" "),
           _c("td", { staticClass: "table-secondary" }, [
@@ -66754,6 +66760,8 @@ var staticRenderFns = [
     return _c("thead", [
       _c("tr", [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Task")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("tid")]),
         _vm._v(" "),
         _c("th", { staticClass: "table-secondary", attrs: { scope: "col" } }, [
           _vm._v("Hours:")
@@ -79170,6 +79178,8 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       statuses: [],
       projrowid: [],
       tasks: [],
+      projstatusrowid: 0,
+      projtyperowid: 0,
       hours: [],
       customer: "Customer",
       status: "Status",
@@ -79280,6 +79290,11 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       })["catch"](function (e) {
         console.log(e);
       });
+    },
+    populatetaskmodal: function populatetaskmodal(projstatusrowid, projtyperowid) {
+      var self = this;
+      self.projstatusrowid = projstatusrowid;
+      self.projtyperowid = projtyperowid;
     }
   }
 });

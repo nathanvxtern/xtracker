@@ -98,8 +98,6 @@ class ProjectCore
         $status = $status_core->get( $project[ 'status' ] );
         $project[ 'status' ] = $status[ 0 ][ 'projstatus' ];
 
-        dump( $project );
-
         return $project;
     }
 

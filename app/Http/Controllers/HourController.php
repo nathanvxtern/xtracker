@@ -34,12 +34,6 @@ class HourController extends APIController
         $hour_core = new HourCore();
         $hour_id = $hour_core->create($taskrowid,$numhours);
 
-        $varsToDump = [];
-        array_push( $varsToDump, "something" );
-        array_push( $varsToDump, "something else" );
-        array_push( $varsToDump, $hour_id );
-        dump( $varsToDump );
-
         return redirect("/");
     }
 

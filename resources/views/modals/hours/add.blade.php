@@ -13,7 +13,7 @@
                                   <div>
                                       <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
                                           <label for="taskrowid">taskrowid</label>
-                                          <input type="text" class="form-control" id="create-link-taskrowid" name="taskrowid" placeholder="Taskrowid">
+                                          <input type="text" class="form-control" id="create-link-taskrowid" name="taskrowid" placeholder="tid">
                                       </div>
                                       <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
                                           <label for="numhours">numhours</label>

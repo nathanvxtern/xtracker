@@ -37,12 +37,6 @@ class TaskController extends APIController
         $task_core = new TaskCore();
         $task_id = $task_core->create($billingrate,$projstatusrowid,$projtyperowid,$projrowid,$title);
 
-        $varsToDump = [];
-        array_push( $varsToDump, "something" );
-        array_push( $varsToDump, "something else" );
-        array_push( $varsToDump, $task_id );
-        dump( $varsToDump );
-
         return redirect("/");
     }
 

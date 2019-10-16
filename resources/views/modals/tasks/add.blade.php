@@ -13,19 +13,19 @@
                                 <div class="row form-group">
                                     <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
                                         <label for="billingrate">Billing Rate</label>
-                                        <input type="text" class="form-control" id="create-link-billingrate" name="billingrate" placeholder="Billingrate">
+                                        <input type="text" class="form-control" id="create-link-billingrate" name="billingrate" placeholder="100">
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                                        <label for="projstatusrowid">Project Status Code</label>
-                                        <input type="text" class="form-control" id="create-link-projstatusrowid" name="projstatusrowid" placeholder="Projstatusrowid">
+                                        <label for="projstatusrowid">Status Code</label>
+                                        <input type="text" class="form-control" id="create-link-projstatusrowid" name="projstatusrowid" placeholder="10">
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
                                         <label for="projtyperowid">Project Type Code</label>
-                                        <input type="text" class="form-control" id="projtyperowid" name="projtyperowid" placeholder="Projtyperowid">
+                                        <input type="text" class="form-control" id="projtyperowid" name="projtyperowid" placeholder="8">
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
                                         <label for="projrowid">Project Row Id</label>
-                                        <input type="text" class="form-control" id="create-link-projrowid" name="projrowid" placeholder="Projectrowid">
+                                        <input type="text" class="form-control" id="create-link-projrowid" name="projrowid" placeholder="pid">
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
                                         <label for="title">Task Title</label>

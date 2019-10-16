@@ -32,7 +32,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#projectModal">
+                <button type="button" class="btn btn-primary" data-customers="currentObject.customers" data-toggle="modal" data-target="#projectModal">
                 Add Project
                 </button>
             </div>
@@ -46,7 +46,6 @@
 @endsection
 
 @section('pagescripts')
-
     <script>
         var currentObjectPHP = {!! json_encode( $data[ 'results' ] ) !!};
     </script>

@@ -28,14 +28,14 @@ class TaskController extends APIController
     public function createnew(Request $request)
     {
 
-        $title = $request->input('title',null);
+        $taskname = $request->input('taskname',null);
         $projrowid = $request->input('projrowid',null);
         $billingrate = $request->input('billingrate',null);
         $projstatusrowid = $request->input('projstatusrowid',null);
         $projtyperowid = $request->input('projtyperowid',null);
 
         $task_core = new TaskCore();
-        $task_id = $task_core->create($billingrate,$projstatusrowid,$projtyperowid,$projrowid,$title);
+        $task_id = $task_core->create($billingrate,$projstatusrowid,$projtyperowid,$projrowid,$taskname);
 
         return redirect("/");
     }

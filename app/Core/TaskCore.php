@@ -75,7 +75,7 @@ class TaskCore
         return $this->transform_task_collection( $rs );
     }
 
-    public function create($billingrate=null,$projstatusrowid=null,$projtyperowid=null,$projrowid=null,$title=null)
+    public function create($billingrate=null,$projstatusrowid=null,$projtyperowid=null,$projrowid=null,$taskname=null)
     {
 
         $params = [
@@ -83,7 +83,7 @@ class TaskCore
             $projstatusrowid,
             $projtyperowid,
             $projrowid,
-            $title
+            $taskname
         ];
         $sql = "INSERT INTO taskmaster(billingrate,projstatusrowid,projtyperowid,projrowid,title)
                 VALUES(?,?,?,?,?)";

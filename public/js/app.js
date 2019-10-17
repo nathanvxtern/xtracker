@@ -1938,7 +1938,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['tasks', 'projstatusrowid', 'projtyperowid']
+  props: ['tasks', 'projstatusrowid', 'projtyperowid', 'taskrowidadd'],
+  methods: {
+    populatehourmodal: function populatehourmodal(taskrowidadd) {
+      var self = this.$parent;
+      self.taskrowidadd = taskrowidadd;
+      console.log(self.taskrowidadd);
+    }
+  }
 });
 
 /***/ }),
@@ -66741,11 +66748,29 @@ var render = function() {
             _vm._v(_vm._s(task.billingrate))
           ]),
           _vm._v(" "),
+          _c("td", { staticClass: "table-secondary" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary",
+                attrs: {
+                  type: "button",
+                  "data-toggle": "modal",
+                  "data-target": "#addHoursModal"
+                },
+                on: {
+                  click: function($event) {
+                    return _vm.populatehourmodal(task.taskrowid)
+                  }
+                }
+              },
+              [_vm._v("\n                    Add\n                ")]
+            )
+          ]),
+          _vm._v(" "),
           _vm._m(1, true),
           _vm._v(" "),
-          _vm._m(2, true),
-          _vm._v(" "),
-          _vm._m(3, true)
+          _vm._m(2, true)
         ])
       }),
       0
@@ -66785,25 +66810,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { staticClass: "border-0" })
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "table-secondary" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary",
-          attrs: {
-            type: "button",
-            "data-toggle": "modal",
-            "data-target": "#addHoursModal"
-          }
-        },
-        [_vm._v("\n                    Add\n                ")]
-      )
     ])
   },
   function() {
@@ -79178,6 +79184,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       statuses: [],
       projrowid: [],
       projrowidadd: null,
+      taskrowidadd: null,
       tasks: [],
       projstatusrowid: 0,
       projtyperowid: 0,
@@ -79194,6 +79201,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       var self = this;
       console.log(self.currentObject);
       console.log(self.projrowidadd);
+      console.log(self.taskrowidadd);
     },
     gettasks: function gettasks(projrowid) {
       var self = this;
@@ -79297,11 +79305,6 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       var self = this;
       self.projrowidadd = projrowidadd;
       console.log(projrowidadd);
-    },
-    populatehourmodal: function populatehourmodal(taskrowidadd) {
-      var self = this;
-      self.taskrowidadd = taskrowrowidadd;
-      console.log(taskrowidadd);
     }
   }
 });

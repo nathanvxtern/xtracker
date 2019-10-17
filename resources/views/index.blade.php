@@ -26,7 +26,7 @@
                 @include( 'tables.projects' )
             </div>
             <div class="col overflow-auto mb-3" style="max-height: 500;">
-                <tasks-component v-bind:tasks="tasks" :projstatusrowid="projstatusrowid" :projtyperowid="projtyperowid"></tasks-component>
+                <tasks-component v-bind:tasks="tasks" :taskrowidadd="taskrowidadd" :projstatusrowid="projstatusrowid" :projtyperowid="projtyperowid"></tasks-component>
             </div>
         </div>
         <div class="row">

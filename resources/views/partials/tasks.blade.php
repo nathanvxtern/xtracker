@@ -1,5 +1,4 @@
-<template>
-    <table class="table">
+<table class="table">
         <thead>
             <tr>
                 <th scope="col">Task</th>
@@ -26,7 +25,7 @@
                 <td class="table-secondary">{{ task.usedhrs }}</td>
                 <td class="table-secondary">{{ task.billingrate }}</td>
                 <td class="table-secondary">
-                    <button @click="populatehourmodal( task.taskrowid )" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addHoursModal">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addHoursModal">
                         Add
                     </button>
                 </td>
@@ -43,22 +42,3 @@
             </tr>
         </tbody>
     </table>
-</template>
-
-<script>
-    export default {
-        props:[ 'tasks',
-            'projstatusrowid',
-            'projtyperowid',
-            'taskrowidadd',
-        ],
-        methods: {
-            populatehourmodal: function(taskrowidadd)
-            {
-                let self = this.$parent;
-                self.taskrowidadd = taskrowidadd;
-                console.log( self.taskrowidadd );
-            },
-        }
-    }
-</script>

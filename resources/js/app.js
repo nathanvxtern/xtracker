@@ -47,6 +47,7 @@ const app = new Vue({
         statuses: [],
         projrowid: [],
         projrowidadd: null,
+        taskrowidadd: null,
         tasks: [],
         projstatusrowid: 0,
         projtyperowid: 0,
@@ -64,6 +65,7 @@ const app = new Vue({
             let self = this;
             console.log( self.currentObject );
             console.log( self.projrowidadd );
+            console.log( self.taskrowidadd );
         },
         gettasks: function( projrowid )
         {
@@ -214,12 +216,6 @@ const app = new Vue({
             let self = this;
             self.projrowidadd = projrowidadd;
             console.log( projrowidadd );
-        },
-        populatehourmodal: function(taskrowidadd)
-        {
-            let self = this;
-            self.taskrowidadd = taskrowrowidadd;
-            console.log( taskrowidadd );
         },
     }
 });

@@ -1,13 +1,12 @@
-@include('modals.project')
-@include('modals.tasks.add')
-@include('modals.tasks.edit')
-@include('modals.hours.add')
-@include('modals.hours.edit')
 
 @extends('layouts.app')
 
 @section('content')
     <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+            </div>
+        </div>
         <div class="row">
             <div class="col">
                 @include( 'partials.pfilter' )
@@ -37,11 +36,18 @@
                 </button>
             </div>
             <div class="col">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal"l>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal">
                 Add Task
                 </button>
             </div>
         </div>
+
+        @include('modals.project')
+        @include('modals.tasks.add')
+        @include('modals.tasks.edit')
+        @include('modals.hours.add')
+        @include('modals.hours.edit')
+
     </div>
 @endsection
 

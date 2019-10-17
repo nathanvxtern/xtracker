@@ -44,8 +44,7 @@
                                 </div>
                                 <div class="row form-group">
                                   <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                                      <label for="projrowid">pid:</label>
-                                      <input type="text" class="form-control" id="create-link-projrowid" name="projrowid" placeholder="pid">
+                                      <input v-model="projrowidadd" type="hidden" class="form-control" id="create-link-projrowid" name="projrowid">
                                   </div>
                                 </div>
           </form>
@@ -56,12 +55,6 @@
                           data-form-id="create_tasks_form"
                           data-modal-id="create-tasks-modal">Submit</button>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button class="btn btn-primary" type="submit" form="create_task_form"
-                        data-form-id="create_task_form"
-                        data-modal-id="create-task-modal">Submit</button>
       </div>
     </div>
   </div>

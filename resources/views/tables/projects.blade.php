@@ -4,7 +4,6 @@
             <th scope="col">Customer</th>
             <th scope="col">cid</th>
             <th scope="col">Project</th>
-            <th scope="col">pid</th>
         </tr>
     </thead>
     <tbody>
@@ -17,11 +16,10 @@
                                                                                         getprojectcustomer( '{{ $project[ 'projrowid' ] }}' );
                                                                                         getprojectstatus( '{{ $project[ 'projrowid' ] }}' );
                                                                                         setprojrowid( '{{ $project[ 'projrowid' ] }}' );
-                                                                                        populatetaskmodal('10','8');">
+                                                                                        populatetaskmodal( '{{ $project[ 'projrowid' ] }}' );">
                         {{ $project[ 'title' ] }}
                     </button>
                 </th>
-                <td>{{ $project[ 'projrowid' ] }}</td>
             </tr>
         @endforeach
     </tbody>

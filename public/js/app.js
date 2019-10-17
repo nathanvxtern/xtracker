@@ -79177,6 +79177,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       customers: [],
       statuses: [],
       projrowid: [],
+      projrowidadd: null,
       tasks: [],
       projstatusrowid: 0,
       projtyperowid: 0,
@@ -79192,6 +79193,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
     debug: function debug() {
       var self = this;
       console.log(self.currentObject);
+      console.log(self.projrowidadd);
     },
     gettasks: function gettasks(projrowid) {
       var self = this;
@@ -79291,10 +79293,15 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
         console.log(e);
       });
     },
-    populatetaskmodal: function populatetaskmodal(projstatusrowid, projtyperowid) {
+    populatetaskmodal: function populatetaskmodal(projrowidadd) {
       var self = this;
-      self.projstatusrowid = projstatusrowid;
-      self.projtyperowid = projtyperowid;
+      self.projrowidadd = projrowidadd;
+      console.log(projrowidadd);
+    },
+    populatehourmodal: function populatehourmodal(taskrowidadd) {
+      var self = this;
+      self.taskrowidadd = taskrowrowidadd;
+      console.log(taskrowidadd);
     }
   }
 });

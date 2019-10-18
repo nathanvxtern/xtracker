@@ -1935,8 +1935,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['tasks', 'projstatusrowid', 'projtyperowid', 'taskrowidadd'],
   methods: {
@@ -66730,10 +66728,6 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("td", { staticClass: "table-primary" }, [
-            _vm._v(_vm._s(task.taskrowid))
-          ]),
-          _vm._v(" "),
           _c("td", { staticClass: "table-secondary" }),
           _vm._v(" "),
           _c("td", { staticClass: "table-secondary" }, [
@@ -66785,8 +66779,6 @@ var staticRenderFns = [
     return _c("thead", [
       _c("tr", [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Task")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("tid")]),
         _vm._v(" "),
         _c("th", { staticClass: "table-secondary", attrs: { scope: "col" } }, [
           _vm._v("Hours:")

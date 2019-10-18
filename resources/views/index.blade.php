@@ -22,10 +22,31 @@
             </div>
         </div>
         <div class="row">
-            <div class="col overflow-auto mb-3" style="max-height: 500;">
-                @include( 'tables.projects' )
+            <div class="col overflow-auto mb-3 " style="height:500;">
+                <div class="row">
+                    <div class="col">Customer</div>
+                    <div class="col">cid</div>
+                    <div class="col">Project</div>
+                </div>
+
+                @foreach ( $data[ 'results' ][ 'projects' ] as $project )
+                    <div class="row">
+                        <div class="col">{{ $project[ 'customer' ][ 'name' ] }}</div>
+                        <div class="col">{{ $project[ 'customer' ][ 'custrowid' ] }}</div>
+                        <div class="col">
+                            <button type="button" class="btn btn-link font-weight-bold" @click="gettasks( '{{ $project[ 'projrowid' ] }}' );
+                                                                                                getprojectcustomer( '{{ $project[ 'projrowid' ] }}' );
+                                                                                                getprojectstatus( '{{ $project[ 'projrowid' ] }}' );
+                                                                                                setprojrowid( '{{ $project[ 'projrowid' ] }}' );
+                                                                                                populatetaskmodal( '{{ $project[ 'projrowid' ] }}' );">
+                                {{ $project[ 'title' ] }}
+                            </button>
+                        </div>
+                    </div>
+                @endforeach
+
             </div>
-            <div class="col overflow-auto mb-3" style="max-height: 500;">
+            <div class="col overflow-auto mb-3" style="height:500;">
                 <tasks-component v-bind:tasks="tasks" :taskrowidadd="taskrowidadd" :projstatusrowid="projstatusrowid" :projtyperowid="projtyperowid"></tasks-component>
             </div>
         </div>

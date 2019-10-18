@@ -3,7 +3,6 @@
         <thead>
             <tr>
                 <th scope="col">Task</th>
-                <th scope="col">tid</th>
                 <th scope="col" class="table-secondary">Hours:</th>
                 <th scope="col" class="table-secondary">Est.</th>
                 <th scope="col" class="table-secondary">Used</th>
@@ -20,7 +19,6 @@
                         {{ task.title }}
                     </a>
                 </th>
-                <td class="table-primary">{{ task.taskrowid }}</td>
                 <td class="table-secondary"></td>
                 <td class="table-secondary">{{ task.esthours }}</td>
                 <td class="table-secondary">{{ task.usedhrs }}</td>

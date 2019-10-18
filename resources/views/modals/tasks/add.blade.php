@@ -1,4 +1,3 @@
-<!-- Rate that works 100 type that works 8 status that works 10 -->
 <div class="modal fade" id="addTaskModal" tabindex="-1" role="dialog" aria-labelledby="addTaskModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -26,17 +25,17 @@
                                 <div class="row form-group">
                                     <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
                                         <label for="billingrate">Rate/hr:</label>
-                                        <input type="text" class="form-control" id="create-link-billingrate" name="billingrate" placeholder="Rate/hr">
+                                        <input type="text" class="form-control" id="create-link-billingrate" name="billingrate" placeholder="100">
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
                                         <label for="projtyperowid">Type:</label>
-                                        <input type="text" class="form-control" id="projtyperowid" name="projtyperowid" placeholder="Type">
+                                        <input type="text" class="form-control" id="projtyperowid" name="projtyperowid" placeholder="8">
                                     </div>
                                 </div>
                                 <div class="row form-group">
                                     <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
                                         <label for="projstatusrowid">Status:</label>
-                                        <input type="text" class="form-control" id="create-link-projstatusrowid" name="projstatusrowid" placeholder="Status">
+                                        <input type="text" class="form-control" id="create-link-projstatusrowid" name="projstatusrowid" placeholder="10">
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
                                         <label for="custponumber">PO Number:</label>

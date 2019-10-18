@@ -66924,7 +66924,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "d-inline col" }, [
-        _vm._v("\n            Filter Tasks:\n            "),
+        _vm._v("\n            Task Status:\n            "),
         _c("div", { staticClass: "form-group form-check-inline" }, [
           _c("input", {
             staticClass: "form-check-input",
@@ -79177,6 +79177,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       projrowid: [],
       projrowidadd: null,
       taskrowidadd: null,
+      newprojectcustomer: null,
       tasks: [],
       projstatusrowid: 0,
       projtyperowid: 0,

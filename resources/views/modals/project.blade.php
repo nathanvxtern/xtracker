@@ -26,6 +26,13 @@
                                       <label for="custrowid">Customer ID</label>
                                       <input type="text" class="form-control" id="custrowid" name="custrowid" placeholder="Customer ID">
                                   </div>
+                                  <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
+                                      <label for="newprojectstatus">Status</label>
+                                      <select v-model="newprojectstatus" name="newprojectstatus" id="newprojectstatus" class="form-control">
+                                          <option selected>Status</option>
+                                          <option v-for="status in currentObject.statuses" :key="status.projstatusrowid">@{{ status.projstatus + ", " + status.projstatusrowid }}</option>
+                                    </select>
+                                  </div>
                               </div>
         </form>
       </div>

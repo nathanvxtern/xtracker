@@ -48,6 +48,7 @@ const app = new Vue({
         projrowid: [],
         projrowidadd: null,
         taskrowidadd: null,
+        newprojectcustomer: null,
         tasks: [],
         projstatusrowid: 0,
         projtyperowid: 0,

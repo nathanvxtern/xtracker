@@ -19,7 +19,7 @@
         </div>
         <div class="row">
             <div class="d-inline col">
-                Filter Tasks:
+                Task Status:
                 <div class="form-group form-check-inline">
                     <input type="checkbox" class="form-check-input" id="openFilter">
                     <label class="form-check-label" for="openFilter">Open</label>

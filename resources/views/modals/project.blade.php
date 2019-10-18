@@ -16,6 +16,13 @@
                                       <input type="text" class="form-control" id="create-link-title" name="title" placeholder="Title">
                                   </div>
                                   <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
+                                      <label for="newprojectcustomer">Customer</label>
+                                      <select v-model="newprojectcustomer" name="newprojectcustomer" id="newprojectcustomer" class="form-control">
+                                          <option selected>Customer</option>
+                                          <option v-for="customer in currentObject.customers" :key="customer.custrowid">@{{ customer.name + ", " + customer.custrowid }}</option>
+                                    </select>
+                                  </div>
+                                  <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
                                       <label for="custrowid">Customer ID</label>
                                       <input type="text" class="form-control" id="custrowid" name="custrowid" placeholder="Customer ID">
                                   </div>

@@ -42,6 +42,7 @@
         </div>
 
         @include('modals.project')
+        <newproject-component :newprojectcustomer="newprojectcustomer" :newprojectstatus="newprojectstatus"><newproject-component>
         @include('modals.tasks.add')
         @include('modals.tasks.edit')
         @include('modals.hours.add')

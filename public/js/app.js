@@ -1862,6 +1862,25 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NewProjectComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/NewProjectComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['newprojectcustomer', 'newprojectcustrowid', 'newprojectstatus']
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PFilterComponent.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PFilterComponent.vue?vue&type=script&lang=js& ***!
@@ -66662,6 +66681,30 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NewProjectComponent.vue?vue&type=template&id=6bd9f789&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/NewProjectComponent.vue?vue&type=template&id=6bd9f789& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div")
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PFilterComponent.vue?vue&type=template&id=4fbb41c0&":
 /*!*******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PFilterComponent.vue?vue&type=template&id=4fbb41c0& ***!
@@ -79162,6 +79205,7 @@ vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('example-component', __webp
 vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('tasks-component', __webpack_require__(/*! ./components/TasksComponent.vue */ "./resources/js/components/TasksComponent.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('tasks-header-component', __webpack_require__(/*! ./components/TasksHeaderComponent.vue */ "./resources/js/components/TasksHeaderComponent.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('pfilter-component', __webpack_require__(/*! ./components/PFilterComponent.vue */ "./resources/js/components/PFilterComponent.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('newproject-component', __webpack_require__(/*! ./components/NewProjectComponent.vue */ "./resources/js/components/NewProjectComponent.vue")["default"]);
 /**
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
@@ -79177,7 +79221,9 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       projrowid: [],
       projrowidadd: null,
       taskrowidadd: null,
-      newprojectcustomer: null,
+      newprojectcustomer: "Customer",
+      newprojectcustrowid: null,
+      newprojectstatus: "Status",
       tasks: [],
       projstatusrowid: 0,
       projtyperowid: 0,
@@ -79298,6 +79344,185 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       var self = this;
       self.projrowidadd = projrowidadd;
       console.log(projrowidadd);
+    },
+    assignnewprojectcustomer: function assignnewprojectcustomer(newprojectcustomer) {
+      var self = this;
+      self.newprojectcustomer = newprojectcustomer;
+
+      if (newprojectcustomer == "Uttermost") {
+        self.newprojectcustrowid = 7;
+      } else if (newprojectcustomer == "Accuride") {
+        self.newprojectcustrowid = 20;
+      } else if (newprojectcustomer == "Mueller") {
+        self.newprojectcustrowid = 22;
+      } else if (newprojectcustomer == "GKN") {
+        self.newprojectcustrowid = 8;
+      } else if (newprojectcustomer == "McMurray Fabrics") {
+        self.newprojectcustrowid = 14;
+      } else if (newprojectcustomer == "Acucote") {
+        self.newprojectcustrowid = 23;
+      } else if (newprojectcustomer == "Outdoor Venture") {
+        self.newprojectcustrowid = 19;
+      } else if (newprojectcustomer == "Aeroglide") {
+        self.newprojectcustrowid = 16;
+      } else if (newprojectcustomer == "Amresco") {
+        self.newprojectcustrowid = 9;
+      } else if (newprojectcustomer == "Darex") {
+        self.newprojectcustrowid = 25;
+      } else if (newprojectcustomer == "Datamax") {
+        self.newprojectcustrowid = 18;
+      } else if (newprojectcustomer == "Helmer") {
+        self.newprojectcustrowid = 17;
+      } else if (newprojectcustomer == "Koldban") {
+        self.newprojectcustrowid = 10;
+      } else if (newprojectcustomer == "Martin Engineering") {
+        self.newprojectcustrowid = 11;
+      } else if (newprojectcustomer == "US Stove") {
+        self.newprojectcustrowid = 24;
+      } else if (newprojectcustomer == "D&W Finepack") {
+        self.newprojectcustrowid = 26;
+      } else if (newprojectcustomer == "Crest Healthcare") {
+        self.newprojectcustrowid = 27;
+      } else if (newprojectcustomer == "Lexington Home Brands") {
+        self.newprojectcustrowid = 28;
+      } else if (newprojectcustomer == "Therafin") {
+        self.newprojectcustrowid = 32;
+      } else if (newprojectcustomer == "AD Tech") {
+        self.newprojectcustrowid = 33;
+      } else if (newprojectcustomer == "McRae") {
+        self.newprojectcustrowid = 34;
+      } else if (newprojectcustomer == "Trulife") {
+        self.newprojectcustrowid = 21;
+      } else if (newprojectcustomer == "Micropoise") {
+        self.newprojectcustrowid = 35;
+      } else if (newprojectcustomer == "Raybestos") {
+        self.newprojectcustrowid = 15;
+      } else if (newprojectcustomer == "Axlegaard") {
+        self.newprojectcustrowid = 36;
+      } else if (newprojectcustomer == "QED") {
+        self.newprojectcustrowid = 37;
+      } else if (newprojectcustomer == "Lantal Textiles") {
+        self.newprojectcustrowid = 38;
+      } else if (newprojectcustomer == "Prince Mfg.") {
+        self.newprojectcustrowid = 39;
+      } else if (newprojectcustomer == "MargeCarson") {
+        self.newprojectcustrowid = 40;
+      } else if (newprojectcustomer == "MSI") {
+        self.newprojectcustrowid = 41;
+      } else if (newprojectcustomer == "Propac Images") {
+        self.newprojectcustrowid = 42;
+      } else if (newprojectcustomer == "Toth Industries") {
+        self.newprojectcustrowid = 43;
+      } else if (newprojectcustomer == "Lloyd Flanders") {
+        self.newprojectcustrowid = 44;
+      } else if (newprojectcustomer == "Bernards") {
+        self.newprojectcustrowid = 45;
+      } else if (newprojectcustomer == "Quoizel") {
+        self.newprojectcustrowid = 46;
+      } else if (newprojectcustomer == "MISA Metals") {
+        self.newprojectcustrowid = 48;
+      } else if (newprojectcustomer == "Merkle-Korff") {
+        self.newprojectcustrowid = 49;
+      } else if (newprojectcustomer == "Worthen") {
+        self.newprojectcustrowid = 50;
+      } else if (newprojectcustomer == "Nordicware") {
+        self.newprojectcustrowid = 31;
+      } else if (newprojectcustomer == "Paragon Picture Gallery") {
+        self.newprojectcustrowid = 51;
+      } else if (newprojectcustomer == "Case Knives") {
+        self.newprojectcustrowid = 52;
+      } else if (newprojectcustomer == "Furnitureland South") {
+        self.newprojectcustrowid = 53;
+      } else if (newprojectcustomer == "Sioux Chief") {
+        self.newprojectcustrowid = 54;
+      } else if (newprojectcustomer == "Regina Andrew Design") {
+        self.newprojectcustrowid = 55;
+      } else if (newprojectcustomer == "Cheetah") {
+        self.newprojectcustrowid = 56;
+      } else if (newprojectcustomer == "Xpicor") {
+        self.newprojectcustrowid = 57;
+      } else if (newprojectcustomer == "Litania") {
+        self.newprojectcustrowid = 58;
+      } else if (newprojectcustomer == "Feizy Rugs") {
+        self.newprojectcustrowid = 59;
+      } else if (newprojectcustomer == "Riverside Furniture") {
+        self.newprojectcustrowid = 60;
+      } else if (newprojectcustomer == "Silver Street Dvt") {
+        self.newprojectcustrowid = 61;
+      } else if (newprojectcustomer == "Lagos") {
+        self.newprojectcustrowid = 47;
+      } else if (newprojectcustomer == "Longwood Elastomers") {
+        self.newprojectcustrowid = 62;
+      } else if (newprojectcustomer == "Musikgarten") {
+        self.newprojectcustrowid = 63;
+      } else if (newprojectcustomer == "Varaluz") {
+        self.newprojectcustrowid = 64;
+      } else if (newprojectcustomer == "Hughes Furniture Industries") {
+        self.newprojectcustrowid = 65;
+      } else if (newprojectcustomer == "Taracea") {
+        self.newprojectcustrowid = 66;
+      } else if (newprojectcustomer == "The Design Network (TDN)") {
+        self.newprojectcustrowid = 67;
+      } else if (newprojectcustomer == "Edgewater Power Boats") {
+        self.newprojectcustrowid = 68;
+      } else if (newprojectcustomer == "Vallourec") {
+        self.newprojectcustrowid = 69;
+      } else if (newprojectcustomer == "ZeroG") {
+        self.newprojectcustrowid = 70;
+      } else if (newprojectcustomer == "DEMA") {
+        self.newprojectcustrowid = 71;
+      } else if (newprojectcustomer == "Cogentix (Vision Sciences)") {
+        self.newprojectcustrowid = 13;
+      } else if (newprojectcustomer == "HaystackCRM") {
+        self.newprojectcustrowid = 72;
+      } else if (newprojectcustomer == "Mixture") {
+        self.newprojectcustrowid = 73;
+      } else if (newprojectcustomer == "Sioux Steel") {
+        self.newprojectcustrowid = 12;
+      } else if (newprojectcustomer == "Carlton Scale") {
+        self.newprojectcustrowid = 74;
+      } else if (newprojectcustomer == "JKS Incorporated") {
+        self.newprojectcustrowid = 76;
+      } else if (newprojectcustomer == "R2 Ventures") {
+        self.newprojectcustrowid = 75;
+      } else if (newprojectcustomer == "Vizbii") {
+        self.newprojectcustrowid = 77;
+      } else if (newprojectcustomer == "ClaroLux") {
+        self.newprojectcustrowid = 78;
+      } else if (newprojectcustomer == "Triad Foot Center") {
+        self.newprojectcustrowid = 79;
+      } else if (newprojectcustomer == "LuRoos") {
+        self.newprojectcustrowid = 80;
+      } else if (newprojectcustomer == "JA King") {
+        self.newprojectcustrowid = 81;
+      } else if (newprojectcustomer == "Alfmeier") {
+        self.newprojectcustrowid = 82;
+      } else if (newprojectcustomer == "Tobe MFG") {
+        self.newprojectcustrowid = 83;
+      } else if (newprojectcustomer == "HF Foods Group") {
+        self.newprojectcustrowid = 84;
+      } else if (newprojectcustomer == "Green Seal") {
+        self.newprojectcustrowid = 85;
+      } else if (newprojectcustomer == "JDA Group") {
+        self.newprojectcustrowid = 86;
+      } else if (newprojectcustomer == "Hamilton Lakes Cafe") {
+        self.newprojectcustrowid = 87;
+      } else if (newprojectcustomer == "Admetrics") {
+        self.newprojectcustrowid = 88;
+      } else if (newprojectcustomer == "Community Housing Solutions") {
+        self.newprojectcustrowid = 89;
+      } else if (newprojectcustomer == "MAG Companies") {
+        self.newprojectcustrowid = 90;
+      }
+    },
+    assignnewprojectstatus: function assignnewprojectstatus(newprojectstatus) {
+      var self = this;
+
+      if (newprojectstatus == "Open") {
+        self.newprojectstatus = 10;
+      } else {
+        self.newprojectstatus = 11;
+      }
     }
   }
 });
@@ -79413,6 +79638,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/NewProjectComponent.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/NewProjectComponent.vue ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _NewProjectComponent_vue_vue_type_template_id_6bd9f789___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NewProjectComponent.vue?vue&type=template&id=6bd9f789& */ "./resources/js/components/NewProjectComponent.vue?vue&type=template&id=6bd9f789&");
+/* harmony import */ var _NewProjectComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NewProjectComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/NewProjectComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _NewProjectComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _NewProjectComponent_vue_vue_type_template_id_6bd9f789___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _NewProjectComponent_vue_vue_type_template_id_6bd9f789___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/NewProjectComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/NewProjectComponent.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/NewProjectComponent.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NewProjectComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./NewProjectComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NewProjectComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NewProjectComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/NewProjectComponent.vue?vue&type=template&id=6bd9f789&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/NewProjectComponent.vue?vue&type=template&id=6bd9f789& ***!
+  \****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewProjectComponent_vue_vue_type_template_id_6bd9f789___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./NewProjectComponent.vue?vue&type=template&id=6bd9f789& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NewProjectComponent.vue?vue&type=template&id=6bd9f789&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewProjectComponent_vue_vue_type_template_id_6bd9f789___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewProjectComponent_vue_vue_type_template_id_6bd9f789___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

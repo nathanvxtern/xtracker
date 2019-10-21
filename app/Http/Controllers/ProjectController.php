@@ -74,8 +74,6 @@ class ProjectController extends APIController
             }
         }
 
-        // dump( $pagevars );
-
         return view( 'index', $pagevars );
     }
 

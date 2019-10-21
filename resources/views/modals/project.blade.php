@@ -31,7 +31,7 @@
                                       <select v-model="newprojectstatus" name="newprojectstatus" id="newprojectstatus" class="form-control">
                                           <option selected>Status</option>
                                           <option v-for="status in currentObject.statuses" :key="status.projstatusrowid">@{{ status.projstatus + ", " + status.projstatusrowid }}</option>
-                                    </select>
+                                      </select>
                                   </div>
                               </div>
         </form>

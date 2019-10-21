@@ -101,10 +101,8 @@ class ProjectCore
         return $project;
     }
 
-    public function create($custrowid=null,$title=null)
+    public function create($custrowid=null,$title=null,$projstatusrowid=null)
     {
-        $open = 10;
-        $projstatusrowid = $open;
 
         $params = [
             $custrowid,

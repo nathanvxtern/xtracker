@@ -19,12 +19,11 @@
                                       <label for="newprojectcustomer">Customer</label>
                                       <select v-model="newprojectcustomer" name="newprojectcustomer" id="newprojectcustomer" class="form-control" v-on:change="assignnewprojectcustomer( newprojectcustomer );">
                                           <option selected>@{{ newprojectcustomer }}</option>
-                                          <option v-for="customer in currentObject.customers" :key="customer.custrowid">@{{ customer.name + ", " + customer.custrowid }}</option>
+                                          <option v-for="customer in currentObject.customers" :key="customer.custrowid">@{{ customer.name }}</option>
                                     </select>
                                   </div>
                                   <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                                      <label for="custrowid">Customer ID</label>
-                                      <input type="text" class="form-control" id="custrowid" name="custrowid" placeholder="Customer ID">
+                                      <input type="hidden" class="form-control" id="custrowid" name="custrowid" placeholder="Customer ID" v-bind:value="newprojectcustrowid">
                                   </div>
                                   <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
                                       <label for="newprojectstatus">Status</label>
@@ -32,6 +31,9 @@
                                           <option selected>@{{ newprojectstatus }}</option>
                                           <option v-for="status in currentObject.statuses" :key="status.projstatusrowid">@{{ status.projstatus }}</option>
                                       </select>
+                                  </div>
+                                  <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
+                                      <input type="hidden" class="form-control" id="projstatusrowid" name="projstatusrowid" placeholder="Status ID" v-bind:value="newprojstatusrowid">
                                   </div>
                               </div>
         </form>

@@ -98,9 +98,10 @@ class ProjectController extends APIController
 
         $title = $request->input('title',null);
         $custrowid = $request->input('custrowid',null);
+        $projstatusrowid = $request->input('projstatusrowid',null);
 
         $project_core = new ProjectCore();
-        $project_id = $project_core->create($custrowid,$title);
+        $project_id = $project_core->create($custrowid,$title,$projstatusrowid);
 
         return redirect("/");
     }

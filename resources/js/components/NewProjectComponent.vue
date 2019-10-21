@@ -8,6 +8,7 @@
             'newprojectcustomer',
             'newprojectcustrowid',
             'newprojectstatus',
+            'newprojstatusrowid',
         ]
     }
 </script>

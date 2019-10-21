@@ -51,6 +51,7 @@ const app = new Vue({
         taskrowidadd: null,
         newprojectcustomer: "Customer",
         newprojectcustrowid: null,
+        newprojstatusrowid: null,
         newprojectstatus: "Status",
         tasks: [],
         projstatusrowid: 0,
@@ -394,10 +395,11 @@ const app = new Vue({
         assignnewprojectstatus: function( newprojectstatus )
         {
             let self = this;
+            self.newprojectstatus = newprojectstatus;
             if ( newprojectstatus == "Open" ) {
-                self.newprojectstatus = 10;
-            } else {
-                self.newprojectstatus = 11;
+                self.newprojstatusrowid = 10;
+            } else if ( newprojectstatus == "Closed" ) {
+                self.newprojstatusrowid = 11;
             }
         },
     }

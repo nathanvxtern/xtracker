@@ -1876,7 +1876,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['newprojectcustomer', 'newprojectcustrowid', 'newprojectstatus']
+  props: ['newprojectcustomer', 'newprojectcustrowid', 'newprojectstatus', 'newprojstatusrowid']
 });
 
 /***/ }),
@@ -79223,6 +79223,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       taskrowidadd: null,
       newprojectcustomer: "Customer",
       newprojectcustrowid: null,
+      newprojstatusrowid: null,
       newprojectstatus: "Status",
       tasks: [],
       projstatusrowid: 0,
@@ -79517,11 +79518,12 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
     },
     assignnewprojectstatus: function assignnewprojectstatus(newprojectstatus) {
       var self = this;
+      self.newprojectstatus = newprojectstatus;
 
       if (newprojectstatus == "Open") {
-        self.newprojectstatus = 10;
-      } else {
-        self.newprojectstatus = 11;
+        self.newprojstatusrowid = 10;
+      } else if (newprojectstatus == "Closed") {
+        self.newprojstatusrowid = 11;
       }
     }
   }

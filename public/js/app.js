@@ -79271,6 +79271,8 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       newprojectstatus: "Status",
       newtaskstatus: "Status",
       newtaskstatusrowid: null,
+      newtasktype: "Type",
+      newtasktyperowid: null,
       tasks: [],
       projstatusrowid: 0,
       projtyperowid: 0,
@@ -79580,6 +79582,16 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
         self.newtaskstatusrowid = 10;
       } else if (newtaskstatus == "Closed") {
         self.newtaskstatusrowid = 11;
+      }
+    },
+    assignnewtasktype: function assignnewtasktype(newtasktype) {
+      var self = this;
+      self.newtasktype = newtasktype;
+
+      if (newtasktype == "Open") {
+        self.newtasktyperowid = 10;
+      } else if (newtasktype == "Closed") {
+        self.newtasktyperowid = 11;
       }
     }
   }

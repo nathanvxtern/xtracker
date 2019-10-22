@@ -28,8 +28,14 @@
                                         <input type="text" class="form-control" id="create-link-billingrate" name="billingrate" placeholder="100">
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                                        <label for="projtyperowid">Type:</label>
-                                        <input type="text" class="form-control" id="projtyperowid" name="projtyperowid" placeholder="8">
+                                        <label for="newtasktype">Status</label>
+                                        <select v-model="newtasktype" name="newtasktype" id="newtasktype" class="form-control" v-on:change="assignnewtasktype( newtasktype );">
+                                            <option selected>@{{ newtasktype }}</option>
+                                            <option v-for="type in currentObject.types" :key="type.projtyperowid">@{{ type.projtype }}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
+                                        <input type="text" class="form-control" id="projtyperowid" name="projtyperowid" placeholder="Type ID" v-bind:value="newtasktyperowid">
                                     </div>
                                 </div>
                                 <div class="row form-group">

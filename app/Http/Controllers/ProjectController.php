@@ -16,16 +16,19 @@ class ProjectController extends APIController
         $project_core = new ProjectCore();
         $customer_core = new CustomerCore();
         $status_core = new StatusCore();
+        $type_core = new TypeCore();
 
         $rec = array();
 
         $rec[ 'results' ][ 'projects' ] = [];
         $rec[ 'results' ][ 'customers' ] = [];
         $rec[ 'results' ][ 'statuses' ] = [];
+        $rec[ 'results' ][ 'types' ] = [];
 
         $rec[ 'results' ][ 'projects' ] = $project_core->list();
         $rec[ 'results' ][ 'customers' ] = $customer_core->list();
         $rec[ 'results' ][ 'statuses' ] = $status_core->list();
+        $rec[ 'results' ][ 'types' ] = $type_core->list();
 
         $pagevars = array();
         $pagevars[ 'data' ] = array();

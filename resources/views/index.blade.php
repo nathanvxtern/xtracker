@@ -43,10 +43,13 @@
 
         @include('modals.project')
         <newproject-component :newprojectcustomer="newprojectcustomer"
-                              :newprojectstatus="newprojectstatus"
-                              :newprojectcustrowid="newprojectcustrowid"
-                              :newprojstatusrowid="newprojstatusrowid"><newproject-component>
+                                :newprojectstatus="newprojectstatus"
+                                :newprojectcustrowid="newprojectcustrowid"
+                                :newprojstatusrowid="newprojstatusrowid">
+        </newproject-component>
         @include('modals.tasks.add')
+        <newtask-component :newtaskstatus="newtaskstatus"
+                            :newtaskstatusrowid="newtaskstatusrowid"></newtask-component>
         @include('modals.tasks.edit')
         @include('modals.hours.add')
         @include('modals.hours.edit')

@@ -33,6 +33,7 @@ Vue.component('tasks-header-component', require('./components/TasksHeaderCompone
 
 Vue.component('pfilter-component', require('./components/PFilterComponent.vue').default);
 Vue.component('newproject-component', require('./components/NewProjectComponent.vue').default);
+Vue.component('newtask-component', require('./components/NewTaskComponent.vue').default);
 
 /**
  * the page. Then, you may begin adding components to this application
@@ -53,6 +54,8 @@ const app = new Vue({
         newprojectcustrowid: null,
         newprojstatusrowid: null,
         newprojectstatus: "Status",
+        newtaskstatus: "Status",
+        newtaskstatusrowid: null,
         tasks: [],
         projstatusrowid: 0,
         projtyperowid: 0,
@@ -400,6 +403,16 @@ const app = new Vue({
                 self.newprojstatusrowid = 10;
             } else if ( newprojectstatus == "Closed" ) {
                 self.newprojstatusrowid = 11;
+            }
+        },
+        assignnewtaskstatus: function( newtaskstatus )
+        {
+            let self = this;
+            self.newtaskstatus = newtaskstatus;
+            if ( newtaskstatus == "Open" ) {
+                self.newtaskstatusrowid = 10;
+            } else if ( newtaskstatus == "Closed" ) {
+                self.newtaskstatusrowid = 11;
             }
         },
     }

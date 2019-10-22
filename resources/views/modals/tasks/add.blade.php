@@ -35,7 +35,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                                        <input type="text" class="form-control" id="projtyperowid" name="projtyperowid" placeholder="Type ID" v-bind:value="newtasktyperowid">
+                                        <input type="hidden" class="form-control" id="projtyperowid" name="projtyperowid" placeholder="Type ID" v-bind:value="newtasktyperowid">
                                     </div>
                                 </div>
                                 <div class="row form-group">
@@ -47,11 +47,11 @@
                                         </select>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                                        <input type="hidden" class="form-control" id="projstatusrowid" name="projstatusrowid" placeholder="Status ID" v-bind:value="newtaskstatusrowid">
-                                    </div>
-                                    <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
                                         <label for="custponumber">PO Number:</label>
                                         <input type="text" class="form-control" id="create-link-custponumber" name="custponumber" placeholder="PO Number">
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
+                                        <input type="hidden" class="form-control" id="projstatusrowid" name="projstatusrowid" placeholder="Status ID" v-bind:value="newtaskstatusrowid">
                                     </div>
                                 </div>
                                 <div class="row form-group">

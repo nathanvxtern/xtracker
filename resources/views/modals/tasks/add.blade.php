@@ -34,8 +34,14 @@
                                 </div>
                                 <div class="row form-group">
                                     <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                                        <label for="projstatusrowid">Status:</label>
-                                        <input type="text" class="form-control" id="create-link-projstatusrowid" name="projstatusrowid" placeholder="10">
+                                        <label for="newtaskstatus">Status</label>
+                                        <select v-model="newtaskstatus" name="newtaskstatus" id="newtaskstatus" class="form-control" v-on:change="assignnewtaskstatus( newtaskstatus );">
+                                            <option selected>@{{ newtaskstatus }}</option>
+                                            <option v-for="status in currentObject.statuses" :key="status.projstatusrowid">@{{ status.projstatus }}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
+                                        <input type="hidden" class="form-control" id="projstatusrowid" name="projstatusrowid" placeholder="Status ID" v-bind:value="newtaskstatusrowid">
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
                                         <label for="custponumber">PO Number:</label>

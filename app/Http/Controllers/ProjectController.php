@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Core\ProjectCore;
 use App\Core\CustomerCore;
 use App\Core\StatusCore;
+use App\Core\TypeCore;
 
 class ProjectController extends APIController
 {

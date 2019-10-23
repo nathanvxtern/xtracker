@@ -60,6 +60,10 @@
 @section('pagescripts')
     <script>
         var currentObjectPHP = {!! json_encode( $data[ 'results' ] ) !!};
-    </script>
 
+        var selectedProjectPHP = {!! json_encode( $data[ 'projectforpopulation'][ 0 ] ) !!}
+        if ( selectedProjectPHP != 0  ) {
+            console.log( this.selectedProjectPHP );
+        }
+    </script>
 @endsection

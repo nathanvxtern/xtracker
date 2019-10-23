@@ -10,11 +10,7 @@
             <tr>
                 <td>{{ $project[ 'customer' ][ 'name' ] }}</td>
                 <th scope="row">
-                    <button type="button" class="btn btn-link font-weight-bold" @click="gettasks( '{{ $project[ 'projrowid' ] }}' );
-                                                                                        getprojectcustomer( '{{ $project[ 'projrowid' ] }}' );
-                                                                                        getprojectstatus( '{{ $project[ 'projrowid' ] }}' );
-                                                                                        setprojrowid( '{{ $project[ 'projrowid' ] }}' );
-                                                                                        populatetaskmodal( '{{ $project[ 'projrowid' ] }}' );">
+                    <button type="button" class="btn btn-link font-weight-bold" @click="populatetaskcomponent( '{{ $project[ 'projrowid' ] }}' );">
                         {{ $project[ 'title' ] }}
                     </button>
                 </th>

@@ -79260,6 +79260,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
   data: function data() {
     return {
       currentObject: typeof currentObjectPHP !== 'undefined' ? currentObjectPHP : [],
+      selectedProject: typeof selectedProjectPHP !== 'undefined' ? selectedProjectPHP : [],
       customers: [],
       statuses: [],
       projrowid: [],
@@ -79643,6 +79644,14 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       } else if (newtasktype == "CONSULT 200") {
         self.newtasktyperowid = 34;
       }
+    },
+    populatetaskcomponent: function populatetaskcomponent(projrowid) {
+      var self = this;
+      self.gettasks(projrowid);
+      self.getprojectcustomer(projrowid);
+      self.getprojectstatus(projrowid);
+      self.setprojrowid(projrowid);
+      self.populatetaskmodal(projrowid);
     }
   }
 });

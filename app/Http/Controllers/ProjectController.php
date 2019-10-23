@@ -11,7 +11,7 @@ use App\Core\TypeCore;
 class ProjectController extends APIController
 {
 
-    public function list( Request $request )
+    public function list( Request $request, $projectforpopulation=0 )
     {
 
         $project_core = new ProjectCore();
@@ -20,6 +20,7 @@ class ProjectController extends APIController
         $type_core = new TypeCore();
 
         $rec = array();
+        $rec[ 'projectforpopulation' ] = [ $projectforpopulation ];
 
         $rec[ 'results' ][ 'projects' ] = [];
         $rec[ 'results' ][ 'customers' ] = [];
@@ -57,23 +58,25 @@ class ProjectController extends APIController
         if ( !is_null( $request->segment( 4 ) ) ) {
             $pclosedtofilter = $request->segment( 4 );
         }
-        foreach ( $pagevars[ 'data' ][ 'results' ][ 'projects' ] as $projectKey => &$project ) {
-            if ( !is_null( $ctofilter ) && $ctofilter != "Customer" ) {
-                if ( $project[ 'customer' ][ 'name' ] != $ctofilter ) {
-                    unset( $pagevars[ 'data' ][ 'results' ][ 'projects' ][ $projectKey ] );
-                    continue;
+        if ( is_null( $projectforpopulation ) ) {
+            foreach ( $pagevars[ 'data' ][ 'results' ][ 'projects' ] as $projectKey => &$project ) {
+                if ( !is_null( $ctofilter ) && $ctofilter != "Customer" ) {
+                    if ( $project[ 'customer' ][ 'name' ] != $ctofilter ) {
+                        unset( $pagevars[ 'data' ][ 'results' ][ 'projects' ][ $projectKey ] );
+                        continue;
+                    }
                 }
-            }
-            if ( ( $popentofilter == "true" ) && ( $pclosedtofilter == "false" ) ) {
-                if ( $project[ 'status' ] != $popenid ) {
-                    unset( $pagevars[ 'data' ][ 'results' ][ 'projects' ][ $projectKey ] );
-                    continue;
+                if ( ( $popentofilter == "true" ) && ( $pclosedtofilter == "false" ) ) {
+                    if ( $project[ 'status' ] != $popenid ) {
+                        unset( $pagevars[ 'data' ][ 'results' ][ 'projects' ][ $projectKey ] );
+                        continue;
+                    }
                 }
-            }
-            if ( ( $pclosedtofilter == "true" ) && ( $popentofilter == "false" ) ) {
-                if ( $project[ 'status' ] != $pclosedid ) {
-                    unset( $pagevars[ 'data' ][ 'results' ][ 'projects' ][ $projectKey ] );
-                    continue;
+                if ( ( $pclosedtofilter == "true" ) && ( $popentofilter == "false" ) ) {
+                    if ( $project[ 'status' ] != $pclosedid ) {
+                        unset( $pagevars[ 'data' ][ 'results' ][ 'projects' ][ $projectKey ] );
+                        continue;
+                    }
                 }
             }
         }

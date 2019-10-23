@@ -75,7 +75,7 @@ class TaskCore
         return $this->transform_task_collection( $rs );
     }
 
-    public function create($billingrate=null,$projstatusrowid=null,$projtyperowid=null,$projrowid=null,$taskname=null)
+    public function create($billingrate=null,$projstatusrowid=null,$projtyperowid=null,$projrowid=null,$taskname=null,$custponumber=null,$esthours=null)
     {
 
         $params = [
@@ -83,10 +83,12 @@ class TaskCore
             $projstatusrowid,
             $projtyperowid,
             $projrowid,
-            $taskname
+            $taskname,
+            $custponumber,
+            $esthours
         ];
-        $sql = "INSERT INTO taskmaster(billingrate,projstatusrowid,projtyperowid,projrowid,title)
-                VALUES(?,?,?,?,?)";
+        $sql = "INSERT INTO taskmaster(billingrate,projstatusrowid,projtyperowid,projrowid,title,custponumber,esthours)
+                VALUES(?,?,?,?,?,?,?)";
         try {
             \DB::insert($sql, $params);
         } catch (\Illuminate\Database\QueryException $e) {
@@ -102,7 +104,7 @@ class TaskCore
         }
         if(!empty($res)){
             return $res[0]->id;
-        } else{
+        } else {
             return false;
         }
     }

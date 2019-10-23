@@ -45,6 +45,7 @@ const app = new Vue({
 
     data: () => ({
         currentObject: typeof currentObjectPHP !== 'undefined' ? currentObjectPHP : [],
+        selectedProject: typeof selectedProjectPHP !== 'undefined' ? selectedProjectPHP : [],
         customers: [],
         statuses: [],
         projrowid: [],
@@ -477,5 +478,14 @@ const app = new Vue({
                 self.newtasktyperowid = 34;
             }
         },
+        populatetaskcomponent: function( projrowid )
+        {
+            let self = this;
+            self.gettasks( projrowid );
+            self.getprojectcustomer( projrowid );
+            self.getprojectstatus( projrowid );
+            self.setprojrowid( projrowid );
+            self.populatetaskmodal( projrowid );
+        }
     }
 });

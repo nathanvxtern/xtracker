@@ -37,9 +37,10 @@ class TaskController extends APIController
         $estimated = $request->input('estimated', null);
 
         $task_core = new TaskCore();
-        $task_id = $task_core->create($billingrate,$projstatusrowid,$projtyperowid,$projrowid,$taskname,$custponumber,$estimated);
+        $task_id = $task_core->create($billingrate,$projstatusrowid,$projtyperowid,$estimated,$taskname,$custponumber,$projrowid);
 
-        return redirect("/Customer" . "/" . "true" . "/" . "true" . "/" . "taskcreated" . "/" . $projrowid);
+        // return redirect( "/" );
+        return redirect("/filter/Customer" . "/" . "true" . "/" . "true" . "/" . "taskcreated" . "/" . strval( $projrowid ) );
     }
 
     /**

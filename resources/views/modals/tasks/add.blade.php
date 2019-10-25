@@ -56,7 +56,7 @@
                                 </div>
                                 <div class="row form-group">
                                   <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                                      <input v-model="projrowidadd" type="hidden" class="form-control" id="create-link-projrowid" name="projrowid">
+                                      <input value="selectedproject" v-model="selectedproject" type="text" class="form-control" id="create-link-projrowid" name="projrowid">
                                   </div>
                                 </div>
           </form>
@@ -65,7 +65,8 @@
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
           <button class="btn btn-primary" type="submit" form="create_tasks_form"
                           data-form-id="create_tasks_form"
-                          data-modal-id="create-tasks-modal">Submit</button>
+                          data-modal-id="create-tasks-modal"
+                          @click="populatetaskcomponent(selectedproject);">Submit</button>
         </div>
       </div>
     </div>

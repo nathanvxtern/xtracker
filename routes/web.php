@@ -13,7 +13,7 @@
 
 Route::get('/', 'ProjectController@list');
 Route::get('/index', 'ProjectController@index');
-Route::get('/Customer/true/true/taskcreated/{projectforpopulation}', 'ProjectController@list');
+Route::get('/filter/Customer/true/true/taskcreated/{selectedproject}', 'ProjectController@list');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

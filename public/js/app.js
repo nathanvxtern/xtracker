@@ -79260,11 +79260,10 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
   data: function data() {
     return {
       currentObject: typeof currentObjectPHP !== 'undefined' ? currentObjectPHP : [],
-      selectedProject: typeof selectedProjectPHP !== 'undefined' ? selectedProjectPHP : [],
       customers: [],
       statuses: [],
       projrowid: [],
-      projrowidadd: null,
+      selectedproject: null,
       taskrowidadd: null,
       newprojectcustomer: "Customer",
       newprojectcustrowid: null,
@@ -79287,10 +79286,8 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
   },
   methods: {
     debug: function debug() {
-      var self = this;
+      self = this;
       console.log(self.currentObject);
-      console.log(self.projrowidadd);
-      console.log(self.taskrowidadd);
     },
     gettasks: function gettasks(projrowid) {
       var self = this;
@@ -79390,10 +79387,10 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
         console.log(e);
       });
     },
-    populatetaskmodal: function populatetaskmodal(projrowidadd) {
+    populatetaskmodal: function populatetaskmodal(selectedproject) {
       var self = this;
-      self.projrowidadd = projrowidadd;
-      console.log(projrowidadd);
+      self.selectedproject = selectedproject;
+      console.log(selectedproject);
     },
     assignnewprojectcustomer: function assignnewprojectcustomer(newprojectcustomer) {
       var self = this;
@@ -79652,6 +79649,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       self.getprojectstatus(projrowid);
       self.setprojrowid(projrowid);
       self.populatetaskmodal(projrowid);
+      self.selectedproject = projrowid;
     }
   }
 });

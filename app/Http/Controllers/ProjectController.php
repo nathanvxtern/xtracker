@@ -11,8 +11,9 @@ use App\Core\TypeCore;
 class ProjectController extends APIController
 {
 
-    public function list( Request $request, $projectforpopulation=0 )
+    public function list( Request $request, $selectedproject=0 )
     {
+        dump( $selectedproject );
 
         $project_core = new ProjectCore();
         $customer_core = new CustomerCore();
@@ -20,17 +21,19 @@ class ProjectController extends APIController
         $type_core = new TypeCore();
 
         $rec = array();
-        $rec[ 'projectforpopulation' ] = [ $projectforpopulation ];
 
         $rec[ 'results' ][ 'projects' ] = [];
         $rec[ 'results' ][ 'customers' ] = [];
         $rec[ 'results' ][ 'statuses' ] = [];
         $rec[ 'results' ][ 'types' ] = [];
+        $rec[ 'results' ][ 'projected' ] = [];
 
         $rec[ 'results' ][ 'projects' ] = $project_core->list();
         $rec[ 'results' ][ 'customers' ] = $customer_core->list();
         $rec[ 'results' ][ 'statuses' ] = $status_core->list();
         $rec[ 'results' ][ 'types' ] = $type_core->list();
+
+        $rec[ 'results' ][ 'projected' ] = $selectedproject;
 
         $pagevars = array();
         $pagevars[ 'data' ] = array();
@@ -58,7 +61,7 @@ class ProjectController extends APIController
         if ( !is_null( $request->segment( 4 ) ) ) {
             $pclosedtofilter = $request->segment( 4 );
         }
-        if ( is_null( $projectforpopulation ) ) {
+        if ( $selectedproject == 0 ) {
             foreach ( $pagevars[ 'data' ][ 'results' ][ 'projects' ] as $projectKey => &$project ) {
                 if ( !is_null( $ctofilter ) && $ctofilter != "Customer" ) {
                     if ( $project[ 'customer' ][ 'name' ] != $ctofilter ) {
@@ -101,7 +104,8 @@ class ProjectController extends APIController
         return $this->return_success( $request, $pagevars );
     }
 
-    public function createnew(Request $request){
+    public function createnew(Request $request)
+    {
 
         $title = $request->input('title',null);
         $custrowid = $request->input('custrowid',null);

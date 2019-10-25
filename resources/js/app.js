@@ -45,11 +45,10 @@ const app = new Vue({
 
     data: () => ({
         currentObject: typeof currentObjectPHP !== 'undefined' ? currentObjectPHP : [],
-        selectedProject: typeof selectedProjectPHP !== 'undefined' ? selectedProjectPHP : [],
         customers: [],
         statuses: [],
         projrowid: [],
-        projrowidadd: null,
+        selectedproject: null,
         taskrowidadd: null,
         newprojectcustomer: "Customer",
         newprojectcustrowid: null,
@@ -73,10 +72,8 @@ const app = new Vue({
     methods: {
         debug: function()
         {
-            let self = this;
+            self = this;
             console.log( self.currentObject );
-            console.log( self.projrowidadd );
-            console.log( self.taskrowidadd );
         },
         gettasks: function( projrowid )
         {
@@ -222,11 +219,11 @@ const app = new Vue({
 
             });
         },
-        populatetaskmodal: function(projrowidadd)
+        populatetaskmodal: function(selectedproject)
         {
             let self = this;
-            self.projrowidadd = projrowidadd;
-            console.log( projrowidadd );
+            self.selectedproject = selectedproject;
+            console.log( selectedproject );
         },
         assignnewprojectcustomer: function( newprojectcustomer )
         {
@@ -486,6 +483,7 @@ const app = new Vue({
             self.getprojectstatus( projrowid );
             self.setprojrowid( projrowid );
             self.populatetaskmodal( projrowid );
+            self.selectedproject = projrowid;
         }
     }
 });

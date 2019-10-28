@@ -13,7 +13,6 @@ class ProjectController extends APIController
 
     public function list( Request $request, $selectedproject=0 )
     {
-        dump( $selectedproject );
 
         $project_core = new ProjectCore();
         $customer_core = new CustomerCore();
@@ -84,7 +83,7 @@ class ProjectController extends APIController
             }
         }
 
-        return view( 'index', $pagevars );
+        return view( 'index', $pagevars )->with( 'isSelected' , 'true' );
     }
 
     public function get( Request $request, $projrowid )

@@ -3,13 +3,12 @@
         <thead>
             <tr>
                 <th scope="col">Task</th>
-                <th scope="col" class="table-secondary">Hours:</th>
+                <th scope="col" class="border-0"></th>
+                <th scope="col">Hours:</th>
+                <th scope="col"></th>
                 <th scope="col" class="table-secondary">Est.</th>
                 <th scope="col" class="table-secondary">Used</th>
                 <th scope="col" class="table-secondary">Rate</th>
-                <th class="table-secondary"></th>
-                <th class="table-secondary"></th>
-                <th class="border-0"></th>
             </tr>
         </thead>
         <tbody>
@@ -19,25 +18,21 @@
                         {{ task.title }}
                     </a>
                 </th>
-                <td class="table-secondary"></td>
-                <td class="table-secondary">{{ task.esthours }}</td>
-                <td class="table-secondary">{{ task.usedhrs }}</td>
-                <td class="table-secondary">{{ task.billingrate }}</td>
-                <td class="table-secondary">
+                <td class="border-0">
+                </td>
+                <td class="border-0">
                     <button @click="populatehourmodal( task.taskrowid )" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addHoursModal">
                         Add
                     </button>
                 </td>
-                <td class="table-secondary">
+                <td class="border-0">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editHoursModal">
                         Edit
                     </button>
                 </td>
-                <td class="border-0">
-                    <a href="#" class="btn btn-primary">
-                        Delete
-                    </a>
-                </td>
+                <td class="table-secondary">{{ task.esthours }}</td>
+                <td class="table-secondary">{{ task.usedhrs }}</td>
+                <td class="table-secondary">{{ task.billingrate }}</td>
             </tr>
         </tbody>
     </table>

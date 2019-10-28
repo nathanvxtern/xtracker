@@ -56,7 +56,7 @@
                                 </div>
                                 <div class="row form-group">
                                   <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                                      <input value="selectedproject" v-model="selectedproject" type="text" class="form-control" id="create-link-projrowid" name="projrowid">
+                                      <input value="selectedproject" v-model="selectedproject" type="hidden" class="form-control" id="create-link-projrowid" name="projrowid">
                                   </div>
                                 </div>
           </form>

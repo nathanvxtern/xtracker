@@ -73,7 +73,7 @@ const app = new Vue({
         debug: function()
         {
             self = this;
-            console.log( self.currentObject );
+            console.log( self.selectedproject );
         },
         gettasks: function( projrowid )
         {

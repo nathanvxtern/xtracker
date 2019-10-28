@@ -1968,11 +1968,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['tasks', 'projstatusrowid', 'projtyperowid', 'taskrowidadd'],
   methods: {
@@ -66814,21 +66809,9 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("td", { staticClass: "table-secondary" }),
+          _c("td", { staticClass: "border-0" }),
           _vm._v(" "),
-          _c("td", { staticClass: "table-secondary" }, [
-            _vm._v(_vm._s(task.esthours))
-          ]),
-          _vm._v(" "),
-          _c("td", { staticClass: "table-secondary" }, [
-            _vm._v(_vm._s(task.usedhrs))
-          ]),
-          _vm._v(" "),
-          _c("td", { staticClass: "table-secondary" }, [
-            _vm._v(_vm._s(task.billingrate))
-          ]),
-          _vm._v(" "),
-          _c("td", { staticClass: "table-secondary" }, [
+          _c("td", { staticClass: "border-0" }, [
             _c(
               "button",
               {
@@ -66850,7 +66833,17 @@ var render = function() {
           _vm._v(" "),
           _vm._m(1, true),
           _vm._v(" "),
-          _vm._m(2, true)
+          _c("td", { staticClass: "table-secondary" }, [
+            _vm._v(_vm._s(task.esthours))
+          ]),
+          _vm._v(" "),
+          _c("td", { staticClass: "table-secondary" }, [
+            _vm._v(_vm._s(task.usedhrs))
+          ]),
+          _vm._v(" "),
+          _c("td", { staticClass: "table-secondary" }, [
+            _vm._v(_vm._s(task.billingrate))
+          ])
         ])
       }),
       0
@@ -66866,9 +66859,11 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Task")]),
         _vm._v(" "),
-        _c("th", { staticClass: "table-secondary", attrs: { scope: "col" } }, [
-          _vm._v("Hours:")
-        ]),
+        _c("th", { staticClass: "border-0", attrs: { scope: "col" } }),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Hours:")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }),
         _vm._v(" "),
         _c("th", { staticClass: "table-secondary", attrs: { scope: "col" } }, [
           _vm._v("Est.")
@@ -66880,13 +66875,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { staticClass: "table-secondary", attrs: { scope: "col" } }, [
           _vm._v("Rate")
-        ]),
-        _vm._v(" "),
-        _c("th", { staticClass: "table-secondary" }),
-        _vm._v(" "),
-        _c("th", { staticClass: "table-secondary" }),
-        _vm._v(" "),
-        _c("th", { staticClass: "border-0" })
+        ])
       ])
     ])
   },
@@ -66894,7 +66883,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "table-secondary" }, [
+    return _c("td", { staticClass: "border-0" }, [
       _c(
         "button",
         {
@@ -66907,16 +66896,6 @@ var staticRenderFns = [
         },
         [_vm._v("\n                    Edit\n                ")]
       )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "border-0" }, [
-      _c("a", { staticClass: "btn btn-primary", attrs: { href: "#" } }, [
-        _vm._v("\n                    Delete\n                ")
-      ])
     ])
   }
 ]
@@ -79287,7 +79266,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
   methods: {
     debug: function debug() {
       self = this;
-      console.log(self.currentObject);
+      console.log(self.selectedproject);
     },
     gettasks: function gettasks(projrowid) {
       var self = this;

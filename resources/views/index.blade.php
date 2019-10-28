@@ -3,11 +3,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
+            <div class="col-4">
                 @include( 'partials.pfilter' )
                 <pfilter-component :ctofilter="ctofilter" :popentofilter="popentofilter" :pclosedtofilter="pclosedtofilter"><pfilter-component>
             </div>
@@ -21,11 +17,14 @@
             </div>
         </div>
         <div class="row">
-            <div class="col overflow-auto mb-3 " style="height:500;">
+            <div class="col-4 overflow-auto mb-3 " style="height:500;">
                 @include( 'tables.projects' )
             </div>
             <div class="col overflow-auto mb-3" style="height:500;">
                 <tasks-component v-bind:tasks="tasks" :taskrowidadd="taskrowidadd" :projstatusrowid="projstatusrowid" :projtyperowid="projtyperowid"></tasks-component>
+                @if ( !is_null( $isSelected ) )
+                    <div onload="populatetaskcomponent( selectedproject )"></div>
+                @endif
             </div>
         </div>
         <div class="row">
@@ -65,7 +64,6 @@
         var taskListToLoad = currentObjectPHP.projected;
         if ( taskListToLoad > 0 ) {
             console.log( taskListToLoad );
-            populatetaskcomponent( taskListToLoad );
         }
 
     </script>

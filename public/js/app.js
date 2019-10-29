@@ -1981,7 +1981,7 @@ __webpack_require__.r(__webpack_exports__);
       self.taskrowidhoursedit = taskrowidhoursedit;
       console.log(self.taskrowidhoursedit);
     },
-    populateedittaskmodal: function populateedittaskmodal(taskrowidtaskedit, title, esthours, usedhrs, billingrate) {
+    populateedittaskmodal: function populateedittaskmodal(taskrowidtaskedit, edittasktitle, edittaskesthours, edittaskusedhrs, edittaskbillingrate) {
       var self = this.$parent;
       self.taskrowidtaskedit = taskrowidtaskedit;
       self.edittasktitle = edittasktitle;

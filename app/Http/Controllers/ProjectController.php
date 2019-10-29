@@ -83,7 +83,7 @@ class ProjectController extends APIController
             }
         }
 
-        return view( 'index', $pagevars )->with( 'isSelected' , 'true' );
+        return view( 'index', $pagevars );
     }
 
     public function get( Request $request, $projrowid )

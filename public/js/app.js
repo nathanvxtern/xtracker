@@ -1975,6 +1975,11 @@ __webpack_require__.r(__webpack_exports__);
       var self = this.$parent;
       self.taskrowidadd = taskrowidadd;
       console.log(self.taskrowidadd);
+    },
+    populateedithourmodal: function populateedithourmodal(taskrowidhoursedit) {
+      var self = this.$parent;
+      self.taskrowidhoursedit = taskrowidhoursedit;
+      console.log(self.taskrowidhoursedit);
     }
   }
 });
@@ -66831,7 +66836,25 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _vm._m(1, true),
+          _c("td", { staticClass: "border-0" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary",
+                attrs: {
+                  type: "button",
+                  "data-toggle": "modal",
+                  "data-target": "#editHoursModal"
+                },
+                on: {
+                  click: function($event) {
+                    return _vm.populateedithourmodal(task.taskrowid)
+                  }
+                }
+              },
+              [_vm._v("\n                    Edit\n                ")]
+            )
+          ]),
           _vm._v(" "),
           _c("td", { staticClass: "table-secondary" }, [
             _vm._v(_vm._s(task.esthours))
@@ -66877,25 +66900,6 @@ var staticRenderFns = [
           _vm._v("Rate")
         ])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "border-0" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary",
-          attrs: {
-            type: "button",
-            "data-toggle": "modal",
-            "data-target": "#editHoursModal"
-          }
-        },
-        [_vm._v("\n                    Edit\n                ")]
-      )
     ])
   }
 ]
@@ -79242,8 +79246,9 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       customers: [],
       statuses: [],
       projrowid: [],
-      selectedproject: null,
+      selectedproject: 0,
       taskrowidadd: null,
+      taskrowidhoursedit: null,
       newprojectcustomer: "Customer",
       newprojectcustrowid: null,
       newprojstatusrowid: null,
@@ -79266,7 +79271,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
   methods: {
     debug: function debug() {
       self = this;
-      console.log(self.selectedproject);
+      console.log(self.taskrowidhoursedit);
     },
     gettasks: function gettasks(projrowid) {
       var self = this;
@@ -79622,13 +79627,23 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       }
     },
     populatetaskcomponent: function populatetaskcomponent(projrowid) {
-      var self = this;
-      self.gettasks(projrowid);
-      self.getprojectcustomer(projrowid);
-      self.getprojectstatus(projrowid);
-      self.setprojrowid(projrowid);
-      self.populatetaskmodal(projrowid);
-      self.selectedproject = projrowid;
+      console.log(projrowid);
+
+      if (projrowid > 0) {
+        var _self = this;
+
+        _self.gettasks(projrowid);
+
+        _self.getprojectcustomer(projrowid);
+
+        _self.getprojectstatus(projrowid);
+
+        _self.setprojrowid(projrowid);
+
+        _self.populatetaskmodal(projrowid);
+
+        _self.selectedproject = projrowid;
+      }
     }
   }
 });

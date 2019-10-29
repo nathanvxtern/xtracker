@@ -25,6 +25,11 @@ class TaskController extends APIController
         return $this->return_success( $request, $pagevars );
     }
 
+    public function delete()
+    {
+        return view("confirmations/deletions/task");
+    }
+
     public function createnew(Request $request)
     {
 

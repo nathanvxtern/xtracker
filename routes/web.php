@@ -30,3 +30,4 @@ Route::post('/hours', 'HourController@createnew');
 
 Route::get( '/filter/{customer}/{popentofilter}/{pclosedtofilter}', 'ProjectController@list' );
 
+Route::get( '/confirm/delete/task', 'TaskController@delete' );

@@ -8,7 +8,7 @@
         </button>
       </div>
       <div class="modal-body">
-          <a href="#" class="btn btn-primary">
+          <a href="/confirm/delete/task" class="btn btn-primary">
               Delete
           </a>
       </div>

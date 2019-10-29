@@ -22,9 +22,6 @@
             </div>
             <div class="col overflow-auto mb-3" style="height:500;">
                 <tasks-component v-bind:tasks="tasks" :taskrowidadd="taskrowidadd" :projstatusrowid="projstatusrowid" :projtyperowid="projtyperowid"></tasks-component>
-                @if ( !is_null( $isSelected ) )
-                    <div onload="populatetaskcomponent( selectedproject )"></div>
-                @endif
             </div>
         </div>
         <div class="row">
@@ -64,6 +61,7 @@
         var taskListToLoad = currentObjectPHP.projected;
         if ( taskListToLoad > 0 ) {
             console.log( taskListToLoad );
+            // populatetaskcomponent( taskListToLoad );
         }
 
     </script>

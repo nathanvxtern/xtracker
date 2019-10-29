@@ -8,17 +8,17 @@
         </button>
       </div>
       <div class="modal-body">
-        <form id="create_hours_form" action="/hours" method="POST" name="create_hours_form">
-                                  @csrf
-                                  <div>
-                                      <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                                          <input v-model="taskrowidadd" type="hidden" class="form-control" id="create-link-taskrowid" name="taskrowid">
-                                      </div>
-                                      <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                                          <label for="numhours">numhours</label>
-                                          <input type="text" class="form-control" id="numhours" name="numhours" placeholder="Numhours">
-                                      </div>
-                                  </div>
+          <form id="create_hours_form" action="/hours" method="POST" name="create_hours_form">
+              @csrf
+              <div>
+                  <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
+                      <input v-model="taskrowidadd" type="hidden" class="form-control" id="create-link-taskrowid" name="taskrowid">
+                  </div>
+                  <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
+                      <label for="numhours">numhours</label>
+                      <input type="text" class="form-control" id="numhours" name="numhours" placeholder="Numhours">
+                  </div>
+              </div>
           </form>
       </div>
       <div class="modal-footer">

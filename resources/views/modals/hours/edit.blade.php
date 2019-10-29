@@ -6,13 +6,22 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
-      <div class="modal-body">
-        ...
+      </div><div class="modal-body">
+          <form id="edit_hours_form" action="/hours/edit" method="POST" name="edit_hours_form">
+              {{ method_field('PATCH') }}
+                  @csrf
+                  <div>
+                      <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
+                          <input v-model="taskrowidhoursedit" type="text" class="form-control" id="create-link-taskrowid" name="taskrowid">
+                      </div>
+                  </div>
+          </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Submit</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-primary" type="submit" form="edit_hours_form"
+                          data-form-id="edit_hours_form"
+                          data-modal-id="edit-hours-modal">Submit</button>
       </div>
     </div>
   </div>

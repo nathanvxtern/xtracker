@@ -48,8 +48,9 @@ const app = new Vue({
         customers: [],
         statuses: [],
         projrowid: [],
-        selectedproject: null,
+        selectedproject: 0,
         taskrowidadd: null,
+        taskrowidhoursedit: null,
         newprojectcustomer: "Customer",
         newprojectcustrowid: null,
         newprojstatusrowid: null,
@@ -73,7 +74,7 @@ const app = new Vue({
         debug: function()
         {
             self = this;
-            console.log( self.selectedproject );
+            console.log( self.taskrowidhoursedit );
         },
         gettasks: function( projrowid )
         {
@@ -477,13 +478,16 @@ const app = new Vue({
         },
         populatetaskcomponent: function( projrowid )
         {
-            let self = this;
-            self.gettasks( projrowid );
-            self.getprojectcustomer( projrowid );
-            self.getprojectstatus( projrowid );
-            self.setprojrowid( projrowid );
-            self.populatetaskmodal( projrowid );
-            self.selectedproject = projrowid;
+            console.log( projrowid );
+            if ( projrowid > 0 ) {
+                let self = this;
+                self.gettasks( projrowid );
+                self.getprojectcustomer( projrowid );
+                self.getprojectstatus( projrowid );
+                self.setprojrowid( projrowid );
+                self.populatetaskmodal( projrowid );
+                self.selectedproject = projrowid;
+            }
         }
     }
 });

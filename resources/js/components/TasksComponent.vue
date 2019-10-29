@@ -26,7 +26,7 @@
                     </button>
                 </td>
                 <td class="border-0">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editHoursModal">
+                    <button @click="populateedithourmodal( task.taskrowid )" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editHoursModal">
                         Edit
                     </button>
                 </td>
@@ -52,6 +52,12 @@
                 self.taskrowidadd = taskrowidadd;
                 console.log( self.taskrowidadd );
             },
+            populateedithourmodal: function(taskrowidhoursedit)
+            {
+                let self = this.$parent;
+                self.taskrowidhoursedit = taskrowidhoursedit;
+                console.log( self.taskrowidhoursedit );
+            }
         }
     }
 </script>

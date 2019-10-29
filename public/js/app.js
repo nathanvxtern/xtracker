@@ -1980,6 +1980,14 @@ __webpack_require__.r(__webpack_exports__);
       var self = this.$parent;
       self.taskrowidhoursedit = taskrowidhoursedit;
       console.log(self.taskrowidhoursedit);
+    },
+    populateedittaskmodal: function populateedittaskmodal(taskrowidtaskedit, title, esthours, usedhrs, billingrate) {
+      var self = this.$parent;
+      self.taskrowidtaskedit = taskrowidtaskedit;
+      self.edittasktitle = edittasktitle;
+      self.edittaskesthours = edittaskesthours;
+      self.edittaskusedhrs = edittaskusedhrs;
+      self.edittaskbillingrate = edittaskbillingrate;
     }
   }
 });
@@ -66802,6 +66810,17 @@ var render = function() {
                   href: "#",
                   "data-toggle": "modal",
                   "data-target": "#editTaskModal"
+                },
+                on: {
+                  click: function($event) {
+                    return _vm.populateedittaskmodal(
+                      task.taskrowid,
+                      task.title,
+                      task.esthours,
+                      task.usedhrs,
+                      task.billingrate
+                    )
+                  }
                 }
               },
               [
@@ -79265,7 +79284,12 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       status: "Status",
       ctofilter: "Customer",
       popentofilter: false,
-      pclosedtofilter: false
+      pclosedtofilter: false,
+      taskrowidtaskedit: null,
+      edittasktitle: null,
+      edittaskesthours: null,
+      edittaskusedhrs: null,
+      edittaskbillingrate: null
     };
   },
   methods: {

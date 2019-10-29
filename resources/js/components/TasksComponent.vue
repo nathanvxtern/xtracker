@@ -14,7 +14,7 @@
         <tbody>
             <tr v-for="task of tasks" v-bind:key="task.id">
                 <th scope="rows">
-                    <a href="#" data-toggle="modal" data-target="#editTaskModal">
+                    <a href="#" @click="populateedittaskmodal( task.taskrowid, task.title, task.esthours, task.usedhrs, task.billingrate )" data-toggle="modal" data-target="#editTaskModal">
                         {{ task.title }}
                     </a>
                 </th>
@@ -57,7 +57,17 @@
                 let self = this.$parent;
                 self.taskrowidhoursedit = taskrowidhoursedit;
                 console.log( self.taskrowidhoursedit );
+            },
+            populateedittaskmodal: function(taskrowidtaskedit,title,esthours,usedhrs,billingrate)
+            {
+                let self = this.$parent;
+                self.taskrowidtaskedit = taskrowidtaskedit;
+                self.edittasktitle = edittasktitle;
+                self.edittaskesthours = edittaskesthours;
+                self.edittaskusedhrs = edittaskusedhrs;
+                self.edittaskbillingrate = edittaskbillingrate;
             }
+        
         }
     }
 </script>

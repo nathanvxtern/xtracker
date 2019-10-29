@@ -68,6 +68,12 @@ const app = new Vue({
         ctofilter: "Customer",
         popentofilter: false,
         pclosedtofilter: false,
+
+        taskrowidtaskedit: null,
+        edittasktitle: null,
+        edittaskesthours: null,
+        edittaskusedhrs: null,
+        edittaskbillingrate: null,
     }),
 
     methods: {

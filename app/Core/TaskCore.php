@@ -20,7 +20,6 @@ class TaskCore
 
     public function transform_task_rec( $rec )
     {
-
         return [
             'taskrowid'=>$rec->taskrowid,
             'title'=>$rec->title,
@@ -77,7 +76,6 @@ class TaskCore
 
     public function create($billingrate=null,$projstatusrowid=null,$projtyperowid=null,$esthours=null,$taskname=null,$custponumber=null,$projrowid=null)
     {
-
         $params = [
             $billingrate,
             $projstatusrowid,
@@ -108,4 +106,9 @@ class TaskCore
             return false;
         }
     }
+
+    public function update($id, $update_list)
+    {
+    }
+    
 }

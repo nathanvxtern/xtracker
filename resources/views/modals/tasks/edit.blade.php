@@ -11,7 +11,7 @@
           <a href="/confirm/delete/task" class="btn btn-primary">
               Delete
           </a>
-          <form id="edit_task_form" action="/task/edit" method="POST" name="edit_task_form">
+          <form id="edit_task_form" action="'/task/edit/' + taskrowidtaskedit" method="POST" name="edit_task_form">
               {{ method_field('PATCH') }}
                   @csrf
                   <div>
@@ -43,7 +43,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Submit</button>
+        <button type="submit" class="button is-link">Update Task</button>
       </div>
     </div>
   </div>

@@ -26,7 +26,8 @@ Route::post('/projects', 'ProjectController@createnew');
 Route::post('/tasks', 'TaskController@createnew');
 Route::post('/hours', 'HourController@createnew');
 
-// Route::resource( 'projects', 'ProjectController' );
+Route::update('/task/edit/{taskrowid}', 'TaskController@update');
+Route::patch('/task/edit/{taskrowid}', 'TaskController@update');
 
 Route::get( '/filter/{customer}/{popentofilter}/{pclosedtofilter}', 'ProjectController@list' );
 

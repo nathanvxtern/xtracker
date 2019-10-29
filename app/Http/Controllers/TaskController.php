@@ -25,6 +25,9 @@ class TaskController extends APIController
         return $this->return_success( $request, $pagevars );
     }
 
+    public function update(Request $request,$taskrowid){
+    }
+
     public function delete()
     {
         return view("confirmations/deletions/task");
@@ -44,7 +47,6 @@ class TaskController extends APIController
         $task_core = new TaskCore();
         $task_id = $task_core->create($billingrate,$projstatusrowid,$projtyperowid,$estimated,$taskname,$custponumber,$projrowid);
 
-        // return redirect( "/" );
         return redirect("/filter/Customer" . "/" . "true" . "/" . "true" . "/" . "taskcreated" . "/" . strval( $projrowid ) );
     }
 
@@ -97,18 +99,6 @@ class TaskController extends APIController
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
     {
         //
     }

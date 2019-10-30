@@ -30,4 +30,5 @@ Route::patch('/task/edit/{taskrowid}', 'TaskController@update');
 
 Route::get( '/filter/{customer}/{popentofilter}/{pclosedtofilter}', 'ProjectController@list' );
 
-Route::get( '/confirm/delete/task', 'TaskController@delete' );
+Route::get( '/confirm/delete/task/{taskrowid}', 'TaskController@confirmdelete' );
+Route::get( '/delete/task/{taskrowid}', 'TaskController@delete' );

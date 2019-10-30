@@ -8,7 +8,7 @@
                 <div class="card-header">Are You Sure?</div>
                 <div class="card-body">
                     Please Confirm Deletion
-                    <a href="/" class="btn btn-primary">
+                    <a :href="'/delete/task/'+{{ $taskrowid }}" class="btn btn-primary">
                         Delete
                     </a>
                     <a href="/" class="btn btn-primary">

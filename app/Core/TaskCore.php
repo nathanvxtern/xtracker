@@ -100,5 +100,21 @@ class TaskCore
     public function update($id, $update_list)
     {
     }
+
+    public function delete( $taskrowid=null )
+    {
+        $params = [
+            $taskrowid
+        ];
+        $sql = "DELETE
+                FROM taskmaster T
+                WHERE T.taskrowid = ?";
+        try {
+            \DB::delete($sql, $params);
+        } catch (\Illuminate\Database\QueryException $e) {
+            \Log::info($e->getMessage());
+            return false;
+        }
+    }
     
 }

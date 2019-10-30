@@ -47,22 +47,11 @@ class TaskCore
             $projrowid,
         ];
 
-        // $sql = "SELECT t.taskrowid, title, to_char(createdate, 'YYYY.MM.DD') AS createdate,
-        // projrowid, projtyperowid, projstatusrowid, esthours, custponumber,
-        // to_char(reqcompdate, 'YYYY.MM.DD') AS reqcompdate, billingrate, SUM(numhours) AS usedhrs
-        // FROM taskmaster t
-        // LEFT JOIN projhours h ON h.taskrowid = t.taskrowid 
-        // WHERE projrowid = ?";
-
         $sql = "SELECT T.taskrowid, T.title, T.createdate, T.projrowid, T.projtyperowid, T.projstatusrowid, T.esthours, T.custponumber, T.reqcompdate, T.billingrate, SUM(H.numhours) usedhrs
                 FROM taskmaster T
                 LEFT JOIN projhours H ON H.taskrowid = T.taskrowid 
                 WHERE projrowid = ?
                 GROUP BY T.taskrowid";
-
-        //         SELECT ProductID, Purchasing.Vendor.BusinessEntityID, Name
-        //         FROM Purchasing.ProductVendor JOIN Purchasing.Vendor
-        //             ON (Purchasing.ProductVendor.BusinessEntityID = Purchasing.Vendor.BusinessEntityID)
        
         try {
             $rs = \DB::select( $sql, $params );
@@ -74,19 +63,20 @@ class TaskCore
         return $this->transform_task_collection( $rs );
     }
 
-    public function create($billingrate=null,$projstatusrowid=null,$projtyperowid=null,$esthours=null,$taskname=null,$custponumber=null,$projrowid=null)
+    public function create($billingrate=null,$projstatusrowid=null,$projtyperowid=null,$esthours=null,$reqcompdate=null,$taskname=null,$custponumber=null,$projrowid=null)
     {
         $params = [
             $billingrate,
             $projstatusrowid,
             $projtyperowid,
             $esthours,
+            $reqcompdate,
             $taskname,
             $custponumber,
             $projrowid
         ];
-        $sql = "INSERT INTO taskmaster(billingrate,projstatusrowid,projtyperowid,esthours,title,custponumber,projrowid)
-                VALUES(?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO taskmaster(billingrate,projstatusrowid,projtyperowid,esthours,reqcompdate,title,custponumber,projrowid)
+                VALUES(?,?,?,?,?,?,?,?)";
         try {
             \DB::insert($sql, $params);
         } catch (\Illuminate\Database\QueryException $e) {

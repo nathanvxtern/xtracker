@@ -15,6 +15,17 @@
                           <input v-model="taskrowidhoursedit" type="text" class="form-control" id="create-link-taskrowid" name="taskrowid">
                       </div>
                   </div>
+                    <table class="table">
+                        <thead>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                        <tr v-for="hour in hourshoursedit" v-bind:key="hour.hourid">
+                            <td>
+                                <input v-model="hour.numhours" type="text" class="form-control" id="create-link-numhours" name="numhours">
+                            </td>
+                        </tr>
+                    </table>
           </form>
       </div>
       <div class="modal-footer">

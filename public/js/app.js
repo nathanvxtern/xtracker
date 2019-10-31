@@ -1976,10 +1976,16 @@ __webpack_require__.r(__webpack_exports__);
       self.taskrowidadd = taskrowidadd;
       console.log(self.taskrowidadd);
     },
-    populateedithourmodal: function populateedithourmodal(taskrowidhoursedit) {
+    // populateedithourmodal: function(taskrowidhoursedit,user_idhoursedit,dateenteredhoursedit,numhourshoursedit,noteshoursedit,invoicenohoursedit)
+    populateedithourmodal: function populateedithourmodal(taskrowidhoursedit, hourshoursedit) {
       var self = this.$parent;
       self.taskrowidhoursedit = taskrowidhoursedit;
-      console.log(self.taskrowidhoursedit);
+      self.hourshoursedit = hourshoursedit;
+      console.log(hourshoursedit); // self.user_idhoursedit = user_idhoursedit;
+      // self.dateenteredhoursedit = dateenteredhoursedit;
+      // self.numhourshoursedit = numhourshoursedit;
+      // self.noteshoursedit = noteshoursedit;
+      // self.invoicenohoursedit = invoicenohoursedit;
     },
     populateedittaskmodal: function populateedittaskmodal(taskrowidtaskedit, edittasktitle, edittaskesthours, edittaskusedhrs, edittaskbillingrate) {
       var self = this.$parent;
@@ -66867,7 +66873,7 @@ var render = function() {
                 },
                 on: {
                   click: function($event) {
-                    return _vm.populateedithourmodal(task.taskrowid)
+                    return _vm.populateedithourmodal(task.taskrowid, task.hours)
                   }
                 }
               },
@@ -79267,7 +79273,6 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       projrowid: [],
       selectedproject: 0,
       taskrowidadd: null,
-      taskrowidhoursedit: null,
       newprojectcustomer: "Customer",
       newprojectcustrowid: null,
       newprojstatusrowid: null,
@@ -79289,7 +79294,14 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       edittasktitle: null,
       edittaskesthours: null,
       edittaskusedhrs: null,
-      edittaskbillingrate: null
+      edittaskbillingrate: null,
+      taskrowidhoursedit: null,
+      hourshoursedit: null // user_idhoursedit: null,
+      // dateenteredhoursedit: null,
+      // numhourshoursedit: null,
+      // noteshoursedit: null,
+      // invoicenohoursedit: null,
+
     };
   },
   methods: {

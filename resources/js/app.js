@@ -50,7 +50,6 @@ const app = new Vue({
         projrowid: [],
         selectedproject: 0,
         taskrowidadd: null,
-        taskrowidhoursedit: null,
         newprojectcustomer: "Customer",
         newprojectcustrowid: null,
         newprojstatusrowid: null,
@@ -74,6 +73,14 @@ const app = new Vue({
         edittaskesthours: null,
         edittaskusedhrs: null,
         edittaskbillingrate: null,
+
+        taskrowidhoursedit: null,
+        hourshoursedit: null,
+        // user_idhoursedit: null,
+        // dateenteredhoursedit: null,
+        // numhourshoursedit: null,
+        // noteshoursedit: null,
+        // invoicenohoursedit: null,
     }),
 
     methods: {

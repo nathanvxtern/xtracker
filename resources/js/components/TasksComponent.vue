@@ -26,7 +26,7 @@
                     </button>
                 </td>
                 <td class="border-0">
-                    <button @click="populateedithourmodal( task.taskrowid )" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editHoursModal">
+                    <button @click="populateedithourmodal( task.taskrowid, task.hours )" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editHoursModal">
                         Edit
                     </button>
                 </td>
@@ -52,11 +52,18 @@
                 self.taskrowidadd = taskrowidadd;
                 console.log( self.taskrowidadd );
             },
-            populateedithourmodal: function(taskrowidhoursedit)
+            // populateedithourmodal: function(taskrowidhoursedit,user_idhoursedit,dateenteredhoursedit,numhourshoursedit,noteshoursedit,invoicenohoursedit)
+            populateedithourmodal: function(taskrowidhoursedit,hourshoursedit)
             {
                 let self = this.$parent;
                 self.taskrowidhoursedit = taskrowidhoursedit;
-                console.log( self.taskrowidhoursedit );
+                self.hourshoursedit = hourshoursedit;
+                console.log( hourshoursedit );
+                // self.user_idhoursedit = user_idhoursedit;
+                // self.dateenteredhoursedit = dateenteredhoursedit;
+                // self.numhourshoursedit = numhourshoursedit;
+                // self.noteshoursedit = noteshoursedit;
+                // self.invoicenohoursedit = invoicenohoursedit;
             },
             populateedittaskmodal: function(taskrowidtaskedit,edittasktitle,edittaskesthours,edittaskusedhrs,edittaskbillingrate)
             {
@@ -67,7 +74,6 @@
                 self.edittaskusedhrs = edittaskusedhrs;
                 self.edittaskbillingrate = edittaskbillingrate;
             }
-        
         }
     }
 </script>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Core\TaskCore;
+use App\Core\HourCore;
 
 class TaskController extends APIController
 {
@@ -11,12 +12,18 @@ class TaskController extends APIController
     public function list( Request $request, $projrowid )
     {
         $task_core = new TaskCore();
+        $hour_core = new HourCore();
 
         $rec = array();
 
         $rec[ 'results' ][ 'tasks' ] = [];
 
         $rec[ 'results' ][ 'tasks' ] = $task_core->list( $projrowid );
+
+        foreach ( $rec[ 'results' ][ 'tasks' ] as $taskKey => $task ) {
+            $rec[ 'results' ][ 'tasks' ][ $taskKey ][ 'hours' ] = [];
+            $rec[ 'results' ][ 'tasks' ][ $taskKey ][ 'hours' ] = $hour_core->list( $task[ 'taskrowid' ] );
+        }
 
         $pagevars = array();
         $pagevars[ 'data' ] = array();

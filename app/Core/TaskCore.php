@@ -47,9 +47,20 @@ class TaskCore
             $projrowid,
         ];
 
-        $sql = "SELECT T.taskrowid, T.title, T.createdate, T.projrowid, T.projtyperowid, T.projstatusrowid, T.esthours, T.custponumber, T.reqcompdate, T.billingrate, SUM(H.numhours) usedhrs
+        $sql = "SELECT 
+                    T.taskrowid, 
+                    T.title, 
+                    T.createdate, 
+                    T.projrowid, 
+                    T.projtyperowid, 
+                    T.projstatusrowid, 
+                    T.esthours, 
+                    T.custponumber, 
+                    T.reqcompdate, 
+                    T.billingrate, 
+                    SUM(H.numhours) usedhrs
                 FROM taskmaster T
-                LEFT JOIN projhours H ON H.taskrowid = T.taskrowid 
+                LEFT JOIN projhours H ON H.taskrowid = T.taskrowid
                 WHERE projrowid = ?
                 GROUP BY T.taskrowid";
        

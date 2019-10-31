@@ -7,7 +7,8 @@
             <div class="card">
                 <div class="card-header">Are You Sure?</div>
                 <div class="card-body">
-                    Please Confirm Deletion
+                    <a>Please Confirm Deletion</a>
+                    <a>{{ $title }}</a>
                     <a :href="'/delete/task/'+{{ $taskrowid }}" class="btn btn-primary">
                         Delete
                     </a>

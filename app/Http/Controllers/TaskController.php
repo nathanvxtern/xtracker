@@ -27,11 +27,12 @@ class TaskController extends APIController
 
     public function update(Request $request,$taskrowid)
     {
+        \Log::info( $request->all() );
     }
 
-    public function confirmdelete( $taskrowid )
+    public function confirmdelete( $taskrowid, $title )
     {
-        return view( "confirmations/deletions/task", [ 'taskrowid' => $taskrowid ] );
+        return view( "confirmations/deletions/task", [ 'taskrowid' => $taskrowid, 'title' => $title ] );
     }
 
     public function delete( $taskrowid )

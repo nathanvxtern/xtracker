@@ -30,9 +30,13 @@ class HourController extends APIController
 
         $taskrowid = $request->input('taskrowid',null);
         $numhours = $request->input('numhours',null);
+        $user_id = $request->input('user_id',null);
+        $dateentered = $request->input('dateentered',null);
+        $notes = $request->input('notes',null);
+        $invoiceno = $request->input('invoiceno',null);
 
         $hour_core = new HourCore();
-        $hour_id = $hour_core->create($taskrowid,$numhours);
+        $hour_id = $hour_core->create($taskrowid,$numhours,$notes,$dateentered,$user_id,$invoiceno);
 
         return redirect("/");
     }

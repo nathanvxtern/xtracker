@@ -15,8 +15,24 @@
                       <input v-model="taskrowidadd" type="hidden" class="form-control" id="create-link-taskrowid" name="taskrowid">
                   </div>
                   <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
+                      <label for="user_id">user_id</label>
+                      <input type="text" class="form-control" id="user_id" name="user_id" placeholder="user_id">
+                  </div>
+                  <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
                       <label for="numhours">numhours</label>
                       <input type="text" class="form-control" id="numhours" name="numhours" placeholder="Numhours">
+                  </div>
+                  <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
+                      <label for="dateentered">dateentered</label>
+                      <input type="text" class="form-control" id="dateentered" name="dateentered" placeholder="yyyy-mm-dd">
+                  </div>
+                  <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
+                      <label for="notes">notes</label>
+                      <input type="text" class="form-control" id="notes" name="notes" placeholder="notes">
+                  </div>
+                  <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
+                      <label for="invoiceno">invoiceno</label>
+                      <input type="text" class="form-control" id="invoiceno" name="invoiceno" placeholder="invoiceno">
                   </div>
               </div>
           </form>

@@ -58,12 +58,6 @@
                 let self = this.$parent;
                 self.taskrowidhoursedit = taskrowidhoursedit;
                 self.hourshoursedit = hourshoursedit;
-                console.log( hourshoursedit );
-                // self.user_idhoursedit = user_idhoursedit;
-                // self.dateenteredhoursedit = dateenteredhoursedit;
-                // self.numhourshoursedit = numhourshoursedit;
-                // self.noteshoursedit = noteshoursedit;
-                // self.invoicenohoursedit = invoicenohoursedit;
             },
             populateedittaskmodal: function(taskrowidtaskedit,edittasktitle,edittaskesthours,edittaskusedhrs,edittaskbillingrate)
             {

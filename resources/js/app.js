@@ -76,11 +76,6 @@ const app = new Vue({
 
         taskrowidhoursedit: null,
         hourshoursedit: null,
-        // user_idhoursedit: null,
-        // dateenteredhoursedit: null,
-        // numhourshoursedit: null,
-        // noteshoursedit: null,
-        // invoicenohoursedit: null,
     }),
 
     methods: {

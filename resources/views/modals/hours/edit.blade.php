@@ -12,19 +12,38 @@
                   @csrf
                   <div>
                       <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                          <input v-model="taskrowidhoursedit" type="text" class="form-control" id="create-link-taskrowid" name="taskrowid">
+                          <input v-model="taskrowidhoursedit" type="hidden" class="form-control" id="create-link-taskrowid" name="taskrowid">
                       </div>
                   </div>
                     <table class="table">
                         <thead>
+                            <tr>
+                                <th scope="col">numhours</th>
+                                <th scope="col">user_id</th>
+                                <th scope="col">dateentered</th>
+                                <th scope="col">notes</th>
+                                <th scope="col">invoiceno</th>
+                            </tr>
                         </thead>
                         <tbody>
+                            <tr v-for="hour in hourshoursedit" v-bind:key="hour.hourid">
+                                <td>
+                                    <input v-model="hour.numhours" type="text" class="form-control" id="create-link-numhours" name="numhours">
+                                </td>
+                                <td>
+                                    <input v-model="hour.user_id" type="text" class="form-control" id="create-link-user_id" name="user_id">
+                                </td>
+                                <td>
+                                    <input v-model="hour.dateentered" type="text" class="form-control" id="create-link-dateentered" name="dateentered">
+                                </td>
+                                <td>
+                                    <input v-model="hour.notes" type="text" class="form-control" id="create-link-notes" name="notes">
+                                </td>
+                                <td>
+                                    <input v-model="hour.invoiceno" type="text" class="form-control" id="create-link-invoiceno" name="invoiceno">
+                                </td>
+                            </tr>
                         </tbody>
-                        <tr v-for="hour in hourshoursedit" v-bind:key="hour.hourid">
-                            <td>
-                                <input v-model="hour.numhours" type="text" class="form-control" id="create-link-numhours" name="numhours">
-                            </td>
-                        </tr>
                     </table>
           </form>
       </div>

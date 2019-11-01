@@ -26,7 +26,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="hour in hourshoursedit" v-bind:key="hour.hourid">
+                            <tr v-for="hour in hourshoursedit" v-bind:key="hour.hoursid">
                                 <td>
                                     <input v-model="hour.numhours" type="text" class="form-control" id="create-link-numhours" name="numhours">
                                 </td>
@@ -41,6 +41,11 @@
                                 </td>
                                 <td>
                                     <input v-model="hour.invoiceno" type="text" class="form-control" id="create-link-invoiceno" name="invoiceno">
+                                </td>
+                                <td>
+                                    <a v-model="hour.hoursid" :href="'/confirm/delete/hour/'+hour.hoursid" class="btn btn-primary">
+                                        Delete
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>

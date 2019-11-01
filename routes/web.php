@@ -28,7 +28,10 @@ Route::post('/hours', 'HourController@createnew');
 
 Route::patch('/task/edit/{taskrowid}', 'TaskController@update');
 
-Route::get( '/filter/{customer}/{popentofilter}/{pclosedtofilter}', 'ProjectController@list' );
+Route::get('/filter/{customer}/{popentofilter}/{pclosedtofilter}', 'ProjectController@list');
 
-Route::get( '/confirm/delete/task/{taskrowid}/{title}', 'TaskController@confirmdelete' );
-Route::get( '/delete/task/{taskrowid}', 'TaskController@delete' );
+Route::get('/confirm/delete/task/{taskrowid}/{title}', 'TaskController@confirmdelete');
+Route::get('/delete/task/{taskrowid}', 'TaskController@delete');
+
+Route::get('/confirm/delete/hour/{hoursid}', 'HourController@confirmdelete');
+Route::get('/delete/hour/{hoursid}', 'HourController@delete');

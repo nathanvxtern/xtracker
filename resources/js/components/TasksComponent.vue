@@ -52,7 +52,6 @@
                 self.taskrowidadd = taskrowidadd;
                 console.log( self.taskrowidadd );
             },
-            // populateedithourmodal: function(taskrowidhoursedit,user_idhoursedit,dateenteredhoursedit,numhourshoursedit,noteshoursedit,invoicenohoursedit)
             populateedithourmodal: function(taskrowidhoursedit,hourshoursedit)
             {
                 let self = this.$parent;

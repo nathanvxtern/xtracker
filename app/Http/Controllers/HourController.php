@@ -25,6 +25,18 @@ class HourController extends APIController
         return $this->return_success( $request, $pagevars );
     }
 
+    public function confirmdelete( $hoursid )
+    {
+        return view( "confirmations/deletions/hour", [ 'hoursid' => $hoursid ] );
+    }
+
+    public function delete( $hoursid )
+    {
+        $hour_core = new HourCore();
+        $hour_core->delete($hoursid);
+        return redirect("/");
+    }
+
     public function createnew(Request $request)
     {
 

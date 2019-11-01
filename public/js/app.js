@@ -1976,7 +1976,6 @@ __webpack_require__.r(__webpack_exports__);
       self.taskrowidadd = taskrowidadd;
       console.log(self.taskrowidadd);
     },
-    // populateedithourmodal: function(taskrowidhoursedit,user_idhoursedit,dateenteredhoursedit,numhourshoursedit,noteshoursedit,invoicenohoursedit)
     populateedithourmodal: function populateedithourmodal(taskrowidhoursedit, hourshoursedit) {
       var self = this.$parent;
       self.taskrowidhoursedit = taskrowidhoursedit;

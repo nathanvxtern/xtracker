@@ -6,6 +6,25 @@ use \Illuminate\Database\QueryException;
 
 class HourCore
 {
+    /*
+     *
+     * Update Fields
+     *
+     */
+
+    function fields_update_list()
+    {
+        return [
+            'hoursid',
+            'custrowid',
+            'taskrowid',
+            'notes',
+            'invoiceno',
+            'numhours',
+            'dateentered',
+            'user_id',
+        ];
+    }
 
     /*
     *
@@ -107,7 +126,7 @@ class HourCore
         }
         if(!empty($res)){
             return $res[0]->id;
-        } else{
+        } else {
             return false;
         }
     }

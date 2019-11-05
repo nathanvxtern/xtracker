@@ -29,7 +29,6 @@ class TaskCore
         ];
     }
 
-
     /*
     *
     * Data Transform Functions

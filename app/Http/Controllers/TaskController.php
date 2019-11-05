@@ -34,7 +34,36 @@ class TaskController extends APIController
 
     public function update(Request $request,$taskrowid)
     {
-        \Log::info( $request->all() );
+
+        $task_core = new TaskCore();
+
+        $param_list = $request->all();
+
+        $master_update_list = $task_core->fields_update_list();
+
+        $update_list = array();
+
+        $rec = false;
+
+        foreach ($master_update_list as $value) {
+            if( $request->input($value) == "%NULL%" ) {
+                $update_list[ $value ] = null;
+            } else if (isset($param_list[$value]) == true) {
+                $param_value = $request->input($value);
+                $update_list[$value] = $param_value;
+            }
+        }
+
+        if(!empty($update_list)) {
+            $rec = $task_core->update($taskrowid,$update_list);
+        }
+
+        if ($rec === -1 || $rec===false || $rec===null) {
+            dump( "There was an error." );
+        }
+
+        return redirect( "/" );
+
     }
 
     public function confirmdelete( $taskrowid, $title )

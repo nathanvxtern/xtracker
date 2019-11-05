@@ -43,7 +43,7 @@
                                     <input v-model="hour.invoiceno" type="text" class="form-control" id="create-link-invoiceno" name="invoiceno">
                                 </td>
                                 <td>
-                                    <a v-model="hour.hoursid" :href="'/confirm/delete/hour/'+hour.hoursid" class="btn btn-primary">
+                                    <a :v-model="hour.hoursid" :href="'/confirm/delete/hour/'+hour.hoursid" class="btn btn-primary">
                                         Delete
                                     </a>
                                 </td>

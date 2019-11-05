@@ -6,6 +6,29 @@ use \Illuminate\Database\QueryException;
 
 class TaskCore
 {
+    /*
+     *
+     * Update Fields
+     *
+     */
+
+    function fields_update_list()
+    {
+        return [
+            'taskrowid',
+            'title',
+            'createdate',
+            'projrowid',
+            'projtyperowid',
+            'projstatusrowid',
+            'esthours',
+            'custponumber',
+            'reqcompdate',
+            'billingrate',
+            'usedhrs',
+        ];
+    }
+
 
     /*
     *
@@ -108,8 +131,33 @@ class TaskCore
         }
     }
 
-    public function update($id, $update_list)
+    public function update($taskrowid, $update_list)
     {
+        $params = array();
+        $sql_params = array();
+
+        foreach ($update_list as $key => $value) {
+            array_push($params, $value);
+            array_push($sql_params, $key . ' = ?');
+        }
+        array_push($params, $taskrowid);
+
+        $sql = "UPDATE taskmaster";
+        $sql .= " SET ";
+        $sql .= implode(',', $sql_params);
+        $sql .= " WHERE taskrowid = ?";
+
+        try {
+            $recs = \DB::update($sql, $params);
+        } catch (\Illuminate\Database\QueryException $e) {
+            return false;
+        }
+
+        if ($recs == 0) {
+            return false;
+        }
+
+        return true;
     }
 
     public function delete( $taskrowid=null )

@@ -7,7 +7,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div><div class="modal-body">
-          <form id="edit_hours_form" action="/hours/edit" method="POST" name="edit_hours_form">
+          <form id="edit_hours_form" :action="'/hours/edit/' + taskrowidhoursedit" method="POST" name="edit_hours_form">
               {{ method_field('PATCH') }}
                   @csrf
                   <div>
@@ -43,6 +43,9 @@
                                     <input v-model="hour.invoiceno" type="text" class="form-control" id="create-link-invoiceno" name="invoiceno">
                                 </td>
                                 <td>
+                                    <input v-model="hour.hoursid" type="hidden" class="form-control" id="create-link-hoursid" name="hoursid">
+                                </td>
+                                <td>
                                     <a :v-model="hour.hoursid" :href="'/confirm/delete/hour/'+hour.hoursid" class="btn btn-primary">
                                         Delete
                                     </a>
@@ -54,9 +57,10 @@
       </div>
       <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button class="btn btn-primary" type="submit" form="edit_hours_form"
+          <button type="submit" class="btn btn-primary" form="edit_hours_form"
                           data-form-id="edit_hours_form"
-                          data-modal-id="edit-hours-modal">Submit</button>
+                          data-modal-id="edit-hours-modal"
+                          @click="populatetaskcomponent(selectedproject);">Update</button>
       </div>
     </div>
   </div>

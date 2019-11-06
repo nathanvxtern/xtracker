@@ -53,6 +53,41 @@ class HourController extends APIController
         return redirect("/");
     }
 
+    public function update(Request $request)
+    {
+        $hourid = $request->input()['hoursid'];
+
+        $hour_core = new HourCore();
+
+        $param_list = $request->all();
+
+        $master_update_list = $hour_core->fields_update_list();
+
+        $update_list = array();
+
+        $rec = false;
+
+        foreach ($master_update_list as $value) {
+            if( $request->input($value) == "%NULL%" ) {
+                $update_list[ $value ] = null;
+            } else if (isset($param_list[$value]) == true) {
+                $param_value = $request->input($value);
+                $update_list[$value] = $param_value;
+            }
+        }
+
+        if(!empty($update_list)) {
+            $rec = $hour_core->update($hourid,$update_list);
+        }
+
+        if ($rec === -1 || $rec===false || $rec===null) {
+            dump( "There was an error." );
+        }
+
+        return redirect( "/" );
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -102,18 +137,6 @@ class HourController extends APIController
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
     {
         //
     }

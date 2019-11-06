@@ -131,6 +131,35 @@ class HourCore
         }
     }
 
+    public function update($hourid, $update_list)
+    {
+        $params = array();
+        $sql_params = array();
+
+        foreach ($update_list as $key => $value) {
+            array_push($params, $value);
+            array_push($sql_params, $key . ' = ?');
+        }
+        array_push($params, $hourid);
+
+        $sql = "UPDATE projhours";
+        $sql .= " SET ";
+        $sql .= implode(',', $sql_params);
+        $sql .= " WHERE hourid = ?";
+
+        try {
+            $recs = \DB::update($sql, $params);
+        } catch (\Illuminate\Database\QueryException $e) {
+            return false;
+        }
+
+        if ($recs == 0) {
+            return false;
+        }
+
+        return true;
+    }
+
     public function delete( $hoursid=null )
     {
         $params = [

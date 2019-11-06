@@ -55,6 +55,8 @@ class HourController extends APIController
 
     public function update(Request $request)
     {
+        dump( $request );
+
         $hourid = $request->input()['hoursid'];
 
         $hour_core = new HourCore();
@@ -79,6 +81,8 @@ class HourController extends APIController
         if(!empty($update_list)) {
             $rec = $hour_core->update($hourid,$update_list);
         }
+
+        dump( $rec );
 
         if ($rec === -1 || $rec===false || $rec===null) {
             dump( "There was an error." );

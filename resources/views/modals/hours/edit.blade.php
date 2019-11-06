@@ -14,6 +14,9 @@
                       <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
                           <input v-model="taskrowidhoursedit" type="hidden" class="form-control" id="create-link-taskrowid" name="taskrowid">
                       </div>
+                      <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
+                          <input v-model="hourshoursedit" type="hidden" class="form-control" id="create-link-hours" name="hours">
+                      </div>
                   </div>
                     <table class="table">
                         <thead>
@@ -50,6 +53,12 @@
                                         Delete
                                     </a>
                                 </td>
+                                <td>
+                                    <button type="submit" class="btn btn-primary" form="edit_hours_form"
+                                                    data-form-id="edit_hours_form"
+                                                    data-modal-id="edit-hours-modal"
+                                                    @click="populatetaskcomponent(selectedproject);">Update</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -57,10 +66,6 @@
       </div>
       <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-primary" form="edit_hours_form"
-                          data-form-id="edit_hours_form"
-                          data-modal-id="edit-hours-modal"
-                          @click="populatetaskcomponent(selectedproject);">Update</button>
       </div>
     </div>
   </div>

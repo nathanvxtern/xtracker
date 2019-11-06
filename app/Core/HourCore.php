@@ -145,11 +145,12 @@ class HourCore
         $sql = "UPDATE projhours";
         $sql .= " SET ";
         $sql .= implode(',', $sql_params);
-        $sql .= " WHERE hourid = ?";
+        $sql .= " WHERE hoursid = ?";
 
         try {
             $recs = \DB::update($sql, $params);
         } catch (\Illuminate\Database\QueryException $e) {
+            dump( $e );
             return false;
         }
 

@@ -15,8 +15,8 @@
                       <input v-model="taskrowidadd" type="hidden" class="form-control" id="create-link-taskrowid" name="taskrowid">
                   </div>
                   <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                      <label for="user_id">user_id</label>
-                      <input type="text" class="form-control" id="user_id" name="user_id" placeholder="user_id">
+                      <label for="user_id" type="hidden">user_id</label>
+                      <input class="form-control" id="user_id" name="user_id" placeholder="user_id">
                   </div>
                   <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
                       <label for="numhours">numhours</label>

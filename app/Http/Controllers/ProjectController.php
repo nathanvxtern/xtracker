@@ -26,6 +26,7 @@ class ProjectController extends APIController
         $rec[ 'results' ][ 'statuses' ] = [];
         $rec[ 'results' ][ 'types' ] = [];
         $rec[ 'results' ][ 'projected' ] = [];
+        $rec[ 'results' ][ 'recenttasks' ] = [];
 
         $rec[ 'results' ][ 'projects' ] = $project_core->list();
         $rec[ 'results' ][ 'customers' ] = $customer_core->list();
@@ -33,6 +34,14 @@ class ProjectController extends APIController
         $rec[ 'results' ][ 'types' ] = $type_core->list();
 
         $rec[ 'results' ][ 'projected' ] = $selectedproject;
+
+        $rec[ 'results' ][ 'recenttasks' ] = [
+            [ 'custrowid' => 0, 'projrowid' => 1, 'taskrowid' => 2 ],
+            [ 'custrowid' => 0, 'projrowid' => 1, 'taskrowid' => 3 ],
+            [ 'custrowid' => 0, 'projrowid' => 1, 'taskrowid' => 4 ],
+            [ 'custrowid' => 0, 'projrowid' => 1, 'taskrowid' => 5 ],
+            [ 'custrowid' => 0, 'projrowid' => 1, 'taskrowid' => 6 ],
+        ];
 
         $pagevars = array();
         $pagevars[ 'data' ] = array();

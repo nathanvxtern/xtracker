@@ -83,12 +83,14 @@ const app = new Vue({
         dateenteredtoedit: null,
         notestoedit: null,
         invoicenotoedit: null,
+
     }),
 
     methods: {
         debug: function()
         {
             self = this;
+            console.log( self.recenttasks );
         },
         gettasks: function( projrowid )
         {

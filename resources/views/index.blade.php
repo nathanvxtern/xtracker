@@ -3,6 +3,9 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
+            @include( 'partials.quickadd' )
+        </div>
+        <div class="row">
             <div class="col-4">
                 @include( 'partials.pfilter' )
                 <pfilter-component :ctofilter="ctofilter" :popentofilter="popentofilter" :pclosedtofilter="pclosedtofilter"><pfilter-component>
@@ -61,7 +64,6 @@
         var taskListToLoad = currentObjectPHP.projected;
         if ( taskListToLoad > 0 ) {
             console.log( taskListToLoad );
-            // populatetaskcomponent( taskListToLoad );
         }
 
     </script>

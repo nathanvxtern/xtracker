@@ -79290,22 +79290,24 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       edittaskusedhrs: null,
       edittaskbillingrate: null,
       taskrowidhoursedit: null,
-      hourshoursedit: null
+      hourshoursedit: null,
+      hoursidtoedit: null,
+      numhourstoedit: null,
+      user_idtoedit: null,
+      dateenteredtoedit: null,
+      notestoedit: null,
+      invoicenotoedit: null
     };
   },
   methods: {
     debug: function debug() {
       self = this;
-      console.log(self.taskrowidhoursedit);
     },
     gettasks: function gettasks(projrowid) {
       var self = this;
       var current_path = "/tasks/" + projrowid;
       HTTP.get(current_path).then(function (response) {
-        console.log(response);
-
         if (response.data.data.data.results.tasks) {
-          console.log(response.data.data.data.results.tasks);
           self.tasks = response.data.data.data.results.tasks;
         } else {
           self.tasks = [];
@@ -79318,10 +79320,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       var self = this;
       var current_path = "/hours/" + taskrowid;
       HTTP.get(current_path).then(function (response) {
-        console.log(response);
-
         if (response.data.data.data.results.hours) {
-          console.log(response.data.data.data.results.hours);
           self.hours = response.data.data.data.results.hours;
         } else {
           self.hours = [];
@@ -79334,10 +79333,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       var self = this;
       var current_path = "/customer/" + projrowid;
       HTTP.get(current_path).then(function (response) {
-        console.log(response);
-
         if (response.data.data.data.results.project.customer.name) {
-          console.log(response.data.data.data.results.project.customer.name);
           self.customer = response.data.data.data.results.project.customer.name;
         } else {
           self.customer = [];
@@ -79350,10 +79346,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       var self = this;
       var current_path = "/status/" + projrowid;
       HTTP.get(current_path).then(function (response) {
-        console.log(response);
-
         if (response.data.data.data.results.project.status) {
-          console.log(response.data.data.data.results.project.status);
           self.status = response.data.data.data.results.project.status;
         } else {
           self.status = [];
@@ -79380,26 +79373,19 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
     },
     createproject: function createproject(title, custrowid) {
       var current_path = "/projects/create/" + title + "/" + custrowid;
-      HTTP.get(current_path).then(function (response) {
-        console.log(response);
-        console.log("response should contain newly added id");
-      })["catch"](function (e) {
+      HTTP.get(current_path).then(function (response) {})["catch"](function (e) {
         console.log(e);
       });
     },
     createtask: function createtask(billingrate, projstatusrowid, projtyperowid, projrowid, title) {
       var current_path = "/tasks/create/" + billingrate + "/" + projstatusrowid + "/" + projtyperowid + "/" + projrowid + "/" + title;
-      HTTP.get(current_path).then(function (response) {
-        console.log(response);
-        console.log("response should contain newly added id");
-      })["catch"](function (e) {
+      HTTP.get(current_path).then(function (response) {})["catch"](function (e) {
         console.log(e);
       });
     },
     populatetaskmodal: function populatetaskmodal(selectedproject) {
       var self = this;
       self.selectedproject = selectedproject;
-      console.log(selectedproject);
     },
     assignnewprojectcustomer: function assignnewprojectcustomer(newprojectcustomer) {
       var self = this;
@@ -79652,8 +79638,6 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       }
     },
     populatetaskcomponent: function populatetaskcomponent(projrowid) {
-      console.log(projrowid);
-
       if (projrowid > 0) {
         var _self = this;
 
@@ -79669,6 +79653,32 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
 
         _self.selectedproject = projrowid;
       }
+    },
+    updatenumhourstoedit: function updatenumhourstoedit(hoursidtoedit, numhourstoedit) {
+      var self = this;
+      self.numhourstoedit = numhourstoedit;
+      self.hoursidtoedit = hoursidtoedit;
+    },
+    updateuser_idtoedit: function updateuser_idtoedit(hoursidtoedit, user_idtoedit) {
+      var self = this;
+      self.user_idtoedit = user_idtoedit;
+      self.hoursidtoedit = hoursidtoedit;
+    },
+    updatedateenteredtoedit: function updatedateenteredtoedit(hoursidtoedit, dateenteredtoedit) {
+      var self = this;
+      self.dateenteredtoedit = dateenteredtoedit;
+      self.hoursidtoedit = hoursidtoedit;
+    },
+    updatenotestoedit: function updatenotestoedit(hoursidtoedit, notestoedit) {
+      var self = this;
+      self.notestoedit = notestoedit;
+      self.hoursidtoedit = hoursidtoedit;
+      console.log(self.notestoedit);
+    },
+    updateinvoicenotoedit: function updateinvoicenotoedit(hoursidtoedit, invoicenotoedit) {
+      var self = this;
+      self.invoicenotoedit = invoicenotoedit;
+      self.hoursidtoedit = hoursidtoedit;
     }
   }
 });

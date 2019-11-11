@@ -53,15 +53,17 @@ class HourController extends APIController
         return redirect("/");
     }
 
-    public function update(Request $request)
+    public function update( Request $request, $hoursid=null, $numhours=null, $user_id=null, $dateentered=null, $notes=null, $invoiceno=null )
     {
-        dump( $request );
-
-        $hourid = $request->input()['hoursid'];
-
         $hour_core = new HourCore();
 
-        $param_list = $request->all();
+        $param_list = [ 'hoursid' => $hoursid,
+                        'numhours' => $numhours,
+                        'user_id' => $user_id,
+                        'dateentered' => $dateentered,
+                        'notes' => $notes,
+                        'invoiceno' => $invoiceno
+                    ];
 
         $master_update_list = $hour_core->fields_update_list();
 
@@ -70,19 +72,15 @@ class HourController extends APIController
         $rec = false;
 
         foreach ($master_update_list as $value) {
-            if( $request->input($value) == "%NULL%" ) {
-                $update_list[ $value ] = null;
-            } else if (isset($param_list[$value]) == true) {
-                $param_value = $request->input($value);
+            if (isset($param_list[$value]) == true) {
+                $param_value = $param_list[$value];
                 $update_list[$value] = $param_value;
             }
         }
 
         if(!empty($update_list)) {
-            $rec = $hour_core->update($hourid,$update_list);
+            $rec = $hour_core->update($hoursid,$update_list);
         }
-
-        dump( $rec );
 
         if ($rec === -1 || $rec===false || $rec===null) {
             dump( "There was an error." );

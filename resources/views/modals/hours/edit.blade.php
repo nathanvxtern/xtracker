@@ -7,7 +7,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div><div class="modal-body">
-          <form id="edit_hours_form" :action="'/hours/edit/' + taskrowidhoursedit" method="POST" name="edit_hours_form">
+          <form id="edit_hours_form" :action="'/hours/edit/' + hoursidtoedit + '/' + numhourstoedit + '/' + user_idtoedit + '/' + dateenteredtoedit + '/' + notestoedit + '/' + invoicenotoedit" method="POST" name="edit_hours_form">
               {{ method_field('PATCH') }}
                   @csrf
                   <div>
@@ -29,24 +29,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="hour in hourshoursedit" v-bind:key="hour.hoursid">
+                            <tr v-for="(hour,index) in hourshoursedit" v-bind:key="hourshoursedit[index].hoursid">
                                 <td>
-                                    <input v-model="hour.numhours" type="text" class="form-control" id="create-link-numhours" name="numhours">
+                                    <input v-model="hourshoursedit[index].numhours" type="text" class="form-control" id="create-link-numhours" name="numhours" @change="updatenumhourstoedit( hour.hoursid, hour.numhours )">
                                 </td>
                                 <td>
-                                    <input v-model="hour.user_id" type="text" class="form-control" id="create-link-user_id" name="user_id">
+                                    <input v-model="hourshoursedit[index].user_id" type="text" class="form-control" id="create-link-user_id" name="user_id" @change="updateuser_idtoedit( hour.hoursid, hour.user_id )">
                                 </td>
                                 <td>
-                                    <input v-model="hour.dateentered" type="text" class="form-control" id="create-link-dateentered" name="dateentered">
+                                    <input v-model="hourshoursedit[index].dateentered" type="text" class="form-control" id="create-link-dateentered" name="dateentered" @change="updatedateenteredtoedit( hour.hoursid, hour.dateentered )">
                                 </td>
                                 <td>
-                                    <input v-model="hour.notes" type="text" class="form-control" id="create-link-notes" name="notes">
+                                    <input v-model="hourshoursedit[index].notes" type="text" class="form-control" id="create-link-notes" name="notes" @change="updatenotestoedit( hour.hoursid, hour.notes )">
                                 </td>
                                 <td>
-                                    <input v-model="hour.invoiceno" type="text" class="form-control" id="create-link-invoiceno" name="invoiceno">
+                                    <input v-model="hourshoursedit[index].invoiceno" type="text" class="form-control" id="create-link-invoiceno" name="invoiceno" @change="updateinvoicenotoedit( hour.hoursid, hour.invoiceno )">
                                 </td>
                                 <td>
-                                    <input v-model="hour.hoursid" type="hidden" class="form-control" id="create-link-hoursid" name="hoursid">
+                                    <input v-model="hourshoursedit[index].hoursid" type="hidden" class="form-control" id="create-link-hoursid" name="hoursid">
                                 </td>
                                 <td>
                                     <a :v-model="hour.hoursid" :href="'/confirm/delete/hour/'+hour.hoursid" class="btn btn-primary">
@@ -57,7 +57,12 @@
                                     <button type="submit" class="btn btn-primary" form="edit_hours_form"
                                                     data-form-id="edit_hours_form"
                                                     data-modal-id="edit-hours-modal"
-                                                    @click="populatetaskcomponent(selectedproject);">Update</button>
+                                                    @click="populatetaskcomponent(selectedproject);
+                                                            updatenumhourstoedit( hour.hoursid, hour.numhours );
+                                                            updateuser_idtoedit( hour.hoursid, hour.user_id );
+                                                            updatedateenteredtoedit( hour.hoursid, hour.dateentered );
+                                                            updatenotestoedit( hour.hoursid, hour.notes );
+                                                            updateinvoicenotoedit( hour.hoursid, hour.invoiceno );">Update</button>
                                 </td>
                             </tr>
                         </tbody>

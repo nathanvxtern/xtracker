@@ -131,7 +131,7 @@ class HourCore
         }
     }
 
-    public function update($hourid, $update_list)
+    public function update($hoursid, $update_list)
     {
         $params = array();
         $sql_params = array();
@@ -140,7 +140,7 @@ class HourCore
             array_push($params, $value);
             array_push($sql_params, $key . ' = ?');
         }
-        array_push($params, $hourid);
+        array_push($params, $hoursid);
 
         $sql = "UPDATE projhours";
         $sql .= " SET ";

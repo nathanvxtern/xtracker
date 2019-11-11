@@ -76,13 +76,19 @@ const app = new Vue({
 
         taskrowidhoursedit: null,
         hourshoursedit: null,
+
+        hoursidtoedit: null,
+        numhourstoedit: null,
+        user_idtoedit: null,
+        dateenteredtoedit: null,
+        notestoedit: null,
+        invoicenotoedit: null,
     }),
 
     methods: {
         debug: function()
         {
             self = this;
-            console.log( self.taskrowidhoursedit );
         },
         gettasks: function( projrowid )
         {
@@ -93,9 +99,7 @@ const app = new Vue({
             HTTP.get( current_path )
 
                 .then( response => {
-                    console.log( response );
                     if( response.data.data.data.results.tasks ) {
-                        console.log( response.data.data.data.results.tasks );
                         self.tasks = response.data.data.data.results.tasks;
                     } else {
                         self.tasks = [];
@@ -116,9 +120,7 @@ const app = new Vue({
             HTTP.get( current_path )
 
                 .then( response => {
-                    console.log( response );
                     if( response.data.data.data.results.hours ) {
-                        console.log( response.data.data.data.results.hours );
                         self.hours = response.data.data.data.results.hours;
                     } else {
                         self.hours = [];
@@ -139,9 +141,7 @@ const app = new Vue({
             HTTP.get( current_path )
 
                 .then( response => {
-                    console.log( response );
                     if( response.data.data.data.results.project.customer.name ) {
-                        console.log( response.data.data.data.results.project.customer.name );
                         self.customer = response.data.data.data.results.project.customer.name;
                     } else {
                         self.customer = [];
@@ -162,9 +162,7 @@ const app = new Vue({
             HTTP.get( current_path )
 
                 .then( response => {
-                    console.log( response );
                     if( response.data.data.data.results.project.status ) {
-                        console.log( response.data.data.data.results.project.status );
                         self.status = response.data.data.data.results.project.status;
                     } else {
                         self.status = [];
@@ -203,8 +201,6 @@ const app = new Vue({
             HTTP.get( current_path )
 
                 .then( response => {
-                    console.log( response );
-                    console.log( "response should contain newly added id" );
                 })
 
                 .catch( e => {
@@ -219,8 +215,6 @@ const app = new Vue({
             HTTP.get( current_path )
 
                 .then( response => {
-                    console.log( response );
-                    console.log( "response should contain newly added id" );
                 })
 
                 .catch( e => {
@@ -232,7 +226,6 @@ const app = new Vue({
         {
             let self = this;
             self.selectedproject = selectedproject;
-            console.log( selectedproject );
         },
         assignnewprojectcustomer: function( newprojectcustomer )
         {
@@ -486,7 +479,6 @@ const app = new Vue({
         },
         populatetaskcomponent: function( projrowid )
         {
-            console.log( projrowid );
             if ( projrowid > 0 ) {
                 let self = this;
                 self.gettasks( projrowid );
@@ -496,6 +488,37 @@ const app = new Vue({
                 self.populatetaskmodal( projrowid );
                 self.selectedproject = projrowid;
             }
-        }
+        },
+        updatenumhourstoedit: function(hoursidtoedit,numhourstoedit)
+        {
+            let self = this;
+            self.numhourstoedit = numhourstoedit;
+            self.hoursidtoedit = hoursidtoedit;
+        },
+        updateuser_idtoedit: function(hoursidtoedit,user_idtoedit)
+        {
+            let self = this;
+            self.user_idtoedit = user_idtoedit;
+            self.hoursidtoedit = hoursidtoedit;
+        },
+        updatedateenteredtoedit: function(hoursidtoedit,dateenteredtoedit)
+        {
+            let self = this;
+            self.dateenteredtoedit = dateenteredtoedit;
+            self.hoursidtoedit = hoursidtoedit;
+        },
+        updatenotestoedit: function(hoursidtoedit,notestoedit)
+        {
+            let self = this;
+            self.notestoedit = notestoedit;
+            self.hoursidtoedit = hoursidtoedit;
+            console.log( self.notestoedit );
+        },
+        updateinvoicenotoedit: function(hoursidtoedit,invoicenotoedit)
+        {
+            let self = this;
+            self.invoicenotoedit = invoicenotoedit;
+            self.hoursidtoedit = hoursidtoedit;
+        },
     }
 });

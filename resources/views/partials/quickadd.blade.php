@@ -9,27 +9,27 @@
                 <th scope="col">project</th>
                 <th scope="col">task</th>
                 <th scope="col">used of estimated</th>
-                <th scope="col">empty column</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
             <tr v-for="task in currentObject.recenttasks" v-bind:key="task.taskrowid">
                 <td>
-                    @{{ task.custrowid }}
+                    @{{ task.proj.customer.name }}
                 </td>
                 <td>
-                    @{{ task.projrowid }}
+                    @{{ task.proj.title }}
                 </td>
                 <td>
-                    @{{ task.taskrowid }}
+                    @{{ task.title }}
                 </td>
                 <td>
                     @{{ task.usedhrs }} of @{{ task.esthours }} hours
                 </td>
                 <td>
-                    <a href="/" class="btn btn-primary">
-                        Add Hours
-                    </a>
+                    <button @click="populatehourmodal( task.taskrowid )" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addHoursModal">
+                        Add
+                    </button>
                 </td>
             </tr>
         </tbody>

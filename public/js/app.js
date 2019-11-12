@@ -79302,7 +79302,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
   methods: {
     debug: function debug() {
       self = this;
-      console.log(self.recenttasks);
+      console.log(self.currentObject);
     },
     gettasks: function gettasks(projrowid) {
       var self = this;
@@ -79680,6 +79680,11 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       var self = this;
       self.invoicenotoedit = invoicenotoedit;
       self.hoursidtoedit = hoursidtoedit;
+    },
+    populatehourmodal: function populatehourmodal(taskrowidadd) {
+      var self = this;
+      self.taskrowidadd = taskrowidadd;
+      console.log(self.taskrowidadd);
     }
   }
 });

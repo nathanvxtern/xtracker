@@ -42,6 +42,9 @@ class ProjectController extends APIController
         $rec[ 'results' ][ 'projected' ] = $selectedproject;
 
         $rec[ 'results' ][ 'recenttasks' ] = $task_core->recent();
+        foreach ( $rec[ 'results' ][ 'recenttasks' ] as &$task ) {
+            $task[ 'proj' ] = $project_core->get( $task[ 'projrowid' ] );
+        }
 
         $pagevars = array();
         $pagevars[ 'data' ] = array();

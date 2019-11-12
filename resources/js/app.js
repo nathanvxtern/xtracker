@@ -90,7 +90,7 @@ const app = new Vue({
         debug: function()
         {
             self = this;
-            console.log( self.recenttasks );
+            console.log( self.currentObject );
         },
         gettasks: function( projrowid )
         {
@@ -521,6 +521,12 @@ const app = new Vue({
             let self = this;
             self.invoicenotoedit = invoicenotoedit;
             self.hoursidtoedit = hoursidtoedit;
+        },
+        populatehourmodal: function(taskrowidadd)
+        {
+            let self = this;
+            self.taskrowidadd = taskrowidadd;
+            console.log( self.taskrowidadd );
         },
     }
 });

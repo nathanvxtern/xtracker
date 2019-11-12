@@ -7,6 +7,8 @@ use App\Core\ProjectCore;
 use App\Core\CustomerCore;
 use App\Core\StatusCore;
 use App\Core\TypeCore;
+use App\Core\TaskCore;
+use App\Core\UserCore;
 
 class ProjectController extends APIController
 {
@@ -18,6 +20,8 @@ class ProjectController extends APIController
         $customer_core = new CustomerCore();
         $status_core = new StatusCore();
         $type_core = new TypeCore();
+        $task_core = new TaskCore();
+        $user_core = new UserCore();
 
         $rec = array();
 
@@ -25,6 +29,7 @@ class ProjectController extends APIController
         $rec[ 'results' ][ 'customers' ] = [];
         $rec[ 'results' ][ 'statuses' ] = [];
         $rec[ 'results' ][ 'types' ] = [];
+        $rec[ 'results' ][ 'users' ] = [];
         $rec[ 'results' ][ 'projected' ] = [];
         $rec[ 'results' ][ 'recenttasks' ] = [];
 
@@ -32,16 +37,11 @@ class ProjectController extends APIController
         $rec[ 'results' ][ 'customers' ] = $customer_core->list();
         $rec[ 'results' ][ 'statuses' ] = $status_core->list();
         $rec[ 'results' ][ 'types' ] = $type_core->list();
+        $rec[ 'results' ][ 'users' ] = $user_core->list();
 
         $rec[ 'results' ][ 'projected' ] = $selectedproject;
 
-        $rec[ 'results' ][ 'recenttasks' ] = [
-            [ 'custrowid' => 0, 'projrowid' => 1, 'taskrowid' => 2 ],
-            [ 'custrowid' => 0, 'projrowid' => 1, 'taskrowid' => 3 ],
-            [ 'custrowid' => 0, 'projrowid' => 1, 'taskrowid' => 4 ],
-            [ 'custrowid' => 0, 'projrowid' => 1, 'taskrowid' => 5 ],
-            [ 'custrowid' => 0, 'projrowid' => 1, 'taskrowid' => 6 ],
-        ];
+        $rec[ 'results' ][ 'recenttasks' ] = $task_core->recent();
 
         $pagevars = array();
         $pagevars[ 'data' ] = array();

@@ -24,7 +24,7 @@
                     @{{ task.taskrowid }}
                 </td>
                 <td>
-                    used of estimated
+                    @{{ task.usedhrs }} of @{{ task.esthours }} hours
                 </td>
                 <td>
                     <a href="/" class="btn btn-primary">

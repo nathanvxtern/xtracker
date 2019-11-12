@@ -40,7 +40,6 @@ class HourController extends APIController
     public function createnew(Request $request)
     {
         $user_id = \Auth::user()->id;
-        dump( $user_id );
         $user_id_override = $request->input('user_id',null);
         if ( !is_null( $user_id_override ) ) {
             $user_id = $user_id_override;

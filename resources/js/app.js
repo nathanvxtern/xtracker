@@ -92,7 +92,7 @@ const app = new Vue({
         debug: function()
         {
             self = this;
-            console.log( self.currentObject );
+            console.log( self.ptofilter );
         },
         gettasks: function( projrowid )
         {
@@ -205,11 +205,6 @@ const app = new Vue({
 
             });
 
-        },
-        pfilter: function( ptofilter )
-        {
-            let self = this;
-            self.ptofilter = ptofilter;
         },
         popenfilter: function( popentofilter )
         {
@@ -503,6 +498,33 @@ const app = new Vue({
             } else if ( newtasktype == "CONSULT 200" ) {
                 self.newtasktyperowid = 34;
             }
+        },
+        pfilter: function( ptofilter )
+        {
+            let self = this;
+            self.ptofilter = ptofilter;
+            self.populatetaskcomponent( self.ptofilter );
+        },
+        getprojectid: function ( title )
+        {
+            let self = this
+
+            let current_path = "/getid/" + title;
+
+            HTTP.get( current_path )
+
+                .then( response => {
+                    if( response.data.data.data.results.id.projrowid ) {
+                        self.ptofilter = response.data.data.data.results.id.projrowid;
+                    } else {
+                        self.ptofilter = [];
+                    }
+                })
+
+                .catch( e => {
+                    console.log( e );
+
+            });
         },
         populatetaskcomponent: function( projrowid )
         {

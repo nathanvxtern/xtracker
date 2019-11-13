@@ -101,6 +101,27 @@ class ProjectCore
         return $project;
     }
 
+    public function getid( $title )
+    {
+        $params = [ 
+            $title
+        ];
+
+        $sql = "SELECT P.projrowid
+                FROM projmaster P 
+                WHERE title = ?";
+
+        try {
+            $rs = \DB::select( $sql, $params );
+        } catch ( \Illuminate\Database\QueryException $e ) {
+            return null;
+        }
+        
+        $id = $rs[ 0 ];
+
+        return $id;
+    }
+
     public function create($custrowid=null,$title=null,$projstatusrowid=null)
     {
 

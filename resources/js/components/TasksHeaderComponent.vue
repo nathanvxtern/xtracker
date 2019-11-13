@@ -1,3 +1,15 @@
+The row in the index file that contained this header
+        <div class="row">
+            <div class="col">
+                <tasks-header-component :customers="currentObject.customers"
+                                        :statuses="currentObject.statuses"
+                                        v-bind:projrowid="projrowid"
+                                        v-bind:customer="customer"
+                                        v-bind:status="status">
+                <tasks-header-component>
+            </div>
+        </div>
+
 <template>
     <div>
         Selected Project

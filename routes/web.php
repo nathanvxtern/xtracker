@@ -18,6 +18,8 @@ Route::get('/filter/Customer/true/true/taskcreated/{selectedproject}', 'ProjectC
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/getid/{title}', 'ProjectController@getid' );
+
 Route::get('/tasks/{projrowid}', 'TaskController@list');
 Route::get('/hours/{taskrowid}', 'HourController@list');
 Route::get('/customer/{projrowid}', 'ProjectController@get');

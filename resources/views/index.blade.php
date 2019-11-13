@@ -16,20 +16,15 @@
                 <pfilter-component :ctofilter="ctofilter" :popentofilter="popentofilter" :pclosedtofilter="pclosedtofilter"><pfilter-component>
             </div>
             <div class="col">
-                <select v-model="ptofilter" name="ptofilter" id="ptofilter" class="form-control" v-on:change="pfilter( ptofilter )">
+                <select v-model="ptofilter" name="ptofilter" id="ptofilter" class="form-control" v-on:change="pfilter( ptofilter );">
                     <option selected>Project</option>
-                    <option v-for="project in customerprojects" :key="project.projrowid">@{{ project.title }}</option>
+                    <option v-for="project in customerprojects" :key="project.projrowid" :label="project.title">@{{ project.projrowid }}</option>
                 </select>
             </div>
-        </div>
-        <div class="row">
             <div class="col">
-                <tasks-header-component :customers="currentObject.customers"
-                                        :statuses="currentObject.statuses"
-                                        v-bind:projrowid="projrowid"
-                                        v-bind:customer="customer"
-                                        v-bind:status="status">
-                <tasks-header-component>
+                <button type="button" class="btn btn-primary" data-customers="currentObject.customers" data-toggle="modal" data-target="#projectModal">
+                Add Project
+                </button>
             </div>
         </div>
         <div class="row">
@@ -38,11 +33,6 @@
             </div>
         </div>
         <div class="row">
-            <div class="col">
-                <button type="button" class="btn btn-primary" data-customers="currentObject.customers" data-toggle="modal" data-target="#projectModal">
-                Add Project
-                </button>
-            </div>
             <div class="col">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal">
                 Add Task

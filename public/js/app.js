@@ -2043,6 +2043,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['customers', 'statuses', 'projrowid', 'customer', 'status']
 });
@@ -79306,7 +79318,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
   methods: {
     debug: function debug() {
       self = this;
-      console.log(self.currentObject);
+      console.log(self.ptofilter);
     },
     gettasks: function gettasks(projrowid) {
       var self = this;
@@ -79377,10 +79389,6 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       })["catch"](function (e) {
         console.log(e);
       });
-    },
-    pfilter: function pfilter(ptofilter) {
-      var self = this;
-      self.ptofilter = ptofilter;
     },
     popenfilter: function popenfilter(popentofilter) {
       var self = this;
@@ -79655,6 +79663,24 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       } else if (newtasktype == "CONSULT 200") {
         self.newtasktyperowid = 34;
       }
+    },
+    pfilter: function pfilter(ptofilter) {
+      var self = this;
+      self.ptofilter = ptofilter;
+      self.populatetaskcomponent(self.ptofilter);
+    },
+    getprojectid: function getprojectid(title) {
+      var self = this;
+      var current_path = "/getid/" + title;
+      HTTP.get(current_path).then(function (response) {
+        if (response.data.data.data.results.id.projrowid) {
+          self.ptofilter = response.data.data.data.results.id.projrowid;
+        } else {
+          self.ptofilter = [];
+        }
+      })["catch"](function (e) {
+        console.log(e);
+      });
     },
     populatetaskcomponent: function populatetaskcomponent(projrowid) {
       if (projrowid > 0) {
@@ -80111,6 +80137,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _TasksHeaderComponent_vue_vue_type_template_id_365ab76d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TasksHeaderComponent.vue?vue&type=template&id=365ab76d& */ "./resources/js/components/TasksHeaderComponent.vue?vue&type=template&id=365ab76d&");
 /* harmony import */ var _TasksHeaderComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TasksHeaderComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/TasksHeaderComponent.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _TasksHeaderComponent_vue_vue_type_custom_index_0_blockType_div_class_row__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./TasksHeaderComponent.vue?vue&type=custom&index=0&blockType=div&class=row */ "./resources/js/components/TasksHeaderComponent.vue?vue&type=custom&index=0&blockType=div&class=row");
+/* harmony import */ var _TasksHeaderComponent_vue_vue_type_custom_index_0_blockType_div_class_row__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_TasksHeaderComponent_vue_vue_type_custom_index_0_blockType_div_class_row__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
@@ -80129,10 +80157,25 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   
 )
 
+/* custom blocks */
+
+if (typeof _TasksHeaderComponent_vue_vue_type_custom_index_0_blockType_div_class_row__WEBPACK_IMPORTED_MODULE_3___default.a === 'function') _TasksHeaderComponent_vue_vue_type_custom_index_0_blockType_div_class_row__WEBPACK_IMPORTED_MODULE_3___default()(component)
+
 /* hot reload */
 if (false) { var api; }
 component.options.__file = "resources/js/components/TasksHeaderComponent.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/TasksHeaderComponent.vue?vue&type=custom&index=0&blockType=div&class=row":
+/*!**********************************************************************************************************!*\
+  !*** ./resources/js/components/TasksHeaderComponent.vue?vue&type=custom&index=0&blockType=div&class=row ***!
+  \**********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
 
 /***/ }),
 

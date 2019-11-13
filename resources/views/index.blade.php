@@ -3,13 +3,26 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            @include( 'partials.quickadd' )
+            <div class="col">
+                @include( 'partials.quickadd' )
+            </div>
         </div>
         <div class="row">
-            <div class="col-4">
-                @include( 'partials.pfilter' )
+            <div class="col">
+                <select v-model="ctofilter" name="ctofilter" id="ctofilter" class="form-control" v-on:change="cfilter( ctofilter );">
+                    <option selected>Customer</option>
+                    <option v-for="customer in currentObject.customers" :key="customer.custrowid">@{{ customer.name }}</option>
+                </select>
                 <pfilter-component :ctofilter="ctofilter" :popentofilter="popentofilter" :pclosedtofilter="pclosedtofilter"><pfilter-component>
             </div>
+            <div class="col">
+                <select v-model="ptofilter" name="ptofilter" id="ptofilter" class="form-control" v-on:change="pfilter( ptofilter )">
+                    <option selected>Project</option>
+                    <option v-for="project in customerprojects" :key="project.projrowid">@{{ project.title }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
             <div class="col">
                 <tasks-header-component :customers="currentObject.customers"
                                         :statuses="currentObject.statuses"
@@ -20,10 +33,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-4 overflow-auto mb-3 " style="height:500;">
-                @include( 'tables.projects' )
-            </div>
-            <div class="col overflow-auto mb-3" style="height:500;">
+            <div class="col">
                 <tasks-component v-bind:tasks="tasks" :taskrowidadd="taskrowidadd" :projstatusrowid="projstatusrowid" :projtyperowid="projtyperowid"></tasks-component>
             </div>
         </div>

@@ -22,7 +22,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">numhours</th>
-                                <th scope="col">user</th>
+                                <th scope="col">employee</th>
                                 <th scope="col">dateentered</th>
                                 <th scope="col">notes</th>
                                 <th scope="col">invoiceno</th>
@@ -35,7 +35,7 @@
                                 </td>
                                 <td>
                                     <select v-model="hourshoursedit[index].user_id" class="form-control" id="user_id" name="user_id" placeholder="user" @change="updateuser_idtoedit( hour.hoursid, hour.user_id )">
-                                        <option selected>User</option>
+                                        <option selected>Employee</option>
                                         <option v-for="user in currentObject.users" :key="user.user_id">@{{ user.name }}</option>
                                     </select>
                                 </td>

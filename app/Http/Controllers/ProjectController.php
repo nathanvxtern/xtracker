@@ -95,6 +95,9 @@ class ProjectController extends APIController
             }
         }
 
+        if ( !is_null( $ctofilter ) ) {
+            return $this->return_success( $request, $pagevars );
+        }
         return view( 'index', $pagevars );
     }
 

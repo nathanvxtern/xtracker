@@ -2042,6 +2042,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['customers', 'statuses', 'projrowid', 'customer', 'status']
 });
@@ -66944,6 +66945,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _vm._v("\n    Selected Project\n    "),
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "d-inline col" }, [
         _c(
@@ -79262,6 +79264,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
   data: function data() {
     return {
       currentObject: typeof currentObjectPHP !== 'undefined' ? currentObjectPHP : [],
+      customerprojects: [],
       customers: [],
       statuses: [],
       projrowid: [],
@@ -79282,6 +79285,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       customer: "Customer",
       status: "Status",
       ctofilter: "Customer",
+      ptofilter: "Project",
       popentofilter: false,
       pclosedtofilter: false,
       taskrowidtaskedit: null,
@@ -79363,6 +79367,20 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
     cfilter: function cfilter(ctofilter) {
       var self = this;
       self.ctofilter = ctofilter;
+      var current_path = "/filter/" + ctofilter + "/false/false";
+      HTTP.get(current_path).then(function (response) {
+        if (response.data.data.data.results.projects) {
+          self.customerprojects = response.data.data.data.results.projects;
+        } else {
+          self.customerprojects = [];
+        }
+      })["catch"](function (e) {
+        console.log(e);
+      });
+    },
+    pfilter: function pfilter(ptofilter) {
+      var self = this;
+      self.ptofilter = ptofilter;
     },
     popenfilter: function popenfilter(popentofilter) {
       var self = this;

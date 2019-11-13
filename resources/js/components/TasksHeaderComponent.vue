@@ -1,5 +1,6 @@
 <template>
     <div>
+        Selected Project
         <div class="row">
             <div class="d-inline col">
                 <select name="customerUpdate" id="customerUpdate" class="form-control">

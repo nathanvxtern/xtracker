@@ -39,7 +39,7 @@ class HourController extends APIController
 
     public function createnew(Request $request)
     {
-        $user_id = \Auth::user()->id;
+        $user_id = \Auth::user()->name;
         $user_id_override = $request->input('user_id',null);
         if ( !is_null( $user_id_override ) ) {
             $user_id = $user_id_override;
@@ -57,7 +57,7 @@ class HourController extends APIController
         return redirect("/");
     }
 
-    public function update( Request $request, $hoursid=null, $numhours=null, $user_id=null, $dateentered=null, $notes=null, $invoiceno=null )
+    public function update( Request $request, $hoursid=null, $numhours=null, $user_id=null, $dateentered='0000-00-00', $notes=null, $invoiceno=null )
     {
         $hour_core = new HourCore();
 

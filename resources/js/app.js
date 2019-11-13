@@ -45,6 +45,7 @@ const app = new Vue({
 
     data: () => ({
         currentObject: typeof currentObjectPHP !== 'undefined' ? currentObjectPHP : [],
+        customerprojects: [],
         customers: [],
         statuses: [],
         projrowid: [],
@@ -65,6 +66,7 @@ const app = new Vue({
         customer: "Customer",
         status: "Status",
         ctofilter: "Customer",
+        ptofilter: "Project",
         popentofilter: false,
         pclosedtofilter: false,
 
@@ -185,6 +187,29 @@ const app = new Vue({
         {
             let self = this;
             self.ctofilter = ctofilter;
+
+            let current_path = "/filter/" + ctofilter + "/false/false";
+
+            HTTP.get( current_path )
+
+                .then( response => {
+                    if( response.data.data.data.results.projects ) {
+                        self.customerprojects = response.data.data.data.results.projects;
+                    } else {
+                        self.customerprojects = [];
+                    }
+                })
+
+                .catch( e => {
+                    console.log( e );
+
+            });
+
+        },
+        pfilter: function( ptofilter )
+        {
+            let self = this;
+            self.ptofilter = ptofilter;
         },
         popenfilter: function( popentofilter )
         {

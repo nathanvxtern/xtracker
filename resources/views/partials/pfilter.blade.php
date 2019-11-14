@@ -2,7 +2,7 @@
     <div class="d-inline col">
         <select v-model="ctofilter" name="ctofilter" id="ctofilter" class="form-control" v-on:change="cfilter( ctofilter );">
             <option selected>Customer</option>
-            <option v-for="customer in currentObject.customers" :key="customer.custrowid">@{{ customer.name }}</option>
+            <option v-for="customer in currentobject.customers" :key="customer.custrowid">@{{ customer.name }}</option>
         </select>
     </div>
     <div class="d-inline col">

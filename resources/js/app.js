@@ -44,7 +44,8 @@ const app = new Vue({
     el: '#app',
 
     data: () => ({
-        currentObject: typeof currentObjectPHP !== 'undefined' ? currentObjectPHP : [],
+        csrf: [],
+        currentobject: typeof currentobjectPHP !== 'undefined' ? currentobjectPHP : [],
         customerprojects: [],
         customers: [],
         statuses: [],
@@ -538,42 +539,10 @@ const app = new Vue({
                 self.selectedproject = projrowid;
             }
         },
-        updatenumhourstoedit: function(hoursidtoedit,numhourstoedit)
-        {
-            let self = this;
-            self.numhourstoedit = numhourstoedit;
-            self.hoursidtoedit = hoursidtoedit;
-        },
-        updateuser_idtoedit: function(hoursidtoedit,user_idtoedit)
-        {
-            let self = this;
-            self.user_idtoedit = user_idtoedit;
-            self.hoursidtoedit = hoursidtoedit;
-        },
-        updatedateenteredtoedit: function(hoursidtoedit,dateenteredtoedit)
-        {
-            let self = this;
-            self.dateenteredtoedit = dateenteredtoedit;
-            self.hoursidtoedit = hoursidtoedit;
-        },
-        updatenotestoedit: function(hoursidtoedit,notestoedit)
-        {
-            let self = this;
-            self.notestoedit = notestoedit;
-            self.hoursidtoedit = hoursidtoedit;
-            console.log( self.notestoedit );
-        },
-        updateinvoicenotoedit: function(hoursidtoedit,invoicenotoedit)
-        {
-            let self = this;
-            self.invoicenotoedit = invoicenotoedit;
-            self.hoursidtoedit = hoursidtoedit;
-        },
         populatehourmodal: function(taskrowidadd)
         {
             let self = this;
             self.taskrowidadd = taskrowidadd;
-            console.log( self.taskrowidadd );
         },
     }
 });

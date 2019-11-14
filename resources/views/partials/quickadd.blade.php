@@ -1,7 +1,4 @@
 <div>
-    <a>
-        Quick Add
-    </a>
     <table class="table">
         <thead>
             <tr>
@@ -13,7 +10,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="task in currentObject.recenttasks" v-bind:key="task.taskrowid">
+            <tr v-for="task in currentobject.recenttasks" v-bind:key="task.taskrowid">
                 <td>
                     @{{ task.proj.customer.name }}
                 </td>

@@ -35,7 +35,7 @@
                                         <label for="newtasktype">Status</label>
                                         <select v-model="newtasktype" name="newtasktype" id="newtasktype" class="form-control" v-on:change="assignnewtasktype( newtasktype );">
                                             <option selected>@{{ newtasktype }}</option>
-                                            <option v-for="type in currentObject.types" :key="type.projtyperowid">@{{ type.projtype }}</option>
+                                            <option v-for="type in currentobject.types" :key="type.projtyperowid">@{{ type.projtype }}</option>
                                         </select>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
@@ -47,7 +47,7 @@
                                         <label for="newtaskstatus">Status</label>
                                         <select v-model="newtaskstatus" name="newtaskstatus" id="newtaskstatus" class="form-control" v-on:change="assignnewtaskstatus( newtaskstatus );">
                                             <option selected>@{{ newtaskstatus }}</option>
-                                            <option v-for="status in currentObject.statuses" :key="status.projstatusrowid">@{{ status.projstatus }}</option>
+                                            <option v-for="status in currentobject.statuses" :key="status.projstatusrowid">@{{ status.projstatus }}</option>
                                         </select>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-xs-12 input-padding">

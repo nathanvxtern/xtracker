@@ -65,8 +65,11 @@ class TaskCore
 
     public function recent()
     {
+
+        $user_id = \Auth::user()->name;
+
         $params = [
-            341,
+            $user_id,
         ];
 
         $sql = "SELECT

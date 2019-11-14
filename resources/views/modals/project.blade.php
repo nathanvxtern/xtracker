@@ -19,7 +19,7 @@
                                       <label for="newprojectcustomer">Customer</label>
                                       <select v-model="newprojectcustomer" name="newprojectcustomer" id="newprojectcustomer" class="form-control" v-on:change="assignnewprojectcustomer( newprojectcustomer );">
                                           <option selected>@{{ newprojectcustomer }}</option>
-                                          <option v-for="customer in currentObject.customers" :key="customer.custrowid">@{{ customer.name }}</option>
+                                          <option v-for="customer in currentobject.customers" :key="customer.custrowid">@{{ customer.name }}</option>
                                     </select>
                                   </div>
                                   <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
@@ -29,7 +29,7 @@
                                       <label for="newprojectstatus">Status</label>
                                       <select v-model="newprojectstatus" name="newprojectstatus" id="newprojectstatus" class="form-control" v-on:change="assignnewprojectstatus( newprojectstatus );">
                                           <option selected>@{{ newprojectstatus }}</option>
-                                          <option v-for="status in currentObject.statuses" :key="status.projstatusrowid">@{{ status.projstatus }}</option>
+                                          <option v-for="status in currentobject.statuses" :key="status.projstatusrowid">@{{ status.projstatus }}</option>
                                       </select>
                                   </div>
                                   <div class="col-md-4 col-sm-6 col-xs-12 input-padding">

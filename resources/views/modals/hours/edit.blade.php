@@ -36,7 +36,7 @@
                                 <td>
                                     <select v-model="hourshoursedit[index].user_id" class="form-control" id="user_id" name="user_id" placeholder="user" @change="updateuser_idtoedit( hour.hoursid, hour.user_id )">
                                         <option selected>Employee</option>
-                                        <option v-for="user in currentObject.users" :key="user.user_id">@{{ user.name }}</option>
+                                        <option v-for="user in currentobject.users" :key="user.user_id">@{{ user.name }}</option>
                                     </select>
                                 </td>
                                 <td>

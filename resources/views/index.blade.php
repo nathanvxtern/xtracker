@@ -11,7 +11,7 @@
             <div class="col">
                 <select v-model="ctofilter" name="ctofilter" id="ctofilter" class="form-control" v-on:change="cfilter( ctofilter );">
                     <option selected>Customer</option>
-                    <option v-for="customer in currentObject.customers" :key="customer.custrowid">@{{ customer.name }}</option>
+                    <option v-for="customer in currentobject.customers" :key="customer.custrowid">@{{ customer.name }}</option>
                 </select>
                 <pfilter-component :ctofilter="ctofilter" :popentofilter="popentofilter" :pclosedtofilter="pclosedtofilter"><pfilter-component>
             </div>
@@ -22,21 +22,14 @@
                 </select>
             </div>
             <div class="col">
-                <button type="button" class="btn btn-primary" data-customers="currentObject.customers" data-toggle="modal" data-target="#projectModal">
+                <button type="button" class="btn btn-primary" data-customers="currentobject.customers" data-toggle="modal" data-target="#projectModal">
                 Add Project
                 </button>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <tasks-component v-bind:tasks="tasks" :taskrowidadd="taskrowidadd" :projstatusrowid="projstatusrowid" :projtyperowid="projtyperowid"></tasks-component>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal">
-                Add Task
-                </button>
+                @include( 'partials.tasks' )
             </div>
         </div>
 
@@ -59,9 +52,9 @@
 @section('pagescripts')
     <script>
 
-        var currentObjectPHP = {!! json_encode( $data[ 'results' ] ) !!};
+        var currentobjectPHP = {!! json_encode( $data[ 'results' ] ) !!};
 
-        var taskListToLoad = currentObjectPHP.projected;
+        var taskListToLoad = currentobjectPHP.projected;
         if ( taskListToLoad > 0 ) {
             console.log( taskListToLoad );
         }

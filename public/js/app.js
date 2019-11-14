@@ -1968,17 +1968,99 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['tasks', 'projstatusrowid', 'projtyperowid', 'taskrowidadd'],
+  props: ['csrf', 'currentobject', 'tasks', 'projstatusrowid', 'projtyperowid', 'taskrowidadd', 'hoursidtoedit', 'numhourstoedit', 'notestoedit', 'user_idtoedit', 'dateenteredtoedit', 'invoicenotoedit', 'taskrowidhoursedit', 'hourshoursedit'],
+  data: function data() {
+    return {
+      csrfToken: null
+    };
+  },
+  created: function created() {
+    this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+  },
   methods: {
-    populatehourmodal: function populatehourmodal(taskrowidadd) {
-      var self = this.$parent;
-      self.taskrowidadd = taskrowidadd;
-      console.log(self.taskrowidadd);
-    },
-    populateedithourmodal: function populateedithourmodal(taskrowidhoursedit, hourshoursedit) {
+    populatehours: function populatehours(taskrowidhoursedit, hourshoursedit) {
       var self = this.$parent;
       self.taskrowidhoursedit = taskrowidhoursedit;
+      self.taskrowidadd = taskrowidhoursedit;
       self.hourshoursedit = hourshoursedit;
     },
     populateedittaskmodal: function populateedittaskmodal(taskrowidtaskedit, edittasktitle, edittaskesthours, edittaskusedhrs, edittaskbillingrate) {
@@ -1988,6 +2070,31 @@ __webpack_require__.r(__webpack_exports__);
       self.edittaskesthours = edittaskesthours;
       self.edittaskusedhrs = edittaskusedhrs;
       self.edittaskbillingrate = edittaskbillingrate;
+    },
+    updatenumhourstoedit: function updatenumhourstoedit(hoursidtoedit, numhourstoedit) {
+      var self = this.$parent;
+      self.numhourstoedit = numhourstoedit;
+      self.hoursidtoedit = hoursidtoedit;
+    },
+    updateuser_idtoedit: function updateuser_idtoedit(hoursidtoedit, user_idtoedit) {
+      var self = this.$parent;
+      self.user_idtoedit = user_idtoedit;
+      self.hoursidtoedit = hoursidtoedit;
+    },
+    updatedateenteredtoedit: function updatedateenteredtoedit(hoursidtoedit, dateenteredtoedit) {
+      var self = this.$parent;
+      self.dateenteredtoedit = dateenteredtoedit;
+      self.hoursidtoedit = hoursidtoedit;
+    },
+    updatenotestoedit: function updatenotestoedit(hoursidtoedit, notestoedit) {
+      var self = this.$parent;
+      self.notestoedit = notestoedit;
+      self.hoursidtoedit = hoursidtoedit;
+    },
+    updateinvoicenotoedit: function updateinvoicenotoedit(hoursidtoedit, invoicenotoedit) {
+      var self = this.$parent;
+      self.invoicenotoedit = invoicenotoedit;
+      self.hoursidtoedit = hoursidtoedit;
     }
   }
 });
@@ -66808,101 +66915,494 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("table", { staticClass: "table" }, [
+  return _c("div", [
     _vm._m(0),
     _vm._v(" "),
-    _c(
-      "tbody",
-      _vm._l(_vm.tasks, function(task) {
-        return _c("tr", { key: task.id }, [
-          _c("th", { attrs: { scope: "rows" } }, [
-            _c(
-              "a",
-              {
-                attrs: {
-                  href: "#",
-                  "data-toggle": "modal",
-                  "data-target": "#editTaskModal"
-                },
-                on: {
-                  click: function($event) {
-                    return _vm.populateedittaskmodal(
-                      task.taskrowid,
-                      task.title,
-                      task.esthours,
-                      task.usedhrs,
-                      task.billingrate
-                    )
-                  }
-                }
-              },
-              [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(task.title) +
-                    "\n                "
-                )
-              ]
-            )
-          ]),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }, [
+        _c("table", { staticClass: "table" }, [
+          _vm._m(1),
           _vm._v(" "),
-          _c("td", { staticClass: "border-0" }),
-          _vm._v(" "),
-          _c("td", { staticClass: "border-0" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary",
-                attrs: {
-                  type: "button",
-                  "data-toggle": "modal",
-                  "data-target": "#addHoursModal"
-                },
-                on: {
-                  click: function($event) {
-                    return _vm.populatehourmodal(task.taskrowid)
-                  }
-                }
-              },
-              [_vm._v("\n                    Add\n                ")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("td", { staticClass: "border-0" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary",
-                attrs: {
-                  type: "button",
-                  "data-toggle": "modal",
-                  "data-target": "#editHoursModal"
-                },
-                on: {
-                  click: function($event) {
-                    return _vm.populateedithourmodal(task.taskrowid, task.hours)
-                  }
-                }
-              },
-              [_vm._v("\n                    Edit\n                ")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("td", { staticClass: "table-secondary" }, [
-            _vm._v(_vm._s(task.esthours))
-          ]),
-          _vm._v(" "),
-          _c("td", { staticClass: "table-secondary" }, [
-            _vm._v(_vm._s(task.usedhrs))
-          ]),
-          _vm._v(" "),
-          _c("td", { staticClass: "table-secondary" }, [
-            _vm._v(_vm._s(task.billingrate))
-          ])
+          _c(
+            "tbody",
+            _vm._l(_vm.tasks, function(task) {
+              return _c("tr", { key: task.id }, [
+                _c("td", [_vm._v(_vm._s(task.title))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(task.esthours))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(task.usedhrs))]),
+                _vm._v(" "),
+                _c("th", { attrs: { scope: "rows" } }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: {
+                        type: "button",
+                        "data-toggle": "modal",
+                        "data-target": "#editTaskModal"
+                      },
+                      on: {
+                        click: function($event) {
+                          return _vm.populateedittaskmodal(
+                            task.taskrowid,
+                            task.title,
+                            task.esthours,
+                            task.usedhrs,
+                            task.billingrate
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                                Edit/Delete\n                            "
+                      )
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.populatehours(task.taskrowid, task.hours)
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                                View\n                            "
+                      )
+                    ]
+                  )
+                ])
+              ])
+            }),
+            0
+          )
         ])
-      }),
-      0
-    )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col" }, [
+        _c(
+          "form",
+          {
+            attrs: {
+              id: "edit_hours_form",
+              action:
+                "/hours/edit/" +
+                _vm.hoursidtoedit +
+                "/" +
+                _vm.numhourstoedit +
+                "/" +
+                _vm.user_idtoedit +
+                "/" +
+                _vm.dateenteredtoedit +
+                "/" +
+                _vm.notestoedit +
+                "/" +
+                _vm.invoicenotoedit,
+              method: "POST",
+              name: "edit_hours_form"
+            }
+          },
+          [
+            _c("input", {
+              attrs: { type: "hidden", name: "_token" },
+              domProps: { value: _vm.csrfToken }
+            }),
+            _vm._v(" "),
+            _c("div", [
+              _c(
+                "div",
+                { staticClass: "col-md-4 col-sm-6 col-xs-12 input-padding" },
+                [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.taskrowidhoursedit,
+                        expression: "taskrowidhoursedit"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "hidden",
+                      id: "create-link-taskrowid",
+                      name: "taskrowid"
+                    },
+                    domProps: { value: _vm.taskrowidhoursedit },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.taskrowidhoursedit = $event.target.value
+                      }
+                    }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "col-md-4 col-sm-6 col-xs-12 input-padding" },
+                [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.hourshoursedit,
+                        expression: "hourshoursedit"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "hidden",
+                      id: "create-link-hours",
+                      name: "hours"
+                    },
+                    domProps: { value: _vm.hourshoursedit },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.hourshoursedit = $event.target.value
+                      }
+                    }
+                  })
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("table", { staticClass: "table" }, [
+              _vm._m(2),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.hourshoursedit, function(hour, index) {
+                  return _c("tr", { key: _vm.hourshoursedit[index].hoursid }, [
+                    _c("td", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.hourshoursedit[index].numhours,
+                            expression: "hourshoursedit[index].numhours"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          id: "create-link-numhours",
+                          name: "numhours"
+                        },
+                        domProps: { value: _vm.hourshoursedit[index].numhours },
+                        on: {
+                          change: function($event) {
+                            return _vm.updatenumhourstoedit(
+                              hour.hoursid,
+                              hour.numhours
+                            )
+                          },
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.hourshoursedit[index],
+                              "numhours",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.hourshoursedit[index].user_id,
+                              expression: "hourshoursedit[index].user_id"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            id: "user_id",
+                            name: "user_id",
+                            placeholder: "user"
+                          },
+                          on: {
+                            change: [
+                              function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.hourshoursedit[index],
+                                  "user_id",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              },
+                              function($event) {
+                                return _vm.updateuser_idtoedit(
+                                  hour.hoursid,
+                                  hour.user_id
+                                )
+                              }
+                            ]
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { selected: "" } }, [
+                            _vm._v("Employee")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.currentobject.users, function(user) {
+                            return _c("option", { key: user.user_id }, [
+                              _vm._v(_vm._s(user.name))
+                            ])
+                          })
+                        ],
+                        2
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.hourshoursedit[index].dateentered,
+                            expression: "hourshoursedit[index].dateentered"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          id: "create-link-dateentered",
+                          name: "dateentered"
+                        },
+                        domProps: {
+                          value: _vm.hourshoursedit[index].dateentered
+                        },
+                        on: {
+                          change: function($event) {
+                            return _vm.updatedateenteredtoedit(
+                              hour.hoursid,
+                              hour.dateentered
+                            )
+                          },
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.hourshoursedit[index],
+                              "dateentered",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.hourshoursedit[index].notes,
+                            expression: "hourshoursedit[index].notes"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          id: "create-link-notes",
+                          name: "notes"
+                        },
+                        domProps: { value: _vm.hourshoursedit[index].notes },
+                        on: {
+                          change: function($event) {
+                            return _vm.updatenotestoedit(
+                              hour.hoursid,
+                              hour.notes
+                            )
+                          },
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.hourshoursedit[index],
+                              "notes",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.hourshoursedit[index].invoiceno,
+                            expression: "hourshoursedit[index].invoiceno"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          id: "create-link-invoiceno",
+                          name: "invoiceno"
+                        },
+                        domProps: {
+                          value: _vm.hourshoursedit[index].invoiceno
+                        },
+                        on: {
+                          change: function($event) {
+                            return _vm.updateinvoicenotoedit(
+                              hour.hoursid,
+                              hour.invoiceno
+                            )
+                          },
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.hourshoursedit[index],
+                              "invoiceno",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.hourshoursedit[index].hoursid,
+                            expression: "hourshoursedit[index].hoursid"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "hidden",
+                          id: "create-link-hoursid",
+                          name: "hoursid"
+                        },
+                        domProps: { value: _vm.hourshoursedit[index].hoursid },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.hourshoursedit[index],
+                              "hoursid",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: {
+                            "v-model": hour.hoursid,
+                            href: "/confirm/delete/hour/" + hour.hoursid
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                    Delete\n                                "
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: {
+                            type: "submit",
+                            form: "edit_hours_form",
+                            "data-form-id": "edit_hours_form",
+                            "data-modal-id": "edit-hours-modal"
+                          },
+                          on: {
+                            click: function($event) {
+                              _vm.updatenumhourstoedit(
+                                hour.hoursid,
+                                hour.numhours
+                              )
+                              _vm.updateuser_idtoedit(
+                                hour.hoursid,
+                                hour.user_id
+                              )
+                              _vm.updatedateenteredtoedit(
+                                hour.hoursid,
+                                hour.dateentered
+                              )
+                              _vm.updatenotestoedit(hour.hoursid, hour.notes)
+                              _vm.updateinvoicenotoedit(
+                                hour.hoursid,
+                                hour.invoiceno
+                              )
+                            }
+                          }
+                        },
+                        [_vm._v("Update")]
+                      )
+                    ])
+                  ])
+                }),
+                0
+              )
+            ])
+          ]
+        )
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -66910,27 +67410,73 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }, [
+        _vm._v("\n            Tasks\n            "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary",
+            attrs: {
+              type: "button",
+              "data-toggle": "modal",
+              "data-target": "#addTaskModal"
+            }
+          },
+          [_vm._v("\n                +\n            ")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col" }, [
+        _vm._v("\n            Hours\n            "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary",
+            attrs: {
+              type: "button",
+              "data-toggle": "modal",
+              "data-target": "#addHoursModal"
+            }
+          },
+          [_vm._v("\n                +\n            ")]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Task")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
         _vm._v(" "),
-        _c("th", { staticClass: "border-0", attrs: { scope: "col" } }),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Est.")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Hours:")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Used")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }),
         _vm._v(" "),
-        _c("th", { staticClass: "table-secondary", attrs: { scope: "col" } }, [
-          _vm._v("Est.")
-        ]),
+        _c("th", { attrs: { scope: "col" } })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("numhours")]),
         _vm._v(" "),
-        _c("th", { staticClass: "table-secondary", attrs: { scope: "col" } }, [
-          _vm._v("Used")
-        ]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("employee")]),
         _vm._v(" "),
-        _c("th", { staticClass: "table-secondary", attrs: { scope: "col" } }, [
-          _vm._v("Rate")
-        ])
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("dateentered")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("notes")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("invoiceno")])
       ])
     ])
   }
@@ -79275,7 +79821,8 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
   el: '#app',
   data: function data() {
     return {
-      currentObject: typeof currentObjectPHP !== 'undefined' ? currentObjectPHP : [],
+      csrf: [],
+      currentobject: typeof currentobjectPHP !== 'undefined' ? currentobjectPHP : [],
       customerprojects: [],
       customers: [],
       statuses: [],
@@ -79699,36 +80246,9 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
         _self.selectedproject = projrowid;
       }
     },
-    updatenumhourstoedit: function updatenumhourstoedit(hoursidtoedit, numhourstoedit) {
-      var self = this;
-      self.numhourstoedit = numhourstoedit;
-      self.hoursidtoedit = hoursidtoedit;
-    },
-    updateuser_idtoedit: function updateuser_idtoedit(hoursidtoedit, user_idtoedit) {
-      var self = this;
-      self.user_idtoedit = user_idtoedit;
-      self.hoursidtoedit = hoursidtoedit;
-    },
-    updatedateenteredtoedit: function updatedateenteredtoedit(hoursidtoedit, dateenteredtoedit) {
-      var self = this;
-      self.dateenteredtoedit = dateenteredtoedit;
-      self.hoursidtoedit = hoursidtoedit;
-    },
-    updatenotestoedit: function updatenotestoedit(hoursidtoedit, notestoedit) {
-      var self = this;
-      self.notestoedit = notestoedit;
-      self.hoursidtoedit = hoursidtoedit;
-      console.log(self.notestoedit);
-    },
-    updateinvoicenotoedit: function updateinvoicenotoedit(hoursidtoedit, invoicenotoedit) {
-      var self = this;
-      self.invoicenotoedit = invoicenotoedit;
-      self.hoursidtoedit = hoursidtoedit;
-    },
     populatehourmodal: function populatehourmodal(taskrowidadd) {
       var self = this;
       self.taskrowidadd = taskrowidadd;
-      console.log(self.taskrowidadd);
     }
   }
 });

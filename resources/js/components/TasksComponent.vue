@@ -30,7 +30,7 @@
                                     </button>
                                 </th>
                                 <td>
-                                    <button @click="populatehours( task.taskrowid, task.hours );" type="button" class="btn btn-primary">
+                                    <button @click="populatehours( task.taskrowid,task.hours,task.custrowid);" type="button" class="btn btn-primary">
                                         View
                                     </button>
                                 </td>
@@ -118,7 +118,7 @@
 </template>
 <script>
     export default {
-        props:[ 
+        props:[
             'csrf',
             'currentobject',
             'tasks',
@@ -133,18 +133,20 @@
             'invoicenotoedit',
             'taskrowidhoursedit',
             'hourshoursedit',
+            'custrowidhoursadd',
         ],
         data() { return { csrfToken: null }},
         created() {
             this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
         },
         methods: {
-            populatehours: function(taskrowidhoursedit,hourshoursedit)
+            populatehours: function(taskrowidhoursedit,hourshoursedit,custrowidhoursadd)
             {
                 let self = this.$parent;
                 self.taskrowidhoursedit = taskrowidhoursedit;
                 self.taskrowidadd = taskrowidhoursedit;
                 self.hourshoursedit = hourshoursedit;
+                self.custrowidhoursadd = custrowidhoursadd;
             },
             populateedittaskmodal: function(taskrowidtaskedit,edittasktitle,edittaskesthours,edittaskusedhrs,edittaskbillingrate)
             {

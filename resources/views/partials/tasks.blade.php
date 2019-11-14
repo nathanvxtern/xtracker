@@ -12,5 +12,6 @@
     v-bind:numhourstoedit="numhourstoedit"
     v-bind:invoicenotoedit="invoicenotoedit"
     v-bind:hoursidtoedit="hoursidtoedit"
+    v-bind:custrowidhoursadd="custrowidhoursadd"
     ></tasks-component>
 </div>

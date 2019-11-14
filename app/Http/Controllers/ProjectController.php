@@ -118,23 +118,6 @@ class ProjectController extends APIController
         return $this->return_success( $request, $pagevars );
     }
 
-    public function getid( Request $request, $title )
-    {
-        $project_core = new ProjectCore();
-
-        $rec = array();
-
-        $rec[ 'results' ][ 'id' ] = [];
-
-        $rec[ 'results' ][ 'id' ] = $project_core->getid( $title );
-
-        $pagevars = array();
-        $pagevars[ 'data' ] = array();
-        $pagevars[ 'data' ] = $rec;
-
-        return $this->return_success( $request, $pagevars );
-    }
-
     public function createnew(Request $request)
     {
 

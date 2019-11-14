@@ -2047,7 +2047,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['csrf', 'currentobject', 'tasks', 'projstatusrowid', 'projtyperowid', 'taskrowidadd', 'hoursidtoedit', 'numhourstoedit', 'notestoedit', 'user_idtoedit', 'dateenteredtoedit', 'invoicenotoedit', 'taskrowidhoursedit', 'hourshoursedit'],
+  props: ['csrf', 'currentobject', 'tasks', 'projstatusrowid', 'projtyperowid', 'taskrowidadd', 'hoursidtoedit', 'numhourstoedit', 'notestoedit', 'user_idtoedit', 'dateenteredtoedit', 'invoicenotoedit', 'taskrowidhoursedit', 'hourshoursedit', 'custrowidhoursadd'],
   data: function data() {
     return {
       csrfToken: null
@@ -2057,11 +2057,12 @@ __webpack_require__.r(__webpack_exports__);
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
   },
   methods: {
-    populatehours: function populatehours(taskrowidhoursedit, hourshoursedit) {
+    populatehours: function populatehours(taskrowidhoursedit, hourshoursedit, custrowidhoursadd) {
       var self = this.$parent;
       self.taskrowidhoursedit = taskrowidhoursedit;
       self.taskrowidadd = taskrowidhoursedit;
       self.hourshoursedit = hourshoursedit;
+      self.custrowidhoursadd = custrowidhoursadd;
     },
     populateedittaskmodal: function populateedittaskmodal(taskrowidtaskedit, edittasktitle, edittaskesthours, edittaskusedhrs, edittaskbillingrate) {
       var self = this.$parent;
@@ -66972,7 +66973,11 @@ var render = function() {
                         attrs: { type: "button" },
                         on: {
                           click: function($event) {
-                            return _vm.populatehours(task.taskrowid, task.hours)
+                            return _vm.populatehours(
+                              task.taskrowid,
+                              task.hours,
+                              task.custrowid
+                            )
                           }
                         }
                       },
@@ -79851,6 +79856,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       projrowid: [],
       selectedproject: 0,
       taskrowidadd: null,
+      custrowidhoursadd: null,
       newprojectcustomer: "Customer",
       newprojectcustrowid: null,
       newprojstatusrowid: null,
@@ -79887,7 +79893,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
   methods: {
     debug: function debug() {
       self = this;
-      console.log(self.ptofilter);
+      console.log(self.currentobject);
     },
     gettasks: function gettasks(projrowid) {
       var self = this;
@@ -79921,8 +79927,10 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       HTTP.get(current_path).then(function (response) {
         if (response.data.data.data.results.project.customer.name) {
           self.customer = response.data.data.data.results.project.customer.name;
+          self.custrowidhoursadd = self.customer;
         } else {
           self.customer = [];
+          self.custrowidhoursadd = [];
         }
       })["catch"](function (e) {
         console.log(e);
@@ -80268,9 +80276,10 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
         _self.selectedproject = projrowid;
       }
     },
-    populatehourmodal: function populatehourmodal(taskrowidadd) {
+    populatehourmodal: function populatehourmodal(taskrowidadd, custrowidhoursadd) {
       var self = this;
       self.taskrowidadd = taskrowidadd;
+      self.custrowidhoursadd = custrowidhoursadd;
     }
   }
 });

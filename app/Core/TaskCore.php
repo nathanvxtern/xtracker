@@ -72,22 +72,17 @@ class TaskCore
             $user_id,
         ];
 
-        $sql = "SELECT
-                    T.taskrowid,
-                    T.title,
-                    T.createdate,
-                    T.projrowid,
-                    T.projtyperowid,
-                    T.projstatusrowid,
-                    T.esthours,
-                    T.custponumber,
-                    T.reqcompdate,
-                    T.billingrate,
-                    SUM(H.numhours) usedhrs
-                FROM taskmaster T
-                LEFT JOIN projhours H ON H.taskrowid = T.taskrowid
-                WHERE projrowid = ?
-                GROUP BY T.taskrowid";
+        $sql = "select t.taskrowid
+        from projhours p
+        inner join taskmaster t on p.taskrowid = t.taskrowid
+        inner join projmaster pm on t.projrowid = pm.projrowid
+        inner join custmaster c on p.custrowid = c.custrowid
+        where p.user_id = ?
+        group by c.name, pm.title, t.taskrowid, t.esthours
+        order by max(p.hoursid) desc
+        limit 5";
+
+        dump( $user_id );
        
         try {
             $rs = \DB::select( $sql, $params );
@@ -96,7 +91,12 @@ class TaskCore
             return [];
         } 
 
-        return $this->transform_task_collection( $rs );
+        $recentTasks = [];
+        foreach ( $rs as $taskrowid ) {
+            $task = TaskCore::get( $taskrowid->taskrowid );
+            $recentTasks[] = $task;
+        }
+        return $recentTasks;
     }
     public function list( $projrowid )
     {
@@ -129,6 +129,44 @@ class TaskCore
         } 
 
         return $this->transform_task_collection( $rs );
+    }
+
+    public function get( $taskrowid )
+    {
+        $params = [ 
+            $taskrowid
+        ];
+
+        $sql = "SELECT 
+                    T.taskrowid, 
+                    T.title, 
+                    T.createdate, 
+                    T.projrowid, 
+                    T.projtyperowid, 
+                    T.projstatusrowid, 
+                    T.esthours, 
+                    T.custponumber, 
+                    T.reqcompdate, 
+                    T.billingrate, 
+                    SUM(H.numhours) usedhrs
+                FROM taskmaster T
+                LEFT JOIN projhours H ON H.taskrowid = T.taskrowid
+                WHERE T.taskrowid = ?
+                GROUP BY T.taskrowid";
+
+        try {
+            $rs = \DB::select( $sql, $params );
+        } catch ( \Illuminate\Database\QueryException $e ) {
+            return null;
+        }
+
+        if ( count( $rs ) == 0 ) {
+            return null;
+        }
+
+        $task = $this->transform_task_rec( $rs[ 0 ] );
+
+        return $task;
     }
 
     public function create($billingrate=null,$projstatusrowid=null,$projtyperowid=null,$esthours=null,$reqcompdate=null,$taskname=null,$custponumber=null,$projrowid=null)

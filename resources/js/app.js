@@ -52,6 +52,7 @@ const app = new Vue({
         projrowid: [],
         selectedproject: 0,
         taskrowidadd: null,
+        custrowidhoursadd: null,
         newprojectcustomer: "Customer",
         newprojectcustrowid: null,
         newprojstatusrowid: null,
@@ -93,7 +94,7 @@ const app = new Vue({
         debug: function()
         {
             self = this;
-            console.log( self.ptofilter );
+            console.log( self.currentobject );
         },
         gettasks: function( projrowid )
         {
@@ -148,8 +149,10 @@ const app = new Vue({
                 .then( response => {
                     if( response.data.data.data.results.project.customer.name ) {
                         self.customer = response.data.data.data.results.project.customer.name;
+                        self.custrowidhoursadd = self.customer;
                     } else {
                         self.customer = [];
+                        self.custrowidhoursadd = [];
                     }
                 })
 
@@ -539,10 +542,11 @@ const app = new Vue({
                 self.selectedproject = projrowid;
             }
         },
-        populatehourmodal: function(taskrowidadd)
+        populatehourmodal: function(taskrowidadd,custrowidhoursadd)
         {
             let self = this;
             self.taskrowidadd = taskrowidadd;
+            self.custrowidhoursadd = custrowidhoursadd;
         },
     }
 });

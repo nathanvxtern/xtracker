@@ -92,6 +92,6 @@ class TaskController extends APIController
         $task_core = new TaskCore();
         $task_id = $task_core->create($billingrate,$projstatusrowid,$projtyperowid,$estimated,$reqcompdate,$taskname,$custponumber,$projrowid);
 
-        return redirect("/filter/Customer" . "/" . "true" . "/" . "true" . "/" . "taskcreated" . "/" . strval( $projrowid ) );
+        return redirect("/");
     }
 }

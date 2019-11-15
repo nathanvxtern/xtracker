@@ -542,10 +542,12 @@ const app = new Vue({
                 self.selectedproject = projrowid;
             }
         },
-        populatehourmodal: function(taskrowidadd,custrowidhoursadd)
+        populatehourmodal: function(taskrowidhoursedit,custrowidhoursadd,hourshoursedit)
         {
             let self = this;
-            self.taskrowidadd = taskrowidadd;
+            self.taskrowidhoursedit = taskrowidhoursedit;
+            self.taskrowidadd = taskrowidhoursedit;
+            self.hourshoursedit = hourshoursedit;
             self.custrowidhoursadd = custrowidhoursadd;
         },
     }

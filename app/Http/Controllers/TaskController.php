@@ -32,7 +32,6 @@ class TaskController extends APIController
         $pagevars[ 'data' ] = array();
         $pagevars[ 'data' ] = $rec;
 
-        dump( $rec );
         return $this->return_success( $request, $pagevars );
     }
 

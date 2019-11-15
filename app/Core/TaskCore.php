@@ -81,8 +81,6 @@ class TaskCore
         group by c.name, pm.title, t.taskrowid, t.esthours
         order by max(p.hoursid) desc
         limit 5";
-
-        dump( $user_id );
        
         try {
             $rs = \DB::select( $sql, $params );

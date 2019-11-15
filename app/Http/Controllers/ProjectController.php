@@ -9,6 +9,7 @@ use App\Core\StatusCore;
 use App\Core\TypeCore;
 use App\Core\TaskCore;
 use App\Core\UserCore;
+use App\Core\HourCore;
 
 class ProjectController extends APIController
 {
@@ -22,6 +23,7 @@ class ProjectController extends APIController
         $type_core = new TypeCore();
         $task_core = new TaskCore();
         $user_core = new UserCore();
+        $hour_core = new HourCore();
 
         $rec = array();
 
@@ -44,6 +46,10 @@ class ProjectController extends APIController
         $rec[ 'results' ][ 'recenttasks' ] = $task_core->recent();
         foreach ( $rec[ 'results' ][ 'recenttasks' ] as &$task ) {
             $task[ 'proj' ] = $project_core->get( $task[ 'projrowid' ] );
+        }
+        foreach ( $rec[ 'results' ][ 'recenttasks' ] as $taskKey => $task ) {
+            $rec[ 'results' ][ 'recenttasks' ][ $taskKey ][ 'hours' ] = [];
+            $rec[ 'results' ][ 'recenttasks' ][ $taskKey ][ 'hours' ] = $hour_core->list( $task[ 'taskrowid' ] );
         }
 
         $pagevars = array();

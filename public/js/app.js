@@ -80276,9 +80276,11 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
         _self.selectedproject = projrowid;
       }
     },
-    populatehourmodal: function populatehourmodal(taskrowidadd, custrowidhoursadd) {
+    populatehourmodal: function populatehourmodal(taskrowidhoursedit, custrowidhoursadd, hourshoursedit) {
       var self = this;
-      self.taskrowidadd = taskrowidadd;
+      self.taskrowidhoursedit = taskrowidhoursedit;
+      self.taskrowidadd = taskrowidhoursedit;
+      self.hourshoursedit = hourshoursedit;
       self.custrowidhoursadd = custrowidhoursadd;
     }
   }

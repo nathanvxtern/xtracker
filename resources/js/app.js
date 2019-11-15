@@ -94,7 +94,7 @@ const app = new Vue({
         debug: function()
         {
             self = this;
-            console.log( self.currentobject );
+            console.log( self.custrowidhoursadd );
         },
         gettasks: function( projrowid )
         {
@@ -149,7 +149,7 @@ const app = new Vue({
                 .then( response => {
                     if( response.data.data.data.results.project.customer.name ) {
                         self.customer = response.data.data.data.results.project.customer.name;
-                        self.custrowidhoursadd = self.customer;
+                        self.custrowidhoursadd = response.data.data.data.results.project.customer.custrowid;
                     } else {
                         self.customer = [];
                         self.custrowidhoursadd = [];

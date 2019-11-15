@@ -13,7 +13,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">Name</th>
-                                <th scope="col">Est.</th>
+                                <th scope="col">Est</th>
                                 <th scope="col">Used</th>
                                 <th scope="col"></th>
                                 <th scope="col"></th>
@@ -62,17 +62,17 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">numhours</th>
-                                    <th scope="col">employee</th>
-                                    <th scope="col">dateentered</th>
-                                    <th scope="col">notes</th>
-                                    <th scope="col">invoiceno</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Hrs</th>
+                                    <th scope="col">Notes</th>
+                                    <th scope="col">Inv#</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="(hour,index) in hourshoursedit" v-bind:key="hourshoursedit[index].hoursid">
                                     <td>
-                                        <input v-model="hourshoursedit[index].numhours" type="text" class="form-control" id="create-link-numhours" name="numhours" @change="updatenumhourstoedit( hour.hoursid, hour.numhours )">
+                                        <input v-model="hourshoursedit[index].dateentered" type="text" class="form-control" id="create-link-dateentered" name="dateentered" @change="updatedateenteredtoedit( hour.hoursid, hour.dateentered )">
                                     </td>
                                     <td>
                                         <select v-model="hourshoursedit[index].user_id" class="form-control" id="user_id" name="user_id" placeholder="user" @change="updateuser_idtoedit( hour.hoursid, hour.user_id )">
@@ -81,7 +81,7 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <input v-model="hourshoursedit[index].dateentered" type="text" class="form-control" id="create-link-dateentered" name="dateentered" @change="updatedateenteredtoedit( hour.hoursid, hour.dateentered )">
+                                        <input v-model="hourshoursedit[index].numhours" type="text" class="form-control" id="create-link-numhours" name="numhours" @change="updatenumhourstoedit( hour.hoursid, hour.numhours )">
                                     </td>
                                     <td>
                                         <input v-model="hourshoursedit[index].notes" type="text" class="form-control" id="create-link-notes" name="notes" @change="updatenotestoedit( hour.hoursid, hour.notes )">

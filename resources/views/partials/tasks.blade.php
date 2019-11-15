@@ -4,7 +4,7 @@
     :projstatusrowid="projstatusrowid" 
     :projtyperowid="projtyperowid"
     v-bind:taskrowidhoursedit="taskrowidhoursedit"
-    v-bind:hourshoursedit="hourshoursedit"
+    v-bind:="hourshoursedit"
     v-bind:currentobject="currentobject"
     v-bind:user_idtoedit="user_idtoedit"
     v-bind:dateenteredtoedit="dateenteredtoedit"

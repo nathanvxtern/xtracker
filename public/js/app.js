@@ -67110,24 +67110,24 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.hourshoursedit[index].numhours,
-                                expression: "hourshoursedit[index].numhours"
+                                value: _vm.hourshoursedit[index].dateentered,
+                                expression: "hourshoursedit[index].dateentered"
                               }
                             ],
                             staticClass: "form-control",
                             attrs: {
                               type: "text",
-                              id: "create-link-numhours",
-                              name: "numhours"
+                              id: "create-link-dateentered",
+                              name: "dateentered"
                             },
                             domProps: {
-                              value: _vm.hourshoursedit[index].numhours
+                              value: _vm.hourshoursedit[index].dateentered
                             },
                             on: {
                               change: function($event) {
-                                return _vm.updatenumhourstoedit(
+                                return _vm.updatedateenteredtoedit(
                                   hour.hoursid,
-                                  hour.numhours
+                                  hour.dateentered
                                 )
                               },
                               input: function($event) {
@@ -67136,7 +67136,7 @@ var render = function() {
                                 }
                                 _vm.$set(
                                   _vm.hourshoursedit[index],
-                                  "numhours",
+                                  "dateentered",
                                   $event.target.value
                                 )
                               }
@@ -67212,24 +67212,24 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.hourshoursedit[index].dateentered,
-                                expression: "hourshoursedit[index].dateentered"
+                                value: _vm.hourshoursedit[index].numhours,
+                                expression: "hourshoursedit[index].numhours"
                               }
                             ],
                             staticClass: "form-control",
                             attrs: {
                               type: "text",
-                              id: "create-link-dateentered",
-                              name: "dateentered"
+                              id: "create-link-numhours",
+                              name: "numhours"
                             },
                             domProps: {
-                              value: _vm.hourshoursedit[index].dateentered
+                              value: _vm.hourshoursedit[index].numhours
                             },
                             on: {
                               change: function($event) {
-                                return _vm.updatedateenteredtoedit(
+                                return _vm.updatenumhourstoedit(
                                   hour.hoursid,
-                                  hour.dateentered
+                                  hour.numhours
                                 )
                               },
                               input: function($event) {
@@ -67238,7 +67238,7 @@ var render = function() {
                                 }
                                 _vm.$set(
                                   _vm.hourshoursedit[index],
-                                  "dateentered",
+                                  "numhours",
                                   $event.target.value
                                 )
                               }
@@ -67459,7 +67459,7 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Est.")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Est")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Used")]),
         _vm._v(" "),
@@ -67495,15 +67495,15 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("numhours")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Date")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("employee")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("dateentered")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Hrs")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("notes")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Notes")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("invoiceno")])
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Inv#")])
       ])
     ])
   }
@@ -79893,7 +79893,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
   methods: {
     debug: function debug() {
       self = this;
-      console.log(self.currentobject);
+      console.log(self.custrowidhoursadd);
     },
     gettasks: function gettasks(projrowid) {
       var self = this;
@@ -79927,7 +79927,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       HTTP.get(current_path).then(function (response) {
         if (response.data.data.data.results.project.customer.name) {
           self.customer = response.data.data.data.results.project.customer.name;
-          self.custrowidhoursadd = self.customer;
+          self.custrowidhoursadd = response.data.data.data.results.project.customer.custrowid;
         } else {
           self.customer = [];
           self.custrowidhoursadd = [];

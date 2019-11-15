@@ -24,7 +24,7 @@
                     @{{ task.usedhrs }} of @{{ task.esthours }} hours
                 </td>
                 <td>
-                    <button @click="populatehourmodal( task.taskrowid,task.custrowid,task.hours )" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addHoursModal">
+                    <button @click="populatehourmodal( task.taskrowid,task.proj.custrowid,task.hours )" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addHoursModal">
                         Add
                     </button>
                 </td>

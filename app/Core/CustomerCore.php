@@ -69,4 +69,34 @@ class CustomerCore
         return $this->transform_customer_collection( $rs );
     }
 
+    public function create($name=null)
+    {
+        if ( is_null( $name ) ) {
+            return false;
+        }
+
+        $params = [
+            $name,
+        ];
+        $sql = "INSERT INTO custmaster(name)
+                VALUES(?)";
+        try {
+            \DB::insert($sql, $params);
+        } catch (\Illuminate\Database\QueryException $e) {
+            \Log::info($e->getMessage());
+            return false;
+        }
+        $sql = "SELECT IDENT_CURRENT('custmaster') as id;";
+        try {
+            $res = \DB::select($sql);
+        } catch (\Illuminate\Database\QueryException $e) {
+            \Log::info($e->getMessage());
+            return false;
+        }
+        if(!empty($res)){
+            return $res[0]->id;
+        } else{
+            return false;
+        }
+    }
 }

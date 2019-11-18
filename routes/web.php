@@ -25,6 +25,7 @@ Route::get('/hours/{taskrowid}', 'HourController@list');
 Route::get('/customer/{projrowid}', 'ProjectController@get');
 Route::get('/status/{projrowid}', 'ProjectController@get');
 Route::post('/projects', 'ProjectController@createnew');
+Route::post('/customers', 'CustomerController@createnew');
 Route::post('/tasks', 'TaskController@createnew');
 Route::post('/task/edit/{taskrowid}', 'TaskController@update');
 Route::post('/hours', 'HourController@createnew');

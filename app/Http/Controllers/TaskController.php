@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Core\TaskCore;
 use App\Core\HourCore;
 use App\Core\ProjectCore;
 

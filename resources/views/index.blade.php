@@ -16,6 +16,11 @@
                 <pfilter-component :ctofilter="ctofilter" :popentofilter="popentofilter" :pclosedtofilter="pclosedtofilter"><pfilter-component>
             </div>
             <div class="col">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#customerModal">
+                +
+                </button>
+            </div>
+            <div class="col">
                 <select v-model="ptofilter" name="ptofilter" id="ptofilter" class="form-control" v-on:change="pfilter( ptofilter );">
                     <option selected>Project</option>
                     <option v-for="project in customerprojects" :key="project.projrowid" :label="project.title">@{{ project.projrowid }}</option>
@@ -23,7 +28,7 @@
             </div>
             <div class="col">
                 <button type="button" class="btn btn-primary" data-customers="currentobject.customers" data-toggle="modal" data-target="#projectModal">
-                Add Project
+                +
                 </button>
             </div>
         </div>
@@ -33,6 +38,7 @@
             </div>
         </div>
 
+        @include('modals.customer')
         @include('modals.project')
         <newproject-component :newprojectcustomer="newprojectcustomer"
                                 :newprojectstatus="newprojectstatus"

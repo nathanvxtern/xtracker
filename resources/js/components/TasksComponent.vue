@@ -147,6 +147,10 @@
                 self.taskrowidadd = taskrowidhoursedit;
                 self.hourshoursedit = hourshoursedit;
                 self.custrowidhoursadd = custrowidhoursadd;
+
+                self.viewtaskhourstaskrowid = taskrowidhoursedit;
+                self.viewtaskhourshours = hourshoursedit;
+                self.viewtaskhourscustrowid = custrowidhoursadd;
             },
             populateedittaskmodal: function(taskrowidtaskedit,edittasktitle,edittaskesthours,edittaskusedhrs,edittaskbillingrate)
             {

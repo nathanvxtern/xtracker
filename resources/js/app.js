@@ -88,13 +88,19 @@ const app = new Vue({
         notestoedit: null,
         invoicenotoedit: null,
 
+        viewtaskhourstaskrowid: null,
+        viewtaskhourshours: null,
+        viewtaskhourscustrowid: null,
+
     }),
 
     methods: {
         debug: function()
         {
             self = this;
-            console.log( self.custrowidhoursadd );
+            console.log( self.viewtaskhourstaskrowid );
+            console.log( self.viewtaskhourshours );
+            console.log( self.viewtaskhourscustrowid );
         },
         gettasks: function( projrowid )
         {

@@ -2063,6 +2063,9 @@ __webpack_require__.r(__webpack_exports__);
       self.taskrowidadd = taskrowidhoursedit;
       self.hourshoursedit = hourshoursedit;
       self.custrowidhoursadd = custrowidhoursadd;
+      self.viewtaskhourstaskrowid = taskrowidhoursedit;
+      self.viewtaskhourshours = hourshoursedit;
+      self.viewtaskhourscustrowid = custrowidhoursadd;
     },
     populateedittaskmodal: function populateedittaskmodal(taskrowidtaskedit, edittasktitle, edittaskesthours, edittaskusedhrs, edittaskbillingrate) {
       var self = this.$parent;
@@ -79887,13 +79890,18 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       user_idtoedit: null,
       dateenteredtoedit: null,
       notestoedit: null,
-      invoicenotoedit: null
+      invoicenotoedit: null,
+      viewtaskhourstaskrowid: null,
+      viewtaskhourshours: null,
+      viewtaskhourscustrowid: null
     };
   },
   methods: {
     debug: function debug() {
       self = this;
-      console.log(self.custrowidhoursadd);
+      console.log(self.viewtaskhourstaskrowid);
+      console.log(self.viewtaskhourshours);
+      console.log(self.viewtaskhourscustrowid);
     },
     gettasks: function gettasks(projrowid) {
       var self = this;

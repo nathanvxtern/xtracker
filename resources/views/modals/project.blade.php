@@ -19,7 +19,7 @@
                                       <label for="newprojectcustomer">Customer</label>
                                       <select v-model="newprojectcustomer" name="newprojectcustomer" id="newprojectcustomer" class="form-control" v-on:change="assignnewprojectcustomer( newprojectcustomer );">
                                           <option selected>@{{ newprojectcustomer }}</option>
-                                          <option v-for="customer in currentobject.customers" :key="customer.custrowid">@{{ customer.name }}</option>
+                                          <option v-for="customer in currentobject.customers" :key="customer.custrowid" :label="customer.name">@{{ customer.custrowid }}</option>
                                     </select>
                                   </div>
                                   <div class="col-md-4 col-sm-6 col-xs-12 input-padding">

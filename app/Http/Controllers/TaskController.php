@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Core\HourCore;
 use App\Core\ProjectCore;
+use App\Core\TaskCore;
 
 class TaskController extends APIController
 {

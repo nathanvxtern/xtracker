@@ -2,10 +2,10 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">customer</th>
-                <th scope="col">project</th>
-                <th scope="col">task</th>
-                <th scope="col">used of estimated</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Project</th>
+                <th scope="col">Task</th>
+                <th scope="col">Used of Estimated</th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -21,7 +21,7 @@
                     @{{ task.title }}
                 </td>
                 <td>
-                    @{{ task.usedhrs }} of @{{ task.esthours }} hours
+                    (@{{ task.usedhrs }} of @{{ task.esthours }} Hours)
                 </td>
                 <td>
                     <button @click="populatehourmodal( task.taskrowid,task.proj.custrowid,task.hours )" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addHoursModal">

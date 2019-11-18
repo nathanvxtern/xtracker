@@ -9,8 +9,8 @@
         </div>
         <div class="row">
             <div class="col">
+                Customer
                 <select v-model="ctofilter" name="ctofilter" id="ctofilter" class="form-control" v-on:change="cfilter( ctofilter );">
-                    <option selected>Customer</option>
                     <option v-for="customer in currentobject.customers" :key="customer.custrowid">@{{ customer.name }}</option>
                 </select>
                 <pfilter-component :ctofilter="ctofilter" :popentofilter="popentofilter" :pclosedtofilter="pclosedtofilter"><pfilter-component>
@@ -21,8 +21,8 @@
                 </button>
             </div>
             <div class="col">
+                Project
                 <select v-model="ptofilter" name="ptofilter" id="ptofilter" class="form-control" v-on:change="pfilter( ptofilter );">
-                    <option selected>Project</option>
                     <option v-for="project in customerprojects" :key="project.projrowid" :label="project.title">@{{ project.projrowid }}</option>
                 </select>
             </div>

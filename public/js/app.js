@@ -2017,6 +2017,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['csrf', 'currentobject', 'tasks', 'projstatusrowid', 'projtyperowid', 'taskrowidadd', 'hoursidtoedit', 'numhourstoedit', 'notestoedit', 'user_idtoedit', 'dateenteredtoedit', 'invoicenotoedit', 'taskrowidhoursedit', 'hourshoursedit', 'custrowidhoursadd'],
   data: function data() {
@@ -66916,7 +66919,7 @@ var render = function() {
                 return _c(
                   "tr",
                   {
-                    key: task.id,
+                    key: task.taskrowid,
                     staticClass: "clickable-row",
                     on: {
                       click: function($event) {
@@ -66937,9 +66940,40 @@ var render = function() {
                     _vm._v(" "),
                     _c("th", { attrs: { scope: "rows" } }, [
                       _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-primary d-inline",
+                          attrs: {
+                            href:
+                              "/confirm/delete/task/" +
+                              task.taskrowid +
+                              "/" +
+                              task.title,
+                            role: "button"
+                          },
+                          on: {
+                            click: function($event) {
+                              return _vm.populateedittaskmodal(
+                                task.taskrowid,
+                                task.title,
+                                task.esthours,
+                                task.usedhrs,
+                                task.billingrate
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                    Delete\n                                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
                         "button",
                         {
-                          staticClass: "btn btn-primary",
+                          staticClass: "btn btn-primary d-inline",
                           attrs: {
                             type: "button",
                             "data-toggle": "modal",
@@ -66959,7 +66993,7 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                                    Edit/Delete\n                                "
+                            "\n                                    Edit\n                                "
                           )
                         ]
                       )

@@ -8,9 +8,6 @@
         </button>
       </div>
       <div class="modal-body">
-          <a :href="'/confirm/delete/task/' + taskrowidtaskedit + '/' + edittasktitle" class="btn btn-primary">
-              Delete
-          </a>
           <form id="edit_task_form" :action="'/task/edit/'+taskrowidtaskedit" method="POST" name="edit_task_form">
               {{ method_field('PATCH') }}
                   @csrf

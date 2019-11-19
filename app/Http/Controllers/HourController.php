@@ -58,9 +58,16 @@ class HourController extends APIController
         return redirect("/");
     }
 
-    public function update( Request $request, $hoursid=null, $numhours=null, $user_id=null, $dateentered='0000-00-00', $notes=null, $invoiceno=null )
+    public function update( Request $request )
     {
         $hour_core = new HourCore();
+        
+        $hoursid = $request->input('hoursid',null);
+        $numhours = $request->input('numhours',null);
+        $user_id = $request->input('user_id',null);
+        $dateentered = $request->input('dateentered',null);
+        $notes = $request->input('notes',null);
+        $invoiceno = $request->input('invoiceno',null);
 
         $param_list = [ 'hoursid' => $hoursid,
                         'numhours' => $numhours,

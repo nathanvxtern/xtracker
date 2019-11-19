@@ -15,12 +15,11 @@
                                 <th scope="col">Name</th>
                                 <th scope="col">Est</th>
                                 <th scope="col">Used</th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
+                                <th scope="col" class="border-0"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="task of tasks" v-bind:key="task.id">
+                            <tr v-for="task of tasks" v-bind:key="task.id" class="clickable-row" @click="populatehours( task.taskrowid,task.hours,task.custrowid);">
                                 <td>{{ task.title }}</td>
                                 <td>{{ task.esthours }}</td>
                                 <td>{{ task.usedhrs }}</td>
@@ -29,11 +28,6 @@
                                         Edit/Delete
                                     </button>
                                 </th>
-                                <td>
-                                    <button @click="populatehours( task.taskrowid,task.hours,task.custrowid);" type="button" class="btn btn-primary">
-                                        View
-                                    </button>
-                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -47,70 +41,47 @@
                     </button>
                 </div>
                 <div class="row">
-                    <form id="edit_hours_form" :action="'/hours/edit/' + hoursidtoedit + '/' + numhourstoedit + '/' + user_idtoedit + '/' + dateenteredtoedit + '/' + notestoedit + '/' + invoicenotoedit" method="POST" name="edit_hours_form">
-
-                        <input type="hidden" :value="csrfToken" name="_token"/>
-                        
-                        <div>
-                            <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                                <input v-model="taskrowidhoursedit" type="hidden" class="form-control" id="create-link-taskrowid" name="taskrowid">
-                            </div>
-                            <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                                <input v-model="hourshoursedit" type="hidden" class="form-control" id="create-link-hours" name="hours">
-                            </div>
-                        </div>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Hrs</th>
-                                    <th scope="col">Notes</th>
-                                    <th scope="col">Inv#</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr v-for="(hour,index) in hourshoursedit" v-bind:key="hourshoursedit[index].hoursid">
-                                    <td>
-                                        <input v-model="hourshoursedit[index].dateentered" type="text" class="form-control" id="create-link-dateentered" name="dateentered" @change="updatedateenteredtoedit( hour.hoursid, hour.dateentered )">
-                                    </td>
-                                    <td>
-                                        <select v-model="hourshoursedit[index].user_id" class="form-control" id="user_id" name="user_id" placeholder="user" @change="updateuser_idtoedit( hour.hoursid, hour.user_id )">
-                                            <option selected>Employee</option>
-                                            <option v-for="user in currentobject.users" :key="user.user_id">{{ user.name }}</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input v-model="hourshoursedit[index].numhours" type="text" class="form-control" id="create-link-numhours" name="numhours" @change="updatenumhourstoedit( hour.hoursid, hour.numhours )">
-                                    </td>
-                                    <td>
-                                        <input v-model="hourshoursedit[index].notes" type="text" class="form-control" id="create-link-notes" name="notes" @change="updatenotestoedit( hour.hoursid, hour.notes )">
-                                    </td>
-                                    <td>
-                                        <input v-model="hourshoursedit[index].invoiceno" type="text" class="form-control" id="create-link-invoiceno" name="invoiceno" @change="updateinvoicenotoedit( hour.hoursid, hour.invoiceno )">
-                                    </td>
-                                    <td>
-                                        <input v-model="hourshoursedit[index].hoursid" type="hidden" class="form-control" id="create-link-hoursid" name="hoursid">
-                                    </td>
-                                    <td>
-                                        <a :v-model="hour.hoursid" :href="'/confirm/delete/hour/'+hour.hoursid" class="btn btn-primary">
-                                            Delete
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <button type="submit" class="btn btn-primary" form="edit_hours_form"
-                                                        data-form-id="edit_hours_form"
-                                                        data-modal-id="edit-hours-modal"
-                                                        @click="updatenumhourstoedit( hour.hoursid, hour.numhours );
-                                                                updateuser_idtoedit( hour.hoursid, hour.user_id );
-                                                                updatedateenteredtoedit( hour.hoursid, hour.dateentered );
-                                                                updatenotestoedit( hour.hoursid, hour.notes );
-                                                                updateinvoicenotoedit( hour.hoursid, hour.invoiceno );">Update</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </form>
+                    <div class="col">
+                        <input v-model="taskrowidhoursedit" type="hidden">
+                    </div>
+                    <div class="col">
+                        <input v-model="hourshoursedit" type="hidden">
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Date</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Hrs</th>
+                                <th scope="col">Notes</th>
+                                <th scope="col">Inv#</th>
+                                <th scope="col" class="border-0"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="hour in hourshoursedit" v-bind:key="hour.hoursid">
+                                <td>{{ hour.dateentered }}</td>
+                                <td>{{ hour.user_id }}</td>
+                                <td>{{ hour.numhours }}</td>
+                                <td>{{ hour.notes }}</td>
+                                <td>{{ hour.invoiceno }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editHoursModal" @click="populateedithourmodal( taskrowidhoursedit, custrowidhoursadd, hour.hoursid, hour.numhours, hour.user_id, hour.dateentered, hour.notes, hour.invoiceno );
+                                                                        updatenumhourstoedit( hour.hoursid, hour.numhours );
+                                                                        updateuser_idtoedit( hour.hoursid, hour.user_id );
+                                                                        updatedateenteredtoedit( hour.hoursid, hour.dateentered );
+                                                                        updatenotestoedit( hour.hoursid, hour.notes );
+                                                                        updateinvoicenotoedit( hour.hoursid, hour.invoiceno );"
+                                                                        >Edit</button>
+                                </td>
+                                <td>
+                                    <a :v-model="hour.hoursid" :href="'/confirm/delete/hour/'+hour.hoursid" class="btn btn-primary">
+                                        Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -191,6 +162,18 @@
                 self.invoicenotoedit = invoicenotoedit;
                 self.hoursidtoedit = hoursidtoedit;
             },
+            populateedithourmodal( taskrowidhoursedit, custrowidhoursadd, hoursid, numhours, user_id, dateentered, notes, invoiceno )
+            {
+                let self = this.$parent;
+                self.edithourtaskrowid = taskrowidhoursedit;
+                self.edithourcustrowid = custrowidhoursadd;
+                self.edithourhoursid = hoursid;
+                self.edithouruser_id = user_id;
+                self.edithournumhours = numhours;
+                self.edithourdateentered = dateentered;
+                self.edithournotes = notes;
+                self.edithourinvoiceno = invoiceno;
+            }
         }
     }
 </script>

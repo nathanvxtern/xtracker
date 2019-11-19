@@ -13,5 +13,13 @@
     :invoicenotoedit="invoicenotoedit"
     :hoursidtoedit="hoursidtoedit"
     :custrowidhoursadd="custrowidhoursadd"
+    :edithourtaskrowid="edithourtaskrowid"
+    :edithourcustrowid="edithourcustrowid"
+    :edithouruser_id="edithouruser_id"
+    :edithournumhours="edithournumhours"
+    :edithourdateentered="edithourdateentered"
+    :edithournotes="edithournotes"
+    :edithourinvoiceno="edithourinvoiceno"
+    :edithourhoursid="edithourhoursid"
     ></tasks-component>
 </div>

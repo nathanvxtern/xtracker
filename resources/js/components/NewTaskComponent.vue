@@ -6,6 +6,7 @@
     export default {
         props:[ 
             'newtaskstatus',
+            'newtaskstatusrowid',
         ]
     }
 </script>

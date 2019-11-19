@@ -25,19 +25,19 @@
                       </select>
                   </div>
                   <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                      <label for="numhours">numhours</label>
+                      <label for="numhours">Number of Hours</label>
                       <input type="text" class="form-control" id="numhours" name="numhours" placeholder="Numhours">
                   </div>
                   <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                      <label for="dateentered">dateentered</label>
+                      <label for="dateentered">Date Entered</label>
                       <input type="text" class="form-control" id="dateentered" name="dateentered" placeholder="yyyy-mm-dd">
                   </div>
                   <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                      <label for="notes">notes</label>
+                      <label for="notes">Notes</label>
                       <input type="text" class="form-control" id="notes" name="notes" placeholder="notes">
                   </div>
                   <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                      <label for="invoiceno">invoiceno</label>
+                      <label for="invoiceno">Invoice Number</label>
                       <input type="text" class="form-control" id="invoiceno" name="invoiceno" placeholder="invoiceno">
                   </div>
               </div>

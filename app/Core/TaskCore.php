@@ -87,13 +87,14 @@ class TaskCore
         } catch ( \Illuminate\Database\QueryException $e ) {
             \Log::error( $e->getMessage() );
             return [];
-        } 
+        }
 
         $recentTasks = [];
         foreach ( $rs as $taskrowid ) {
             $task = TaskCore::get( $taskrowid->taskrowid );
             $recentTasks[] = $task;
         }
+
         return $recentTasks;
     }
     public function list( $projrowid )

@@ -107,13 +107,7 @@ const app = new Vue({
         debug: function()
         {
             self = this;
-            console.log( self.edithourtaskrowid );
-            console.log( self.edithourcustrowid );
-            console.log( self.edithouruser_id );
-            console.log( self.edithournumhours );
-            console.log( self.edithourdateentered );
-            console.log( self.edithournotes );
-            console.log( self.edithourinvoiceno );
+            console.log( self.tasks );
         },
         gettasks: function( projrowid )
         {

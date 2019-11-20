@@ -26,6 +26,9 @@ class TaskController extends APIController
             $rec[ 'results' ][ 'tasks' ][ $taskKey ][ 'hours' ] = [];
             $rec[ 'results' ][ 'tasks' ][ $taskKey ][ 'hours' ] = $hour_core->list( $task[ 'taskrowid' ] );
             $rec[ 'results' ][ 'tasks' ][ $taskKey ][ 'custrowid' ] = $project_core->get( $projrowid )[ 'custrowid' ];
+            if ( is_null( $rec[ 'results' ][ 'tasks' ][ $taskKey ][ 'usedhrs' ] ) ) {
+                $rec[ 'results' ][ 'tasks' ][ $taskKey ][ 'usedhrs' ] = 0;
+            }
         }
 
         $pagevars = array();

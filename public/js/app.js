@@ -79619,13 +79619,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
   methods: {
     debug: function debug() {
       self = this;
-      console.log(self.edithourtaskrowid);
-      console.log(self.edithourcustrowid);
-      console.log(self.edithouruser_id);
-      console.log(self.edithournumhours);
-      console.log(self.edithourdateentered);
-      console.log(self.edithournotes);
-      console.log(self.edithourinvoiceno);
+      console.log(self.tasks);
     },
     gettasks: function gettasks(projrowid) {
       var self = this;

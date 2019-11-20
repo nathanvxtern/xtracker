@@ -23,14 +23,14 @@
                                 <td>{{ task.title }}</td>
                                 <td>{{ task.esthours }}</td>
                                 <td>{{ task.usedhrs }}</td>
-                                <th scope="rows">
+                                <td class="border-0">
                                     <a :href="'/confirm/delete/task/' + task.taskrowid + '/' + task.title" class="btn btn-primary d-inline" role="button" @click="populateedittaskmodal( task.taskrowid, task.title, task.esthours, task.usedhrs, task.billingrate )">
                                         Delete
                                     </a>
                                     <button type="button" class="btn btn-primary d-inline" @click="populateedittaskmodal( task.taskrowid, task.title, task.esthours, task.usedhrs, task.billingrate )" data-toggle="modal" data-target="#editTaskModal">
                                         Edit
                                     </button>
-                                </th>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -68,16 +68,15 @@
                                 <td>{{ hour.numhours }}</td>
                                 <td>{{ hour.notes }}</td>
                                 <td>{{ hour.invoiceno }}</td>
-                                <td>
+                                <td class="border-0">
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editHoursModal" @click="populateedithourmodal( taskrowidhoursedit, custrowidhoursadd, hour.hoursid, hour.numhours, hour.user_id, hour.dateentered, hour.notes, hour.invoiceno );
                                                                         updatenumhourstoedit( hour.hoursid, hour.numhours );
                                                                         updateuser_idtoedit( hour.hoursid, hour.user_id );
                                                                         updatedateenteredtoedit( hour.hoursid, hour.dateentered );
                                                                         updatenotestoedit( hour.hoursid, hour.notes );
-                                                                        updateinvoicenotoedit( hour.hoursid, hour.invoiceno );"
-                                                                        >Edit</button>
-                                </td>
-                                <td>
+                                                                        updateinvoicenotoedit( hour.hoursid, hour.invoiceno );">
+                                    Edit
+                                    </button>
                                     <a :v-model="hour.hoursid" :href="'/confirm/delete/hour/'+hour.hoursid" class="btn btn-primary">
                                         Delete
                                     </a>

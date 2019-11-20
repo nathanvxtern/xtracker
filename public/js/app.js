@@ -2019,7 +2019,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['csrf', 'currentobject', 'tasks', 'projstatusrowid', 'projtyperowid', 'taskrowidadd', 'hoursidtoedit', 'numhourstoedit', 'notestoedit', 'user_idtoedit', 'dateenteredtoedit', 'invoicenotoedit', 'taskrowidhoursedit', 'hourshoursedit', 'custrowidhoursadd'],
   data: function data() {
@@ -66938,7 +66937,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(task.usedhrs))]),
                     _vm._v(" "),
-                    _c("th", { attrs: { scope: "rows" } }, [
+                    _c("td", { staticClass: "border-0" }, [
                       _c(
                         "a",
                         {
@@ -67074,7 +67073,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(hour.invoiceno))]),
                   _vm._v(" "),
-                  _c("td", [
+                  _c("td", { staticClass: "border-0" }, [
                     _c(
                       "button",
                       {
@@ -67113,11 +67112,13 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Edit")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
+                      [
+                        _vm._v(
+                          "\n                                Edit\n                                "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
                     _c(
                       "a",
                       {

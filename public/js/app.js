@@ -66941,25 +66941,13 @@ var render = function() {
                       _c(
                         "a",
                         {
-                          staticClass: "btn btn-primary d-inline",
+                          staticClass: "btn btn-primary",
                           attrs: {
                             href:
                               "/confirm/delete/task/" +
                               task.taskrowid +
                               "/" +
-                              task.title,
-                            role: "button"
-                          },
-                          on: {
-                            click: function($event) {
-                              return _vm.populateedittaskmodal(
-                                task.taskrowid,
-                                task.title,
-                                task.esthours,
-                                task.usedhrs,
-                                task.billingrate
-                              )
-                            }
+                              task.title
                           }
                         },
                         [
@@ -66972,7 +66960,7 @@ var render = function() {
                       _c(
                         "button",
                         {
-                          staticClass: "btn btn-primary d-inline",
+                          staticClass: "btn btn-primary",
                           attrs: {
                             type: "button",
                             "data-toggle": "modal",
@@ -79619,7 +79607,11 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
   methods: {
     debug: function debug() {
       self = this;
-      console.log(self.currentobject['currentuser']);
+      console.log(self.taskrowidtaskedit);
+      console.log(self.edittasktitle);
+      console.log(self.edittaskesthours);
+      console.log(self.edittaskusedhrs);
+      console.log(self.edittaskbillingrate);
     },
     gettasks: function gettasks(projrowid) {
       var self = this;

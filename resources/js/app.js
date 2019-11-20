@@ -107,7 +107,7 @@ const app = new Vue({
         debug: function()
         {
             self = this;
-            console.log( self.tasks );
+            console.log( self.currentobject[ 'currentuser' ] );
         },
         gettasks: function( projrowid )
         {

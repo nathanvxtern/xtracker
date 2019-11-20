@@ -19,8 +19,8 @@
                   </div>
                   <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
                       <label for="user_id" type="hidden">Employee</label>
-                      <select class="form-control" id="user_id" name="user_id" placeholder="Employee">
-                        <option selected>Employee</option>
+                      <select class="form-control" id="user_id" name="user_id">
+                        <option selected>@{{ currentobject.currentuser }}</option>
                         <option v-for="user in currentobject.users" :key="user.user_id">@{{ user.name }}</option>
                       </select>
                   </div>

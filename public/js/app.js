@@ -79619,7 +79619,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
   methods: {
     debug: function debug() {
       self = this;
-      console.log(self.tasks);
+      console.log(self.currentobject['currentuser']);
     },
     gettasks: function gettasks(projrowid) {
       var self = this;

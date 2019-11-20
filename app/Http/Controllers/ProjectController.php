@@ -34,6 +34,13 @@ class ProjectController extends APIController
         $rec[ 'results' ][ 'users' ] = [];
         $rec[ 'results' ][ 'projected' ] = [];
         $rec[ 'results' ][ 'recenttasks' ] = [];
+        
+        $rec[ 'results' ][ 'currentuser' ] = [];
+        $user_id = \Auth::user()->id;
+        $username = $user_core->get( $user_id );
+        $username = $username[ 0 ];
+        $username = $username[ 'name' ];
+        $rec[ 'results' ][ 'currentuser' ] = $username;
 
         $rec[ 'results' ][ 'projects' ] = $project_core->list();
         $rec[ 'results' ][ 'customers' ] = $customer_core->list();

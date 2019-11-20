@@ -54,8 +54,6 @@ class ProjectController extends APIController
             $rec[ 'results' ][ 'recenttasks' ][ $i ][ 'hours' ] = $hour_core->list( $rec[ 'results' ][ 'recenttasks' ][ $i ][ 'taskrowid' ] );
         }
 
-        dump( $rec[ 'results' ][ 'recenttasks' ] );
-
         $pagevars = array();
         $pagevars[ 'data' ] = array();
         $pagevars[ 'data' ] = $rec;

@@ -245,6 +245,15 @@ class TaskCore
             \Log::info($e->getMessage());
             return false;
         }
+        $sql = "DELETE
+                FROM projhours P
+                WHERE P.taskrowid = ?";
+        try {
+            \DB::delete($sql, $params);
+        } catch (\Illuminate\Database\QueryException $e) {
+            \Log::info($e->getMessage());
+            return false;
+        }
     }
     
 }

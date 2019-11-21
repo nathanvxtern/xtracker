@@ -208,8 +208,10 @@ class TaskCore
         $sql_params = array();
 
         foreach ($update_list as $key => $value) {
-            array_push($params, $value);
-            array_push($sql_params, $key . ' = ?');
+            if ( $key != "usedhrs" ) {
+                array_push($params, $value);
+                array_push($sql_params, $key . ' = ?');
+            }
         }
         array_push($params, $taskrowid);
 
@@ -218,10 +220,12 @@ class TaskCore
         $sql .= implode(',', $sql_params);
         $sql .= " WHERE taskrowid = ?";
 
+        $recs = [];
+
         try {
             $recs = \DB::update($sql, $params);
         } catch (\Illuminate\Database\QueryException $e) {
-            return false;
+            dump( $e );
         }
 
         if ($recs == 0) {

@@ -13,7 +13,7 @@
                   @csrf
                   <div class="row form-group">
                       <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                          <input v-model="taskrowidtaskedit" type="text" class="form-control" id="create-link-taskrowid" name="taskrowid">
+                          <label value="taskrowidtaskedit">@{{ taskrowidtaskedit }}</label>
                       </div>
                   </div>
                   <div class="row form-group">

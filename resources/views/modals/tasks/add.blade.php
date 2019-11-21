@@ -32,7 +32,7 @@
                                         <input type="text" class="form-control" id="create-link-billingrate" name="billingrate" placeholder="100">
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                                        <label for="newtasktype">Status</label>
+                                        <label for="newtasktype">Type</label>
                                         <select v-model="newtasktype" name="newtasktype" id="newtasktype" class="form-control" v-on:change="assignnewtasktype( newtasktype );">
                                             <option selected>@{{ newtasktype }}</option>
                                             <option v-for="type in currentobject.types" :key="type.projtyperowid">@{{ type.projtype }}</option>

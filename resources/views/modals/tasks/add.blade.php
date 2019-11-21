@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="row form-group">
                                     <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                                        <label for="billingrate">Rate/hr:</label>
+                                        <label for="billingrate">Hourly Rate:</label>
                                         <input type="text" class="form-control" id="create-link-billingrate" name="billingrate" placeholder="100">
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-xs-12 input-padding">

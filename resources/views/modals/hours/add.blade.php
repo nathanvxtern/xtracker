@@ -30,7 +30,7 @@
                   </div>
                   <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
                       <label for="dateentered">Date Entered</label>
-                      <input type="text" class="form-control" id="dateentered" name="dateentered" placeholder="yyyy-mm-dd">
+                      <input class="form-control" type="date" value="{{date('Y-m-d')}}" id="dateentered" name="dateentered">
                   </div>
                   <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
                       <label for="notes">Notes</label>

@@ -13,27 +13,25 @@
                   @csrf
                   <div class="row form-group">
                       <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
+                          <label for="title">Task Title</label>
                           <input v-model="edittasktitle" type="text" class="form-control" id="create-link-title" name="title">
                       </div>
                   </div>
                   <div class="row form-group">
                       <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
+                          <label for="esthours">Estimate Hours</label>
                           <input v-model="edittaskesthours" type="text" class="form-control" id="create-link-esthours" name="esthours">
                       </div>
                   </div>
                   <div class="row form-group">
                       <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                          <label for="reqcompdate">Completion Date</label>
+                          <label for="reqcompdate">Req. Comp. Date</label>
                           <input v-model="edittaskdateentered" class="form-control" type="date" value="{{date('Y-m-d')}}" id="reqcompdate" name="reqcompdate">
                       </div>
                   </div>
                   <div class="row form-group">
                       <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                          <input v-model="edittaskusedhrs" type="text" class="form-control" id="create-link-usedhrs" name="usedhrs">
-                      </div>
-                  </div>
-                  <div class="row form-group">
-                      <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
+                          <label for="billingrate">Billing Rate</label>
                           <input v-model="edittaskbillingrate" type="text" class="form-control" id="create-link-billingrate" name="billingrate">
                       </div>
                   </div>

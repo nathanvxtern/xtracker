@@ -23,7 +23,7 @@
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
                                         <label for="reqcompdate">Requested Date:</label>
-                                        <input type="text" class="form-control" id="create-link-reqcompdate" name="reqcompdate" placeholder="yyyy-mm-dd">
+                                        <input class="form-control" type="date" value="{{date('Y-m-d')}}" id="create-link-reqcompdate" name="reqcompdate">
                                     </div>
                                 </div>
                                 <div class="row form-group">

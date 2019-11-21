@@ -13,17 +13,18 @@
                   @csrf
                   <div class="row form-group">
                       <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                          <label value="taskrowidtaskedit">@{{ taskrowidtaskedit }}</label>
-                      </div>
-                  </div>
-                  <div class="row form-group">
-                      <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
                           <input v-model="edittasktitle" type="text" class="form-control" id="create-link-title" name="title">
                       </div>
                   </div>
                   <div class="row form-group">
                       <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
                           <input v-model="edittaskesthours" type="text" class="form-control" id="create-link-esthours" name="esthours">
+                      </div>
+                  </div>
+                  <div class="row form-group">
+                      <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
+                          <label for="reqcompdate">Completion Date</label>
+                          <input v-model="edittaskdateentered" class="form-control" type="date" value="{{date('Y-m-d')}}" id="reqcompdate" name="reqcompdate">
                       </div>
                   </div>
                   <div class="row form-group">

@@ -2040,13 +2040,14 @@ __webpack_require__.r(__webpack_exports__);
       self.viewtaskhourshours = hourshoursedit;
       self.viewtaskhourscustrowid = custrowidhoursadd;
     },
-    populateedittaskmodal: function populateedittaskmodal(taskrowidtaskedit, edittasktitle, edittaskesthours, edittaskusedhrs, edittaskbillingrate) {
+    populateedittaskmodal: function populateedittaskmodal(taskrowidtaskedit, edittasktitle, edittaskesthours, edittaskusedhrs, edittaskbillingrate, edittaskdateentered) {
       var self = this.$parent;
       self.taskrowidtaskedit = taskrowidtaskedit;
       self.edittasktitle = edittasktitle;
       self.edittaskesthours = edittaskesthours;
       self.edittaskusedhrs = edittaskusedhrs;
       self.edittaskbillingrate = edittaskbillingrate;
+      self.edittaskdateentered = edittaskdateentered;
     },
     updatenumhourstoedit: function updatenumhourstoedit(hoursidtoedit, numhourstoedit) {
       var self = this.$parent;
@@ -66973,7 +66974,8 @@ var render = function() {
                                 task.title,
                                 task.esthours,
                                 task.usedhrs,
-                                task.billingrate
+                                task.billingrate,
+                                task.reqcompdate
                               )
                             }
                           }
@@ -79583,6 +79585,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       edittaskesthours: null,
       edittaskusedhrs: null,
       edittaskbillingrate: null,
+      edittaskdateentered: null,
       taskrowidhoursedit: null,
       hourshoursedit: null,
       hoursidtoedit: null,

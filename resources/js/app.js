@@ -77,6 +77,7 @@ const app = new Vue({
         edittaskesthours: null,
         edittaskusedhrs: null,
         edittaskbillingrate: null,
+        edittaskdateentered: null,
 
         taskrowidhoursedit: null,
         hourshoursedit: null,

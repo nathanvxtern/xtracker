@@ -39,7 +39,7 @@
             <div class="col">
                 <div class="row">
                     Hours
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addHoursModal">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addHoursModal" name="thebutton" id="thebutton">
                         +
                     </button>
                 </div>
@@ -107,10 +107,11 @@
             'taskrowidhoursedit',
             'hourshoursedit',
             'custrowidhoursadd',
+            'thebutton',
         ],
         data() { return { csrfToken: null }},
         created() {
-            this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
+            this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
         },
         methods: {
             populatehours: function(taskrowidhoursedit,hourshoursedit,custrowidhoursadd)
@@ -124,6 +125,13 @@
                 self.viewtaskhourstaskrowid = taskrowidhoursedit;
                 self.viewtaskhourshours = hourshoursedit;
                 self.viewtaskhourscustrowid = custrowidhoursadd;
+
+                if ( thebutton.getAttribute( 'disabled' ) ) {
+                    thebutton.setAttribute('disabled', false );
+                } else {
+                    thebutton.setAttribute('disabled', true );
+                }
+                
             },
             populateedittaskmodal: function(taskrowidtaskedit,edittasktitle,edittaskesthours,edittaskusedhrs,edittaskbillingrate,edittaskdateentered)
             {

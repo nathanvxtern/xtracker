@@ -2020,7 +2020,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['csrf', 'currentobject', 'tasks', 'projstatusrowid', 'projtyperowid', 'taskrowidadd', 'hoursidtoedit', 'numhourstoedit', 'notestoedit', 'user_idtoedit', 'dateenteredtoedit', 'invoicenotoedit', 'taskrowidhoursedit', 'hourshoursedit', 'custrowidhoursadd'],
+  props: ['csrf', 'currentobject', 'tasks', 'projstatusrowid', 'projtyperowid', 'taskrowidadd', 'hoursidtoedit', 'numhourstoedit', 'notestoedit', 'user_idtoedit', 'dateenteredtoedit', 'invoicenotoedit', 'taskrowidhoursedit', 'hourshoursedit', 'custrowidhoursadd', 'thebutton'],
   data: function data() {
     return {
       csrfToken: null
@@ -2039,6 +2039,12 @@ __webpack_require__.r(__webpack_exports__);
       self.viewtaskhourstaskrowid = taskrowidhoursedit;
       self.viewtaskhourshours = hourshoursedit;
       self.viewtaskhourscustrowid = custrowidhoursadd;
+
+      if (thebutton.getAttribute('disabled')) {
+        thebutton.setAttribute('disabled', false);
+      } else {
+        thebutton.setAttribute('disabled', true);
+      }
     },
     populateedittaskmodal: function populateedittaskmodal(taskrowidtaskedit, edittasktitle, edittaskesthours, edittaskusedhrs, edittaskbillingrate, edittaskdateentered) {
       var self = this.$parent;
@@ -67185,7 +67191,9 @@ var staticRenderFns = [
           attrs: {
             type: "button",
             "data-toggle": "modal",
-            "data-target": "#addHoursModal"
+            "data-target": "#addHoursModal",
+            name: "thebutton",
+            id: "thebutton"
           }
         },
         [_vm._v("\n                    +\n                ")]
@@ -79610,11 +79618,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
   methods: {
     debug: function debug() {
       self = this;
-      console.log(self.taskrowidtaskedit);
-      console.log(self.edittasktitle);
-      console.log(self.edittaskesthours);
-      console.log(self.edittaskusedhrs);
-      console.log(self.edittaskbillingrate);
+      console.log(self.thebutton);
     },
     gettasks: function gettasks(projrowid) {
       var self = this;

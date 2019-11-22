@@ -108,11 +108,7 @@ const app = new Vue({
         debug: function()
         {
             self = this;
-            console.log(self.taskrowidtaskedit);
-            console.log(self.edittasktitle);
-            console.log(self.edittaskesthours);
-            console.log(self.edittaskusedhrs);
-            console.log(self.edittaskbillingrate);
+            console.log(self.thebutton);
         },
         gettasks: function( projrowid )
         {

@@ -71,7 +71,7 @@ class ProjectCore
         ];
 
         $sql = "SELECT P.custrowid, P.projrowid, P.title, P.projstatusrowid, P.createdate
-                FROM projmaster P 
+                FROM projmaster P
                 WHERE projrowid = ?";
 
         try {

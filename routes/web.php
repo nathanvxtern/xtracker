@@ -20,7 +20,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 /* Customers */
 /* get /customers/ -> " @list */
-Route::get('/', 'ProjectController@list');
+Route::get('/', 'CustomerController@list');
 /* get /customers/{custrowid} -> CustomerController@get */
 /* post /customers  -> CustomerController@create */
 Route::post('/customers', 'CustomerController@createnew');

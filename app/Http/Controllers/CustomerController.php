@@ -8,6 +8,23 @@ use App\Core\CustomerCore;
 class CustomerController extends APIController
 {
 
+    public function list()
+    {
+        $customer_core = new CustomerCore();
+
+        $rec = array();
+        
+        $rec[ 'results' ][ 'customers' ] = [];
+
+        $rec[ 'results' ][ 'customers' ] = $customer_core->list();
+
+        $pagevars = array();
+        $pagevars[ 'data' ] = array();
+        $pagevars[ 'data' ] = $rec;
+
+        return view( 'index', $pagevars );
+    }
+
     public function customer( Request $request, $custrowid )
     {
         $customer_core = new CustomerCore();

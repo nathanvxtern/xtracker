@@ -11,8 +11,8 @@
 |
 */
 
-Route::get('/filter/Customer/true/true/taskcreated/{selectedproject}', 'ProjectController@list');
-Route::get('/filter/{customer}/{popentofilter}/{pclosedtofilter}', 'ProjectController@list');
+Route::get('/', 'HomeController@index')->name('home');
+
 Route::get('/status/{projrowid}', 'ProjectController@get');
 
 Auth::routes();
@@ -20,7 +20,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 /* Customers */
 /* get /customers/ -> " @list */
-Route::get('/', 'CustomerController@list');
+Route::get('/customers', 'CustomerController@list');
 /* get /customers/{custrowid} -> CustomerController@get */
 /* post /customers  -> CustomerController@create */
 Route::post('/customers', 'CustomerController@createnew');
@@ -29,6 +29,7 @@ Route::post('/customers', 'CustomerController@createnew');
 
 /* Projects */
 /* get /customers/{custrowid}/projects -> ProjectController@list */
+Route::get('/customers/{custrowid}/projects', 'ProjectController@list');
 /* get /customers/{custrowid}/projects/{projrowid} -> ProjectController@get */
 Route::get('/customer/{projrowid}', 'ProjectController@get');
 /* post /customers/{custrowid}/projects -> ProjectController$create */

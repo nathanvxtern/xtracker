@@ -108,7 +108,7 @@ const app = new Vue({
         debug: function()
         {
             self = this;
-            console.log(self.thebutton);
+            console.log(self.currentobject.customers);
         },
         gettasks: function( projrowid )
         {
@@ -206,11 +206,12 @@ const app = new Vue({
             let self = this;
             self.ctofilter = ctofilter;
 
-            let current_path = "/filter/" + ctofilter + "/false/false";
+            let current_path = "/customers/" + ctofilter + "/projects";
 
             HTTP.get( current_path )
 
                 .then( response => {
+
                     if( response.data.data.data.results.projects ) {
                         self.customerprojects = response.data.data.data.results.projects;
                     } else {

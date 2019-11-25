@@ -11,7 +11,7 @@
             <div class="col">
                 Customer
                 <select v-model="ctofilter" name="ctofilter" id="ctofilter" class="form-control" v-on:change="cfilter( ctofilter );">
-                    <option v-for="customer in currentobject.customers" :key="customer.custrowid">@{{ customer.name }}</option>
+                    <option v-for="customer in currentobject.customers" :key="customer.custrowid" :label="customer.name">@{{ customer.custrowid }}</option>
                 </select>
                 <pfilter-component :ctofilter="ctofilter" :popentofilter="popentofilter" :pclosedtofilter="pclosedtofilter"><pfilter-component>
             </div>

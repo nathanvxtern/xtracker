@@ -79618,7 +79618,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
   methods: {
     debug: function debug() {
       self = this;
-      console.log(self.thebutton);
+      console.log(self.currentobject.customers);
     },
     gettasks: function gettasks(projrowid) {
       var self = this;
@@ -79681,7 +79681,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
     cfilter: function cfilter(ctofilter) {
       var self = this;
       self.ctofilter = ctofilter;
-      var current_path = "/filter/" + ctofilter + "/false/false";
+      var current_path = "/customers/" + ctofilter + "/projects";
       HTTP.get(current_path).then(function (response) {
         if (response.data.data.data.results.projects) {
           self.customerprojects = response.data.data.data.results.projects;

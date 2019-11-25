@@ -22,7 +22,9 @@ class CustomerCore
     {
         return [
             'custrowid'=>$rec->custrowid,
+            'custid'=>$rec->custid,
             'name'=>$rec->name,
+            'billtoid'=>$rec->billtoid
         ];
     }
 
@@ -36,7 +38,7 @@ class CustomerCore
     {
         $params = [];
 
-        $sql = "SELECT C.custrowid, C.name
+        $sql = "SELECT C.custrowid, C.custid, C.name, C.billtoid
                 FROM custmaster C";
        
         try {
@@ -55,7 +57,7 @@ class CustomerCore
             $custrowid
         ];
 
-        $sql = "SELECT C.custrowid, C.name
+        $sql = "SELECT C.custrowid, C.custid, C.name, C.billtoid
                 FROM custmaster C
                 WHERE C.custrowid = ?";
        

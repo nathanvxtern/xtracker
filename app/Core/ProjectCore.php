@@ -21,11 +21,15 @@ class ProjectCore
     public function transform_project_rec( $rec )
     {
         return [
-            'custrowid'=>$rec->custrowid,
             'projrowid'=>$rec->projrowid,
             'title'=>$rec->title,
-            'status'=>$rec->projstatusrowid,
             'createdate'=>$rec->createdate,
+            'custrowid'=>$rec->custrowid,
+            'projtyperowid'=>$rec->projtyperowid,
+            'projstatusrowid'=>$rec->projstatusrowid,
+            'esthours'=>$rec->esthours,
+            'custponumber'=>$rec->custponumber,
+            'reqcompdate'=>$rec->reqcompdate
         ];
     }
 
@@ -35,31 +39,24 @@ class ProjectCore
      * 
      */
 
-    public function list()
+    public function list( $custrowid )
     {
-        $params = [];
+        $params = [
+            $custrowid
+        ];
 
-        $sql = "SELECT P.custrowid, P.projrowid, P.title, P.projstatusrowid, P.createdate
-                FROM projmaster P";
+        $sql = "SELECT P.projrowid, P.title, P.createdate, P.custrowid, P.projtyperowid, P.projstatusrowid, P.esthours, P.custponumber, P.reqcompdate
+                FROM projmaster P
+                WHERE P.custrowid = ?";
        
         try {
             $rs = \DB::select( $sql, $params );
         } catch ( \Illuminate\Database\QueryException $e ) {
             \Log::error( $e->getMessage() );
             return [];
-        } 
+        }
 
         $projects = $this->transform_project_collection( $rs );
-
-        $customer_core = new CustomerCore();
-        $customers = $customer_core->list();
-        foreach( $projects as &$project ) {
-            foreach( $customers as $customer ) {
-                if ( $customer[ 'custrowid' ] == $project[ 'custrowid' ] ) {
-                    $project[ 'customer' ] = $customer;
-                }
-            }
-        }
 
         return $projects;
     }

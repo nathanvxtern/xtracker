@@ -2030,15 +2030,9 @@ __webpack_require__.r(__webpack_exports__);
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
   },
   methods: {
-    populatehours: function populatehours(taskrowidhoursedit, hourshoursedit, custrowidhoursadd) {
+    populatehours: function populatehours(taskrowid) {
       var self = this.$parent;
-      self.taskrowidhoursedit = taskrowidhoursedit;
-      self.taskrowidadd = taskrowidhoursedit;
-      self.hourshoursedit = hourshoursedit;
-      self.custrowidhoursadd = custrowidhoursadd;
-      self.viewtaskhourstaskrowid = taskrowidhoursedit;
-      self.viewtaskhourshours = hourshoursedit;
-      self.viewtaskhourscustrowid = custrowidhoursadd;
+      self.populatehours(taskrowid);
 
       if (thebutton.getAttribute('disabled')) {
         thebutton.setAttribute('disabled', false);
@@ -66929,11 +66923,7 @@ var render = function() {
                     staticClass: "clickable-row",
                     on: {
                       click: function($event) {
-                        return _vm.populatehours(
-                          task.taskrowid,
-                          task.hours,
-                          task.custrowid
-                        )
+                        return _vm.populatehours(task.taskrowid)
                       }
                     }
                   },
@@ -79621,9 +79611,9 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       console.log(self.customer);
       console.log(self.custrowidhoursadd);
     },
-    gettasks: function gettasks(projrowid) {
+    gettasks: function gettasks(ctofilter, ptofilter) {
       var self = this;
-      var current_path = "/tasks/" + projrowid;
+      var current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks";
       HTTP.get(current_path).then(function (response) {
         if (response.data.data.data.results.tasks) {
           self.tasks = response.data.data.data.results.tasks;
@@ -79807,27 +79797,29 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       self.ptofilter = ptofilter;
       self.populatetaskcomponent(self.ctofilter, self.ptofilter);
     },
-    getprojectid: function getprojectid(title) {
+    populatetaskcomponent: function populatetaskcomponent(ctofilter, ptofilter) {
       var self = this;
-      var current_path = "/getid/" + title;
+      self.gettasks(ctofilter, ptofilter);
+      self.getprojectcustomer(ctofilter, ptofilter);
+    },
+    populatehours: function populatehours(taskrowid) {
+      var self = this;
+      self.taskrowidhoursedit = taskrowid;
+      self.taskrowidadd = taskrowid;
+      self.viewtaskhourstaskrowid = taskrowid;
+      self.custrowidhoursadd = ctofilter;
+      self.viewtaskhourscustrowid = ctofilter;
+      var current_path = "/customers/" + self.ctofilter + "/projects/" + self.ptofilter + "/tasks/" + taskrowid + "/hours";
       HTTP.get(current_path).then(function (response) {
-        if (response.data.data.data.results.id.projrowid) {
-          self.ptofilter = response.data.data.data.results.id.projrowid;
+        if (response.data.data.data.results.hours) {
+          self.hourshoursedit = response.data.data.data.results.hours;
+          self.viewtaskhourshours = response.data.data.data.results.projects;
         } else {
-          self.ptofilter = [];
+          self.customerprojects = [];
         }
       })["catch"](function (e) {
         console.log(e);
       });
-    },
-    populatetaskcomponent: function populatetaskcomponent(ctofilter, ptofilter) {
-      var self = this;
-      self.gettasks(ptofilter);
-      self.getprojectcustomer(ctofilter, ptofilter);
-      self.getprojectstatus(ptofilter);
-      self.setprojrowid(ptofilter);
-      self.populatetaskmodal(ptofilter);
-      self.selectedproject = ptofilter;
     },
     populatehourmodal: function populatehourmodal(taskrowidhoursedit, custrowidhoursadd, hourshoursedit) {
       var self = this;

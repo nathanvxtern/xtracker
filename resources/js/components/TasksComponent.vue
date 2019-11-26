@@ -19,7 +19,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="task of tasks" v-bind:key="task.taskrowid" class="clickable-row" @click="populatehours( task.taskrowid,task.hours,task.custrowid);">
+                            <tr v-for="task of tasks" v-bind:key="task.taskrowid" class="clickable-row" @click="populatehours( task.taskrowid )">
                                 <td>{{ task.title }}</td>
                                 <td>{{ task.esthours }}</td>
                                 <td>{{ task.usedhrs }}</td>
@@ -114,17 +114,10 @@
             this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
         },
         methods: {
-            populatehours: function(taskrowidhoursedit,hourshoursedit,custrowidhoursadd)
+            populatehours: function( taskrowid )
             {
                 let self = this.$parent;
-                self.taskrowidhoursedit = taskrowidhoursedit;
-                self.taskrowidadd = taskrowidhoursedit;
-                self.hourshoursedit = hourshoursedit;
-                self.custrowidhoursadd = custrowidhoursadd;
-
-                self.viewtaskhourstaskrowid = taskrowidhoursedit;
-                self.viewtaskhourshours = hourshoursedit;
-                self.viewtaskhourscustrowid = custrowidhoursadd;
+                self.populatehours( taskrowid );
 
                 if ( thebutton.getAttribute( 'disabled' ) ) {
                     thebutton.setAttribute('disabled', false );

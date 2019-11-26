@@ -72,7 +72,7 @@ class HourCore
         } catch ( \Illuminate\Database\QueryException $e ) {
             \Log::error( $e->getMessage() );
             return [];
-        } 
+        }
 
         return $this->transform_hour_collection( $rs );
     }
@@ -94,7 +94,7 @@ class HourCore
             return [];
         } 
 
-        return $this->transform_hour_collection( $rs );
+        return $this->transform_hour_rec( $rs[ 0 ] );
     }
 
     public function create($taskrowid=null,$numhours=null,$notes=null,$dateentered='0000-00-00',$user_id=null,$invoiceno=null,$custrowid=null)

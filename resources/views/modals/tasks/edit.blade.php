@@ -8,7 +8,7 @@
         </button>
       </div>
       <div class="modal-body">
-          <form id="edit_task_form" :action="'/task/edit/'+taskrowidtaskedit" method="POST" name="edit_task_form">
+          <form id="edit_task_form" :action="'customers/'+ctofilter+'/projects/'+ptofilter+'/tasks/'+taskrowidtaskedit" method="POST" name="edit_task_form">
               {{ method_field('PATCH') }}
                   @csrf
                   <div class="row form-group">

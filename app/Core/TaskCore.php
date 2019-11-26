@@ -25,7 +25,6 @@ class TaskCore
             'custponumber',
             'reqcompdate',
             'billingrate',
-            'usedhrs',
         ];
     }
 
@@ -73,14 +72,14 @@ class TaskCore
         ];
 
         $sql = "select t.taskrowid
-        from projhours p
-        inner join taskmaster t on p.taskrowid = t.taskrowid
-        inner join projmaster pm on t.projrowid = pm.projrowid
-        inner join custmaster c on p.custrowid = c.custrowid
-        where p.user_id = ?
-        group by c.name, pm.title, t.taskrowid, t.esthours
-        order by max(p.hoursid) desc
-        limit 5";
+            from projhours p
+            inner join taskmaster t on p.taskrowid = t.taskrowid
+            inner join projmaster pm on t.projrowid = pm.projrowid
+            inner join custmaster c on p.custrowid = c.custrowid
+            where p.user_id = ?
+            group by c.name, pm.title, t.taskrowid, t.esthours
+            order by max(p.hoursid) desc
+            limit 5";
        
         try {
             $rs = \DB::select( $sql, $params );
@@ -97,6 +96,7 @@ class TaskCore
 
         return $recentTasks;
     }
+
     public function list( $projrowid )
     {
         $params = [
@@ -202,16 +202,14 @@ class TaskCore
         }
     }
 
-    public function update($taskrowid, $update_list)
+    public function update( $taskrowid, $update_list )
     {
         $params = array();
         $sql_params = array();
 
         foreach ($update_list as $key => $value) {
-            if ( $key != "usedhrs" ) {
-                array_push($params, $value);
-                array_push($sql_params, $key . ' = ?');
-            }
+            array_push($params, $value);
+            array_push($sql_params, $key . ' = ?');
         }
         array_push($params, $taskrowid);
 

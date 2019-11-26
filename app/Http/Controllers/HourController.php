@@ -8,7 +8,7 @@ use App\Core\HourCore;
 class HourController extends APIController
 {
 
-    public function list( Request $request, $taskrowid )
+    public function list( Request $request, $custrowid, $projrowid, $taskrowid )
     {
         $hour_core = new HourCore();
 

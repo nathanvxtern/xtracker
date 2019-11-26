@@ -10,11 +10,9 @@ use App\Core\TaskCore;
 class TaskController extends APIController
 {
 
-    public function list( Request $request, $projrowid )
+    public function list( Request $request, $custrowid, $projrowid )
     {
         $task_core = new TaskCore();
-        $hour_core = new HourCore();
-        $project_core = new ProjectCore();
 
         $rec = array();
 
@@ -22,14 +20,14 @@ class TaskController extends APIController
 
         $rec[ 'results' ][ 'tasks' ] = $task_core->list( $projrowid );
 
-        foreach ( $rec[ 'results' ][ 'tasks' ] as $taskKey => $task ) {
-            $rec[ 'results' ][ 'tasks' ][ $taskKey ][ 'hours' ] = [];
-            $rec[ 'results' ][ 'tasks' ][ $taskKey ][ 'hours' ] = $hour_core->list( $task[ 'taskrowid' ] );
-            $rec[ 'results' ][ 'tasks' ][ $taskKey ][ 'custrowid' ] = $project_core->get( $projrowid )[ 'custrowid' ];
-            if ( is_null( $rec[ 'results' ][ 'tasks' ][ $taskKey ][ 'usedhrs' ] ) ) {
-                $rec[ 'results' ][ 'tasks' ][ $taskKey ][ 'usedhrs' ] = 0;
-            }
-        }
+        // foreach ( $rec[ 'results' ][ 'tasks' ] as $taskKey => $task ) {
+        //     $rec[ 'results' ][ 'tasks' ][ $taskKey ][ 'hours' ] = [];
+        //     $rec[ 'results' ][ 'tasks' ][ $taskKey ][ 'hours' ] = $hour_core->list( $task[ 'taskrowid' ] );
+        //     $rec[ 'results' ][ 'tasks' ][ $taskKey ][ 'custrowid' ] = $project_core->get( $projrowid )[ 'custrowid' ];
+        //     if ( is_null( $rec[ 'results' ][ 'tasks' ][ $taskKey ][ 'usedhrs' ] ) ) {
+        //         $rec[ 'results' ][ 'tasks' ][ $taskKey ][ 'usedhrs' ] = 0;
+        //     }
+        // }
 
         $pagevars = array();
         $pagevars[ 'data' ] = array();
@@ -38,38 +36,32 @@ class TaskController extends APIController
         return $this->return_success( $request, $pagevars );
     }
 
-    public function update(Request $request,$taskrowid)
+    public function update( Request $request, $taskrowid )
     {
-
         $task_core = new TaskCore();
 
         $param_list = $request->all();
-
         $master_update_list = $task_core->fields_update_list();
-
         $update_list = array();
-
         $rec = false;
-
-        foreach ($master_update_list as $value) {
-            if( $request->input($value) == "%NULL%" ) {
+        foreach ( $master_update_list as $value ) {
+            if( $request->input( $value ) == NULL_VALUE ) {
                 $update_list[ $value ] = null;
-            } else if (isset($param_list[$value]) == true) {
-                $param_value = $request->input($value);
-                $update_list[$value] = $param_value;
+            } else if ( isset( $param_list[ $value ] ) == true ) {
+                $param_value = $request->input( $value );
+                $update_list[ $value ] = $param_value;
             }
         }
 
-        if(!empty($update_list)) {
-            $rec = $task_core->update($taskrowid,$update_list);
+        if( !empty( $update_list ) ) {
+            $rec = $task_core->update( $taskrowid, $update_list );
         }
 
-        if ($rec === -1 || $rec===false || $rec===null) {
-            dump( "There was an error." );
+        if ( $rec === -1 || $rec===false || $rec===null ) {
+            return $this->return_error( $request );
         }
 
-        return redirect( "/" );
-
+        return $this->return_success($request);
     }
 
     public function confirmdelete( $taskrowid, $title )

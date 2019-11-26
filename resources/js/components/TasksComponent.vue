@@ -27,7 +27,7 @@
                                     <a :href="'/confirm/delete/task/'+task.taskrowid+'/'+task.title" class="btn btn-primary">
                                         Delete
                                     </a>
-                                    <button type="button" class="btn btn-primary" @click="populateedittaskmodal( task.taskrowid, task.title, task.esthours, task.usedhrs, task.billingrate, task.reqcompdate )" data-toggle="modal" data-target="#editTaskModal">
+                                    <button type="button" class="btn btn-primary" @click="populateedittaskmodal( task )" data-toggle="modal" data-target="#editTaskModal">
                                         Edit
                                     </button>
                                 </td>
@@ -126,15 +126,15 @@
                 }
                 
             },
-            populateedittaskmodal: function(taskrowidtaskedit,edittasktitle,edittaskesthours,edittaskusedhrs,edittaskbillingrate,edittaskdateentered)
+            populateedittaskmodal: function( task )
             {
                 let self = this.$parent;
-                self.taskrowidtaskedit = taskrowidtaskedit;
-                self.edittasktitle = edittasktitle;
-                self.edittaskesthours = edittaskesthours;
-                self.edittaskusedhrs = edittaskusedhrs;
-                self.edittaskbillingrate = edittaskbillingrate;
-                self.edittaskdateentered = edittaskdateentered;
+                self.taskrowidtaskedit = task.taskrowid;
+                self.edittasktitle = task.title;
+                self.edittaskesthours = task.esthours;
+                self.edittaskusedhrs = task.usedhrs;
+                self.edittaskbillingrate = task.billingrate;
+                self.edittaskreqcompdate = task.reqcompdate;
             },
             updatenumhourstoedit: function(hoursidtoedit,numhourstoedit)
             {

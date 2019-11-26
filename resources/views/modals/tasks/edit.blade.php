@@ -9,7 +9,7 @@
       </div>
       <div class="modal-body">
           <form id="edit_task_form" :action="'customers/'+ctofilter+'/projects/'+ptofilter+'/tasks/'+taskrowidtaskedit" method="POST" name="edit_task_form">
-              {{ method_field('PATCH') }}
+              {{ method_field('PUT') }}
                   @csrf
                   <div class="row form-group">
                       <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
@@ -25,8 +25,8 @@
                   </div>
                   <div class="row form-group">
                       <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                          <label for="reqcompdate">Req. Comp. Date</label>
-                          <input v-model="edittaskdateentered" class="form-control" type="date" value="{{date('Y-m-d')}}" id="reqcompdate" name="reqcompdate">
+                          <label for="reqcompdate">Date Entered</label>
+                          <input v-model="edittaskreqcompdate" class="form-control" type="date" value="{{date('Y-m-d')}}" id="reqcompdate" name="reqcompdate">
                       </div>
                   </div>
                   <div class="row form-group">
@@ -41,8 +41,7 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
         <button type="submit" class="btn btn-primary" form="edit_task_form"
                           data-form-id="edit_task_form"
-                          data-modal-id="edit-task-modal"
-                          @click="populatetaskcomponent(selectedproject);">Update</button>
+                          data-modal-id="edit-task-modal">Update</button>
       </div>
     </div>
   </div>

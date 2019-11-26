@@ -20,15 +20,6 @@ class TaskController extends APIController
 
         $rec[ 'results' ][ 'tasks' ] = $task_core->list( $projrowid );
 
-        // foreach ( $rec[ 'results' ][ 'tasks' ] as $taskKey => $task ) {
-        //     $rec[ 'results' ][ 'tasks' ][ $taskKey ][ 'hours' ] = [];
-        //     $rec[ 'results' ][ 'tasks' ][ $taskKey ][ 'hours' ] = $hour_core->list( $task[ 'taskrowid' ] );
-        //     $rec[ 'results' ][ 'tasks' ][ $taskKey ][ 'custrowid' ] = $project_core->get( $projrowid )[ 'custrowid' ];
-        //     if ( is_null( $rec[ 'results' ][ 'tasks' ][ $taskKey ][ 'usedhrs' ] ) ) {
-        //         $rec[ 'results' ][ 'tasks' ][ $taskKey ][ 'usedhrs' ] = 0;
-        //     }
-        // }
-
         $pagevars = array();
         $pagevars[ 'data' ] = array();
         $pagevars[ 'data' ] = $rec;
@@ -36,7 +27,7 @@ class TaskController extends APIController
         return $this->return_success( $request, $pagevars );
     }
 
-    public function update( Request $request, $taskrowid )
+    public function update( Request $request, $custrowid, $projrowid, $taskrowid )
     {
         $task_core = new TaskCore();
 
@@ -57,11 +48,11 @@ class TaskController extends APIController
             $rec = $task_core->update( $taskrowid, $update_list );
         }
 
-        if ( $rec === -1 || $rec===false || $rec===null ) {
+        if ( $rec === -1 || $rec === false || $rec === null ) {
             return $this->return_error( $request );
         }
 
-        return $this->return_success($request);
+        return $this->return_success( $request );
     }
 
     public function confirmdelete( $taskrowid, $title )

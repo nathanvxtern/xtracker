@@ -2040,14 +2040,14 @@ __webpack_require__.r(__webpack_exports__);
         thebutton.setAttribute('disabled', true);
       }
     },
-    populateedittaskmodal: function populateedittaskmodal(taskrowidtaskedit, edittasktitle, edittaskesthours, edittaskusedhrs, edittaskbillingrate, edittaskdateentered) {
+    populateedittaskmodal: function populateedittaskmodal(task) {
       var self = this.$parent;
-      self.taskrowidtaskedit = taskrowidtaskedit;
-      self.edittasktitle = edittasktitle;
-      self.edittaskesthours = edittaskesthours;
-      self.edittaskusedhrs = edittaskusedhrs;
-      self.edittaskbillingrate = edittaskbillingrate;
-      self.edittaskdateentered = edittaskdateentered;
+      self.taskrowidtaskedit = task.taskrowid;
+      self.edittasktitle = task.title;
+      self.edittaskesthours = task.esthours;
+      self.edittaskusedhrs = task.usedhrs;
+      self.edittaskbillingrate = task.billingrate;
+      self.edittaskreqcompdate = task.reqcompdate;
     },
     updatenumhourstoedit: function updatenumhourstoedit(hoursidtoedit, numhourstoedit) {
       var self = this.$parent;
@@ -66965,14 +66965,7 @@ var render = function() {
                           },
                           on: {
                             click: function($event) {
-                              return _vm.populateedittaskmodal(
-                                task.taskrowid,
-                                task.title,
-                                task.esthours,
-                                task.usedhrs,
-                                task.billingrate,
-                                task.reqcompdate
-                              )
+                              return _vm.populateedittaskmodal(task)
                             }
                           }
                         },
@@ -79583,7 +79576,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       edittaskesthours: null,
       edittaskusedhrs: null,
       edittaskbillingrate: null,
-      edittaskdateentered: null,
+      edittaskreqcompdate: null,
       taskrowidhoursedit: null,
       hourshoursedit: null,
       hoursidtoedit: null,

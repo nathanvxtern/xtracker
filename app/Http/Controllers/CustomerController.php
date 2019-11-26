@@ -42,14 +42,19 @@ class CustomerController extends APIController
         return $this->return_success( $request, $pagevars );
     }
 
-    public function createnew(Request $request)
+    public function createnew( Request $request )
     {
-        $name = $request->input('customer',null);
+        $name = $request->input( 'name' , null );
 
         $customer_core = new CustomerCore();
-        $custrowid = $customer_core->create($name);
 
-        return redirect("/");
+        $isCreated = $customer_core->create( $name );
+
+        if( $isCreated ) {
+            return $this->return_success( $request, true );
+        } else {
+            return $this->return_error( $request, "Customer not created. Please try again later." );
+        }
     }
 
 }

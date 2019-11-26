@@ -2,7 +2,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="customerModalLabel">Add Project</h5>
+        <h5 class="modal-title" id="customerModalLabel">Add Customer</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -12,8 +12,8 @@
                               @csrf
                               <div class="row form-group">
                                   <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                                      <label for="title">Customer</label>
-                                      <input type="text" class="form-control" id="create-link-title" name="customer" placeholder="Customer">
+                                      <label for="name">Customer</label>
+                                      <input type="text" class="form-control" id="create-link-name" name="name">
                                   </div>
                               </div>
         </form>

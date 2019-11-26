@@ -71,7 +71,7 @@ class CustomerCore
         return $this->transform_customer_rec( $rs[ 0 ] );
     }
 
-    public function create($name=null)
+    public function create( $name=null )
     {
         if ( is_null( $name ) ) {
             return false;
@@ -80,6 +80,7 @@ class CustomerCore
         $params = [
             $name,
         ];
+
         $sql = "INSERT INTO custmaster(name)
                 VALUES(?)";
         try {
@@ -88,17 +89,7 @@ class CustomerCore
             \Log::info($e->getMessage());
             return false;
         }
-        $sql = "SELECT IDENT_CURRENT('custmaster') as id;";
-        try {
-            $res = \DB::select($sql);
-        } catch (\Illuminate\Database\QueryException $e) {
-            \Log::info($e->getMessage());
-            return false;
-        }
-        if(!empty($res)){
-            return $res[0]->id;
-        } else{
-            return false;
-        }
+
+        return true;
     }
 }

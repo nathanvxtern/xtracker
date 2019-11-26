@@ -25,7 +25,7 @@ class CustomerController extends APIController
         return view( 'index', $pagevars );
     }
 
-    public function customer( Request $request, $custrowid )
+    public function get( Request $request, $custrowid )
     {
         $customer_core = new CustomerCore();
 

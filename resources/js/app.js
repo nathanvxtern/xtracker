@@ -52,7 +52,7 @@ const app = new Vue({
         projrowid: [],
         selectedproject: 0,
         taskrowidadd: null,
-        custrowidhoursadd: null,
+        custrowidhoursadd: [],
         newprojectcustomer: "Customer",
         newprojectcustrowid: null,
         newprojstatusrowid: null,
@@ -65,10 +65,10 @@ const app = new Vue({
         projstatusrowid: 0,
         projtyperowid: 0,
         hours: [],
-        customer: "Customer",
-        status: "Status",
-        ctofilter: "Customer",
-        ptofilter: "Project",
+        customer: [],
+        status: [],
+        ctofilter: [],
+        ptofilter: [],
         popentofilter: false,
         pclosedtofilter: false,
 
@@ -108,7 +108,8 @@ const app = new Vue({
         debug: function()
         {
             self = this;
-            console.log(self.currentobject.customers);
+            console.log( self.customer );
+            console.log( self.custrowidhoursadd );
         },
         gettasks: function( projrowid )
         {
@@ -152,18 +153,18 @@ const app = new Vue({
 
             });
         },
-        getprojectcustomer: function( projrowid )
+        getprojectcustomer: function( ctofilter )
         {
             let self = this;
             
-            let current_path = "/customer/" + projrowid;
+            let current_path = "/customers/" + ctofilter;
 
             HTTP.get( current_path )
 
                 .then( response => {
-                    if( response.data.data.data.results.project.customer.name ) {
-                        self.customer = response.data.data.data.results.project.customer.name;
-                        self.custrowidhoursadd = response.data.data.data.results.project.customer.custrowid;
+                    if( response.data.data.data.results.customer.name ) {
+                        self.customer = response.data.data.data.results.customer.name;
+                        self.custrowidhoursadd = response.data.data.data.results.customer.custrowid;
                     } else {
                         self.customer = [];
                         self.custrowidhoursadd = [];
@@ -353,11 +354,12 @@ const app = new Vue({
                 self.newtasktyperowid = 34;
             }
         },
-        pfilter: function( ptofilter )
+        pfilter: function( ctofilter, ptofilter )
         {
             let self = this;
+            self.ctofilter = ctofilter;
             self.ptofilter = ptofilter;
-            self.populatetaskcomponent( self.ptofilter );
+            self.populatetaskcomponent( self.ctofilter, self.ptofilter );
         },
         getprojectid: function ( title )
         {
@@ -380,17 +382,15 @@ const app = new Vue({
 
             });
         },
-        populatetaskcomponent: function( projrowid )
+        populatetaskcomponent: function( ctofilter, ptofilter )
         {
-            if ( projrowid > 0 ) {
-                let self = this;
-                self.gettasks( projrowid );
-                self.getprojectcustomer( projrowid );
-                self.getprojectstatus( projrowid );
-                self.setprojrowid( projrowid );
-                self.populatetaskmodal( projrowid );
-                self.selectedproject = projrowid;
-            }
+            let self = this;
+            self.gettasks( ptofilter );
+            self.getprojectcustomer( ctofilter, ptofilter );
+            self.getprojectstatus( ptofilter );
+            self.setprojrowid( ptofilter );
+            self.populatetaskmodal( ptofilter );
+            self.selectedproject = ptofilter;
         },
         populatehourmodal: function(taskrowidhoursedit,custrowidhoursadd,hourshoursedit)
         {

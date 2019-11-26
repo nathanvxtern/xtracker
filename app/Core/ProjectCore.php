@@ -52,8 +52,7 @@ class ProjectCore
         try {
             $rs = \DB::select( $sql, $params );
         } catch ( \Illuminate\Database\QueryException $e ) {
-            \Log::error( $e->getMessage() );
-            return [];
+            return null;
         }
 
         $projects = $this->transform_project_collection( $rs );
@@ -67,7 +66,7 @@ class ProjectCore
             $projrowid
         ];
 
-        $sql = "SELECT P.custrowid, P.projrowid, P.title, P.projstatusrowid, P.createdate
+        $sql = "SELECT P.projrowid, P.title, P.createdate, P.custrowid, P.projtyperowid, P.projstatusrowid, P.esthours, P.custponumber, P.reqcompdate
                 FROM projmaster P
                 WHERE projrowid = ?";
 
@@ -77,23 +76,11 @@ class ProjectCore
             return null;
         }
 
-        if ( count( $rs ) == 0 ) {
+        if (count($rs) == 0) {
             return null;
         }
-
+        
         $project = $this->transform_project_rec( $rs[ 0 ] );
-
-        $customer_core = new CustomerCore();
-        $customers = $customer_core->list();
-        foreach( $customers as $customer ) {
-            if ( $customer[ 'custrowid' ] == $project[ 'custrowid' ] ) {
-                $project[ 'customer' ] = $customer;
-            }
-        }
-
-        $status_core = new StatusCore();
-        $status = $status_core->get( $project[ 'status' ] );
-        $project[ 'status' ] = $status[ 0 ][ 'projstatus' ];
 
         return $project;
     }

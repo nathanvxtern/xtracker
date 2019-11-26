@@ -79569,7 +79569,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       projrowid: [],
       selectedproject: 0,
       taskrowidadd: null,
-      custrowidhoursadd: null,
+      custrowidhoursadd: [],
       newprojectcustomer: "Customer",
       newprojectcustrowid: null,
       newprojstatusrowid: null,
@@ -79582,10 +79582,10 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       projstatusrowid: 0,
       projtyperowid: 0,
       hours: [],
-      customer: "Customer",
-      status: "Status",
-      ctofilter: "Customer",
-      ptofilter: "Project",
+      customer: [],
+      status: [],
+      ctofilter: [],
+      ptofilter: [],
       popentofilter: false,
       pclosedtofilter: false,
       taskrowidtaskedit: null,
@@ -79618,7 +79618,8 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
   methods: {
     debug: function debug() {
       self = this;
-      console.log(self.currentobject.customers);
+      console.log(self.customer);
+      console.log(self.custrowidhoursadd);
     },
     gettasks: function gettasks(projrowid) {
       var self = this;
@@ -79646,13 +79647,13 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
         console.log(e);
       });
     },
-    getprojectcustomer: function getprojectcustomer(projrowid) {
+    getprojectcustomer: function getprojectcustomer(ctofilter) {
       var self = this;
-      var current_path = "/customer/" + projrowid;
+      var current_path = "/customers/" + ctofilter;
       HTTP.get(current_path).then(function (response) {
-        if (response.data.data.data.results.project.customer.name) {
-          self.customer = response.data.data.data.results.project.customer.name;
-          self.custrowidhoursadd = response.data.data.data.results.project.customer.custrowid;
+        if (response.data.data.data.results.customer.name) {
+          self.customer = response.data.data.data.results.customer.name;
+          self.custrowidhoursadd = response.data.data.data.results.customer.custrowid;
         } else {
           self.customer = [];
           self.custrowidhoursadd = [];
@@ -79800,10 +79801,11 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
         self.newtasktyperowid = 34;
       }
     },
-    pfilter: function pfilter(ptofilter) {
+    pfilter: function pfilter(ctofilter, ptofilter) {
       var self = this;
+      self.ctofilter = ctofilter;
       self.ptofilter = ptofilter;
-      self.populatetaskcomponent(self.ptofilter);
+      self.populatetaskcomponent(self.ctofilter, self.ptofilter);
     },
     getprojectid: function getprojectid(title) {
       var self = this;
@@ -79818,22 +79820,14 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
         console.log(e);
       });
     },
-    populatetaskcomponent: function populatetaskcomponent(projrowid) {
-      if (projrowid > 0) {
-        var _self = this;
-
-        _self.gettasks(projrowid);
-
-        _self.getprojectcustomer(projrowid);
-
-        _self.getprojectstatus(projrowid);
-
-        _self.setprojrowid(projrowid);
-
-        _self.populatetaskmodal(projrowid);
-
-        _self.selectedproject = projrowid;
-      }
+    populatetaskcomponent: function populatetaskcomponent(ctofilter, ptofilter) {
+      var self = this;
+      self.gettasks(ptofilter);
+      self.getprojectcustomer(ctofilter, ptofilter);
+      self.getprojectstatus(ptofilter);
+      self.setprojrowid(ptofilter);
+      self.populatetaskmodal(ptofilter);
+      self.selectedproject = ptofilter;
     },
     populatehourmodal: function populatehourmodal(taskrowidhoursedit, custrowidhoursadd, hourshoursedit) {
       var self = this;

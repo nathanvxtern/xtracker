@@ -68,7 +68,7 @@ class CustomerCore
             return [];
         } 
 
-        return $this->transform_customer_collection( $rs );
+        return $this->transform_customer_rec( $rs[ 0 ] );
     }
 
     public function create($name=null)

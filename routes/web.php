@@ -22,6 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 /* get /customers/ -> " @list */
 Route::get('/customers', 'CustomerController@list');
 /* get /customers/{custrowid} -> CustomerController@get */
+Route::get('/customers/{custrowid}', 'CustomerController@get');
 /* post /customers  -> CustomerController@create */
 Route::post('/customers', 'CustomerController@createnew');
 /* put /customers/{custrowid} -> " @update */
@@ -31,7 +32,7 @@ Route::post('/customers', 'CustomerController@createnew');
 /* get /customers/{custrowid}/projects -> ProjectController@list */
 Route::get('/customers/{custrowid}/projects', 'ProjectController@list');
 /* get /customers/{custrowid}/projects/{projrowid} -> ProjectController@get */
-Route::get('/customer/{projrowid}', 'ProjectController@get');
+Route::get('/customers/{custrowid}/projects/{projrowid}', 'ProjectController@get');
 /* post /customers/{custrowid}/projects -> ProjectController$create */
 Route::post('/projects', 'ProjectController@createnew');
 

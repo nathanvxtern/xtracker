@@ -22,7 +22,7 @@
             </div>
             <div class="col">
                 Project
-                <select v-model="ptofilter" name="ptofilter" id="ptofilter" class="form-control" v-on:change="pfilter( ptofilter );">
+                <select v-model="ptofilter" name="ptofilter" id="ptofilter" class="form-control" v-on:change="pfilter( ctofilter, ptofilter );">
                     <option v-for="project in customerprojects" :key="project.projrowid" :label="project.title">@{{ project.projrowid }}</option>
                 </select>
             </div>

@@ -1930,7 +1930,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['csrf', 'currentobject', 'tasks', 'projstatusrowid', 'projtyperowid', 'taskrowidadd', 'hoursidtoedit', 'numhourstoedit', 'notestoedit', 'user_idtoedit', 'dateenteredtoedit', 'invoicenotoedit', 'taskrowidhoursedit', 'hourshoursedit', 'custrowidhoursadd', 'thebutton'],
+  props: ['csrf', 'currentobject', 'tasks', 'projstatusrowid', 'projtyperowid', 'taskrowidadd', 'hoursidtoedit', 'numhourstoedit', 'notestoedit', 'user_idtoedit', 'dateenteredtoedit', 'invoicenotoedit', 'taskrowidhoursedit', 'hourshoursedit', 'custrowidhoursadd', 'addhoursbutton'],
   data: function data() {
     return {
       csrfToken: null
@@ -1940,16 +1940,6 @@ __webpack_require__.r(__webpack_exports__);
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
   },
   methods: {
-    populatehours: function populatehours(taskrowid) {
-      var self = this.$parent;
-      self.populatehours(taskrowid);
-
-      if (thebutton.getAttribute('disabled')) {
-        thebutton.setAttribute('disabled', false);
-      } else {
-        thebutton.setAttribute('disabled', true);
-      }
-    },
     populateedittaskmodal: function populateedittaskmodal(task) {
       var self = this.$parent;
       self.taskrowidtaskedit = task.taskrowid;
@@ -1958,6 +1948,25 @@ __webpack_require__.r(__webpack_exports__);
       self.edittaskusedhrs = task.usedhrs;
       self.edittaskbillingrate = task.billingrate;
       self.edittaskreqcompdate = task.reqcompdate;
+    },
+    populatehours: function populatehours(taskrowid) {
+      var self = this.$parent;
+      self.populatehours(taskrowid); // if ( addhoursbutton.getAttribute( 'disabled' ) ) {
+      //     addhoursbutton.setAttribute('disabled', false );
+      // } else {
+      //     addhoursbutton.setAttribute('disabled', true );
+      // }
+    },
+    populateedithourmodal: function populateedithourmodal(taskrowidhoursedit, custrowidhoursadd, hoursid, numhours, user_id, dateentered, notes, invoiceno) {
+      var self = this.$parent;
+      self.edithourtaskrowid = taskrowidhoursedit;
+      self.edithourcustrowid = custrowidhoursadd;
+      self.edithourhoursid = hoursid;
+      self.edithouruser_id = user_id;
+      self.edithournumhours = numhours;
+      self.edithourdateentered = dateentered;
+      self.edithournotes = notes;
+      self.edithourinvoiceno = invoiceno;
     },
     updatenumhourstoedit: function updatenumhourstoedit(hoursidtoedit, numhourstoedit) {
       var self = this.$parent;
@@ -1983,17 +1992,6 @@ __webpack_require__.r(__webpack_exports__);
       var self = this.$parent;
       self.invoicenotoedit = invoicenotoedit;
       self.hoursidtoedit = hoursidtoedit;
-    },
-    populateedithourmodal: function populateedithourmodal(taskrowidhoursedit, custrowidhoursadd, hoursid, numhours, user_id, dateentered, notes, invoiceno) {
-      var self = this.$parent;
-      self.edithourtaskrowid = taskrowidhoursedit;
-      self.edithourcustrowid = custrowidhoursadd;
-      self.edithourhoursid = hoursid;
-      self.edithouruser_id = user_id;
-      self.edithournumhours = numhours;
-      self.edithourdateentered = dateentered;
-      self.edithournotes = notes;
-      self.edithourinvoiceno = invoiceno;
     }
   }
 });
@@ -66899,8 +66897,8 @@ var staticRenderFns = [
             type: "button",
             "data-toggle": "modal",
             "data-target": "#addHoursModal",
-            name: "thebutton",
-            id: "thebutton"
+            name: "addhoursbutton",
+            id: "addhoursbutton"
           }
         },
         [_vm._v("\n                    +\n                ")]
@@ -79131,8 +79129,6 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       customerprojects: [],
       customers: [],
       statuses: [],
-      projrowid: [],
-      selectedproject: 0,
       taskrowidadd: null,
       custrowidhoursadd: [],
       newtaskstatus: "Status",
@@ -79236,10 +79232,6 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
         console.log(e);
       });
     },
-    setprojrowid: function setprojrowid(projrowid) {
-      var self = this;
-      self.projrowid = projrowid;
-    },
     cfilter: function cfilter(ctofilter) {
       var self = this;
       self.ctofilter = ctofilter;
@@ -79254,22 +79246,6 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       })["catch"](function (e) {
         console.log(e);
       });
-    },
-    createproject: function createproject(title, custrowid) {
-      var current_path = "/projects/create/" + title + "/" + custrowid;
-      HTTP.get(current_path).then(function (response) {})["catch"](function (e) {
-        console.log(e);
-      });
-    },
-    createtask: function createtask(billingrate, projstatusrowid, projtyperowid, projrowid, title) {
-      var current_path = "/tasks/create/" + billingrate + "/" + projstatusrowid + "/" + projtyperowid + "/" + projrowid + "/" + title;
-      HTTP.get(current_path).then(function (response) {})["catch"](function (e) {
-        console.log(e);
-      });
-    },
-    populatetaskmodal: function populatetaskmodal(selectedproject) {
-      var self = this;
-      self.selectedproject = selectedproject;
     },
     assignnewprojectcustomer: function assignnewprojectcustomer(ctofilter) {
       var self = this;

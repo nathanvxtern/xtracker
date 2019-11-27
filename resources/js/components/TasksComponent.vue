@@ -39,7 +39,7 @@
             <div class="col">
                 <div class="row">
                     Hours
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addHoursModal" name="thebutton" id="thebutton">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addHoursModal" name="addhoursbutton" id="addhoursbutton">
                         +
                     </button>
                 </div>
@@ -107,25 +107,13 @@
             'taskrowidhoursedit',
             'hourshoursedit',
             'custrowidhoursadd',
-            'thebutton',
+            'addhoursbutton',
         ],
-        data() { return { csrfToken: null }},
+        data() { return { csrfToken: null } },
         created() {
-            this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+            this.csrfToken = document.querySelector( 'meta[name="csrf-token"]' ).content;
         },
         methods: {
-            populatehours: function( taskrowid )
-            {
-                let self = this.$parent;
-                self.populatehours( taskrowid );
-
-                if ( thebutton.getAttribute( 'disabled' ) ) {
-                    thebutton.setAttribute('disabled', false );
-                } else {
-                    thebutton.setAttribute('disabled', true );
-                }
-                
-            },
             populateedittaskmodal: function( task )
             {
                 let self = this.$parent;
@@ -135,6 +123,28 @@
                 self.edittaskusedhrs = task.usedhrs;
                 self.edittaskbillingrate = task.billingrate;
                 self.edittaskreqcompdate = task.reqcompdate;
+            },
+            populatehours: function( taskrowid )
+            {
+                let self = this.$parent;
+                self.populatehours( taskrowid );
+                // if ( addhoursbutton.getAttribute( 'disabled' ) ) {
+                //     addhoursbutton.setAttribute('disabled', false );
+                // } else {
+                //     addhoursbutton.setAttribute('disabled', true );
+                // }
+            },
+            populateedithourmodal( taskrowidhoursedit, custrowidhoursadd, hoursid, numhours, user_id, dateentered, notes, invoiceno )
+            {
+                let self = this.$parent;
+                self.edithourtaskrowid = taskrowidhoursedit;
+                self.edithourcustrowid = custrowidhoursadd;
+                self.edithourhoursid = hoursid;
+                self.edithouruser_id = user_id;
+                self.edithournumhours = numhours;
+                self.edithourdateentered = dateentered;
+                self.edithournotes = notes;
+                self.edithourinvoiceno = invoiceno;
             },
             updatenumhourstoedit: function(hoursidtoedit,numhourstoedit)
             {
@@ -166,18 +176,6 @@
                 self.invoicenotoedit = invoicenotoedit;
                 self.hoursidtoedit = hoursidtoedit;
             },
-            populateedithourmodal( taskrowidhoursedit, custrowidhoursadd, hoursid, numhours, user_id, dateentered, notes, invoiceno )
-            {
-                let self = this.$parent;
-                self.edithourtaskrowid = taskrowidhoursedit;
-                self.edithourcustrowid = custrowidhoursadd;
-                self.edithourhoursid = hoursid;
-                self.edithouruser_id = user_id;
-                self.edithournumhours = numhours;
-                self.edithourdateentered = dateentered;
-                self.edithournotes = notes;
-                self.edithourinvoiceno = invoiceno;
-            }
         }
     }
 </script>

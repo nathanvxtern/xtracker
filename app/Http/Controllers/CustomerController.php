@@ -48,13 +48,9 @@ class CustomerController extends APIController
 
         $customer_core = new CustomerCore();
 
-        $isCreated = $customer_core->create( $name );
+        $customer_core->create( $name );
 
-        if( $isCreated ) {
-            return $this->return_success( $request, true );
-        } else {
-            return $this->return_error( $request, "Customer not created. Please try again later." );
-        }
+        return $this->return_success( $request );
     }
 
 }

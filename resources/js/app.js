@@ -43,8 +43,6 @@ const app = new Vue({
         customerprojects: [],
         customers: [],
         statuses: [],
-        projrowid: [],
-        selectedproject: 0,
         taskrowidadd: null,
         custrowidhoursadd: [],
         newtaskstatus: "Status",
@@ -188,11 +186,6 @@ const app = new Vue({
 
             });
         },
-        setprojrowid: function( projrowid )
-        {
-            let self = this;
-            self.projrowid = projrowid;
-        },
         cfilter: function( ctofilter )
         {
             let self = this;
@@ -217,39 +210,6 @@ const app = new Vue({
 
             });
 
-        },
-        createproject: function( title, custrowid )
-        {
-            let current_path = "/projects/create/" + title + "/" + custrowid;
-
-            HTTP.get( current_path )
-
-                .then( response => {
-                })
-
-                .catch( e => {
-                    console.log( e );
-
-            });
-        },
-        createtask: function(billingrate,projstatusrowid,projtyperowid,projrowid,title)
-        {
-            let current_path = "/tasks/create/" + billingrate + "/" + projstatusrowid + "/" + projtyperowid + "/" + projrowid + "/" + title;
-
-            HTTP.get( current_path )
-
-                .then( response => {
-                })
-
-                .catch( e => {
-                    console.log( e );
-
-            });
-        },
-        populatetaskmodal: function(selectedproject)
-        {
-            let self = this;
-            self.selectedproject = selectedproject;
         },
         assignnewprojectcustomer: function( ctofilter )
         {

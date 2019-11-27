@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Core\HourCore;
-use App\Core\ProjectCore;
 use App\Core\TaskCore;
 
 class TaskController extends APIController
@@ -79,15 +77,16 @@ class TaskController extends APIController
 
         $task_core = new TaskCore();
 
-        $task_id = $task_core->create(
-                                        $billingrate,
-                                        $projstatusrowid,
-                                        $projtyperowid,
-                                        $estimated,
-                                        $reqcompdate,
-                                        $taskname,
-                                        $custponumber,
-                                        $projrowid );
+        $task_core->create(
+                            $billingrate,
+                            $projstatusrowid,
+                            $projtyperowid,
+                            $estimated,
+                            $reqcompdate,
+                            $taskname,
+                            $custponumber,
+                            $projrowid 
+        );
 
         return $this->return_success( $request );
     }

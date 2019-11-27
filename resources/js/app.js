@@ -31,7 +31,6 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('tasks-component', require('./components/TasksComponent.vue').default);
 Vue.component('tasks-header-component', require('./components/TasksHeaderComponent.vue').default);
 
-Vue.component('newtask-component', require('./components/NewTaskComponent.vue').default);
 
 /**
  * the page. Then, you may begin adding components to this application

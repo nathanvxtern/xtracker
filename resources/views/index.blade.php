@@ -40,8 +40,6 @@
         @include('modals.customer')
         @include('modals.project')
         @include('modals.tasks.add')
-        <newtask-component :newtaskstatus="newtaskstatus"
-                            :newtaskstatusrowid="newtaskstatusrowid"></newtask-component>
         @include('modals.tasks.edit')
         @include('modals.hours.add')
         @include('modals.hours.edit')

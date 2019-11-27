@@ -16,14 +16,11 @@
                                       <input type="text" class="form-control" id="create-link-title" name="title" placeholder="Title">
                                   </div>
                                   <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                                      <label for="newprojectcustomer">Customer</label>
-                                      <select v-model="newprojectcustomer" name="newprojectcustomer" id="newprojectcustomer" class="form-control" v-on:change="assignnewprojectcustomer( newprojectcustomer );">
-                                          <option selected>@{{ newprojectcustomer }}</option>
-                                          <option v-for="customer in currentobject.customers" :key="customer.custrowid" :label="customer.name">@{{ customer.custrowid }}</option>
+                                      <label for="custrowid">Customer</label>
+                                      <select :v-model="newprojectcustrowid" name="custrowid" id="custrowid" class="form-control">
+                                          <option selected v-bind:label="newprojectcustomer" :value="newprojectcustrowid">@{{newprojectcustrowid}}</option>
+                                          <option v-for="customer in currentobject.customers" :key="customer.custrowid" :label="customer.name" :value="customer.custrowid" @change="assignnewprojectcustomer( customer.custrowid )"></option>
                                     </select>
-                                  </div>
-                                  <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                                      <input type="hidden" class="form-control" id="custrowid" name="custrowid" placeholder="Customer ID" v-bind:value="newprojectcustrowid">
                                   </div>
                                   <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
                                       <label for="newprojectstatus">Status</label>

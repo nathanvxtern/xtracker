@@ -13,7 +13,6 @@
                 <select v-model="ctofilter" name="ctofilter" id="ctofilter" class="form-control" v-on:change="cfilter( ctofilter );">
                     <option v-for="customer in currentobject.customers" :key="customer.custrowid" :label="customer.name">@{{ customer.custrowid }}</option>
                 </select>
-                <pfilter-component :ctofilter="ctofilter" :popentofilter="popentofilter" :pclosedtofilter="pclosedtofilter"><pfilter-component>
             </div>
             <div class="col">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#customerModal">
@@ -27,7 +26,7 @@
                 </select>
             </div>
             <div class="col">
-                <button type="button" class="btn btn-primary" data-customers="currentobject.customers" data-toggle="modal" data-target="#projectModal">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#projectModal">
                 +
                 </button>
             </div>
@@ -40,11 +39,6 @@
 
         @include('modals.customer')
         @include('modals.project')
-        <newproject-component :newprojectcustomer="newprojectcustomer"
-                                :newprojectstatus="newprojectstatus"
-                                :newprojectcustrowid="newprojectcustrowid"
-                                :newprojstatusrowid="newprojstatusrowid">
-        </newproject-component>
         @include('modals.tasks.add')
         <newtask-component :newtaskstatus="newtaskstatus"
                             :newtaskstatusrowid="newtaskstatusrowid"></newtask-component>
@@ -59,11 +53,6 @@
     <script>
 
         var currentobjectPHP = {!! json_encode( $data[ 'results' ] ) !!};
-
-        var taskListToLoad = currentobjectPHP.projected;
-        if ( taskListToLoad > 0 ) {
-            console.log( taskListToLoad );
-        }
 
     </script>
 @endsection

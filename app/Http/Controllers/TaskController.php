@@ -67,20 +67,28 @@ class TaskController extends APIController
         return redirect("/");
     }
 
-    public function createnew( Request $request )
+    public function createnew( Request $request, $custrowid, $projrowid )
     {
-        $taskname = $request->input('taskname',null);
-        $projrowid = $request->input('projrowid',null);
-        $billingrate = $request->input('billingrate',null);
-        $projstatusrowid = $request->input('projstatusrowid',null);
-        $projtyperowid = $request->input('projtyperowid',null);
-        $custponumber = $request->input('custponumber', null);
-        $estimated = $request->input('estimated', null);
-        $reqcompdate = $request->input('reqcompdate', null);
+        $taskname = $request->input( 'taskname' , null );
+        $billingrate = $request->input( 'billingrate' , null );
+        $projstatusrowid = $request->input( 'projstatusrowid' , null );
+        $projtyperowid = $request->input( 'projtyperowid' , null );
+        $custponumber = $request->input( 'custponumber' , null );
+        $estimated = $request->input( 'estimated' , null );
+        $reqcompdate = $request->input( 'reqcompdate' , null );
 
         $task_core = new TaskCore();
-        $task_id = $task_core->create($billingrate,$projstatusrowid,$projtyperowid,$estimated,$reqcompdate,$taskname,$custponumber,$projrowid);
 
-        return redirect("/");
+        $task_id = $task_core->create(
+                                        $billingrate,
+                                        $projstatusrowid,
+                                        $projtyperowid,
+                                        $estimated,
+                                        $reqcompdate,
+                                        $taskname,
+                                        $custponumber,
+                                        $projrowid );
+
+        return $this->return_success( $request );
     }
 }

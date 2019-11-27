@@ -37,7 +37,7 @@ Route::post('/projects', 'ProjectController@createnew');
 Route::get('customers/{custrowid}/projects/{projrowid}/tasks', 'TaskController@list');
 /* get /customers/{custrowid}/projects/{projrowid}/tasks/{taskrowid} -> " @get */
 /* post /customers/{custrowid}/projects/{projrowid}/tasks -> " @create */
-Route::post('/tasks', 'TaskController@createnew');
+Route::post('customers/{custrowid}/projects/{projrowid}/tasks', 'TaskController@createnew');
 /* put /customers/{custrowid}/projects/{projrowid}/tasks/{taskrowid} -> " @update */
 Route::put('/customers/{custrowid}/projects/{projrowid}/tasks/{taskrowid}', 'TaskController@update');
 /* delete /customers/{custrowid}/projects/{projrowid}/tasks/taskrowid -> " @delete */

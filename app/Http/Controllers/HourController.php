@@ -60,34 +60,19 @@ class HourController extends APIController
         return $this->return_success( $request );
     }
 
-    public function update( Request $request )
+    public function update( Request $request, $custrowid, $projrowid, $taskrowid, $hoursid )
     {
         $hour_core = new HourCore();
-        
-        $hoursid = $request->input('hoursid',null);
-        $numhours = $request->input('numhours',null);
-        $user_id = $request->input('user_id',null);
-        $dateentered = $request->input('dateentered',null);
-        $notes = $request->input('notes',null);
-        $invoiceno = $request->input('invoiceno',null);
 
-        $param_list = [ 'hoursid' => $hoursid,
-                        'numhours' => $numhours,
-                        'user_id' => $user_id,
-                        'dateentered' => $dateentered,
-                        'notes' => $notes,
-                        'invoiceno' => $invoiceno
-                    ];
-
+        $param_list = $request->all();
         $master_update_list = $hour_core->fields_update_list();
-
         $update_list = array();
-
         $rec = false;
-
         foreach ( $master_update_list as $value ) {
-            if ( isset( $param_list[ $value ] ) == true ) {
-                $param_value = $param_list[ $value ];
+            if( $request->input( $value ) == NULL_VALUE ) {
+                $update_list[ $value ] = null;
+            } else if ( isset( $param_list[ $value ] ) == true ) {
+                $param_value = $request->input( $value );
                 $update_list[ $value ] = $param_value;
             }
         }
@@ -101,69 +86,5 @@ class HourController extends APIController
         }
 
         return $this->return_success( $request );
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

@@ -131,30 +131,30 @@ class HourCore
         }
     }
 
-    public function update($hoursid, $update_list)
+    public function update( $hoursid, $update_list )
     {
         $params = array();
         $sql_params = array();
 
-        foreach ($update_list as $key => $value) {
-            array_push($params, $value);
-            array_push($sql_params, $key . ' = ?');
+        foreach ( $update_list as $key => $value ) {
+            array_push( $params, $value );
+            array_push( $sql_params, $key . ' = ?' );
         }
-        array_push($params, $hoursid);
+        array_push( $params, $hoursid );
 
         $sql = "UPDATE projhours";
         $sql .= " SET ";
-        $sql .= implode(',', $sql_params);
+        $sql .= implode( ',', $sql_params );
         $sql .= " WHERE hoursid = ?";
 
         try {
-            $recs = \DB::update($sql, $params);
-        } catch (\Illuminate\Database\QueryException $e) {
+            $recs = \DB::update( $sql, $params );
+        } catch ( \Illuminate\Database\QueryException $e ) {
             dump( $e );
             return false;
         }
 
-        if ($recs == 0) {
+        if ( $recs == 0 ) {
             return false;
         }
 

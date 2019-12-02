@@ -12,12 +12,6 @@
               @csrf
               <div>
                   <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                      <input v-model="taskrowidadd" type="hidden" class="form-control" id="create-link-taskrowid" name="taskrowid">
-                  </div>
-                  <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                      <input v-model="custrowidhoursadd" type="hidden" class="form-control" id="create-link-custrowid" name="custrowid">
-                  </div>
-                  <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
                       <label for="user_id" type="hidden">Employee</label>
                       <select class="form-control" id="user_id" name="user_id">
                         <option selected>@{{ currentuser.name }}</option>

@@ -98,17 +98,10 @@
             'projstatusrowid',
             'projtyperowid',
             'taskrowidadd',
-            'hoursidtoedit',
-            'numhourstoedit',
-            'notestoedit',
-            'user_idtoedit',
-            'dateenteredtoedit',
-            'invoicenotoedit',
             'taskrowidhoursedit',
             'hourshoursedit',
             'custrowidhoursadd',
             'addhoursbutton',
-
             'currentuser',
         ],
         data() { return { csrfToken: null } },
@@ -148,36 +141,6 @@
                 self.edithourdateentered = dateentered;
                 self.edithournotes = notes;
                 self.edithourinvoiceno = invoiceno;
-            },
-            updatenumhourstoedit: function(hoursidtoedit,numhourstoedit)
-            {
-                let self = this.$parent;
-                self.numhourstoedit = numhourstoedit;
-                self.hoursidtoedit = hoursidtoedit;
-            },
-            updateuser_idtoedit: function(hoursidtoedit,user_idtoedit)
-            {
-                let self = this.$parent;
-                self.user_idtoedit = user_idtoedit;
-                self.hoursidtoedit = hoursidtoedit;
-            },
-            updatedateenteredtoedit: function(hoursidtoedit,dateenteredtoedit)
-            {
-                let self = this.$parent;
-                self.dateenteredtoedit = dateenteredtoedit;
-                self.hoursidtoedit = hoursidtoedit;
-            },
-            updatenotestoedit: function(hoursidtoedit,notestoedit)
-            {
-                let self = this.$parent;
-                self.notestoedit = notestoedit;
-                self.hoursidtoedit = hoursidtoedit;
-            },
-            updateinvoicenotoedit: function(hoursidtoedit,invoicenotoedit)
-            {
-                let self = this.$parent;
-                self.invoicenotoedit = invoicenotoedit;
-                self.hoursidtoedit = hoursidtoedit;
             },
         }
     }

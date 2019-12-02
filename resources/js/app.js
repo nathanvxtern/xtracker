@@ -73,13 +73,6 @@ const app = new Vue({
         taskrowidhoursedit: null,
         hourshoursedit: null,
 
-        hoursidtoedit: null,
-        numhourstoedit: null,
-        user_idtoedit: null,
-        dateenteredtoedit: null,
-        notestoedit: null,
-        invoicenotoedit: null,
-
         viewtaskhourstaskrowid: null,
         viewtaskhourshours: null,
         viewtaskhourscustrowid: null,

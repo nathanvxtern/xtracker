@@ -8,22 +8,14 @@
         </button>
       </div>
       <div class="modal-body">
-          <form id="edit_hours_form" action="/hours/edit" method="POST" name="edit_hours_form">
+          <form id="edit_hours_form" :action="'customers/'+ctofilter+'/projects/'+ptofilter+'/tasks/'+edithourtaskrowid+'/hours/'+edithourhoursid" method="POST" name="edit_hours_form">
+              {{ method_field('PUT') }}
               @csrf
               <div>
                   <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                      <input v-model="edithourtaskrowid" type="hidden" class="form-control" id="create-link-taskrowid" name="taskrowid">
-                  </div>
-                  <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                      <input v-model="edithourcustrowid" type="hidden" class="form-control" id="create-link-custrowid" name="custrowid">
-                  </div>
-                  <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                      <input v-model="edithourhoursid" type="hidden" class="form-control" id="create-link-hoursid" name="hoursid">
-                  </div>
-                  <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
                       <label for="user_id" type="hidden">Employee</label>
                       <select class="form-control" id="user_id" name="user_id">
-                        <option selected>@{{ currentobject.currentuser }}</option>
+                        <option selected>@{{ currentuser.name }}</option>
                         <option v-for="user in currentobject.users" :key="user.user_id">@{{ user.name }}</option>
                       </select>
                   </div>

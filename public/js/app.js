@@ -1930,7 +1930,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['csrf', 'currentobject', 'tasks', 'projstatusrowid', 'projtyperowid', 'taskrowidadd', 'hoursidtoedit', 'numhourstoedit', 'notestoedit', 'user_idtoedit', 'dateenteredtoedit', 'invoicenotoedit', 'taskrowidhoursedit', 'hourshoursedit', 'custrowidhoursadd', 'addhoursbutton', 'currentuser'],
+  props: ['csrf', 'currentobject', 'tasks', 'projstatusrowid', 'projtyperowid', 'taskrowidadd', 'taskrowidhoursedit', 'hourshoursedit', 'custrowidhoursadd', 'addhoursbutton', 'currentuser'],
   data: function data() {
     return {
       csrfToken: null
@@ -1968,31 +1968,6 @@ __webpack_require__.r(__webpack_exports__);
       self.edithourdateentered = dateentered;
       self.edithournotes = notes;
       self.edithourinvoiceno = invoiceno;
-    },
-    updatenumhourstoedit: function updatenumhourstoedit(hoursidtoedit, numhourstoedit) {
-      var self = this.$parent;
-      self.numhourstoedit = numhourstoedit;
-      self.hoursidtoedit = hoursidtoedit;
-    },
-    updateuser_idtoedit: function updateuser_idtoedit(hoursidtoedit, user_idtoedit) {
-      var self = this.$parent;
-      self.user_idtoedit = user_idtoedit;
-      self.hoursidtoedit = hoursidtoedit;
-    },
-    updatedateenteredtoedit: function updatedateenteredtoedit(hoursidtoedit, dateenteredtoedit) {
-      var self = this.$parent;
-      self.dateenteredtoedit = dateenteredtoedit;
-      self.hoursidtoedit = hoursidtoedit;
-    },
-    updatenotestoedit: function updatenotestoedit(hoursidtoedit, notestoedit) {
-      var self = this.$parent;
-      self.notestoedit = notestoedit;
-      self.hoursidtoedit = hoursidtoedit;
-    },
-    updateinvoicenotoedit: function updateinvoicenotoedit(hoursidtoedit, invoicenotoedit) {
-      var self = this.$parent;
-      self.invoicenotoedit = invoicenotoedit;
-      self.hoursidtoedit = hoursidtoedit;
     }
   }
 });
@@ -79156,12 +79131,6 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       edittaskreqcompdate: null,
       taskrowidhoursedit: null,
       hourshoursedit: null,
-      hoursidtoedit: null,
-      numhourstoedit: null,
-      user_idtoedit: null,
-      dateenteredtoedit: null,
-      notestoedit: null,
-      invoicenotoedit: null,
       viewtaskhourstaskrowid: null,
       viewtaskhourshours: null,
       viewtaskhourscustrowid: null,

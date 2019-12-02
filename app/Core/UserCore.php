@@ -23,7 +23,13 @@ class UserCore
         return [
             'id'=>$rec->id,
             'name'=>$rec->name,
-        ];
+            'email'=>$rec->email,
+            'email_verified_at'=>$rec->email_verified_at,
+            'password'=>$rec->password,
+            'remember_token'=>$rec->remember_token,
+            'created_at'=>$rec->created_at,
+            'updated_at'=>$rec->updated_at,
+        ];	
     }
 
     /*
@@ -55,10 +61,18 @@ class UserCore
             $id
         ];
 
-        $sql = "SELECT U.id, U.name
+        $sql = "SELECT
+                    U.id,
+                    U.name,
+                    U.email,
+                    U.email_verified_at,
+                    U.password,
+                    U.remember_token,
+                    U.created_at,
+                    U.updated_at
                 FROM users U
                 WHERE U.id = ?";
-       
+                
         try {
             $rs = \DB::select( $sql, $params );
         } catch ( \Illuminate\Database\QueryException $e ) {
@@ -66,7 +80,7 @@ class UserCore
             return [];
         } 
 
-        return $this->transform_type_collection( $rs );
+        return $this->transform_type_rec( $rs[ 0 ] );
     }
 
 }

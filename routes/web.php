@@ -17,6 +17,8 @@ Route::get('/status/{projrowid}', 'ProjectController@get');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+/* Users */
+Route::get('/currentuser', 'UserController@current');
 
 /* Customers */
 Route::get('/customers', 'CustomerController@list');
@@ -48,7 +50,7 @@ Route::get('/delete/task/{taskrowid}', 'TaskController@delete');
 Route::get('/customers/{custrowid}/projects/{projrowid}/tasks/{taskrowid}/hours', 'HourController@list');
 /* get /customers/{custrowid}/projects/{projrowid}/tasks/{taskrowid}/hours/{hoursid} -> " @get */
 /* post /customers/{custrowid}/projects/{projrowid}/tasks/{taskrowid}/hours -> " @create */
-Route::post('/hours', 'HourController@createnew');
+Route::post('/customers/{custrowid}/projects/{projrowid}/tasks/{taskrowid}/hours', 'HourController@createnew');
 /* put /customers/{custrowid}/projects/{projrowid}/tasks/{taskrowid}/hours/{hoursid} -> " @create */
 Route::post('/hours/edit', 'HourController@update');
 /* delete /customers/{custrowid}/projects/{projrowid}/tasks/{taskrowid}/hours/{hoursid} -> " @delete */

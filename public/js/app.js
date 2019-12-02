@@ -1930,7 +1930,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['csrf', 'currentobject', 'tasks', 'projstatusrowid', 'projtyperowid', 'taskrowidadd', 'hoursidtoedit', 'numhourstoedit', 'notestoedit', 'user_idtoedit', 'dateenteredtoedit', 'invoicenotoedit', 'taskrowidhoursedit', 'hourshoursedit', 'custrowidhoursadd', 'addhoursbutton'],
+  props: ['csrf', 'currentobject', 'tasks', 'projstatusrowid', 'projtyperowid', 'taskrowidadd', 'hoursidtoedit', 'numhourstoedit', 'notestoedit', 'user_idtoedit', 'dateenteredtoedit', 'invoicenotoedit', 'taskrowidhoursedit', 'hourshoursedit', 'custrowidhoursadd', 'addhoursbutton', 'currentuser'],
   data: function data() {
     return {
       csrfToken: null
@@ -1951,6 +1951,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     populatehours: function populatehours(taskrowid) {
       var self = this.$parent;
+      self.current();
       self.populatehours(taskrowid); // if ( addhoursbutton.getAttribute( 'disabled' ) ) {
       //     addhoursbutton.setAttribute('disabled', false );
       // } else {
@@ -79171,7 +79172,8 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       edithourdateentered: null,
       edithournotes: null,
       edithourinvoiceno: null,
-      edithourhoursid: null
+      edithourhoursid: null,
+      currentuser: []
     };
   },
   methods: {
@@ -79364,9 +79366,10 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       HTTP.get(current_path).then(function (response) {
         if (response.data.data.data.results.hours) {
           self.hourshoursedit = response.data.data.data.results.hours;
-          self.viewtaskhourshours = response.data.data.data.results.projects;
+          self.viewtaskhourshours = self.hourshoursedit;
         } else {
-          self.customerprojects = [];
+          self.hourshoursedit = [];
+          self.viewtaskhourshours = [];
         }
       })["catch"](function (e) {
         console.log(e);
@@ -79382,6 +79385,19 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       self.taskrowidadd = taskrowidhoursedit;
       self.hourshoursedit = hourshoursedit;
       self.custrowidhoursadd = custrowidhoursadd;
+    },
+    current: function current() {
+      var self = this;
+      var current_path = "/currentuser";
+      HTTP.get(current_path).then(function (response) {
+        if (response.data.data.data.results.current) {
+          self.currentuser = response.data.data.data.results.current;
+        } else {
+          self.currentuser = [];
+        }
+      })["catch"](function (e) {
+        console.log(e);
+      });
     }
   }
 });

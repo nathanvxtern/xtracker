@@ -38,7 +38,11 @@ class CustomerCore
     {
         $params = [];
 
-        $sql = "SELECT C.custrowid, C.custid, C.name, C.billtoid
+        $sql = "SELECT
+                    C.custrowid,
+                    C.custid,
+                    C.name,
+                    C.billtoid
                 FROM custmaster C";
        
         try {
@@ -71,7 +75,7 @@ class CustomerCore
         return $this->transform_customer_rec( $rs[ 0 ] );
     }
 
-    public function create( $name=null )
+    public function create( $name = null )
     {
         if ( is_null( $name ) ) {
             return false;
@@ -81,12 +85,12 @@ class CustomerCore
             $name,
         ];
 
-        $sql = "INSERT INTO custmaster(name)
-                VALUES(?)";
+        $sql = "INSERT INTO custmaster( name )
+                VALUES( ? )";
         try {
-            \DB::insert($sql, $params);
-        } catch (\Illuminate\Database\QueryException $e) {
-            \Log::info($e->getMessage());
+            \DB::insert( $sql, $params );
+        } catch (\Illuminate\Database\QueryException $e ) {
+            \Log::info( $e->getMessage() );
             return false;
         }
 

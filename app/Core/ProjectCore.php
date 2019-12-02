@@ -66,7 +66,16 @@ class ProjectCore
             $projrowid
         ];
 
-        $sql = "SELECT P.projrowid, P.title, P.createdate, P.custrowid, P.projtyperowid, P.projstatusrowid, P.esthours, P.custponumber, P.reqcompdate
+        $sql = "SELECT
+                    P.projrowid,
+                    P.title,
+                    P.createdate,
+                    P.custrowid,
+                    P.projtyperowid,
+                    P.projstatusrowid,
+                    P.esthours,
+                    P.custponumber,
+                    P.reqcompdate
                 FROM projmaster P
                 WHERE projrowid = ?";
 

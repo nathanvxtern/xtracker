@@ -97,7 +97,7 @@ class HourCore
         return $this->transform_hour_rec( $rs[ 0 ] );
     }
 
-    public function create($taskrowid=null,$numhours=null,$notes=null,$dateentered='0000-00-00',$user_id=null,$invoiceno=null,$custrowid=null)
+    public function create($taskrowid=null,$numhours=null,$notes=null,$dateentered=null,$user_id=null,$invoiceno=null,$custrowid=null)
     {
 
         $params = [

@@ -114,7 +114,7 @@ class TaskCore
                     T.custponumber, 
                     T.reqcompdate, 
                     T.billingrate, 
-                    SUM(H.numhours) usedhrs
+                    SUM( H.numhours ) usedhrs
                 FROM taskmaster T
                 LEFT JOIN projhours H ON H.taskrowid = T.taskrowid
                 WHERE projrowid = ?
@@ -184,19 +184,19 @@ class TaskCore
                 VALUES(?,?,?,?,?,?,?,?)";
         try {
             \DB::insert($sql, $params);
-        } catch (\Illuminate\Database\QueryException $e) {
-            \Log::info($e->getMessage());
+        } catch ( \Illuminate\Database\QueryException $e ) {
+            \Log::info( $e->getMessage() );
             return false;
         }
-        $sql = "SELECT IDENT_CURRENT('taskmaster') as id;";
+        $sql = "SELECT IDENT_CURRENT( 'taskmaster' ) as id;";
         try {
             $res = \DB::select($sql);
-        } catch (\Illuminate\Database\QueryException $e) {
-            \Log::info($e->getMessage());
+        } catch (\Illuminate\Database\QueryException $e ) {
+            \Log::info( $e->getMessage() );
             return false;
         }
-        if(!empty($res)){
-            return $res[0]->id;
+        if( !empty( $res ) ) {
+            return $res[ 0]->id;
         } else {
             return false;
         }
@@ -207,33 +207,33 @@ class TaskCore
         $params = array();
         $sql_params = array();
 
-        foreach ($update_list as $key => $value) {
-            array_push($params, $value);
-            array_push($sql_params, $key . ' = ?');
+        foreach ( $update_list as $key => $value ) {
+            array_push( $params, $value );
+            array_push( $sql_params, $key . ' = ?' );
         }
-        array_push($params, $taskrowid);
+        array_push( $params, $taskrowid );
 
         $sql = "UPDATE taskmaster";
         $sql .= " SET ";
-        $sql .= implode(',', $sql_params);
+        $sql .= implode( ',', $sql_params );
         $sql .= " WHERE taskrowid = ?";
 
         $recs = [];
 
         try {
-            $recs = \DB::update($sql, $params);
-        } catch (\Illuminate\Database\QueryException $e) {
+            $recs = \DB::update( $sql, $params );
+        } catch ( \Illuminate\Database\QueryException $e ) {
             dump( $e );
         }
 
-        if ($recs == 0) {
+        if ( $recs == 0 ) {
             return false;
         }
 
         return true;
     }
 
-    public function delete( $taskrowid=null )
+    public function delete( $taskrowid = null )
     {
         $params = [
             $taskrowid
@@ -242,18 +242,18 @@ class TaskCore
                 FROM taskmaster T
                 WHERE T.taskrowid = ?";
         try {
-            \DB::delete($sql, $params);
-        } catch (\Illuminate\Database\QueryException $e) {
-            \Log::info($e->getMessage());
+            \DB::delete( $sql, $params );
+        } catch ( \Illuminate\Database\QueryException $e ) {
+            \Log::info( $e->getMessage() );
             return false;
         }
         $sql = "DELETE
                 FROM projhours P
                 WHERE P.taskrowid = ?";
         try {
-            \DB::delete($sql, $params);
-        } catch (\Illuminate\Database\QueryException $e) {
-            \Log::info($e->getMessage());
+            \DB::delete( $sql, $params );
+        } catch ( \Illuminate\Database\QueryException $e ) {
+            \Log::info( $e->getMessage() );
             return false;
         }
     }

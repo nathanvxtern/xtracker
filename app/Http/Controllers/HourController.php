@@ -37,25 +37,27 @@ class HourController extends APIController
         return redirect("/");
     }
 
-    public function createnew(Request $request)
+    public function createnew( Request $request, $custrowid, $projrowid, $taskrowid )
     {
-        $user_id = \Auth::user()->name;
-        $user_id_override = $request->input('user_id',null);
-        if ( !is_null( $user_id_override ) ) {
-            $user_id = $user_id_override;
-        }
-
-        $custrowid = $request->input('custrowid',null);
-        $taskrowid = $request->input('taskrowid',null);
-        $numhours = $request->input('numhours',null);
-        $dateentered = $request->input('dateentered',null);
-        $notes = $request->input('notes',null);
-        $invoiceno = $request->input('invoiceno',null);
+        $user_id = $request->input( 'user_id', null );
+        $numhours = $request->input( 'numhours', null );
+        $dateentered = $request->input( 'dateentered', null );
+        $notes = $request->input( 'notes', null );
+        $invoiceno = $request->input( 'invoiceno', null );
 
         $hour_core = new HourCore();
-        $hour_id = $hour_core->create($taskrowid,$numhours,$notes,$dateentered,$user_id,$invoiceno,$custrowid);
 
-        return redirect("/");
+        $hour_core->create(
+                            $taskrowid,
+                            $numhours,
+                            $notes,
+                            $dateentered,
+                            $user_id,
+                            $invoiceno,
+                            $custrowid
+        );
+
+        return $this->return_success( $request );
     }
 
     public function update( Request $request )
@@ -83,23 +85,22 @@ class HourController extends APIController
 
         $rec = false;
 
-        foreach ($master_update_list as $value) {
-            if (isset($param_list[$value]) == true) {
-                $param_value = $param_list[$value];
-                $update_list[$value] = $param_value;
+        foreach ( $master_update_list as $value ) {
+            if ( isset( $param_list[ $value ] ) == true ) {
+                $param_value = $param_list[ $value ];
+                $update_list[ $value ] = $param_value;
             }
         }
 
-        if(!empty($update_list)) {
-            $rec = $hour_core->update($hoursid,$update_list);
+        if( !empty( $update_list ) ) {
+            $rec = $hour_core->update( $hoursid, $update_list );
         }
 
         if ($rec === -1 || $rec===false || $rec===null) {
             dump( "There was an error." );
         }
 
-        return redirect( "/" );
-
+        return $this->return_success( $request );
     }
 
     /**

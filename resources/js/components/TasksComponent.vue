@@ -108,6 +108,8 @@
             'hourshoursedit',
             'custrowidhoursadd',
             'addhoursbutton',
+
+            'currentuser',
         ],
         data() { return { csrfToken: null } },
         created() {
@@ -127,6 +129,7 @@
             populatehours: function( taskrowid )
             {
                 let self = this.$parent;
+                self.current();
                 self.populatehours( taskrowid );
                 // if ( addhoursbutton.getAttribute( 'disabled' ) ) {
                 //     addhoursbutton.setAttribute('disabled', false );

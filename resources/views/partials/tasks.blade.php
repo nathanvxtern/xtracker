@@ -21,5 +21,6 @@
     :edithournotes="edithournotes"
     :edithourinvoiceno="edithourinvoiceno"
     :edithourhoursid="edithourhoursid"
+    :currentuser="currentuser"
     ></tasks-component>
 </div>

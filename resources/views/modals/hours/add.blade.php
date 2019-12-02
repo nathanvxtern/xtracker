@@ -8,7 +8,7 @@
         </button>
       </div>
       <div class="modal-body">
-          <form id="create_hours_form" action="/hours" method="POST" name="create_hours_form">
+          <form id="create_hours_form" :action="'customers/'+ctofilter+'/projects/'+ptofilter+'/tasks/'+taskrowidadd+'/hours'" method="POST" name="create_hours_form">
               @csrf
               <div>
                   <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
@@ -20,7 +20,7 @@
                   <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
                       <label for="user_id" type="hidden">Employee</label>
                       <select class="form-control" id="user_id" name="user_id">
-                        <option selected>@{{ currentobject.currentuser }}</option>
+                        <option selected>@{{ currentuser.name }}</option>
                         <option v-for="user in currentobject.users" :key="user.user_id">@{{ user.name }}</option>
                       </select>
                   </div>

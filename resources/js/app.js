@@ -93,6 +93,7 @@ const app = new Vue({
         edithourinvoiceno: null,
         edithourhoursid: null,
 
+        currentuser: [],
     }),
 
     methods: {
@@ -209,7 +210,6 @@ const app = new Vue({
                     console.log( e );
 
             });
-
         },
         assignnewprojectcustomer: function( ctofilter )
         {
@@ -344,9 +344,10 @@ const app = new Vue({
 
                     if( response.data.data.data.results.hours ) {
                         self.hourshoursedit = response.data.data.data.results.hours;
-                        self.viewtaskhourshours = response.data.data.data.results.projects;
+                        self.viewtaskhourshours = self.hourshoursedit;
                     } else {
-                        self.customerprojects = [];
+                        self.hourshoursedit = [];
+                        self.viewtaskhourshours = [];
                     }
                 })
 
@@ -354,14 +355,13 @@ const app = new Vue({
                     console.log( e );
 
             });
-
         },
         populateprojectmodal: function( custrowid )
         {
             let self = this;
             self.assignnewprojectcustomer( custrowid );
         },
-        populatehourmodal: function(taskrowidhoursedit,custrowidhoursadd,hourshoursedit)
+        populatehourmodal: function( taskrowidhoursedit, custrowidhoursadd, hourshoursedit)
         {
             let self = this;
             self.taskrowidhoursedit = taskrowidhoursedit;
@@ -369,5 +369,27 @@ const app = new Vue({
             self.hourshoursedit = hourshoursedit;
             self.custrowidhoursadd = custrowidhoursadd;
         },
+        current: function()
+        {
+            let self = this;
+
+            let current_path = "/currentuser";
+
+            HTTP.get( current_path )
+
+                .then( response => {
+
+                    if( response.data.data.data.results.current ) {
+                        self.currentuser = response.data.data.data.results.current;
+                    } else {
+                        self.currentuser = [];
+                    }
+                })
+
+                .catch( e => {
+                    console.log( e );
+
+            });
+        }
     }
 });

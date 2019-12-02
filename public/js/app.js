@@ -1929,6 +1929,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['csrf', 'currentobject', 'tasks', 'projstatusrowid', 'projtyperowid', 'taskrowidadd', 'taskrowidhoursedit', 'hourshoursedit', 'custrowidhoursadd', 'addhoursbutton', 'currentuser'],
   data: function data() {
@@ -66762,7 +66767,7 @@ var render = function() {
                         },
                         on: {
                           click: function($event) {
-                            _vm.populateedithourmodal(
+                            return _vm.populateedithourmodal(
                               _vm.taskrowidhoursedit,
                               _vm.custrowidhoursadd,
                               hour.hoursid,
@@ -66772,26 +66777,12 @@ var render = function() {
                               hour.notes,
                               hour.invoiceno
                             )
-                            _vm.updatenumhourstoedit(
-                              hour.hoursid,
-                              hour.numhours
-                            )
-                            _vm.updateuser_idtoedit(hour.hoursid, hour.user_id)
-                            _vm.updatedateenteredtoedit(
-                              hour.hoursid,
-                              hour.dateentered
-                            )
-                            _vm.updatenotestoedit(hour.hoursid, hour.notes)
-                            _vm.updateinvoicenotoedit(
-                              hour.hoursid,
-                              hour.invoiceno
-                            )
                           }
                         }
                       },
                       [
                         _vm._v(
-                          "\n                                Edit\n                                "
+                          "\n                                    Edit\n                                "
                         )
                       ]
                     ),
@@ -79114,7 +79105,6 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       tasks: [],
       projstatusrowid: 0,
       projtyperowid: 0,
-      hours: [],
       customer: [],
       status: [],
       ctofilter: [],
@@ -79132,7 +79122,6 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       taskrowidhoursedit: null,
       hourshoursedit: null,
       viewtaskhourstaskrowid: null,
-      viewtaskhourshours: null,
       viewtaskhourscustrowid: null,
       edithourtaskrowid: null,
       edithourcustrowid: null,
@@ -79159,19 +79148,6 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
           self.tasks = response.data.data.data.results.tasks;
         } else {
           self.tasks = [];
-        }
-      })["catch"](function (e) {
-        console.log(e);
-      });
-    },
-    gethours: function gethours(taskrowid) {
-      var self = this;
-      var current_path = "/hours/" + taskrowid;
-      HTTP.get(current_path).then(function (response) {
-        if (response.data.data.data.results.hours) {
-          self.hours = response.data.data.data.results.hours;
-        } else {
-          self.hours = [];
         }
       })["catch"](function (e) {
         console.log(e);
@@ -79335,10 +79311,8 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       HTTP.get(current_path).then(function (response) {
         if (response.data.data.data.results.hours) {
           self.hourshoursedit = response.data.data.data.results.hours;
-          self.viewtaskhourshours = self.hourshoursedit;
         } else {
           self.hourshoursedit = [];
-          self.viewtaskhourshours = [];
         }
       })["catch"](function (e) {
         console.log(e);

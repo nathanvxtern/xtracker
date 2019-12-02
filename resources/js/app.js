@@ -52,7 +52,6 @@ const app = new Vue({
         tasks: [],
         projstatusrowid: 0,
         projtyperowid: 0,
-        hours: [],
         customer: [],
         status: [],
         ctofilter: [],
@@ -74,7 +73,6 @@ const app = new Vue({
         hourshoursedit: null,
 
         viewtaskhourstaskrowid: null,
-        viewtaskhourshours: null,
         viewtaskhourscustrowid: null,
 
         edithourtaskrowid: null,
@@ -109,27 +107,6 @@ const app = new Vue({
                         self.tasks = response.data.data.data.results.tasks;
                     } else {
                         self.tasks = [];
-                    }
-                })
-
-                .catch( e => {
-                    console.log( e );
-
-            });
-        },
-        gethours: function( taskrowid )
-        {
-            let self = this;
-            
-            let current_path = "/hours/" + taskrowid;
-
-            HTTP.get( current_path )
-
-                .then( response => {
-                    if( response.data.data.data.results.hours ) {
-                        self.hours = response.data.data.data.results.hours;
-                    } else {
-                        self.hours = [];
                     }
                 })
 
@@ -337,10 +314,8 @@ const app = new Vue({
 
                     if( response.data.data.data.results.hours ) {
                         self.hourshoursedit = response.data.data.data.results.hours;
-                        self.viewtaskhourshours = self.hourshoursedit;
                     } else {
                         self.hourshoursedit = [];
-                        self.viewtaskhourshours = [];
                     }
                 })
 

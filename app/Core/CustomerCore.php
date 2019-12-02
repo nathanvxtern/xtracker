@@ -61,7 +61,11 @@ class CustomerCore
             $custrowid
         ];
 
-        $sql = "SELECT C.custrowid, C.custid, C.name, C.billtoid
+        $sql = "SELECT 
+                    C.custrowid,
+                    C.custid,
+                    C.name,
+                    C.billtoid
                 FROM custmaster C
                 WHERE C.custrowid = ?";
        

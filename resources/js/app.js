@@ -56,6 +56,7 @@ const app = new Vue({
         status: [],
         ctofilter: [],
         ptofilter: [],
+        ttofilter: [],
 
         newprojectcustomer: [],
         newprojectcustrowid: null,
@@ -85,6 +86,14 @@ const app = new Vue({
         edithourhoursid: null,
 
         currentuser: [],
+
+        deletehourshoursid: [],
+        deletehoursemployee: [],
+        deletehoursdateentered: [],
+        deletehoursnumhours: [],
+        deletehourstask: [],
+        deletehoursproject: [],
+        deletehourscustomer: [],
     }),
 
     methods: {
@@ -305,6 +314,7 @@ const app = new Vue({
             self.viewtaskhourstaskrowid = taskrowid;
             self.custrowidhoursadd = ctofilter;
             self.viewtaskhourscustrowid = ctofilter;
+            self.ttofilter = taskrowid;
 
             let current_path = "/customers/" + self.ctofilter + "/projects/" + self.ptofilter + "/tasks/" + taskrowid + "/hours";
 
@@ -351,6 +361,79 @@ const app = new Vue({
                         self.currentuser = response.data.data.data.results.current;
                     } else {
                         self.currentuser = [];
+                    }
+                })
+
+                .catch( e => {
+                    console.log( e );
+
+            });
+        },
+        populatedeletehoursmodal: function()
+        {
+            let self = this;
+            self.populatedeletehourstask();
+            self.populatedeletehoursproject();
+            self.populatedeletehourscustomer();
+        },
+        populatedeletehourstask: function()
+        {
+            let self = this;
+
+            let current_path = "/customers/" + self.ctofilter + "/projects/" + self.ptofilter + "/tasks/" + self.ttofilter;
+
+            HTTP.get( current_path )
+
+                .then( response => {
+
+                    if( response.data.data.data.results.task.title ) {
+                        self.deletehourstask = response.data.data.data.results.task.title;
+                    } else {
+                        self.deletehourstask = [];
+                    }
+                })
+
+                .catch( e => {
+                    console.log( e );
+
+            });
+        },
+        populatedeletehoursproject: function()
+        {
+            let self = this;
+
+            let current_path = "/customers/" + self.ctofilter + "/projects/" + self.ptofilter;
+
+            HTTP.get( current_path )
+
+                .then( response => {
+
+                    if( response.data.data.data.results.project.title ) {
+                        self.deletehoursproject = response.data.data.data.results.project.title;
+                    } else {
+                        self.deletehoursproject = [];
+                    }
+                })
+
+                .catch( e => {
+                    console.log( e );
+
+            });
+        },
+        populatedeletehourscustomer: function()
+        {
+            let self = this;
+
+            let current_path = "/customers/" + self.ctofilter;
+
+            HTTP.get( current_path )
+
+                .then( response => {
+
+                    if( response.data.data.data.results.customer.name ) {
+                        self.deletehourscustomer = response.data.data.data.results.customer.name;
+                    } else {
+                        self.deletehourscustomer = [];
                     }
                 })
 

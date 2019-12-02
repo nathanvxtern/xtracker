@@ -82,9 +82,15 @@
                                                                     );">
                                         Edit
                                     </button>
-                                    <a :v-model="hour.hoursid" :href="'/confirm/delete/hour/'+hour.hoursid" class="btn btn-primary">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteHoursModal"
+                                        @click="populatedeletehoursmodal(
+                                                                        hour.hoursid,
+                                                                        hour.user_id,
+                                                                        hour.dateentered,
+                                                                        hour.numhours
+                                                                    );">
                                         Delete
-                                    </a>
+                                    </button>
                                 </td>
                             </tr>
                         </tbody>
@@ -147,6 +153,15 @@
                 self.edithournotes = notes;
                 self.edithourinvoiceno = invoiceno;
             },
+            populatedeletehoursmodal( hoursid, user_id, dateentered, numhours )
+            {
+                let self = this.$parent;
+                self.deletehourshoursid = hoursid;
+                self.deletehoursemployee = user_id;
+                self.deletehoursdateentered = dateentered;
+                self.deletehoursnumhours = numhours;
+                self.populatedeletehoursmodal();
+            }
         }
     }
 </script>

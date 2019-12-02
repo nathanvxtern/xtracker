@@ -43,6 +43,7 @@
         @include('modals.tasks.edit')
         @include('modals.hours.add')
         @include('modals.hours.edit')
+        @include('modals.hours.delete')
         
     </div>
 @endsection

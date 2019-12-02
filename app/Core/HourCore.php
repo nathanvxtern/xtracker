@@ -166,9 +166,11 @@ class HourCore
         $params = [
             $hoursid
         ];
+
         $sql = "DELETE
                 FROM projhours H
                 WHERE H.hoursid = ?";
+                
         try {
             \DB::delete($sql, $params);
         } catch (\Illuminate\Database\QueryException $e) {

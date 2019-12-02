@@ -32,10 +32,11 @@ Route::get('/customers/{custrowid}/projects', 'ProjectController@list');
 Route::get('/customers/{custrowid}/projects/{projrowid}', 'ProjectController@get');
 /* post /customers/{custrowid}/projects -> ProjectController$create */
 Route::post('/projects', 'ProjectController@createnew');
+/* delete /customers/{custrowid}/project/{projrowid} -> " @delete */
 
 /* Tasks */
 Route::get('customers/{custrowid}/projects/{projrowid}/tasks', 'TaskController@list');
-/* get /customers/{custrowid}/projects/{projrowid}/tasks/{taskrowid} -> " @get */
+Route::get('/customers/{custrowid}/projects/{projrowid}/tasks/{taskrowid}', 'TaskController@get');
 Route::post('customers/{custrowid}/projects/{projrowid}/tasks', 'TaskController@createnew');
 Route::put('/customers/{custrowid}/projects/{projrowid}/tasks/{taskrowid}', 'TaskController@update');
 /* delete /customers/{custrowid}/projects/{projrowid}/tasks/{taskrowid} -> " @delete */
@@ -48,5 +49,4 @@ Route::get('/customers/{custrowid}/projects/{projrowid}/tasks/{taskrowid}/hours'
 Route::post('/customers/{custrowid}/projects/{projrowid}/tasks/{taskrowid}/hours', 'HourController@createnew');
 Route::put('/customers/{custrowid}/projects/{projrowid}/tasks/{taskrowid}/hours/{hoursid}', 'HourController@update');
 /* delete /customers/{custrowid}/projects/{projrowid}/tasks/{taskrowid}/hours/{hoursid} -> " @delete */
-Route::get('/confirm/delete/hour/{hoursid}', 'HourController@confirmdelete');
-Route::get('/delete/hour/{hoursid}', 'HourController@delete');
+Route::delete('/customers/{custrowid}/projects/{projrowid}/tasks/{taskrowid}/hours/{hoursid}', 'HourController@delete');

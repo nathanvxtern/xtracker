@@ -1934,6 +1934,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['csrf', 'currentobject', 'tasks', 'projstatusrowid', 'projtyperowid', 'taskrowidadd', 'taskrowidhoursedit', 'hourshoursedit', 'custrowidhoursadd', 'addhoursbutton', 'currentuser'],
   data: function data() {
@@ -1973,6 +1979,14 @@ __webpack_require__.r(__webpack_exports__);
       self.edithourdateentered = dateentered;
       self.edithournotes = notes;
       self.edithourinvoiceno = invoiceno;
+    },
+    populatedeletehoursmodal: function populatedeletehoursmodal(hoursid, user_id, dateentered, numhours) {
+      var self = this.$parent;
+      self.deletehourshoursid = hoursid;
+      self.deletehoursemployee = user_id;
+      self.deletehoursdateentered = dateentered;
+      self.deletehoursnumhours = numhours;
+      self.populatedeletehoursmodal();
     }
   }
 });
@@ -66788,12 +66802,23 @@ var render = function() {
                     ),
                     _vm._v(" "),
                     _c(
-                      "a",
+                      "button",
                       {
                         staticClass: "btn btn-primary",
                         attrs: {
-                          "v-model": hour.hoursid,
-                          href: "/confirm/delete/hour/" + hour.hoursid
+                          type: "button",
+                          "data-toggle": "modal",
+                          "data-target": "#deleteHoursModal"
+                        },
+                        on: {
+                          click: function($event) {
+                            return _vm.populatedeletehoursmodal(
+                              hour.hoursid,
+                              hour.user_id,
+                              hour.dateentered,
+                              hour.numhours
+                            )
+                          }
                         }
                       },
                       [
@@ -79109,6 +79134,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       status: [],
       ctofilter: [],
       ptofilter: [],
+      ttofilter: [],
       newprojectcustomer: [],
       newprojectcustrowid: null,
       newprojstatusrowid: null,
@@ -79131,7 +79157,14 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       edithournotes: null,
       edithourinvoiceno: null,
       edithourhoursid: null,
-      currentuser: []
+      currentuser: [],
+      deletehourshoursid: [],
+      deletehoursemployee: [],
+      deletehoursdateentered: [],
+      deletehoursnumhours: [],
+      deletehourstask: [],
+      deletehoursproject: [],
+      deletehourscustomer: []
     };
   },
   methods: {
@@ -79307,6 +79340,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       self.viewtaskhourstaskrowid = taskrowid;
       self.custrowidhoursadd = ctofilter;
       self.viewtaskhourscustrowid = ctofilter;
+      self.ttofilter = taskrowid;
       var current_path = "/customers/" + self.ctofilter + "/projects/" + self.ptofilter + "/tasks/" + taskrowid + "/hours";
       HTTP.get(current_path).then(function (response) {
         if (response.data.data.data.results.hours) {
@@ -79337,6 +79371,51 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
           self.currentuser = response.data.data.data.results.current;
         } else {
           self.currentuser = [];
+        }
+      })["catch"](function (e) {
+        console.log(e);
+      });
+    },
+    populatedeletehoursmodal: function populatedeletehoursmodal() {
+      var self = this;
+      self.populatedeletehourstask();
+      self.populatedeletehoursproject();
+      self.populatedeletehourscustomer();
+    },
+    populatedeletehourstask: function populatedeletehourstask() {
+      var self = this;
+      var current_path = "/customers/" + self.ctofilter + "/projects/" + self.ptofilter + "/tasks/" + self.ttofilter;
+      HTTP.get(current_path).then(function (response) {
+        if (response.data.data.data.results.task.title) {
+          self.deletehourstask = response.data.data.data.results.task.title;
+        } else {
+          self.deletehourstask = [];
+        }
+      })["catch"](function (e) {
+        console.log(e);
+      });
+    },
+    populatedeletehoursproject: function populatedeletehoursproject() {
+      var self = this;
+      var current_path = "/customers/" + self.ctofilter + "/projects/" + self.ptofilter;
+      HTTP.get(current_path).then(function (response) {
+        if (response.data.data.data.results.project.title) {
+          self.deletehoursproject = response.data.data.data.results.project.title;
+        } else {
+          self.deletehoursproject = [];
+        }
+      })["catch"](function (e) {
+        console.log(e);
+      });
+    },
+    populatedeletehourscustomer: function populatedeletehourscustomer() {
+      var self = this;
+      var current_path = "/customers/" + self.ctofilter;
+      HTTP.get(current_path).then(function (response) {
+        if (response.data.data.data.results.customer.name) {
+          self.deletehourscustomer = response.data.data.data.results.customer.name;
+        } else {
+          self.deletehourscustomer = [];
         }
       })["catch"](function (e) {
         console.log(e);

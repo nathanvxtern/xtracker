@@ -25,7 +25,7 @@ class ProjectController extends APIController
         return $this->return_success( $request, $pagevars );
     }
 
-    public function get( Request $request, $projrowid )
+    public function get( Request $request, $custrowid, $projrowid )
     {
         $project_core = new ProjectCore();
 

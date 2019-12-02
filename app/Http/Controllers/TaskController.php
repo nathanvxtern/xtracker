@@ -25,6 +25,23 @@ class TaskController extends APIController
         return $this->return_success( $request, $pagevars );
     }
 
+    public function get( Request $request, $custrowid, $projrowid, $taskrowid )
+    {
+        $task_core = new TaskCore();
+
+        $rec = array();
+
+        $rec[ 'results' ][ 'task' ] = [];
+
+        $rec[ 'results' ][ 'task' ] = $task_core->get( $taskrowid );
+
+        $pagevars = array();
+        $pagevars[ 'data' ] = array();
+        $pagevars[ 'data' ] = $rec;
+
+        return $this->return_success( $request, $pagevars );
+    }
+
     public function update( Request $request, $custrowid, $projrowid, $taskrowid )
     {
         $task_core = new TaskCore();

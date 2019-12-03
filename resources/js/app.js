@@ -318,8 +318,8 @@ const app = new Vue({
             self.taskrowidhoursedit = taskrowid;
             self.taskrowidadd = taskrowid;
             self.viewtaskhourstaskrowid = taskrowid;
-            self.custrowidhoursadd = ctofilter;
-            self.viewtaskhourscustrowid = ctofilter;
+            self.custrowidhoursadd = self.ctofilter;
+            self.viewtaskhourscustrowid = self.ctofilter;
             self.ttofilter = taskrowid;
 
             let current_path = "/customers/" + self.ctofilter + "/projects/" + self.ptofilter + "/tasks/" + taskrowid + "/hours";
@@ -588,6 +588,33 @@ const app = new Vue({
 
                     self.cfilter( ctofilter );
                     self.pfilter( ctofilter, ptofilter );
+                    
+                })
+
+                .catch( e => {
+
+                    console.log( e );
+
+            });
+        },
+        addhours: function( event, ctofilter, ptofilter, taskrowidadd )
+        {
+            let self = this;
+            
+            let element = event.currentTarget;
+            let form_id = element.getAttribute( 'data-form-id' );
+            let form =  $( '#'+form_id ).serialize();
+
+            let current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + taskrowidadd + "/hours";
+
+            HTTP.post( current_path, form )
+
+                .then( response => {
+
+                    self.cfilter( ctofilter );
+                    self.pfilter( ctofilter, ptofilter );
+                    self.current();
+                    self.populatehours( taskrowidadd );
                     
                 })
 

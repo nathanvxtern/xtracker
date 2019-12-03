@@ -39,10 +39,12 @@
       </div>
       <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button class="btn btn-primary" type="submit" 
+          <button class="btn btn-primary" type="button" 
                           form="create_hours_form"
                           data-form-id="create_hours_form"
-                          data-modal-id="create-hours-modal">Submit</button>
+                          data-modal-id="create-hours-modal"
+                          @click="addhours( $event, ctofilter, ptofilter, taskrowidadd );"
+                          data-dismiss="modal">Submit</button>
       </div>
     </div>
   </div>

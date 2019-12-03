@@ -79326,8 +79326,8 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       self.taskrowidhoursedit = taskrowid;
       self.taskrowidadd = taskrowid;
       self.viewtaskhourstaskrowid = taskrowid;
-      self.custrowidhoursadd = ctofilter;
-      self.viewtaskhourscustrowid = ctofilter;
+      self.custrowidhoursadd = self.ctofilter;
+      self.viewtaskhourscustrowid = self.ctofilter;
       self.ttofilter = taskrowid;
       var current_path = "/customers/" + self.ctofilter + "/projects/" + self.ptofilter + "/tasks/" + taskrowid + "/hours";
       HTTP.get(current_path).then(function (response) {
@@ -79487,6 +79487,21 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       HTTP["delete"](current_path, form).then(function (response) {
         self.cfilter(ctofilter);
         self.pfilter(ctofilter, ptofilter);
+      })["catch"](function (e) {
+        console.log(e);
+      });
+    },
+    addhours: function addhours(event, ctofilter, ptofilter, taskrowidadd) {
+      var self = this;
+      var element = event.currentTarget;
+      var form_id = element.getAttribute('data-form-id');
+      var form = $('#' + form_id).serialize();
+      var current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + taskrowidadd + "/hours";
+      HTTP.post(current_path, form).then(function (response) {
+        self.cfilter(ctofilter);
+        self.pfilter(ctofilter, ptofilter);
+        self.current();
+        self.populatehours(taskrowidadd);
       })["catch"](function (e) {
         console.log(e);
       });

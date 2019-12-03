@@ -79452,6 +79452,19 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
         console.log(e);
       });
     },
+    createtask: function createtask(event, ctofilter, ptofilter) {
+      var self = this;
+      var element = event.currentTarget;
+      var form_id = element.getAttribute('data-form-id');
+      var form = $('#' + form_id).serialize();
+      var current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks";
+      HTTP.post(current_path, form).then(function (response) {
+        self.cfilter(ctofilter);
+        self.pfilter(ctofilter, ptofilter);
+      })["catch"](function (e) {
+        console.log(e);
+      });
+    },
     edittask: function edittask(event, ctofilter, ptofilter, taskrowidtaskedit) {
       var self = this;
       var element = event.currentTarget;

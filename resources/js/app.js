@@ -522,6 +522,31 @@ const app = new Vue({
 
             });
         },
+        createtask: function( event, ctofilter, ptofilter )
+        {
+            let self = this;
+            
+            let element = event.currentTarget;
+            let form_id = element.getAttribute( 'data-form-id' );
+            let form =  $( '#'+form_id ).serialize();
+
+            let current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks";
+
+            HTTP.post( current_path, form )
+
+                .then( response => {
+
+                    self.cfilter( ctofilter );
+                    self.pfilter( ctofilter, ptofilter );
+                    
+                })
+
+                .catch( e => {
+
+                    console.log( e );
+
+            });
+        },
         edittask: function( event, ctofilter, ptofilter, taskrowidtaskedit )
         {
             let self = this;

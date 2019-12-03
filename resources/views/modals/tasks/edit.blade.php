@@ -39,9 +39,11 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-primary" form="edit_task_form"
+        <button type="button" class="btn btn-primary" form="edit_task_form"
                           data-form-id="edit_task_form"
-                          data-modal-id="edit-task-modal">Update</button>
+                          data-modal-id="edit-task-modal"
+                          @click="edittask( $event, ctofilter, ptofilter, taskrowidtaskedit );"
+                          data-dismiss="modal">Update</button>
       </div>
     </div>
   </div>

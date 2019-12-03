@@ -153,7 +153,7 @@
                 self.deletehoursdateentered = hour.dateentered;
                 self.deletehoursnumhours = hour.numhours;
                 self.populatedeletehoursmodal();
-            }
+            },
         }
     }
 </script>

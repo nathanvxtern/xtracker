@@ -64,8 +64,7 @@
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
           <button class="btn btn-primary" type="submit" form="create_tasks_form"
                           data-form-id="create_tasks_form"
-                          data-modal-id="create-tasks-modal"
-                          @click="populatetaskcomponent( ctofilter, ptofilter );">Submit</button>
+                          data-modal-id="create-tasks-modal">Submit</button>
         </div>
       </div>
     </div>

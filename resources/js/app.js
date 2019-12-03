@@ -299,7 +299,7 @@ const app = new Vue({
                 self.newtasktyperowid = 34;
             }
         },
-        pfilter: function( ctofilter, ptofilter )
+        pfilter:  function( ctofilter, ptofilter )
         {
             let self = this;
             self.ctofilter = ctofilter;
@@ -513,6 +513,31 @@ const app = new Vue({
                 .then( response => {
 
                     self.cfilter( newprojectcustrowid );
+                    
+                })
+
+                .catch( e => {
+
+                    console.log( e );
+
+            });
+        },
+        edittask: function( event, ctofilter, ptofilter, taskrowidtaskedit )
+        {
+            let self = this;
+            
+            let element = event.currentTarget;
+            let form_id = element.getAttribute( 'data-form-id' );
+            let form =  $( '#'+form_id ).serialize();
+
+            let current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + taskrowidtaskedit;
+
+            HTTP.put( current_path, form )
+
+                .then( response => {
+
+                    self.cfilter( ctofilter );
+                    self.pfilter( ctofilter, ptofilter );
                     
                 })
 

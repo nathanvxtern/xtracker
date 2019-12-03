@@ -40,9 +40,11 @@
       </div>
       <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button class="btn btn-primary" type="submit" form="edit_hours_form"
+          <button class="btn btn-primary" type="button" form="edit_hours_form"
                           data-form-id="edit_hours_form"
-                          data-modal-id="edit-hours-modal">Submit</button>
+                          data-modal-id="edit-hours-modal"
+                          @click="edithours( $event, ctofilter, ptofilter, edithourtaskrowid, edithourhoursid );"
+                          data-dismiss="modal">Submit</button>
       </div>
     </div>
   </div>

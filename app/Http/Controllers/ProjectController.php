@@ -42,15 +42,14 @@ class ProjectController extends APIController
         return $this->return_success( $request, $pagevars );
     }
 
-    public function createnew(Request $request)
+    public function createnew( Request $request, $custrowid )
     {
-        $title = $request->input('title',null);
-        $custrowid = $request->input('custrowid',null);
-        $projstatusrowid = $request->input('projstatusrowid',null);
+        $title = $request->input( 'title', null );
+        $projstatusrowid = $request->input( 'projstatusrowid', null );
 
         $project_core = new ProjectCore();
         
-        $project_core->create($custrowid,$title,$projstatusrowid);
+        $project_core->create( $custrowid, $title, $projstatusrowid );
 
         return $this->return_success( $request );
     }

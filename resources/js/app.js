@@ -497,6 +497,30 @@ const app = new Vue({
                     console.log( e );
 
             });
+        },
+        createproject: function( event, newprojectcustrowid )
+        {
+            let self = this;
+            
+            let element = event.currentTarget;
+            let form_id = element.getAttribute( 'data-form-id' );
+            let form =  $( '#'+form_id ).serialize();
+
+            let current_path = "customers/" + newprojectcustrowid + "/projects";
+
+            HTTP.post( current_path, form )
+
+                .then( response => {
+
+                    self.cfilter( newprojectcustrowid );
+                    
+                })
+
+                .catch( e => {
+
+                    console.log( e );
+
+            });
         }
     }
 });

@@ -79439,6 +79439,18 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       })["catch"](function (e) {
         console.log(e);
       });
+    },
+    createproject: function createproject(event, newprojectcustrowid) {
+      var self = this;
+      var element = event.currentTarget;
+      var form_id = element.getAttribute('data-form-id');
+      var form = $('#' + form_id).serialize();
+      var current_path = "customers/" + newprojectcustrowid + "/projects";
+      HTTP.post(current_path, form).then(function (response) {
+        self.cfilter(newprojectcustrowid);
+      })["catch"](function (e) {
+        console.log(e);
+      });
     }
   }
 });

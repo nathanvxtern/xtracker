@@ -8,7 +8,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form id="create_project_form" action="/projects" method="POST" name="create_project_form">
+        <form id="create_project_form" :action="'customers/'+newprojectcustrowid+'/projects'" method="POST" name="create_project_form">
                               @csrf
                               <div class="row form-group">
                                   <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
@@ -37,9 +37,11 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button class="btn btn-primary" type="submit" form="create_project_form"
+        <button class="btn btn-primary" type="button" form="create_project_form"
                         data-form-id="create_project_form"
-                        data-modal-id="create-project-modal">Submit</button>
+                        data-modal-id="create-project-modal"
+                        @click="createproject( $event, newprojectcustrowid );"
+                        data-dismiss="modal">Submit</button>
       </div>
     </div>
   </div>

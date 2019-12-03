@@ -41,6 +41,7 @@
         @include('modals.project')
         @include('modals.tasks.add')
         @include('modals.tasks.edit')
+        @include('modals.tasks.delete')
         @include('modals.hours.add')
         @include('modals.hours.edit')
         @include('modals.hours.delete')

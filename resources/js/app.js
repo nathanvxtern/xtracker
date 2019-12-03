@@ -94,6 +94,12 @@ const app = new Vue({
         deletehourstask: [],
         deletehoursproject: [],
         deletehourscustomer: [],
+
+        deletetasktaskrowid: [],
+        deletetasktask: [],
+        deletetaskproject: [],
+        deletetaskcustomer: [],
+        
     }),
 
     methods: {
@@ -434,6 +440,56 @@ const app = new Vue({
                         self.deletehourscustomer = response.data.data.data.results.customer.name;
                     } else {
                         self.deletehourscustomer = [];
+                    }
+                })
+
+                .catch( e => {
+                    console.log( e );
+
+            });
+        },
+        populatedeletetaskmodal: function()
+        {
+            let self = this;
+            self.populatedeletetaskproject();
+            self.populatedeletetaskcustomer();
+        },
+        populatedeletetaskproject: function()
+        {
+            let self = this;
+
+            let current_path = "/customers/" + self.ctofilter + "/projects/" + self.ptofilter;
+
+            HTTP.get( current_path )
+
+                .then( response => {
+
+                    if( response.data.data.data.results.project.title ) {
+                        self.deletetaskproject = response.data.data.data.results.project.title;
+                    } else {
+                        self.deletetaskproject = [];
+                    }
+                })
+
+                .catch( e => {
+                    console.log( e );
+
+            });
+        },
+        populatedeletetaskcustomer: function()
+        {
+            let self = this;
+
+            let current_path = "/customers/" + self.ctofilter;
+
+            HTTP.get( current_path )
+
+                .then( response => {
+
+                    if( response.data.data.data.results.customer.name ) {
+                        self.deletetaskcustomer = response.data.data.data.results.customer.name;
+                    } else {
+                        self.deletetaskcustomer = [];
                     }
                 })
 

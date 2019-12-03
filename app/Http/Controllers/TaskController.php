@@ -75,11 +75,13 @@ class TaskController extends APIController
         return view( "confirmations/deletions/task", [ 'taskrowid' => $taskrowid, 'title' => $title ] );
     }
 
-    public function delete( $taskrowid )
+    public function delete( Request $request, $custrowid, $projrowid, $taskrowid )
     {
         $task_core = new TaskCore();
-        $task_core->delete($taskrowid);
-        return redirect("/");
+
+        $task_core->delete( $taskrowid );
+
+        return $this->return_success( $request );
     }
 
     public function createnew( Request $request, $custrowid, $projrowid )

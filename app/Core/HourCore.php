@@ -83,7 +83,15 @@ class HourCore
             $hoursid
         ];
 
-        $sql = "SELECT H.hoursid, H.custrowid, H.taskrowid, H.notes, H.invoiceno, H.numhours, H.dateentered, H.user_id
+        $sql = "SELECT
+                    H.hoursid,
+                    H.custrowid,
+                    H.taskrowid,
+                    H.notes,
+                    H.invoiceno,
+                    H.numhours,
+                    H.dateentered,
+                    H.user_id
                 FROM projhours H
                 WHERE H.hoursid = ?";
        

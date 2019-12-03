@@ -25,9 +25,21 @@ class HourController extends APIController
         return $this->return_success( $request, $pagevars );
     }
 
-    public function confirmdelete( $hoursid )
+    public function get( Request $request, $custrowid, $projrowid, $taskrowid, $hoursid )
     {
-        return view( "confirmations/deletions/hour", [ 'hoursid' => $hoursid ] );
+        $hour_core = new HourCore();
+
+        $rec = array();
+
+        $rec[ 'results' ][ 'hour' ] = [];
+
+        $rec[ 'results' ][ 'hour' ] = $hour_core->get( $hoursid );
+
+        $pagevars = array();
+        $pagevars[ 'data' ] = array();
+        $pagevars[ 'data' ] = $rec;
+
+        return $this->return_success( $request, $pagevars );
     }
 
     public function delete( Request $request, $custrowid, $projrowid, $taskrowid, $hoursid )
@@ -59,7 +71,7 @@ class HourController extends APIController
                             $custrowid
         );
 
-        return $this->return_success( $request );
+        $this->return_success( $request );
     }
 
     public function update( Request $request, $custrowid, $projrowid, $taskrowid, $hoursid )

@@ -1925,21 +1925,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['csrf', 'currentobject', 'tasks', 'projstatusrowid', 'projtyperowid', 'taskrowidadd', 'taskrowidhoursedit', 'hourshoursedit', 'custrowidhoursadd', 'addhoursbutton', 'currentuser'],
   data: function data() {
@@ -1960,6 +1945,12 @@ __webpack_require__.r(__webpack_exports__);
       self.edittaskbillingrate = task.billingrate;
       self.edittaskreqcompdate = task.reqcompdate;
     },
+    populatedeletetaskmodal: function populatedeletetaskmodal(task) {
+      var self = this.$parent;
+      self.deletetasktaskrowid = task.taskrowid;
+      self.deletetasktask = task.title;
+      self.populatedeletetaskmodal();
+    },
     populatehours: function populatehours(taskrowid) {
       var self = this.$parent;
       self.current();
@@ -1969,23 +1960,23 @@ __webpack_require__.r(__webpack_exports__);
       //     addhoursbutton.setAttribute('disabled', true );
       // }
     },
-    populateedithourmodal: function populateedithourmodal(taskrowidhoursedit, custrowidhoursadd, hoursid, numhours, user_id, dateentered, notes, invoiceno) {
+    populateedithourmodal: function populateedithourmodal(taskrowidhoursedit, custrowidhoursadd, hour) {
       var self = this.$parent;
       self.edithourtaskrowid = taskrowidhoursedit;
       self.edithourcustrowid = custrowidhoursadd;
-      self.edithourhoursid = hoursid;
-      self.edithouruser_id = user_id;
-      self.edithournumhours = numhours;
-      self.edithourdateentered = dateentered;
-      self.edithournotes = notes;
-      self.edithourinvoiceno = invoiceno;
+      self.edithourhoursid = hour.hoursid;
+      self.edithouruser_id = hour.user_id;
+      self.edithournumhours = hour.numhours;
+      self.edithourdateentered = hour.dateentered;
+      self.edithournotes = hour.notes;
+      self.edithourinvoiceno = hour.invoiceno;
     },
-    populatedeletehoursmodal: function populatedeletehoursmodal(hoursid, user_id, dateentered, numhours) {
+    populatedeletehoursmodal: function populatedeletehoursmodal(hour) {
       var self = this.$parent;
-      self.deletehourshoursid = hoursid;
-      self.deletehoursemployee = user_id;
-      self.deletehoursdateentered = dateentered;
-      self.deletehoursnumhours = numhours;
+      self.deletehourshoursid = hour.hoursid;
+      self.deletehoursemployee = hour.user_id;
+      self.deletehoursdateentered = hour.dateentered;
+      self.deletehoursnumhours = hour.numhours;
       self.populatedeletehoursmodal();
     }
   }
@@ -66653,15 +66644,18 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", { staticClass: "border-0" }, [
                       _c(
-                        "a",
+                        "button",
                         {
                           staticClass: "btn btn-primary",
                           attrs: {
-                            href:
-                              "/confirm/delete/task/" +
-                              task.taskrowid +
-                              "/" +
-                              task.title
+                            type: "button",
+                            "data-toggle": "modal",
+                            "data-target": "#deleteTaskModal"
+                          },
+                          on: {
+                            click: function($event) {
+                              return _vm.populatedeletetaskmodal(task)
+                            }
                           }
                         },
                         [
@@ -66784,12 +66778,7 @@ var render = function() {
                             return _vm.populateedithourmodal(
                               _vm.taskrowidhoursedit,
                               _vm.custrowidhoursadd,
-                              hour.hoursid,
-                              hour.numhours,
-                              hour.user_id,
-                              hour.dateentered,
-                              hour.notes,
-                              hour.invoiceno
+                              hour
                             )
                           }
                         }
@@ -66812,12 +66801,7 @@ var render = function() {
                         },
                         on: {
                           click: function($event) {
-                            return _vm.populatedeletehoursmodal(
-                              hour.hoursid,
-                              hour.user_id,
-                              hour.dateentered,
-                              hour.numhours
-                            )
+                            return _vm.populatedeletehoursmodal(hour)
                           }
                         }
                       },
@@ -79164,7 +79148,11 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       deletehoursnumhours: [],
       deletehourstask: [],
       deletehoursproject: [],
-      deletehourscustomer: []
+      deletehourscustomer: [],
+      deletetasktaskrowid: [],
+      deletetasktask: [],
+      deletetaskproject: [],
+      deletetaskcustomer: []
     };
   },
   methods: {
@@ -79416,6 +79404,37 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
           self.deletehourscustomer = response.data.data.data.results.customer.name;
         } else {
           self.deletehourscustomer = [];
+        }
+      })["catch"](function (e) {
+        console.log(e);
+      });
+    },
+    populatedeletetaskmodal: function populatedeletetaskmodal() {
+      var self = this;
+      self.populatedeletetaskproject();
+      self.populatedeletetaskcustomer();
+    },
+    populatedeletetaskproject: function populatedeletetaskproject() {
+      var self = this;
+      var current_path = "/customers/" + self.ctofilter + "/projects/" + self.ptofilter;
+      HTTP.get(current_path).then(function (response) {
+        if (response.data.data.data.results.project.title) {
+          self.deletetaskproject = response.data.data.data.results.project.title;
+        } else {
+          self.deletetaskproject = [];
+        }
+      })["catch"](function (e) {
+        console.log(e);
+      });
+    },
+    populatedeletetaskcustomer: function populatedeletetaskcustomer() {
+      var self = this;
+      var current_path = "/customers/" + self.ctofilter;
+      HTTP.get(current_path).then(function (response) {
+        if (response.data.data.data.results.customer.name) {
+          self.deletetaskcustomer = response.data.data.data.results.customer.name;
+        } else {
+          self.deletetaskcustomer = [];
         }
       })["catch"](function (e) {
         console.log(e);

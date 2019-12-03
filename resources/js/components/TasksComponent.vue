@@ -24,9 +24,10 @@
                                 <td>{{ task.esthours }}</td>
                                 <td>{{ task.usedhrs }}</td>
                                 <td class="border-0">
-                                    <a :href="'/confirm/delete/task/'+task.taskrowid+'/'+task.title" class="btn btn-primary">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteTaskModal"
+                                        @click="populatedeletetaskmodal( task );">
                                         Delete
-                                    </a>
+                                    </button>
                                     <button type="button" class="btn btn-primary" @click="populateedittaskmodal( task )" data-toggle="modal" data-target="#editTaskModal">
                                         Edit
                                     </button>
@@ -69,26 +70,10 @@
                                 <td>{{ hour.notes }}</td>
                                 <td>{{ hour.invoiceno }}</td>
                                 <td class="border-0">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editHoursModal"
-                                        @click="populateedithourmodal(
-                                                                        taskrowidhoursedit,
-                                                                        custrowidhoursadd,
-                                                                        hour.hoursid,
-                                                                        hour.numhours,
-                                                                        hour.user_id,
-                                                                        hour.dateentered,
-                                                                        hour.notes,
-                                                                        hour.invoiceno 
-                                                                    );">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editHoursModal" @click="populateedithourmodal( taskrowidhoursedit, custrowidhoursadd, hour );">
                                         Edit
                                     </button>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteHoursModal"
-                                        @click="populatedeletehoursmodal(
-                                                                        hour.hoursid,
-                                                                        hour.user_id,
-                                                                        hour.dateentered,
-                                                                        hour.numhours
-                                                                    );">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteHoursModal" @click="populatedeletehoursmodal( hour );">
                                         Delete
                                     </button>
                                 </td>
@@ -130,6 +115,13 @@
                 self.edittaskbillingrate = task.billingrate;
                 self.edittaskreqcompdate = task.reqcompdate;
             },
+            populatedeletetaskmodal: function( task )
+            {
+                let self = this.$parent;
+                self.deletetasktaskrowid = task.taskrowid;
+                self.deletetasktask = task.title;
+                self.populatedeletetaskmodal();
+            },
             populatehours: function( taskrowid )
             {
                 let self = this.$parent;
@@ -141,25 +133,25 @@
                 //     addhoursbutton.setAttribute('disabled', true );
                 // }
             },
-            populateedithourmodal( taskrowidhoursedit, custrowidhoursadd, hoursid, numhours, user_id, dateentered, notes, invoiceno )
+            populateedithourmodal( taskrowidhoursedit, custrowidhoursadd, hour )
             {
                 let self = this.$parent;
                 self.edithourtaskrowid = taskrowidhoursedit;
                 self.edithourcustrowid = custrowidhoursadd;
-                self.edithourhoursid = hoursid;
-                self.edithouruser_id = user_id;
-                self.edithournumhours = numhours;
-                self.edithourdateentered = dateentered;
-                self.edithournotes = notes;
-                self.edithourinvoiceno = invoiceno;
+                self.edithourhoursid = hour.hoursid;
+                self.edithouruser_id = hour.user_id;
+                self.edithournumhours = hour.numhours;
+                self.edithourdateentered = hour.dateentered;
+                self.edithournotes = hour.notes;
+                self.edithourinvoiceno = hour.invoiceno;
             },
-            populatedeletehoursmodal( hoursid, user_id, dateentered, numhours )
+            populatedeletehoursmodal( hour )
             {
                 let self = this.$parent;
-                self.deletehourshoursid = hoursid;
-                self.deletehoursemployee = user_id;
-                self.deletehoursdateentered = dateentered;
-                self.deletehoursnumhours = numhours;
+                self.deletehourshoursid = hour.hoursid;
+                self.deletehoursemployee = hour.user_id;
+                self.deletehoursdateentered = hour.dateentered;
+                self.deletehoursnumhours = hour.numhours;
                 self.populatedeletehoursmodal();
             }
         }

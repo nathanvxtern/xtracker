@@ -35,9 +35,11 @@
       </div>
       <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button class="btn btn-primary" type="submit" form="delete_task_form"
+          <button class="btn btn-primary" type="button" form="delete_task_form"
                           data-form-id="delete_task_form"
-                          data-modal-id="delete-task-modal">Delete</button>
+                          data-modal-id="delete-task-modal"
+                          @click="deletetask( $event, ctofilter, ptofilter, deletetasktaskrowid );"
+                          data-dismiss="modal">Delete</button>
       </div>
     </div>
   </div>

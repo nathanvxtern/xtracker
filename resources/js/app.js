@@ -634,7 +634,34 @@ const app = new Vue({
 
             let current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + edithourtaskrowid + "/hours/" + edithourhoursid;
 
-            HTTP.post( current_path, form )
+            HTTP.put( current_path, form )
+
+                .then( response => {
+
+                    self.cfilter( ctofilter );
+                    self.pfilter( ctofilter, ptofilter );
+                    self.current();
+                    self.populatehours( edithourtaskrowid );
+                    
+                })
+
+                .catch( e => {
+
+                    console.log( e );
+
+            });
+        },
+        deletehours: function( event, ctofilter, ptofilter, edithourtaskrowid, deletehourshoursid )
+        {
+            let self = this;
+            
+            let element = event.currentTarget;
+            let form_id = element.getAttribute( 'data-form-id' );
+            let form =  $( '#'+form_id ).serialize();
+
+            let current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + edithourtaskrowid + "/hours/" + deletehourshoursid;
+
+            HTTP.delete( current_path, form )
 
                 .then( response => {
 

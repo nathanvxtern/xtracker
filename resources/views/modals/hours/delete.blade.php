@@ -53,9 +53,11 @@
       </div>
       <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button class="btn btn-primary" type="submit" form="delete_hours_form"
+          <button class="btn btn-primary" type="button" form="delete_hours_form"
                           data-form-id="delete_hours_form"
-                          data-modal-id="delete-hours-modal">Delete</button>
+                          data-modal-id="delete-hours-modal"
+                          @click="deletehours( $event, ctofilter, ptofilter, edithourtaskrowid, deletehourshoursid );"
+                          data-dismiss="modal">Delete</button>
       </div>
     </div>
   </div>

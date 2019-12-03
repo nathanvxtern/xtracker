@@ -79512,7 +79512,22 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       var form_id = element.getAttribute('data-form-id');
       var form = $('#' + form_id).serialize();
       var current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + edithourtaskrowid + "/hours/" + edithourhoursid;
-      HTTP.post(current_path, form).then(function (response) {
+      HTTP.put(current_path, form).then(function (response) {
+        self.cfilter(ctofilter);
+        self.pfilter(ctofilter, ptofilter);
+        self.current();
+        self.populatehours(edithourtaskrowid);
+      })["catch"](function (e) {
+        console.log(e);
+      });
+    },
+    deletehours: function deletehours(event, ctofilter, ptofilter, edithourtaskrowid, deletehourshoursid) {
+      var self = this;
+      var element = event.currentTarget;
+      var form_id = element.getAttribute('data-form-id');
+      var form = $('#' + form_id).serialize();
+      var current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + edithourtaskrowid + "/hours/" + deletehourshoursid;
+      HTTP["delete"](current_path, form).then(function (response) {
         self.cfilter(ctofilter);
         self.pfilter(ctofilter, ptofilter);
         self.current();

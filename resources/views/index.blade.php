@@ -37,8 +37,8 @@
             </div>
         </div>
 
-        @include('modals.customer')
-        @include('modals.project')
+        @include('modals.customers.add')
+        @include('modals.projects.add')
         @include('modals.tasks.add')
         @include('modals.tasks.edit')
         @include('modals.tasks.delete')

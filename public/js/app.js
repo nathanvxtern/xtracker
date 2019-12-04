@@ -79353,7 +79353,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
     },
     current: function current() {
       var self = this;
-      var current_path = "/currentuser";
+      var current_path = "users/current";
       HTTP.get(current_path).then(function (response) {
         if (response.data.data.data.results.current) {
           self.currentuser = response.data.data.data.results.current;

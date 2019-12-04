@@ -18,7 +18,12 @@ Route::get('/status/{projrowid}', 'ProjectController@get');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 /* Users */
-Route::get('/currentuser', 'UserController@current');
+Route::get('/users/current', 'UserController@current');
+Route::get('/users', 'UserController@list');
+Route::get('/users/{user_id}', 'UserController@get');
+Route::post('/users', 'UserController@createnew');
+Route::put('/users/{user_id}', 'UserController@update');
+Route::delete('/users/{user_id}', 'UserController@delete');
 
 /* Customers */
 Route::get('/customers', 'CustomerController@list');

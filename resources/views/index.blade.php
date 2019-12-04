@@ -20,6 +20,11 @@
                 </button>
             </div>
             <div class="col">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ceditModal">
+                +
+                </button>
+            </div>
+            <div class="col">
                 Project
                 <select v-model="ptofilter" name="ptofilter" id="ptofilter" class="form-control" v-on:change="pfilter( ctofilter, ptofilter );">
                     <option v-for="project in customerprojects" :key="project.projrowid" :label="project.title">@{{ project.projrowid }}</option>

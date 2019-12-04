@@ -357,7 +357,7 @@ const app = new Vue({
         {
             let self = this;
 
-            let current_path = "users/current";
+            let current_path = "/employees/current";
 
             HTTP.get( current_path )
 

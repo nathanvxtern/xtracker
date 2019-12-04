@@ -127,11 +127,11 @@
                 let self = this.$parent;
                 self.current();
                 self.populatehours( taskrowid );
-                // if ( addhoursbutton.getAttribute( 'disabled' ) ) {
-                //     addhoursbutton.setAttribute('disabled', false );
-                // } else {
-                //     addhoursbutton.setAttribute('disabled', true );
-                // }
+                if ( addhoursbutton.getAttribute( 'disabled' ) ) {
+                    addhoursbutton.setAttribute('disabled', false );
+                } else {
+                    addhoursbutton.setAttribute('disabled', true );
+                }
             },
             populateedithourmodal( taskrowidhoursedit, custrowidhoursadd, hour )
             {

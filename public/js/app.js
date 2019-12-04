@@ -1954,11 +1954,13 @@ __webpack_require__.r(__webpack_exports__);
     populatehours: function populatehours(taskrowid) {
       var self = this.$parent;
       self.current();
-      self.populatehours(taskrowid); // if ( addhoursbutton.getAttribute( 'disabled' ) ) {
-      //     addhoursbutton.setAttribute('disabled', false );
-      // } else {
-      //     addhoursbutton.setAttribute('disabled', true );
-      // }
+      self.populatehours(taskrowid);
+
+      if (addhoursbutton.getAttribute('disabled')) {
+        addhoursbutton.setAttribute('disabled', false);
+      } else {
+        addhoursbutton.setAttribute('disabled', true);
+      }
     },
     populateedithourmodal: function populateedithourmodal(taskrowidhoursedit, custrowidhoursadd, hour) {
       var self = this.$parent;
@@ -79353,7 +79355,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
     },
     current: function current() {
       var self = this;
-      var current_path = "users/current";
+      var current_path = "/employees/current";
       HTTP.get(current_path).then(function (response) {
         if (response.data.data.data.results.current) {
           self.currentuser = response.data.data.data.results.current;

@@ -94,7 +94,7 @@ class ProjectCore
         return $project;
     }
 
-    public function create($custrowid=null,$title=null,$projstatusrowid=null)
+    public function create( $custrowid=null, $title=null, $projstatusrowid=null )
     {
 
         $params = [
@@ -106,7 +106,7 @@ class ProjectCore
                 VALUES(?,?,?)";
         try {
             \DB::insert($sql, $params);
-        } catch (\Illuminate\Database\QueryException $e) {
+        } catch ( \Illuminate\Database\QueryException $e ) {
             \Log::info($e->getMessage());
             return false;
         }

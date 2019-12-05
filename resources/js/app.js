@@ -65,12 +65,19 @@ const app = new Vue({
 
         editcustomername: [],
 
+        editprojecttitle: [],
+        editprojectcustrowid: [],
+        edit_project_customer_name: [],
+
         taskrowidtaskedit: null,
         edittasktitle: null,
         edittaskesthours: null,
         edittaskusedhrs: null,
         edittaskbillingrate: null,
         edittaskreqcompdate: null,
+
+        editprojecttitle: null,
+        editprojectcustomer: [],
 
         taskrowidhoursedit: null,
         hourshoursedit: null,
@@ -302,12 +309,13 @@ const app = new Vue({
                 self.newtasktyperowid = 34;
             }
         },
-        pfilter:  function( ctofilter, ptofilter )
+        pfilter: function( ctofilter, ptofilter )
         {
             let self = this;
             self.ctofilter = ctofilter;
             self.ptofilter = ptofilter;
             self.populatetaskcomponent( self.ctofilter, self.ptofilter );
+            self.populateeditprojectmodal( self.ctofilter, self.ptofilter );
         },
         populatetaskcomponent: function( ctofilter, ptofilter )
         {
@@ -355,6 +363,29 @@ const app = new Vue({
                         self.editcustomername = response.data.data.data.results.customer.name;
                     } else {
                         self.editcustomername = [];
+                    }
+                })
+
+                .catch( e => {
+                    console.log( e );
+
+            });
+        },
+        populateeditprojectmodal: function( ctofilter, ptofilter )
+        {
+            let current_path = "/customers/" + ctofilter + "/projects/" + ptofilter;
+
+            HTTP.get( current_path )
+
+                .then( response => {
+
+                    if( response.data.data.data.results.project ) {
+                        self.editprojecttitle = response.data.data.data.results.project.title;
+                        self.editprojectcustrowid = response.data.data.data.results.project.custrowid;
+                        self.edit_project_customer_name = self.newprojectcustomer;
+                    } else {
+                        self.editprojecttitle = [];
+                        self.editprojectcustrowid = [];
                     }
                 })
 
@@ -560,6 +591,31 @@ const app = new Vue({
                 .then( response => {
 
                     self.cfilter( newprojectcustrowid );
+                    
+                })
+
+                .catch( e => {
+
+                    console.log( e );
+
+            });
+        },
+        edittask: function( event, ctofilter, ptofilter )
+        {
+            let self = this;
+            
+            let element = event.currentTarget;
+            let form_id = element.getAttribute( 'data-form-id' );
+            let form =  $( '#'+form_id ).serialize();
+
+            let current_path = "customers/" + ctofilter + "/projects/" + ptofilter;
+
+            HTTP.put( current_path, form )
+
+                .then( response => {
+
+                    self.cfilter( ctofilter );
+                    self.pfilter( ctofilter, ptofilter );
                     
                 })
 

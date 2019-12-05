@@ -21,7 +21,7 @@
             </div>
             <div class="col">
                 <button type="button" class="btn btn-link" data-toggle="modal" data-target="#editcustomerModal">
-                
+                +
                 </button>
             </div>
             <div class="col">
@@ -35,6 +35,11 @@
                 +
                 </button>
             </div>
+            <div class="col">
+                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#editprojectModal">
+                +
+                </button>
+            </div>
         </div>
         <div class="row">
             <div class="col">
@@ -45,6 +50,7 @@
         @include('modals.customers.add')
         @include('modals.customers.edit')
         @include('modals.projects.add')
+        @include('modals.projects.edit')
         @include('modals.tasks.add')
         @include('modals.tasks.edit')
         @include('modals.tasks.delete')

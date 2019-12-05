@@ -79062,6 +79062,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! bootstrap-vue */ "./node_modules/bootstrap-vue/esm/index.js");
+var _methods;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -79101,7 +79105,9 @@ vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('tasks-component', __webpac
 var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
   el: '#app',
   data: function data() {
-    return {
+    var _ref;
+
+    return _ref = {
       csrf: [],
       currentobject: typeof currentobjectPHP !== 'undefined' ? currentobjectPHP : [],
       customerprojects: [],
@@ -79126,39 +79132,18 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       newprojstatusrowid: null,
       newprojectstatus: "Status",
       editcustomername: [],
+      editprojecttitle: [],
+      editprojectcustrowid: [],
+      edit_project_customer_name: [],
       taskrowidtaskedit: null,
       edittasktitle: null,
       edittaskesthours: null,
       edittaskusedhrs: null,
       edittaskbillingrate: null,
-      edittaskreqcompdate: null,
-      taskrowidhoursedit: null,
-      hourshoursedit: null,
-      viewtaskhourstaskrowid: null,
-      viewtaskhourscustrowid: null,
-      edithourtaskrowid: null,
-      edithourcustrowid: null,
-      edithouruser_id: null,
-      edithournumhours: null,
-      edithourdateentered: null,
-      edithournotes: null,
-      edithourinvoiceno: null,
-      edithourhoursid: null,
-      currentuser: [],
-      deletehourshoursid: [],
-      deletehoursemployee: [],
-      deletehoursdateentered: [],
-      deletehoursnumhours: [],
-      deletehourstask: [],
-      deletehoursproject: [],
-      deletehourscustomer: [],
-      deletetasktaskrowid: [],
-      deletetasktask: [],
-      deletetaskproject: [],
-      deletetaskcustomer: []
-    };
+      edittaskreqcompdate: null
+    }, _defineProperty(_ref, "editprojecttitle", null), _defineProperty(_ref, "editprojectcustomer", []), _defineProperty(_ref, "taskrowidhoursedit", null), _defineProperty(_ref, "hourshoursedit", null), _defineProperty(_ref, "viewtaskhourstaskrowid", null), _defineProperty(_ref, "viewtaskhourscustrowid", null), _defineProperty(_ref, "edithourtaskrowid", null), _defineProperty(_ref, "edithourcustrowid", null), _defineProperty(_ref, "edithouruser_id", null), _defineProperty(_ref, "edithournumhours", null), _defineProperty(_ref, "edithourdateentered", null), _defineProperty(_ref, "edithournotes", null), _defineProperty(_ref, "edithourinvoiceno", null), _defineProperty(_ref, "edithourhoursid", null), _defineProperty(_ref, "currentuser", []), _defineProperty(_ref, "deletehourshoursid", []), _defineProperty(_ref, "deletehoursemployee", []), _defineProperty(_ref, "deletehoursdateentered", []), _defineProperty(_ref, "deletehoursnumhours", []), _defineProperty(_ref, "deletehourstask", []), _defineProperty(_ref, "deletehoursproject", []), _defineProperty(_ref, "deletehourscustomer", []), _defineProperty(_ref, "deletetasktaskrowid", []), _defineProperty(_ref, "deletetasktask", []), _defineProperty(_ref, "deletetaskproject", []), _defineProperty(_ref, "deletetaskcustomer", []), _ref;
   },
-  methods: {
+  methods: (_methods = {
     debug: function debug() {
       self = this;
       console.log(self.newprojectcustomer);
@@ -79319,6 +79304,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       self.ctofilter = ctofilter;
       self.ptofilter = ptofilter;
       self.populatetaskcomponent(self.ctofilter, self.ptofilter);
+      self.populateeditprojectmodal(self.ctofilter, self.ptofilter);
     },
     populatetaskcomponent: function populatetaskcomponent(ctofilter, ptofilter) {
       var self = this;
@@ -79351,6 +79337,21 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
           self.editcustomername = response.data.data.data.results.customer.name;
         } else {
           self.editcustomername = [];
+        }
+      })["catch"](function (e) {
+        console.log(e);
+      });
+    },
+    populateeditprojectmodal: function populateeditprojectmodal(ctofilter, ptofilter) {
+      var current_path = "/customers/" + ctofilter + "/projects/" + ptofilter;
+      HTTP.get(current_path).then(function (response) {
+        if (response.data.data.data.results.project) {
+          self.editprojecttitle = response.data.data.data.results.project.title;
+          self.editprojectcustrowid = response.data.data.data.results.project.custrowid;
+          self.edit_project_customer_name = self.newprojectcustomer;
+        } else {
+          self.editprojecttitle = [];
+          self.editprojectcustrowid = [];
         }
       })["catch"](function (e) {
         console.log(e);
@@ -79480,6 +79481,19 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
         console.log(e);
       });
     },
+    edittask: function edittask(event, ctofilter, ptofilter) {
+      var self = this;
+      var element = event.currentTarget;
+      var form_id = element.getAttribute('data-form-id');
+      var form = $('#' + form_id).serialize();
+      var current_path = "customers/" + ctofilter + "/projects/" + ptofilter;
+      HTTP.put(current_path, form).then(function (response) {
+        self.cfilter(ctofilter);
+        self.pfilter(ctofilter, ptofilter);
+      })["catch"](function (e) {
+        console.log(e);
+      });
+    },
     createtask: function createtask(event, ctofilter, ptofilter) {
       var self = this;
       var element = event.currentTarget;
@@ -79492,79 +79506,74 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       })["catch"](function (e) {
         console.log(e);
       });
-    },
-    edittask: function edittask(event, ctofilter, ptofilter, taskrowidtaskedit) {
-      var self = this;
-      var element = event.currentTarget;
-      var form_id = element.getAttribute('data-form-id');
-      var form = $('#' + form_id).serialize();
-      var current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + taskrowidtaskedit;
-      HTTP.put(current_path, form).then(function (response) {
-        self.cfilter(ctofilter);
-        self.pfilter(ctofilter, ptofilter);
-      })["catch"](function (e) {
-        console.log(e);
-      });
-    },
-    deletetask: function deletetask(event, ctofilter, ptofilter, deletetasktaskrowid) {
-      var self = this;
-      var element = event.currentTarget;
-      var form_id = element.getAttribute('data-form-id');
-      var form = $('#' + form_id).serialize();
-      var current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + deletetasktaskrowid;
-      HTTP["delete"](current_path, form).then(function (response) {
-        self.cfilter(ctofilter);
-        self.pfilter(ctofilter, ptofilter);
-      })["catch"](function (e) {
-        console.log(e);
-      });
-    },
-    addhours: function addhours(event, ctofilter, ptofilter, taskrowidadd) {
-      var self = this;
-      var element = event.currentTarget;
-      var form_id = element.getAttribute('data-form-id');
-      var form = $('#' + form_id).serialize();
-      var current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + taskrowidadd + "/hours";
-      HTTP.post(current_path, form).then(function (response) {
-        self.cfilter(ctofilter);
-        self.pfilter(ctofilter, ptofilter);
-        self.current();
-        self.populatehours(taskrowidadd);
-      })["catch"](function (e) {
-        console.log(e);
-      });
-    },
-    edithours: function edithours(event, ctofilter, ptofilter, edithourtaskrowid, edithourhoursid) {
-      var self = this;
-      var element = event.currentTarget;
-      var form_id = element.getAttribute('data-form-id');
-      var form = $('#' + form_id).serialize();
-      var current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + edithourtaskrowid + "/hours/" + edithourhoursid;
-      HTTP.put(current_path, form).then(function (response) {
-        self.cfilter(ctofilter);
-        self.pfilter(ctofilter, ptofilter);
-        self.current();
-        self.populatehours(edithourtaskrowid);
-      })["catch"](function (e) {
-        console.log(e);
-      });
-    },
-    deletehours: function deletehours(event, ctofilter, ptofilter, edithourtaskrowid, deletehourshoursid) {
-      var self = this;
-      var element = event.currentTarget;
-      var form_id = element.getAttribute('data-form-id');
-      var form = $('#' + form_id).serialize();
-      var current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + edithourtaskrowid + "/hours/" + deletehourshoursid;
-      HTTP["delete"](current_path, form).then(function (response) {
-        self.cfilter(ctofilter);
-        self.pfilter(ctofilter, ptofilter);
-        self.current();
-        self.populatehours(edithourtaskrowid);
-      })["catch"](function (e) {
-        console.log(e);
-      });
     }
-  }
+  }, _defineProperty(_methods, "edittask", function edittask(event, ctofilter, ptofilter, taskrowidtaskedit) {
+    var self = this;
+    var element = event.currentTarget;
+    var form_id = element.getAttribute('data-form-id');
+    var form = $('#' + form_id).serialize();
+    var current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + taskrowidtaskedit;
+    HTTP.put(current_path, form).then(function (response) {
+      self.cfilter(ctofilter);
+      self.pfilter(ctofilter, ptofilter);
+    })["catch"](function (e) {
+      console.log(e);
+    });
+  }), _defineProperty(_methods, "deletetask", function deletetask(event, ctofilter, ptofilter, deletetasktaskrowid) {
+    var self = this;
+    var element = event.currentTarget;
+    var form_id = element.getAttribute('data-form-id');
+    var form = $('#' + form_id).serialize();
+    var current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + deletetasktaskrowid;
+    HTTP["delete"](current_path, form).then(function (response) {
+      self.cfilter(ctofilter);
+      self.pfilter(ctofilter, ptofilter);
+    })["catch"](function (e) {
+      console.log(e);
+    });
+  }), _defineProperty(_methods, "addhours", function addhours(event, ctofilter, ptofilter, taskrowidadd) {
+    var self = this;
+    var element = event.currentTarget;
+    var form_id = element.getAttribute('data-form-id');
+    var form = $('#' + form_id).serialize();
+    var current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + taskrowidadd + "/hours";
+    HTTP.post(current_path, form).then(function (response) {
+      self.cfilter(ctofilter);
+      self.pfilter(ctofilter, ptofilter);
+      self.current();
+      self.populatehours(taskrowidadd);
+    })["catch"](function (e) {
+      console.log(e);
+    });
+  }), _defineProperty(_methods, "edithours", function edithours(event, ctofilter, ptofilter, edithourtaskrowid, edithourhoursid) {
+    var self = this;
+    var element = event.currentTarget;
+    var form_id = element.getAttribute('data-form-id');
+    var form = $('#' + form_id).serialize();
+    var current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + edithourtaskrowid + "/hours/" + edithourhoursid;
+    HTTP.put(current_path, form).then(function (response) {
+      self.cfilter(ctofilter);
+      self.pfilter(ctofilter, ptofilter);
+      self.current();
+      self.populatehours(edithourtaskrowid);
+    })["catch"](function (e) {
+      console.log(e);
+    });
+  }), _defineProperty(_methods, "deletehours", function deletehours(event, ctofilter, ptofilter, edithourtaskrowid, deletehourshoursid) {
+    var self = this;
+    var element = event.currentTarget;
+    var form_id = element.getAttribute('data-form-id');
+    var form = $('#' + form_id).serialize();
+    var current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + edithourtaskrowid + "/hours/" + deletehourshoursid;
+    HTTP["delete"](current_path, form).then(function (response) {
+      self.cfilter(ctofilter);
+      self.pfilter(ctofilter, ptofilter);
+      self.current();
+      self.populatehours(edithourtaskrowid);
+    })["catch"](function (e) {
+      console.log(e);
+    });
+  }), _methods)
 });
 
 /***/ }),

@@ -6,6 +6,21 @@ use \Illuminate\Database\QueryException;
 
 class CustomerCore
 {
+    /*
+     *
+     * Update Fields
+     *
+     */
+
+    function fields_update_list()
+    {
+        return [
+            'custrowid',
+            'custid',
+            'name',
+            'billtoid',
+        ];
+    }
 
     /*
     *
@@ -77,6 +92,37 @@ class CustomerCore
         } 
 
         return $this->transform_customer_rec( $rs[ 0 ] );
+    }
+
+    public function update( $custrowid, $update_list )
+    {
+        $params = array();
+        $sql_params = array();
+
+        foreach ( $update_list as $key => $value ) {
+            array_push( $params, $value );
+            array_push( $sql_params, $key . ' = ?' );
+        }
+        array_push( $params, $custrowid );
+
+        $sql = "UPDATE custmaster";
+        $sql .= " SET ";
+        $sql .= implode( ',', $sql_params );
+        $sql .= " WHERE custrowid = ?";
+
+        $recs = [];
+
+        try {
+            $recs = \DB::update( $sql, $params );
+        } catch ( \Illuminate\Database\QueryException $e ) {
+            dump( $e );
+        }
+
+        if ( $recs == 0 ) {
+            return false;
+        }
+
+        return true;
     }
 
     public function create( $name = null )

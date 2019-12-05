@@ -29,7 +29,7 @@ Route::delete('/employees/{user_id}', 'UserController@delete');
 Route::get('/customers', 'CustomerController@list');
 Route::get('/customers/{custrowid}', 'CustomerController@get');
 Route::post('/customers', 'CustomerController@createnew');
-/* put /customers/{custrowid} -> " @update */
+Route::put('/customers/{custrowid}', 'CustomerController@update');
 /* delete /customers/{custrowid} -> " @delete */
 
 /* Projects */

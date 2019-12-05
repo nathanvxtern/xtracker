@@ -79125,6 +79125,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       newprojectcustrowid: null,
       newprojstatusrowid: null,
       newprojectstatus: "Status",
+      editcustomername: [],
       taskrowidtaskedit: null,
       edittasktitle: null,
       edittaskesthours: null,
@@ -79206,6 +79207,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       var self = this;
       self.ctofilter = ctofilter;
       self.populateprojectmodal(ctofilter);
+      self.populateeditcustomermodal(ctofilter);
       var current_path = "/customers/" + ctofilter + "/projects";
       HTTP.get(current_path).then(function (response) {
         if (response.data.data.data.results.projects) {
@@ -79342,6 +79344,18 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
         console.log(e);
       });
     },
+    populateeditcustomermodal: function populateeditcustomermodal(ctofilter) {
+      var current_path = "/customers/" + ctofilter;
+      HTTP.get(current_path).then(function (response) {
+        if (response.data.data.data.results.customer.name) {
+          self.editcustomername = response.data.data.data.results.customer.name;
+        } else {
+          self.editcustomername = [];
+        }
+      })["catch"](function (e) {
+        console.log(e);
+      });
+    },
     populateprojectmodal: function populateprojectmodal(custrowid) {
       var self = this;
       self.assignnewprojectcustomer(custrowid);
@@ -79438,6 +79452,18 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
         } else {
           self.deletetaskcustomer = [];
         }
+      })["catch"](function (e) {
+        console.log(e);
+      });
+    },
+    editcustomer: function editcustomer(event, custrowid) {
+      var self = this;
+      var element = event.currentTarget;
+      var form_id = element.getAttribute('data-form-id');
+      var form = $('#' + form_id).serialize();
+      var current_path = "customers/" + custrowid;
+      HTTP.put(current_path, form).then(function (response) {
+        self.cfilter(custrowid);
       })["catch"](function (e) {
         console.log(e);
       });

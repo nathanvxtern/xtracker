@@ -63,6 +63,8 @@ const app = new Vue({
         newprojstatusrowid: null,
         newprojectstatus: "Status",
 
+        editcustomername: [],
+
         taskrowidtaskedit: null,
         edittasktitle: null,
         edittaskesthours: null,
@@ -177,6 +179,7 @@ const app = new Vue({
             let self = this;
             self.ctofilter = ctofilter;
             self.populateprojectmodal( ctofilter );
+            self.populateeditcustomermodal( ctofilter );
 
             let current_path = "/customers/" + ctofilter + "/projects";
 
@@ -340,6 +343,26 @@ const app = new Vue({
 
             });
         },
+        populateeditcustomermodal: function( ctofilter )
+        {
+            let current_path = "/customers/" + ctofilter;
+
+            HTTP.get( current_path )
+
+                .then( response => {
+
+                    if( response.data.data.data.results.customer.name ) {
+                        self.editcustomername = response.data.data.data.results.customer.name;
+                    } else {
+                        self.editcustomername = [];
+                    }
+                })
+
+                .catch( e => {
+                    console.log( e );
+
+            });
+        },
         populateprojectmodal: function( custrowid )
         {
             let self = this;
@@ -494,6 +517,30 @@ const app = new Vue({
                 })
 
                 .catch( e => {
+                    console.log( e );
+
+            });
+        },
+        editcustomer: function( event, custrowid )
+        {
+            let self = this;
+
+            let element = event.currentTarget;
+            let form_id = element.getAttribute( 'data-form-id' );
+            let form = $( '#'+form_id ).serialize();
+
+            let current_path = "customers/" + custrowid;
+
+            HTTP.put( current_path, form )
+
+                .then( response => {
+
+                    self.cfilter( custrowid );
+                    
+                })
+
+                .catch( e => {
+
                     console.log( e );
 
             });

@@ -15,9 +15,15 @@ class ProjectCore
     function fields_update_list()
     {
         return [
-            'title',
             'projrowid',
+            'title',
+            'createdate',
             'custrowid',
+            'projtyperowid',
+            'projstatusrowid',
+            'esthours',
+            'custponumber',
+            'reqcompdate',
         ];
     }
 

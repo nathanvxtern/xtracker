@@ -79141,13 +79141,12 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       edittaskusedhrs: null,
       edittaskbillingrate: null,
       edittaskreqcompdate: null
-    }, _defineProperty(_ref, "editprojecttitle", null), _defineProperty(_ref, "editprojectcustomer", []), _defineProperty(_ref, "taskrowidhoursedit", null), _defineProperty(_ref, "hourshoursedit", null), _defineProperty(_ref, "viewtaskhourstaskrowid", null), _defineProperty(_ref, "viewtaskhourscustrowid", null), _defineProperty(_ref, "edithourtaskrowid", null), _defineProperty(_ref, "edithourcustrowid", null), _defineProperty(_ref, "edithouruser_id", null), _defineProperty(_ref, "edithournumhours", null), _defineProperty(_ref, "edithourdateentered", null), _defineProperty(_ref, "edithournotes", null), _defineProperty(_ref, "edithourinvoiceno", null), _defineProperty(_ref, "edithourhoursid", null), _defineProperty(_ref, "currentuser", []), _defineProperty(_ref, "deletehourshoursid", []), _defineProperty(_ref, "deletehoursemployee", []), _defineProperty(_ref, "deletehoursdateentered", []), _defineProperty(_ref, "deletehoursnumhours", []), _defineProperty(_ref, "deletehourstask", []), _defineProperty(_ref, "deletehoursproject", []), _defineProperty(_ref, "deletehourscustomer", []), _defineProperty(_ref, "deletetasktaskrowid", []), _defineProperty(_ref, "deletetasktask", []), _defineProperty(_ref, "deletetaskproject", []), _defineProperty(_ref, "deletetaskcustomer", []), _ref;
+    }, _defineProperty(_ref, "editprojecttitle", []), _defineProperty(_ref, "editprojectcustomer", []), _defineProperty(_ref, "taskrowidhoursedit", null), _defineProperty(_ref, "hourshoursedit", null), _defineProperty(_ref, "viewtaskhourstaskrowid", null), _defineProperty(_ref, "viewtaskhourscustrowid", null), _defineProperty(_ref, "edithourtaskrowid", null), _defineProperty(_ref, "edithourcustrowid", null), _defineProperty(_ref, "edithouruser_id", null), _defineProperty(_ref, "edithournumhours", null), _defineProperty(_ref, "edithourdateentered", null), _defineProperty(_ref, "edithournotes", null), _defineProperty(_ref, "edithourinvoiceno", null), _defineProperty(_ref, "edithourhoursid", null), _defineProperty(_ref, "currentuser", []), _defineProperty(_ref, "deletehourshoursid", []), _defineProperty(_ref, "deletehoursemployee", []), _defineProperty(_ref, "deletehoursdateentered", []), _defineProperty(_ref, "deletehoursnumhours", []), _defineProperty(_ref, "deletehourstask", []), _defineProperty(_ref, "deletehoursproject", []), _defineProperty(_ref, "deletehourscustomer", []), _defineProperty(_ref, "deletetasktaskrowid", []), _defineProperty(_ref, "deletetasktask", []), _defineProperty(_ref, "deletetaskproject", []), _defineProperty(_ref, "deletetaskcustomer", []), _ref;
   },
   methods: (_methods = {
     debug: function debug() {
       self = this;
-      console.log(self.newprojectcustomer);
-      console.log(self.newprojectcustrowid);
+      console.log(self.editprojecttitle);
     },
     gettasks: function gettasks(ctofilter, ptofilter) {
       var self = this;
@@ -79331,6 +79330,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       });
     },
     populateeditcustomermodal: function populateeditcustomermodal(ctofilter) {
+      var self = this;
       var current_path = "/customers/" + ctofilter;
       HTTP.get(current_path).then(function (response) {
         if (response.data.data.data.results.customer.name) {
@@ -79343,10 +79343,12 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       });
     },
     populateeditprojectmodal: function populateeditprojectmodal(ctofilter, ptofilter) {
+      var self = this;
       var current_path = "/customers/" + ctofilter + "/projects/" + ptofilter;
       HTTP.get(current_path).then(function (response) {
         if (response.data.data.data.results.project) {
           self.editprojecttitle = response.data.data.data.results.project.title;
+          console.log(self.editprojecttitle);
           self.editprojectcustrowid = response.data.data.data.results.project.custrowid;
           self.edit_project_customer_name = self.newprojectcustomer;
         } else {
@@ -79545,17 +79547,16 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
     })["catch"](function (e) {
       console.log(e);
     });
-  }), _defineProperty(_methods, "edithours", function edithours(event, ctofilter, ptofilter, edithourtaskrowid, edithourhoursid) {
+  }), _defineProperty(_methods, "editproject", function editproject(event, ctofilter, ptofilter) {
     var self = this;
     var element = event.currentTarget;
     var form_id = element.getAttribute('data-form-id');
     var form = $('#' + form_id).serialize();
-    var current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + edithourtaskrowid + "/hours/" + edithourhoursid;
+    console.log(ptofilter);
+    var current_path = "customers/" + ctofilter + "/projects/" + ptofilter;
     HTTP.put(current_path, form).then(function (response) {
       self.cfilter(ctofilter);
       self.pfilter(ctofilter, ptofilter);
-      self.current();
-      self.populatehours(edithourtaskrowid);
     })["catch"](function (e) {
       console.log(e);
     });

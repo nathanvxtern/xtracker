@@ -10,19 +10,21 @@
       <div class="modal-body">
           <form id="edit_project_form" :action="'customers/'+ctofilter+'/projects/'+ptofilter" method="POST" name="edit_project_form">
               {{ method_field('PUT') }}
-                  @csrf
-                  <div class="row form-group">
-                      <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                          <label for="title">Project Title</label>
-                          <input v-model="editprojecttitle" type="text" class="form-control" id="create-link-title" name="title">
-                      </div>
+              @csrf
+              <div class="row form-group">
+                  <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
+                      <label for="title">Project Title</label>
+                      <input v-bind:value="editprojecttitle" v-bind:label="editprojecttitle" type="text" class="form-control" id="create-link-title" name="title">
                   </div>
-                  <div class="row form-group">
-                      <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
-                          <label for="custrowid">Customer Name: @{{ newprojectcustomer }}</label>
-                          <input v-model="editprojectcustrowid" type="text" class="form-control" id="create-link-custrowid">
-                      </div>
+              </div>
+              <div class="row form-group">
+                  <div class="col-md-4 col-sm-6 col-xs-12 input-padding">
+                      <label for="custrowid">Customer Name: @{{ newprojectcustomer }}</label>
+                      <select :v-model="editprojectcustrowid" name="custrowid" id="custrowid" class="form-control" v-on:change="populateeditprojectmodal( editprojectcustrowid, ptofilter );">
+                          <option v-for="customer in currentobject.customers" :key="customer.custrowid" :label="customer.name">@{{ customer.custrowid }}</option>
+                      </select>
                   </div>
+              </div>
           </form>
       </div>
       <div class="modal-footer">

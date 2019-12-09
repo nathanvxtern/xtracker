@@ -76,7 +76,7 @@ const app = new Vue({
         edittaskbillingrate: null,
         edittaskreqcompdate: null,
 
-        editprojecttitle: null,
+        editprojecttitle: [],
         editprojectcustomer: [],
 
         taskrowidhoursedit: null,
@@ -115,8 +115,7 @@ const app = new Vue({
         debug: function()
         {
             self = this;
-            console.log( self.newprojectcustomer );
-            console.log( self.newprojectcustrowid );
+            console.log( self.editprojecttitle );
         },
         gettasks: function( ctofilter, ptofilter )
         {
@@ -353,6 +352,7 @@ const app = new Vue({
         },
         populateeditcustomermodal: function( ctofilter )
         {
+            let self = this;
             let current_path = "/customers/" + ctofilter;
 
             HTTP.get( current_path )
@@ -373,6 +373,7 @@ const app = new Vue({
         },
         populateeditprojectmodal: function( ctofilter, ptofilter )
         {
+            let self = this;
             let current_path = "/customers/" + ctofilter + "/projects/" + ptofilter;
 
             HTTP.get( current_path )
@@ -381,6 +382,7 @@ const app = new Vue({
 
                     if( response.data.data.data.results.project ) {
                         self.editprojecttitle = response.data.data.data.results.project.title;
+                        console.log( self.editprojecttitle );
                         self.editprojectcustrowid = response.data.data.data.results.project.custrowid;
                         self.edit_project_customer_name = self.newprojectcustomer;
                     } else {
@@ -727,7 +729,7 @@ const app = new Vue({
 
             });
         },
-        edithours: function( event, ctofilter, ptofilter, edithourtaskrowid, edithourhoursid )
+        editproject: function( event, ctofilter, ptofilter )
         {
             let self = this;
             
@@ -735,7 +737,9 @@ const app = new Vue({
             let form_id = element.getAttribute( 'data-form-id' );
             let form =  $( '#'+form_id ).serialize();
 
-            let current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + edithourtaskrowid + "/hours/" + edithourhoursid;
+            console.log( ptofilter );
+
+            let current_path = "customers/" + ctofilter + "/projects/" + ptofilter;
 
             HTTP.put( current_path, form )
 
@@ -743,8 +747,6 @@ const app = new Vue({
 
                     self.cfilter( ctofilter );
                     self.pfilter( ctofilter, ptofilter );
-                    self.current();
-                    self.populatehours( edithourtaskrowid );
                     
                 })
 

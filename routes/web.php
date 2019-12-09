@@ -35,8 +35,8 @@ Route::put('/customers/{custrowid}', 'CustomerController@update');
 /* Projects */
 Route::get('/customers/{custrowid}/projects', 'ProjectController@list');
 Route::get('/customers/{custrowid}/projects/{projrowid}', 'ProjectController@get');
-Route::post('customers/{custrowid}/projects', 'ProjectController@createnew');
-/* put /customers/{custrowid}/{projrowid} -> " @update */
+Route::post('/customers/{custrowid}/projects', 'ProjectController@createnew');
+Route::put('/customers/{custrowid}/projects/{projrowid}', 'ProjectController@update' );
 /* delete /customers/{custrowid}/project/{projrowid} -> " @delete */
 
 /* Tasks */

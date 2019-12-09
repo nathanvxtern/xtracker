@@ -6,6 +6,20 @@ use \Illuminate\Database\QueryException;
 
 class ProjectCore
 {
+    /*
+     *
+     * Update Fields
+     *
+     */
+
+    function fields_update_list()
+    {
+        return [
+            'title',
+            'projrowid',
+            'custrowid',
+        ];
+    }
 
     /*
     *
@@ -122,5 +136,36 @@ class ProjectCore
         } else{
             return false;
         }
+    }
+
+    public function update( $projrowid, $update_list )
+    {
+        $params = array();
+        $sql_params = array();
+
+        foreach ( $update_list as $key => $value ) {
+            array_push( $params, $value );
+            array_push( $sql_params, $key . ' = ?' );
+        }
+        array_push( $params, $projrowid );
+
+        $sql = "UPDATE projmaster";
+        $sql .= " SET ";
+        $sql .= implode( ',', $sql_params );
+        $sql .= " WHERE projrowid = ?";
+
+        $recs = [];
+
+        try {
+            $recs = \DB::update( $sql, $params );
+        } catch ( \Illuminate\Database\QueryException $e ) {
+            dump( $e );
+        }
+
+        if ( $recs == 0 ) {
+            return false;
+        }
+
+        return true;
     }
 }

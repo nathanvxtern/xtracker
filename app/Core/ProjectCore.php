@@ -174,4 +174,44 @@ class ProjectCore
 
         return true;
     }
+
+    public function delete( $projrowid = null )
+    {
+        $params = [
+            $projrowid
+        ];
+        $sql = "DELETE FROM projhours H 
+                USING (
+                        SELECT T.*
+                        FROM taskmaster T
+                          INNER JOIN projmaster P
+                            ON T.projrowid = P.projrowid
+                      ) J
+                WHERE H.taskrowid = J.taskrowid
+                  AND J.projrowid = ?";
+        try {
+            \DB::delete( $sql, $params );
+        } catch ( \Illuminate\Database\QueryException $e ) {
+            \Log::info( $e->getMessage() );
+            return false;
+        }
+        $sql = "DELETE
+                FROM projmaster P
+                WHERE P.projrowid = ?";
+        try {
+            \DB::delete( $sql, $params );
+        } catch ( \Illuminate\Database\QueryException $e ) {
+            \Log::info( $e->getMessage() );
+            return false;
+        }
+        $sql = "DELETE
+                FROM taskmaster T
+                WHERE T.projrowid = ?";
+        try {
+            \DB::delete( $sql, $params );
+        } catch ( \Illuminate\Database\QueryException $e ) {
+            \Log::info( $e->getMessage() );
+            return false;
+        }
+    }
 }

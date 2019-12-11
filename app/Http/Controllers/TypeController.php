@@ -3,25 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Core\TypeCore;
 
 class TypeController extends APIController
 {
 
-    public function type( Request $request, $projtyperowid )
+    public function list( Request $request )
     {
         $type_core = new TypeCore();
 
         $rec = array();
 
-        $rec[ 'results' ][ 'type' ] = [];
+        $rec[ 'results' ][ 'types' ] = [];
 
-        $rec[ 'results' ][ 'type' ] = $type_core->get( $projtyperowid );
+        $rec[ 'results' ][ 'types' ] = $type_core->list( );
 
         $pagevars = array();
         $pagevars[ 'data' ] = array();
         $pagevars[ 'data' ] = $rec;
 
-        return $this->return_success( $request, $pagevars );
+        return $this->return_success( $pagevars );
     }
 
 }

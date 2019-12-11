@@ -47,8 +47,8 @@ const app = new Vue({
         custrowidhoursadd: [],
         newtaskstatus: "Status",
         newtaskstatusrowid: null,
-        newtasktype: "Type",
-        newtasktyperowid: null,
+        newtasktype: [],
+        newtasktyperowid: [],
         tasks: [],
         projstatusrowid: 0,
         projtyperowid: 0,
@@ -57,6 +57,7 @@ const app = new Vue({
         ctofilter: [],
         ptofilter: [],
         ttofilter: [],
+        types: [],
 
         newprojectcustomer: [],
         newprojectcustrowid: null,
@@ -68,6 +69,9 @@ const app = new Vue({
         editprojecttitle: [],
         editprojectcustrowid: [],
         edit_project_customer_name: [],
+
+        delete_project_title: [],
+        delete_project_customer: [],
 
         taskrowidtaskedit: null,
         edittasktitle: null,
@@ -115,7 +119,7 @@ const app = new Vue({
         debug: function()
         {
             self = this;
-            console.log( self.editprojecttitle );
+            console.log( self.types );
         },
         gettasks: function( ctofilter, ptofilter )
         {
@@ -149,8 +153,10 @@ const app = new Vue({
                 .then( response => {
                     if( response.data.data.data.results.customer.name ) {
                         self.customer = response.data.data.data.results.customer.name;
+                        self.delete_project_customer = self.customer;
                     } else {
                         self.customer = [];
+                        self.delete_project_customer = [];
                     }
                 })
 
@@ -251,66 +257,12 @@ const app = new Vue({
         assignnewtasktype: function( newtasktype )
         {
             let self = this;
-            self.newtasktype = newtasktype;
-            if ( newtasktype == "PROG 100" ) {
-                self.newtasktyperowid = 8;
-            } else if ( newtasktype == "PROG 115" ) {
-                self.newtasktyperowid = 9;
-            } else if ( newtasktype == "ONSITE" ) {
-                self.newtasktyperowid = 10;
-            } else if ( newtasktype == "PROG 175" ) {
-                self.newtasktyperowid = 11;
-            } else if ( newtasktype == "PROG 125" ) {
-                self.newtasktyperowid = 12;
-            } else if ( newtasktype == "PROG 150" ) {
-                self.newtasktyperowid = 13;
-            } else if ( newtasktype == "PROG85" ) {
-                self.newtasktyperowid = 14;
-            } else if ( newtasktype == "PROG 120" ) {
-                self.newtasktyperowid = 15;
-            } else if ( newtasktype == "PROG 250" ) {
-                self.newtasktyperowid = 16;
-            } else if ( newtasktype == "PROG 200" ) {
-                self.newtasktyperowid = 17;
-            } else if ( newtasktype == "CONS 225" ) {
-                self.newtasktyperowid = 18;
-            } else if ( newtasktype == "WEBDVT 135" ) {
-                self.newtasktyperowid = 19;
-            } else if ( newtasktype == "PROG FREE" ) {
-                self.newtasktyperowid = 20;
-            } else if ( newtasktype == "PROG 75" ) {
-                self.newtasktyperowid = 21;
-            } else if ( newtasktype == "PROG PAID" ) {
-                self.newtasktyperowid = 22;
-            } else if ( newtasktype == "GRAPH 75" ) {
-                self.newtasktyperowid = 23;
-            } else if ( newtasktype == "PROG37.5" ) {
-                self.newtasktyperowid = 24;
-            } else if ( newtasktype == "ICG190" ) {
-                self.newtasktyperowid = 25;
-            } else if ( newtasktype == "PROG 105" ) {
-                self.newtasktyperowid = 26;
-            } else if ( newtasktype == "ICG175" ) {
-                self.newtasktyperowid = 27;
-            } else if ( newtasktype == "SUPP 150" ) {
-                self.newtasktyperowid = 28;
-            } else if ( newtasktype == "LEGACY190" ) {
-                self.newtasktyperowid = 29;
-            } else if ( newtasktype == "LEGACY175" ) {
-                self.newtasktyperowid = 30;
-            } else if ( newtasktype == "PROG150DISC10" ) {
-                self.newtasktyperowid = 31;
-            } else if ( newtasktype == "GRAPH75DISC10" ) {
-                self.newtasktyperowid = 32;
-            } else if ( newtasktype == "PROG 190" ) {
-                self.newtasktyperowid = 33;
-            } else if ( newtasktype == "CONSULT 200" ) {
-                self.newtasktyperowid = 34;
-            }
+            self.newtasktyperowid = newtasktype;
         },
         pfilter: function( ctofilter, ptofilter )
         {
             let self = this;
+            self.loadtypes();
             self.ctofilter = ctofilter;
             self.ptofilter = ptofilter;
             self.populatetaskcomponent( self.ctofilter, self.ptofilter );
@@ -382,7 +334,6 @@ const app = new Vue({
 
                     if( response.data.data.data.results.project ) {
                         self.editprojecttitle = response.data.data.data.results.project.title;
-                        console.log( self.editprojecttitle );
                         self.editprojectcustrowid = response.data.data.data.results.project.custrowid;
                         self.edit_project_customer_name = self.newprojectcustomer;
                     } else {
@@ -562,7 +513,7 @@ const app = new Vue({
             let form_id = element.getAttribute( 'data-form-id' );
             let form = $( '#'+form_id ).serialize();
 
-            let current_path = "customers/" + custrowid;
+            let current_path = "/customers/" + custrowid;
 
             HTTP.put( current_path, form )
 
@@ -586,7 +537,7 @@ const app = new Vue({
             let form_id = element.getAttribute( 'data-form-id' );
             let form =  $( '#'+form_id ).serialize();
 
-            let current_path = "customers/" + newprojectcustrowid + "/projects";
+            let current_path = "/customers/" + newprojectcustrowid + "/projects";
 
             HTTP.post( current_path, form )
 
@@ -610,7 +561,7 @@ const app = new Vue({
             let form_id = element.getAttribute( 'data-form-id' );
             let form =  $( '#'+form_id ).serialize();
 
-            let current_path = "customers/" + ctofilter + "/projects/" + ptofilter;
+            let current_path = "/customers/" + ctofilter + "/projects/" + ptofilter;
 
             HTTP.put( current_path, form )
 
@@ -635,7 +586,7 @@ const app = new Vue({
             let form_id = element.getAttribute( 'data-form-id' );
             let form =  $( '#'+form_id ).serialize();
 
-            let current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks";
+            let current_path = "/customers/" + ctofilter + "/projects/" + ptofilter + "/tasks";
 
             HTTP.post( current_path, form )
 
@@ -660,7 +611,7 @@ const app = new Vue({
             let form_id = element.getAttribute( 'data-form-id' );
             let form =  $( '#'+form_id ).serialize();
 
-            let current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + taskrowidtaskedit;
+            let current_path = "/customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + taskrowidtaskedit;
 
             HTTP.put( current_path, form )
 
@@ -685,7 +636,7 @@ const app = new Vue({
             let form_id = element.getAttribute( 'data-form-id' );
             let form =  $( '#'+form_id ).serialize();
 
-            let current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + deletetasktaskrowid;
+            let current_path = "/customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + deletetasktaskrowid;
 
             HTTP.delete( current_path, form )
 
@@ -710,7 +661,7 @@ const app = new Vue({
             let form_id = element.getAttribute( 'data-form-id' );
             let form =  $( '#'+form_id ).serialize();
 
-            let current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + taskrowidadd + "/hours";
+            let current_path = "/customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + taskrowidadd + "/hours";
 
             HTTP.post( current_path, form )
 
@@ -737,9 +688,7 @@ const app = new Vue({
             let form_id = element.getAttribute( 'data-form-id' );
             let form =  $( '#'+form_id ).serialize();
 
-            console.log( ptofilter );
-
-            let current_path = "customers/" + ctofilter + "/projects/" + ptofilter;
+            let current_path = "/customers/" + ctofilter + "/projects/" + ptofilter;
 
             HTTP.put( current_path, form )
 
@@ -764,7 +713,7 @@ const app = new Vue({
             let form_id = element.getAttribute( 'data-form-id' );
             let form =  $( '#'+form_id ).serialize();
 
-            let current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + edithourtaskrowid + "/hours/" + deletehourshoursid;
+            let current_path = "/customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + edithourtaskrowid + "/hours/" + deletehourshoursid;
 
             HTTP.delete( current_path, form )
 
@@ -783,5 +732,74 @@ const app = new Vue({
 
             });
         },
+        loadtypes: function()
+        {
+            let self = this;
+
+            let current_path = "/types";
+
+            HTTP.get( current_path )
+
+                .then( response => {
+
+                    if ( response.data.data.data.results.types ) {
+                        self.types = response.data.data.results.types;
+                    } else {
+                        self.types = [];
+                    }
+                })
+
+                .catch( e => {
+
+                    console.log( e );
+
+            });
+        },
+        populate_delete_project_modal: function( ctofilter, ptofilter )
+        {
+            let self = this;
+
+            let current_path = "/customers/" + ctofilter + "/projects/" + ptofilter;
+
+            HTTP.get( current_path )
+
+                .then( response => {
+
+                    if ( response.data.data.data.results.project ) {
+                        self.delete_project_title = response.data.data.data.results.project.title;
+                    } else {
+                        self.delete_project_title = [];
+                    }
+
+                    self.getcustomer( ctofilter );
+                    
+                })
+
+                .catch( e => {
+
+                    console.log( e );
+
+            });
+        },
+        deleteproject: function( event, ctofilter, ptofilter )
+        {
+            let self = this;
+
+            let current_path = "/customers/" + ctofilter + "/projects/" + ptofilter;
+
+            HTTP.delete( current_path )
+
+                .then( response => {
+
+                    self.cfilter( ctofilter );
+                    
+                })
+
+                .catch( e => {
+
+                    console.log( e );
+
+            });
+        }
     }
 });

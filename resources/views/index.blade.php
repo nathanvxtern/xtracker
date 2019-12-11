@@ -21,7 +21,7 @@
             </div>
             <div class="col">
                 <button type="button" class="btn btn-link" data-toggle="modal" data-target="#editcustomerModal">
-                +
+                Edit
                 </button>
             </div>
             <div class="col">
@@ -37,7 +37,12 @@
             </div>
             <div class="col">
                 <button type="button" class="btn btn-link" data-toggle="modal" data-target="#editprojectModal">
-                +
+                Edit
+                </button>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#deleteprojectModal" @click="populate_delete_project_modal( ctofilter, ptofilter )">
+                Delete
                 </button>
             </div>
         </div>
@@ -51,6 +56,7 @@
         @include('modals.customers.edit')
         @include('modals.projects.add')
         @include('modals.projects.edit')
+        @include('modals.projects.delete')
         @include('modals.tasks.add')
         @include('modals.tasks.edit')
         @include('modals.tasks.delete')

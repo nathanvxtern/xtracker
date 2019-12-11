@@ -71,6 +71,15 @@ class ProjectController extends APIController
         return $this->return_success( $request );
     }
 
+    public function delete( Request $request, $custrowid, $projrowid )
+    {
+        $project_core = new ProjectCore();
+
+        $project_core->delete( $projrowid );
+
+        return $this->return_success( $request );
+    }
+
     public function createnew( Request $request, $custrowid )
     {
         $title = $request->input( 'title', null );

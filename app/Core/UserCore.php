@@ -86,7 +86,7 @@ class UserCore
         } catch ( \Illuminate\Database\QueryException $e ) {
             \Log::error( $e->getMessage() );
             return [];
-        } 
+        }
 
         return $this->transform_type_rec( $rs[ 0 ] );
     }

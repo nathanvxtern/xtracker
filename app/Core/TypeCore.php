@@ -6,6 +6,22 @@ use \Illuminate\Database\QueryException;
 
 class TypeCore
 {
+    /*
+     *
+     * Update Fields
+     *
+     */
+
+    function fields_update_list()
+    {
+        return [
+            'projtyperowid',
+            'projtype',
+            'projdesc',
+            'multiplier',
+            'rate',
+        ];
+    }
 
     /*
     *
@@ -23,6 +39,9 @@ class TypeCore
         return [
             'projtyperowid'=>$rec->projtyperowid,
             'projtype'=>$rec->projtype,
+            'projdesc'=>$rec->projdesc,
+            'multiplier'=>$rec->multiplier,
+            'rate'=>$rec->rate,
         ];
     }
 
@@ -36,7 +55,7 @@ class TypeCore
     {
         $params = [];
 
-        $sql = "SELECT T.projtyperowid, T.projtype
+        $sql = "SELECT T.projtyperowid, T.projtype, T.projdesc, T.multiplier, T.rate
                 FROM projtypes T";
 
         try {
@@ -55,7 +74,7 @@ class TypeCore
             $projtyperowid
         ];
 
-        $sql = "SELECT T.projtyperowid, T.projtype
+        $sql = "SELECT T.projtyperowid, T.projtype, T.projdesc, T.multiplier, T.rate
                 FROM projtypes T
                 WHERE T.projtyperowid = ?";
        
@@ -66,7 +85,7 @@ class TypeCore
             return [];
         } 
 
-        return $this->transform_type_collection( $rs );
+        return $this->transform_type_rec( $rs[ 0 ] );
     }
 
 }

@@ -35,7 +35,7 @@
                     <label for="newtasktype">Type</label>
                     <select v-model="newtasktype" name="newtasktype" id="newtasktype" class="form-control" v-on:change="assignnewtasktype( newtasktype );">
                         <option selected>@{{ newtasktype }}</option>
-                        <option v-for="type in currentobject.types" :key="type.projtyperowid">@{{ type.projtype }}</option>
+                        <option v-for="type in types" :key="type.projtyperowid" :label="type.projtype">@{{ type.projtyperowid }}</option>
                     </select>
                 </div>
                 <div class="col-md-4 col-sm-6 col-xs-12 input-padding">

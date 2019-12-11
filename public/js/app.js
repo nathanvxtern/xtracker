@@ -79117,8 +79117,8 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       custrowidhoursadd: [],
       newtaskstatus: "Status",
       newtaskstatusrowid: null,
-      newtasktype: "Type",
-      newtasktyperowid: null,
+      newtasktype: [],
+      newtasktyperowid: [],
       tasks: [],
       projstatusrowid: 0,
       projtyperowid: 0,
@@ -79127,6 +79127,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       ctofilter: [],
       ptofilter: [],
       ttofilter: [],
+      types: [],
       newprojectcustomer: [],
       newprojectcustrowid: null,
       newprojstatusrowid: null,
@@ -79135,6 +79136,8 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       editprojecttitle: [],
       editprojectcustrowid: [],
       edit_project_customer_name: [],
+      delete_project_title: [],
+      delete_project_customer: [],
       taskrowidtaskedit: null,
       edittasktitle: null,
       edittaskesthours: null,
@@ -79146,7 +79149,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
   methods: (_methods = {
     debug: function debug() {
       self = this;
-      console.log(self.editprojecttitle);
+      console.log(self.types);
     },
     gettasks: function gettasks(ctofilter, ptofilter) {
       var self = this;
@@ -79167,8 +79170,10 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       HTTP.get(current_path).then(function (response) {
         if (response.data.data.data.results.customer.name) {
           self.customer = response.data.data.data.results.customer.name;
+          self.delete_project_customer = self.customer;
         } else {
           self.customer = [];
+          self.delete_project_customer = [];
         }
       })["catch"](function (e) {
         console.log(e);
@@ -79240,66 +79245,11 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
     },
     assignnewtasktype: function assignnewtasktype(newtasktype) {
       var self = this;
-      self.newtasktype = newtasktype;
-
-      if (newtasktype == "PROG 100") {
-        self.newtasktyperowid = 8;
-      } else if (newtasktype == "PROG 115") {
-        self.newtasktyperowid = 9;
-      } else if (newtasktype == "ONSITE") {
-        self.newtasktyperowid = 10;
-      } else if (newtasktype == "PROG 175") {
-        self.newtasktyperowid = 11;
-      } else if (newtasktype == "PROG 125") {
-        self.newtasktyperowid = 12;
-      } else if (newtasktype == "PROG 150") {
-        self.newtasktyperowid = 13;
-      } else if (newtasktype == "PROG85") {
-        self.newtasktyperowid = 14;
-      } else if (newtasktype == "PROG 120") {
-        self.newtasktyperowid = 15;
-      } else if (newtasktype == "PROG 250") {
-        self.newtasktyperowid = 16;
-      } else if (newtasktype == "PROG 200") {
-        self.newtasktyperowid = 17;
-      } else if (newtasktype == "CONS 225") {
-        self.newtasktyperowid = 18;
-      } else if (newtasktype == "WEBDVT 135") {
-        self.newtasktyperowid = 19;
-      } else if (newtasktype == "PROG FREE") {
-        self.newtasktyperowid = 20;
-      } else if (newtasktype == "PROG 75") {
-        self.newtasktyperowid = 21;
-      } else if (newtasktype == "PROG PAID") {
-        self.newtasktyperowid = 22;
-      } else if (newtasktype == "GRAPH 75") {
-        self.newtasktyperowid = 23;
-      } else if (newtasktype == "PROG37.5") {
-        self.newtasktyperowid = 24;
-      } else if (newtasktype == "ICG190") {
-        self.newtasktyperowid = 25;
-      } else if (newtasktype == "PROG 105") {
-        self.newtasktyperowid = 26;
-      } else if (newtasktype == "ICG175") {
-        self.newtasktyperowid = 27;
-      } else if (newtasktype == "SUPP 150") {
-        self.newtasktyperowid = 28;
-      } else if (newtasktype == "LEGACY190") {
-        self.newtasktyperowid = 29;
-      } else if (newtasktype == "LEGACY175") {
-        self.newtasktyperowid = 30;
-      } else if (newtasktype == "PROG150DISC10") {
-        self.newtasktyperowid = 31;
-      } else if (newtasktype == "GRAPH75DISC10") {
-        self.newtasktyperowid = 32;
-      } else if (newtasktype == "PROG 190") {
-        self.newtasktyperowid = 33;
-      } else if (newtasktype == "CONSULT 200") {
-        self.newtasktyperowid = 34;
-      }
+      self.newtasktyperowid = newtasktype;
     },
     pfilter: function pfilter(ctofilter, ptofilter) {
       var self = this;
+      self.loadtypes();
       self.ctofilter = ctofilter;
       self.ptofilter = ptofilter;
       self.populatetaskcomponent(self.ctofilter, self.ptofilter);
@@ -79348,7 +79298,6 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       HTTP.get(current_path).then(function (response) {
         if (response.data.data.data.results.project) {
           self.editprojecttitle = response.data.data.data.results.project.title;
-          console.log(self.editprojecttitle);
           self.editprojectcustrowid = response.data.data.data.results.project.custrowid;
           self.edit_project_customer_name = self.newprojectcustomer;
         } else {
@@ -79464,7 +79413,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       var element = event.currentTarget;
       var form_id = element.getAttribute('data-form-id');
       var form = $('#' + form_id).serialize();
-      var current_path = "customers/" + custrowid;
+      var current_path = "/customers/" + custrowid;
       HTTP.put(current_path, form).then(function (response) {
         self.cfilter(custrowid);
       })["catch"](function (e) {
@@ -79476,7 +79425,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       var element = event.currentTarget;
       var form_id = element.getAttribute('data-form-id');
       var form = $('#' + form_id).serialize();
-      var current_path = "customers/" + newprojectcustrowid + "/projects";
+      var current_path = "/customers/" + newprojectcustrowid + "/projects";
       HTTP.post(current_path, form).then(function (response) {
         self.cfilter(newprojectcustrowid);
       })["catch"](function (e) {
@@ -79488,7 +79437,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       var element = event.currentTarget;
       var form_id = element.getAttribute('data-form-id');
       var form = $('#' + form_id).serialize();
-      var current_path = "customers/" + ctofilter + "/projects/" + ptofilter;
+      var current_path = "/customers/" + ctofilter + "/projects/" + ptofilter;
       HTTP.put(current_path, form).then(function (response) {
         self.cfilter(ctofilter);
         self.pfilter(ctofilter, ptofilter);
@@ -79501,7 +79450,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       var element = event.currentTarget;
       var form_id = element.getAttribute('data-form-id');
       var form = $('#' + form_id).serialize();
-      var current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks";
+      var current_path = "/customers/" + ctofilter + "/projects/" + ptofilter + "/tasks";
       HTTP.post(current_path, form).then(function (response) {
         self.cfilter(ctofilter);
         self.pfilter(ctofilter, ptofilter);
@@ -79514,7 +79463,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
     var element = event.currentTarget;
     var form_id = element.getAttribute('data-form-id');
     var form = $('#' + form_id).serialize();
-    var current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + taskrowidtaskedit;
+    var current_path = "/customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + taskrowidtaskedit;
     HTTP.put(current_path, form).then(function (response) {
       self.cfilter(ctofilter);
       self.pfilter(ctofilter, ptofilter);
@@ -79526,7 +79475,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
     var element = event.currentTarget;
     var form_id = element.getAttribute('data-form-id');
     var form = $('#' + form_id).serialize();
-    var current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + deletetasktaskrowid;
+    var current_path = "/customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + deletetasktaskrowid;
     HTTP["delete"](current_path, form).then(function (response) {
       self.cfilter(ctofilter);
       self.pfilter(ctofilter, ptofilter);
@@ -79538,7 +79487,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
     var element = event.currentTarget;
     var form_id = element.getAttribute('data-form-id');
     var form = $('#' + form_id).serialize();
-    var current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + taskrowidadd + "/hours";
+    var current_path = "/customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + taskrowidadd + "/hours";
     HTTP.post(current_path, form).then(function (response) {
       self.cfilter(ctofilter);
       self.pfilter(ctofilter, ptofilter);
@@ -79552,8 +79501,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
     var element = event.currentTarget;
     var form_id = element.getAttribute('data-form-id');
     var form = $('#' + form_id).serialize();
-    console.log(ptofilter);
-    var current_path = "customers/" + ctofilter + "/projects/" + ptofilter;
+    var current_path = "/customers/" + ctofilter + "/projects/" + ptofilter;
     HTTP.put(current_path, form).then(function (response) {
       self.cfilter(ctofilter);
       self.pfilter(ctofilter, ptofilter);
@@ -79565,12 +79513,46 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
     var element = event.currentTarget;
     var form_id = element.getAttribute('data-form-id');
     var form = $('#' + form_id).serialize();
-    var current_path = "customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + edithourtaskrowid + "/hours/" + deletehourshoursid;
+    var current_path = "/customers/" + ctofilter + "/projects/" + ptofilter + "/tasks/" + edithourtaskrowid + "/hours/" + deletehourshoursid;
     HTTP["delete"](current_path, form).then(function (response) {
       self.cfilter(ctofilter);
       self.pfilter(ctofilter, ptofilter);
       self.current();
       self.populatehours(edithourtaskrowid);
+    })["catch"](function (e) {
+      console.log(e);
+    });
+  }), _defineProperty(_methods, "loadtypes", function loadtypes() {
+    var self = this;
+    var current_path = "/types";
+    HTTP.get(current_path).then(function (response) {
+      if (response.data.data.data.results.types) {
+        self.types = response.data.data.results.types;
+      } else {
+        self.types = [];
+      }
+    })["catch"](function (e) {
+      console.log(e);
+    });
+  }), _defineProperty(_methods, "populate_delete_project_modal", function populate_delete_project_modal(ctofilter, ptofilter) {
+    var self = this;
+    var current_path = "/customers/" + ctofilter + "/projects/" + ptofilter;
+    HTTP.get(current_path).then(function (response) {
+      if (response.data.data.data.results.project) {
+        self.delete_project_title = response.data.data.data.results.project.title;
+      } else {
+        self.delete_project_title = [];
+      }
+
+      self.getcustomer(ctofilter);
+    })["catch"](function (e) {
+      console.log(e);
+    });
+  }), _defineProperty(_methods, "deleteproject", function deleteproject(event, ctofilter, ptofilter) {
+    var self = this;
+    var current_path = "/customers/" + ctofilter + "/projects/" + ptofilter;
+    HTTP["delete"](current_path).then(function (response) {
+      self.cfilter(ctofilter);
     })["catch"](function (e) {
       console.log(e);
     });

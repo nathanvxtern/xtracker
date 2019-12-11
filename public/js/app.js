@@ -1954,13 +1954,11 @@ __webpack_require__.r(__webpack_exports__);
     populatehours: function populatehours(taskrowid) {
       var self = this.$parent;
       self.current();
-      self.populatehours(taskrowid);
-
-      if (addhoursbutton.getAttribute('disabled')) {
-        addhoursbutton.setAttribute('disabled', false);
-      } else {
-        addhoursbutton.setAttribute('disabled', true);
-      }
+      self.populatehours(taskrowid); // if ( addhoursbutton.getAttribute( 'disabled' ) ) {
+      //     addhoursbutton.setAttribute('disabled', false );
+      // } else {
+      //     addhoursbutton.setAttribute('disabled', true );
+      // }
     },
     populateedithourmodal: function populateedithourmodal(taskrowidhoursedit, custrowidhoursadd, hour) {
       var self = this.$parent;

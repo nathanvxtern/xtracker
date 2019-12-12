@@ -11,9 +11,8 @@
 |
 */
 
+// Route::view('/#', 'index');
 Route::get('/', 'HomeController@index')->name('home');
-
-Route::get('/status/{projrowid}', 'ProjectController@get');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
@@ -31,7 +30,7 @@ Route::get('/customers', 'CustomerController@list');
 Route::get('/customers/{custrowid}', 'CustomerController@get');
 Route::post('/customers', 'CustomerController@createnew');
 Route::put('/customers/{custrowid}', 'CustomerController@update');
-/* delete /customers/{custrowid} -> " @delete */
+Route::delete('/customers/{custrowid}', 'CustomerController@delete');
 
 Route::get('/customers/{custrowid}/projects', 'ProjectController@list');
 Route::get('/customers/{custrowid}/projects/{projrowid}', 'ProjectController@get');

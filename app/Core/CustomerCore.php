@@ -146,4 +146,50 @@ class CustomerCore
 
         return true;
     }
+
+    public function delete( $custrowid = null )
+    {
+        $params = [
+            $custrowid
+        ];
+        $sql = "DELETE FROM projhours H 
+                USING (
+                        SELECT P.*
+                        FROM projmaster P
+                          INNER JOIN taskmaster T
+                            ON P.projrowid = T.projrowid
+                      ) J
+                WHERE H.taskrowid = J.taskrowid
+                  AND J.custrowid = ?";
+        try {
+            \DB::delete( $sql, $params );
+        } catch ( \Illuminate\Database\QueryException $e ) {
+            \Log::info( $e->getMessage() );
+            return false;
+        }
+        $sql = "DELETE FROM taskmaster T
+                USING (
+                        SELECT P.*
+                        FROM projmaster P
+                          INNER JOIN custmaster C
+                            ON P.custrowid = C.custrowid
+                      ) J
+                WHERE T.projrowid = J.projrowid
+                  AND J.custrowid = ?";
+        try {
+            \DB::delete( $sql, $params );
+        } catch ( \Illuminate\Database\QueryException $e ) {
+            \Log::info( $e->getMessage() );
+            return false;
+        }
+        $sql = "DELETE
+                FROM projmaster P
+                WHERE P.custrowid = ?";
+        try {
+            \DB::delete( $sql, $params );
+        } catch ( \Illuminate\Database\QueryException $e ) {
+            \Log::info( $e->getMessage() );
+            return false;
+        }
+    }
 }

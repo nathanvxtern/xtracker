@@ -13,7 +13,7 @@ class CustomerController extends APIController
         $customer_core = new CustomerCore();
 
         $rec = array();
-        
+
         $rec[ 'results' ][ 'customers' ] = [];
 
         $rec[ 'results' ][ 'customers' ] = $customer_core->list();
@@ -42,6 +42,27 @@ class CustomerController extends APIController
         return $this->return_success( $request, $pagevars );
     }
 
+    public function createnew( Request $request )
+    {
+        $name = $request->input( 'name' , null );
+
+        $customer_core = new CustomerCore();
+
+        $customer_core->create( $name );
+
+        return $this->return_success( $request );
+    }
+
+    public function delete( Request $request, $custrowid )
+    {
+        $customer_core = new CustomerCore();
+
+        $customer_core->delete( $custrowid );
+
+        return $this->return_success( $request );
+    }
+
+
     public function update( Request $request, $custrowid )
     {
         $customer_core = new CustomerCore();
@@ -69,16 +90,4 @@ class CustomerController extends APIController
 
         return $this->return_success( $request );
     }
-
-    public function createnew( Request $request )
-    {
-        $name = $request->input( 'name' , null );
-
-        $customer_core = new CustomerCore();
-
-        $customer_core->create( $name );
-
-        return $this->return_success( $request );
-    }
-
 }

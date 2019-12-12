@@ -25,6 +25,11 @@
                 </button>
             </div>
             <div class="col">
+                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#deletecustomerModal" @click="populate_delete_customer_modal( ctofilter )">
+                Delete
+                </button>
+            </div>
+            <div class="col">
                 Project
                 <select v-model="ptofilter" name="ptofilter" id="ptofilter" class="form-control" v-on:change="pfilter( ctofilter, ptofilter );">
                     <option v-for="project in customerprojects" :key="project.projrowid" :label="project.title">@{{ project.projrowid }}</option>
@@ -54,6 +59,7 @@
 
         @include('modals.customers.add')
         @include('modals.customers.edit')
+        @include('modals.customers.delete')
         @include('modals.projects.add')
         @include('modals.projects.edit')
         @include('modals.projects.delete')

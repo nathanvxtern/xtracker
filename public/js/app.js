@@ -79131,6 +79131,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
       newprojstatusrowid: null,
       newprojectstatus: "Status",
       editcustomername: [],
+      delete_customer_name: [],
       editprojecttitle: [],
       editprojectcustrowid: [],
       edit_project_customer_name: [],
@@ -79193,18 +79194,21 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
     cfilter: function cfilter(ctofilter) {
       var self = this;
       self.ctofilter = ctofilter;
-      self.populateprojectmodal(ctofilter);
-      self.populateeditcustomermodal(ctofilter);
-      var current_path = "/customers/" + ctofilter + "/projects";
-      HTTP.get(current_path).then(function (response) {
-        if (response.data.data.data.results.projects) {
-          self.customerprojects = response.data.data.data.results.projects;
-        } else {
-          self.customerprojects = [];
-        }
-      })["catch"](function (e) {
-        console.log(e);
-      });
+
+      if (ctofilter != 0) {
+        self.populateprojectmodal(ctofilter);
+        self.populateeditcustomermodal(ctofilter);
+        var current_path = "/customers/" + ctofilter + "/projects";
+        HTTP.get(current_path).then(function (response) {
+          if (response.data.data.data.results.projects) {
+            self.customerprojects = response.data.data.data.results.projects;
+          } else {
+            self.customerprojects = [];
+          }
+        })["catch"](function (e) {
+          console.log(e);
+        });
+      }
     },
     assignnewprojectcustomer: function assignnewprojectcustomer(ctofilter) {
       var self = this;
@@ -79551,6 +79555,26 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
     var current_path = "/customers/" + ctofilter + "/projects/" + ptofilter;
     HTTP["delete"](current_path).then(function (response) {
       self.cfilter(ctofilter);
+    })["catch"](function (e) {
+      console.log(e);
+    });
+  }), _defineProperty(_methods, "populate_delete_customer_modal", function populate_delete_customer_modal(ctofilter) {
+    var self = this;
+    var current_path = "/customers/" + ctofilter;
+    HTTP.get(current_path).then(function (response) {
+      if (response.data.data.data.results.customer) {
+        self.delete_customer_name = response.data.data.data.results.customer.name;
+      } else {
+        self.delete_customer_name = [];
+      }
+    })["catch"](function (e) {
+      console.log(e);
+    });
+  }), _defineProperty(_methods, "deletecustomer", function deletecustomer(event, ctofilter) {
+    var self = this;
+    var current_path = "/customers/" + ctofilter;
+    HTTP["delete"](current_path).then(function (response) {
+      self.cfilter(0);
     })["catch"](function (e) {
       console.log(e);
     });

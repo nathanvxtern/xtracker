@@ -66,6 +66,8 @@ const app = new Vue({
 
         editcustomername: [],
 
+        delete_customer_name: [],
+
         editprojecttitle: [],
         editprojectcustrowid: [],
         edit_project_customer_name: [],
@@ -190,26 +192,28 @@ const app = new Vue({
         {
             let self = this;
             self.ctofilter = ctofilter;
-            self.populateprojectmodal( ctofilter );
-            self.populateeditcustomermodal( ctofilter );
+            if ( ctofilter != 0 ) {
+                self.populateprojectmodal( ctofilter );
+                self.populateeditcustomermodal( ctofilter );
 
-            let current_path = "/customers/" + ctofilter + "/projects";
+                let current_path = "/customers/" + ctofilter + "/projects";
 
-            HTTP.get( current_path )
+                HTTP.get( current_path )
 
-                .then( response => {
+                    .then( response => {
 
-                    if( response.data.data.data.results.projects ) {
-                        self.customerprojects = response.data.data.data.results.projects;
-                    } else {
-                        self.customerprojects = [];
-                    }
-                })
+                        if( response.data.data.data.results.projects ) {
+                            self.customerprojects = response.data.data.data.results.projects;
+                        } else {
+                            self.customerprojects = [];
+                        }
+                    })
 
-                .catch( e => {
-                    console.log( e );
+                    .catch( e => {
+                        console.log( e );
 
-            });
+                });
+            }
         },
         assignnewprojectcustomer: function( ctofilter )
         {
@@ -800,6 +804,50 @@ const app = new Vue({
                     console.log( e );
 
             });
-        }
+        },
+        populate_delete_customer_modal: function( ctofilter )
+        {
+            let self = this;
+
+            let current_path = "/customers/" + ctofilter;
+
+            HTTP.get( current_path )
+
+                .then( response => {
+
+                    if ( response.data.data.data.results.customer ) {
+                        self.delete_customer_name = response.data.data.data.results.customer.name;
+                    } else {
+                        self.delete_customer_name = [];
+                    }
+                    
+                })
+
+                .catch( e => {
+
+                    console.log( e );
+
+            });
+        },
+        deletecustomer: function( event, ctofilter )
+        {
+            let self = this;
+
+            let current_path = "/customers/" + ctofilter;
+
+            HTTP.delete( current_path )
+
+                .then( response => {
+
+                    self.cfilter( 0 );
+                    
+                })
+
+                .catch( e => {
+
+                    console.log( e );
+
+            });
+        },
     }
 });

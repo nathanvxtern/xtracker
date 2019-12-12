@@ -152,15 +152,9 @@ class CustomerCore
         $params = [
             $custrowid
         ];
-        $sql = "DELETE FROM projhours H 
-                USING (
-                        SELECT P.*
-                        FROM projmaster P
-                          INNER JOIN taskmaster T
-                            ON P.projrowid = T.projrowid
-                      ) J
-                WHERE H.taskrowid = J.taskrowid
-                  AND J.custrowid = ?";
+        $sql = "DELETE 
+                FROM projhours H
+                WHERE H.custrowid = ?";
         try {
             \DB::delete( $sql, $params );
         } catch ( \Illuminate\Database\QueryException $e ) {
@@ -185,6 +179,15 @@ class CustomerCore
         $sql = "DELETE
                 FROM projmaster P
                 WHERE P.custrowid = ?";
+        try {
+            \DB::delete( $sql, $params );
+        } catch ( \Illuminate\Database\QueryException $e ) {
+            \Log::info( $e->getMessage() );
+            return false;
+        }
+        $sql = "DELETE
+                FROM custmaster C
+                WHERE C.custrowid = ?";
         try {
             \DB::delete( $sql, $params );
         } catch ( \Illuminate\Database\QueryException $e ) {

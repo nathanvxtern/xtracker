@@ -79227,23 +79227,11 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
     },
     assignnewprojectstatus: function assignnewprojectstatus(newprojectstatus) {
       var self = this;
-      self.newprojectstatus = newprojectstatus;
-
-      if (newprojectstatus == "Open") {
-        self.newprojstatusrowid = 10;
-      } else if (newprojectstatus == "Closed") {
-        self.newprojstatusrowid = 11;
-      }
+      self.newtaskstatusrowid = newprojectstatus;
     },
     assignnewtaskstatus: function assignnewtaskstatus(newtaskstatus) {
       var self = this;
-      self.newtaskstatus = newtaskstatus;
-
-      if (newtaskstatus == "Open") {
-        self.newtaskstatusrowid = 10;
-      } else if (newtaskstatus == "Closed") {
-        self.newtaskstatusrowid = 11;
-      }
+      self.newtaskstatusrowid = newtaskstatus;
     },
     assignnewtasktype: function assignnewtasktype(newtasktype) {
       var self = this;

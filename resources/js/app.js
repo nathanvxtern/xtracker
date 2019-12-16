@@ -241,12 +241,22 @@ const app = new Vue({
         assignnewprojectstatus: function( newprojectstatus )
         {
             let self = this;
-            self.newtaskstatusrowid = newprojectstatus;
+            self.newprojectstatus = newprojectstatus;
+            if ( newprojectstatus == "Open" ) {
+                self.newprojstatusrowid = 10;
+            } else if ( newprojectstatus == "Closed" ) {
+                self.newprojstatusrowid = 11;
+            }
         },
         assignnewtaskstatus: function( newtaskstatus )
         {
             let self = this;
-            self.newtaskstatusrowid = newtaskstatus;
+            self.newtaskstatus = newtaskstatus;
+            if ( newtaskstatus == "Open" ) {
+                self.newtaskstatusrowid = 10;
+            } else if ( newtaskstatus == "Closed" ) {
+                self.newtaskstatusrowid = 11;
+            }
         },
         assignnewtasktype: function( newtasktype )
         {
@@ -550,7 +560,7 @@ const app = new Vue({
         edittask: function( event, ctofilter, ptofilter )
         {
             let self = this;
-
+            
             let element = event.currentTarget;
             let form_id = element.getAttribute( 'data-form-id' );
             let form =  $( '#'+form_id ).serialize();
